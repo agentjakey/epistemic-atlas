@@ -1,0 +1,107 @@
+{
+  "_note": "DATA STATUS: partial. Source metadata is drawn from publicly documented records. Specific page numbers and verbatim abstracts require primary source verification.",
+  "sources": [
+    {
+      "id": "src_001",
+      "title": "Review of the Safety of LHC Collisions",
+      "type": "report",
+      "provenance": {
+        "author": ["John Ellis", "Gian Giudice", "Michelangelo Mangano", "Igor Tkachev", "Urs Wiedemann"],
+        "institution": "CERN",
+        "date": "2008",
+        "venue": "Journal of Physics G: Nuclear and Particle Physics",
+        "url": "https://arxiv.org/abs/0806.3414",
+        "doi": "10.1088/0954-3899/35/11/115004",
+        "retrieved": null
+      },
+      "credibility": "high",
+      "conflict_of_interest": "Authors are employed by CERN, which operates the LHC. This is the primary institutional conflict of interest. The report was peer-reviewed and published in an independent journal.",
+      "notes": "This is the primary CERN safety assessment (LSAG report). It updates an earlier 2003 report. It addresses four scenarios: black holes, strangelets, magnetic monopoles, and vacuum bubbles."
+    },
+    {
+      "id": "src_002",
+      "title": "Astrophysical implications of hypothetical stable TeV-scale black holes",
+      "type": "paper",
+      "provenance": {
+        "author": ["Steven B. Giddings", "Michelangelo Mangano"],
+        "institution": "University of California Santa Barbara / CERN",
+        "date": "2008",
+        "venue": "Physical Review D",
+        "url": "https://arxiv.org/abs/0806.3381",
+        "doi": "10.1103/PhysRevD.78.035009",
+        "retrieved": null
+      },
+      "credibility": "high",
+      "conflict_of_interest": "Mangano is employed by CERN. Giddings is an academic physicist with no direct CERN employment.",
+      "notes": "This paper specifically addresses the scenario in which Hawking radiation does not occur. It argues that even without Hawking radiation, micro black holes produced at LHC would not be dangerous, based on astrophysical constraints from neutron stars and white dwarfs."
+    },
+    {
+      "id": "src_003",
+      "title": "Black hole explosions?",
+      "type": "paper",
+      "provenance": {
+        "author": "S. W. Hawking",
+        "institution": "University of Cambridge",
+        "date": "1974",
+        "venue": "Nature",
+        "url": null,
+        "doi": "10.1038/248030a0",
+        "retrieved": null
+      },
+      "credibility": "high",
+      "conflict_of_interest": null,
+      "notes": "The original paper proposing that black holes emit thermal radiation due to quantum effects near the event horizon (Hawking radiation). Theoretical prediction, not experimentally confirmed as of 2008."
+    },
+    {
+      "id": "src_004",
+      "title": "Complaint for Declaratory and Injunctive Relief",
+      "type": "legal_filing",
+      "provenance": {
+        "author": ["Walter L. Wagner", "Luis Sancho"],
+        "institution": null,
+        "date": "2008-03-21",
+        "venue": "United States District Court, District of Hawaii",
+        "url": null,
+        "doi": null,
+        "retrieved": null
+      },
+      "credibility": "low",
+      "conflict_of_interest": "Wagner has a history of filing similar legal challenges against particle physics experiments, including the RHIC. Neither plaintiff is a credentialed particle physicist.",
+      "notes": "Legal challenge seeking to halt LHC operations. Dismissed in August 2008 on jurisdictional grounds (CERN is not a US entity). The scientific arguments in the complaint were not evaluated by the court on their merits."
+    },
+    {
+      "id": "src_005",
+      "title": "Phenomenology of TeV Little String Theory at the LHC",
+      "type": "paper",
+      "provenance": {
+        "author": ["Nima Arkani-Hamed", "Savas Dimopoulos", "Gia Dvali"],
+        "institution": "Stanford / Fermilab / ICTP",
+        "date": "1998",
+        "venue": "Physical Review Letters",
+        "url": null,
+        "doi": "10.1103/PhysRevLett.81.4568",
+        "retrieved": null
+      },
+      "credibility": "high",
+      "conflict_of_interest": null,
+      "notes": "The ADD model paper proposing large extra dimensions. This is the theoretical framework under which micro black hole production at LHC energies becomes conceivable. Cited as the theoretical basis for concerns about LHC black holes."
+    },
+    {
+      "id": "src_006",
+      "title": "Study of Potentially Dangerous Events During Heavy-Ion Collisions at the LHC (CERN 2003 Safety Report)",
+      "type": "report",
+      "provenance": {
+        "author": ["John Ellis", "Gian Giudice", "Michelangelo Mangano", "Igor Tkachev", "Urs Wiedemann"],
+        "institution": "CERN",
+        "date": "2003",
+        "venue": "CERN document CERN-TH/2003-079",
+        "url": null,
+        "doi": null,
+        "retrieved": null
+      },
+      "credibility": "high",
+      "conflict_of_interest": "CERN authorship as noted in src_001.",
+      "notes": "Earlier version of the safety assessment, updated in 2008. Included to show the longitudinal record of safety assessment."
+    }
+  ]
+}

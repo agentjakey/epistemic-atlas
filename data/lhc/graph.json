@@ -1,0 +1,120 @@
+{
+  "_note": "DATA STATUS: partial. Relations are based on logical analysis of the claims. Strength assessments are approximate.",
+  "relations": [
+    {
+      "id": "R001",
+      "from_claim_id": "C001",
+      "to_claim_id": "C007",
+      "type": "depends_on",
+      "strength": "strong",
+      "notes": "The existential risk claim (C007) depends entirely on the theoretical possibility in C001. Without extra dimensions, no black holes are produced and C007 has no basis."
+    },
+    {
+      "id": "R002",
+      "from_claim_id": "C002",
+      "to_claim_id": "C007",
+      "type": "attacks",
+      "strength": "moderate",
+      "notes": "If Hawking radiation evaporates micro black holes on nanosecond timescales, no accumulation is possible and C007 cannot be true. Strength is moderate rather than strong because C002 relies on unverified Hawking radiation."
+    },
+    {
+      "id": "R003",
+      "from_claim_id": "C003",
+      "to_claim_id": "C007",
+      "type": "attacks",
+      "strength": "strong",
+      "notes": "The astrophysical argument (C003) does not depend on Hawking radiation. It provides an independent, empirically grounded rebuttal to C007."
+    },
+    {
+      "id": "R004",
+      "from_claim_id": "C004",
+      "to_claim_id": "C003",
+      "type": "supports",
+      "strength": "strong",
+      "notes": "The observed stability of astrophysical objects under high-energy cosmic ray bombardment is the empirical basis for the astrophysical safety argument."
+    },
+    {
+      "id": "R005",
+      "from_claim_id": "C005",
+      "to_claim_id": "C002",
+      "type": "qualifies",
+      "strength": "moderate",
+      "notes": "The unobserved status of Hawking radiation qualifies C002 by noting its theoretical assumption is unverified. It does not directly attack C002 but narrows its certainty."
+    },
+    {
+      "id": "R006",
+      "from_claim_id": "C006",
+      "to_claim_id": "C001",
+      "type": "qualifies",
+      "strength": "strong",
+      "notes": "C006 establishes that black hole production is only possible under extra-dimension models, not under the Standard Model alone. This qualifies C001 as conditional on those models being correct."
+    },
+    {
+      "id": "R007",
+      "from_claim_id": "C001",
+      "to_claim_id": "C006",
+      "type": "depends_on",
+      "strength": "strong",
+      "notes": "C001 (black hole production possible) depends on extra dimensions existing. C006 (Standard Model predicts no black holes) is the counterfactual."
+    },
+    {
+      "id": "R008",
+      "from_claim_id": "C008",
+      "to_claim_id": "C002",
+      "type": "supports",
+      "strength": "moderate",
+      "notes": "The independent review of the LSAG report lends additional credibility to the safety conclusions including C002, though the independence is partial."
+    },
+    {
+      "id": "R009",
+      "from_claim_id": "C003",
+      "to_claim_id": "C005",
+      "type": "attacks",
+      "strength": "strong",
+      "notes": "The astrophysical safety argument (C003) directly undermines C005's implication that safety is uncertain, by providing a safety argument independent of Hawking radiation."
+    }
+  ],
+  "cruxes": [
+    {
+      "id": "CX001",
+      "statement": "Do large extra spatial dimensions exist at the scale relevant to LHC collision energies?",
+      "description": "If extra dimensions exist at the right scale, black hole production becomes theoretically possible (C001). If they do not, black hole production cannot occur at LHC energies (C006) and the entire dispute is moot. This is the foundational crux.",
+      "dependent_claim_ids": ["C001", "C002", "C007"],
+      "status": "empirically_underdetermined",
+      "resolution_notes": "As of 2024, no evidence for large extra dimensions has been found at the LHC. The absence of evidence is informative but not a definitive resolution, as the ADD model parameter space is large."
+    },
+    {
+      "id": "CX002",
+      "statement": "Does Hawking radiation occur for microscopic black holes at TeV-scale masses?",
+      "description": "If Hawking radiation occurs, micro black holes evaporate instantly and pose no danger (C002). This crux matters for evaluating the strength of the primary safety argument, but is not determinative because the astrophysical argument (C003) provides an independent safety case.",
+      "dependent_claim_ids": ["C002", "C005"],
+      "status": "empirically_underdetermined",
+      "resolution_notes": "Hawking radiation has not been directly observed. Indirect evidence from analog gravity systems exists but is not definitive for the quantum gravity regime relevant here."
+    }
+  ],
+  "missing_evidence": [
+    {
+      "id": "ME001",
+      "description": "Direct experimental confirmation or disconfirmation of large extra dimensions. LHC data constrains the ADD model parameter space but does not rule out all configurations.",
+      "type": "empirical",
+      "would_affect_ids": ["CX001", "C001"],
+      "priority": "critical"
+    },
+    {
+      "id": "ME002",
+      "description": "Direct observation of Hawking radiation from any physical system. Analog experiments (acoustic black holes, etc.) exist but are not confirmations of gravitational Hawking radiation.",
+      "type": "empirical",
+      "would_affect_ids": ["CX002", "C002", "C005"],
+      "priority": "important"
+    }
+  ],
+  "assessment": {
+    "epistemic_status": "Scientific consensus, well-supported by independent arguments, with the primary safety case not depending on any single contested theoretical assumption. The residual uncertainty about extra dimensions and Hawking radiation does not undermine the safety conclusion because the astrophysical argument provides an independent empirical constraint.",
+    "resolved": true,
+    "resolution_summary": "The LSAG safety assessment, confirmed by independent review, concluded that LHC operations do not present a risk of catastrophic harm. This conclusion is supported by two independent lines of argument: (1) if Hawking radiation occurs, micro black holes evaporate instantly; (2) even without Hawking radiation, astrophysical observations of neutron stars and white dwarfs provide strong empirical constraints that preclude dangerous stable black hole formation. The legal challenge was dismissed on jurisdictional grounds.",
+    "well_supported_claim_ids": ["C003", "C004", "C006", "C008"],
+    "contested_claim_ids": ["C001", "C002", "C005"],
+    "failure_modes_observed": ["scope_creep", "overgeneralization"],
+    "notes": "The failure modes identified (scope_creep, overgeneralization) are confined to the legal challenge (src_004). The scientific literature does not show significant failure modes, though the CERN institutional conflict of interest should be noted."
+  }
+}

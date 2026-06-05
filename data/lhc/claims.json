@@ -1,0 +1,117 @@
+{
+  "_note": "DATA STATUS: partial. Normalized claims are drawn from published source content. Specific wording should be verified against primary source text before treating as verified.",
+  "claims": [
+    {
+      "id": "C001",
+      "raw": "Under certain theoretical models of extra dimensions, the LHC could produce microscopic black holes.",
+      "normalized": "Under the ADD (Arkani-Hamed, Dimopoulos, Dvali) model of large extra dimensions, the Large Hadron Collider operating at design energy (14 TeV center-of-mass) would have non-negligible probability of producing microscopic black holes.",
+      "source_id": "src_001",
+      "position": "neutral",
+      "domain_type": "theoretical",
+      "confidence": {
+        "level": "medium",
+        "notes": "The ADD model is a well-formulated theoretical framework. Black hole production under ADD is a legitimate theoretical prediction. However, the ADD model itself lacks empirical confirmation."
+      },
+      "tags": ["extra_dimensions", "black_holes", "theoretical_prediction"],
+      "failure_flags": []
+    },
+    {
+      "id": "C002",
+      "raw": "Any microscopic black holes produced at the LHC would evaporate almost instantaneously via Hawking radiation.",
+      "normalized": "Microscopic black holes produced at LHC energies, if produced under the ADD model, would have masses on the order of a few TeV and would evaporate via Hawking radiation on timescales of approximately 10^-26 seconds, posing no accumulation risk.",
+      "source_id": "src_001",
+      "position": "con",
+      "domain_type": "theoretical",
+      "confidence": {
+        "level": "medium",
+        "notes": "Hawking radiation is a theoretical prediction that has not been directly experimentally confirmed as of 2008. The evaporation calculation is standard within the Hawking radiation framework. The confidence is medium rather than high because the framework's validity at these scales cannot be directly tested."
+      },
+      "tags": ["hawking_radiation", "black_holes", "evaporation"],
+      "failure_flags": []
+    },
+    {
+      "id": "C003",
+      "raw": "Even without Hawking radiation, micro black holes produced at the LHC would not be dangerous.",
+      "normalized": "Even assuming Hawking radiation does not occur, microscopic black holes produced at LHC energies would not grow to dangerous size within any relevant timescale, based on astrophysical constraints derived from the observed stability of neutron stars and white dwarfs exposed to cosmic rays.",
+      "source_id": "src_002",
+      "position": "con",
+      "domain_type": "empirical",
+      "confidence": {
+        "level": "high",
+        "notes": "This argument does not depend on Hawking radiation. It relies on the observed fact that compact astrophysical objects (neutron stars, white dwarfs) are routinely struck by cosmic rays of energies far exceeding LHC energies, and these objects have not been destroyed. If stable black holes of relevant mass were produced by such collisions, these objects would not survive. Their survival is strong empirical evidence that no dangerous stable black holes are produced."
+      },
+      "tags": ["neutron_stars", "cosmic_rays", "astrophysical_argument"],
+      "failure_flags": []
+    },
+    {
+      "id": "C004",
+      "raw": "Natural cosmic ray collisions produce collision energies far exceeding LHC energies without incident.",
+      "normalized": "Cosmic ray collisions with atmospheric nuclei and with planetary and stellar bodies occur routinely at center-of-mass energies orders of magnitude greater than the LHC's 14 TeV design energy, and no harmful effects attributable to these collisions have been observed.",
+      "source_id": "src_001",
+      "position": "con",
+      "domain_type": "empirical",
+      "confidence": {
+        "level": "high",
+        "notes": "Well-established astrophysical fact. Cosmic ray energies up to 10^20 eV have been detected. This is an independent safety argument not reliant on any specific theoretical framework."
+      },
+      "tags": ["cosmic_rays", "natural_analogy"],
+      "failure_flags": []
+    },
+    {
+      "id": "C005",
+      "raw": "Hawking radiation has not been directly observed, so safety arguments that depend on it are uncertain.",
+      "normalized": "As of 2008, Hawking radiation had not been directly observed in any experimental or astrophysical context. Safety arguments that depend solely on Hawking radiation for micro black hole evaporation carry an unverified theoretical assumption.",
+      "source_id": "src_004",
+      "position": "pro",
+      "domain_type": "empirical",
+      "confidence": {
+        "level": "medium",
+        "notes": "The premise (Hawking radiation not directly observed) is factually correct as of 2008. The inference (therefore safety arguments are uncertain) is logically valid but incomplete: the LSAG safety case does not rely solely on Hawking radiation. See C003."
+      },
+      "tags": ["hawking_radiation", "uncertainty", "safety_argument"],
+      "failure_flags": ["scope_creep"]
+    },
+    {
+      "id": "C006",
+      "raw": "The Standard Model without extra dimensions predicts the LHC cannot produce black holes.",
+      "normalized": "Within the Standard Model of particle physics, without the addition of extra spatial dimensions, the Planck energy threshold for black hole production is approximately 10^19 GeV, which is 16 orders of magnitude above the LHC's maximum collision energy. Black hole production under the Standard Model alone is therefore not predicted.",
+      "source_id": "src_001",
+      "position": "con",
+      "domain_type": "theoretical",
+      "confidence": {
+        "level": "high",
+        "notes": "Standard theoretical result. The concern about black holes is entirely contingent on the validity of extra-dimension models such as ADD."
+      },
+      "tags": ["standard_model", "planck_scale", "theoretical_baseline"],
+      "failure_flags": []
+    },
+    {
+      "id": "C007",
+      "raw": "The LHC poses an existential risk to humanity.",
+      "normalized": "The operation of the Large Hadron Collider poses a risk of catastrophic harm to Earth or humanity.",
+      "source_id": "src_004",
+      "position": "pro",
+      "domain_type": "normative",
+      "confidence": {
+        "level": "speculative",
+        "notes": "This is the central claim of the legal challenge. It is not supported by the physics literature. It requires the conjunction of: (a) extra dimensions existing at the right scale, (b) black holes being produced, (c) Hawking radiation not occurring, and (d) the astrophysical constraints in C003 being somehow inapplicable. The probability of this conjunction is assessed by LSAG as negligible."
+      },
+      "tags": ["existential_risk", "central_claim"],
+      "failure_flags": ["overgeneralization", "scope_creep"]
+    },
+    {
+      "id": "C008",
+      "raw": "The safety case was reviewed and confirmed by an independent commission.",
+      "normalized": "The LSAG safety report was reviewed by a group of external scientists appointed by the CERN Scientific Policy Committee and was found to be scientifically sound.",
+      "source_id": "src_001",
+      "position": "con",
+      "domain_type": "methodological",
+      "confidence": {
+        "level": "high",
+        "notes": "The review process is documented in the LSAG report itself. Independence is partial: the reviewers were external to CERN but appointed by a CERN committee."
+      },
+      "tags": ["peer_review", "independent_review"],
+      "failure_flags": []
+    }
+  ]
+}

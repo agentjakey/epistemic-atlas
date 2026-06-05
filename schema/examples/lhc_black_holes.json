@@ -1,0 +1,99 @@
+{
+  "id": "lhc-black-holes-2008",
+  "title": "LHC Black Holes and Catastrophic Risk",
+  "domain": "particle physics",
+  "subdomain": "accelerator safety and quantum gravity",
+  "status": "resolved",
+  "data_status": "partial",
+  "summary": "In 2008, concerns were raised that the Large Hadron Collider could produce microscopic black holes capable of destroying Earth. CERN commissioned a formal safety assessment, which was reviewed independently. A legal challenge was filed and dismissed.",
+  "created": "2024-01-01",
+  "updated": "2024-06-01",
+  "tags": ["particle_physics", "risk_assessment", "public_communication", "legal_challenge"],
+  "sources": [
+    {
+      "id": "src_001",
+      "title": "Review of the Safety of LHC Collisions",
+      "type": "report",
+      "provenance": {
+        "author": ["John Ellis", "Gian Giudice", "Michelangelo Mangano", "Igor Tkachev", "Urs Wiedemann"],
+        "institution": "CERN",
+        "date": "2008",
+        "venue": "Journal of Physics G",
+        "url": "https://arxiv.org/abs/0806.3414",
+        "doi": "10.1088/0954-3899/35/11/115004",
+        "retrieved": null
+      },
+      "credibility": "high",
+      "conflict_of_interest": "Authors are employed by CERN, which operates the LHC.",
+      "notes": "Primary CERN safety assessment. Peer-reviewed. Addresses black holes, strangelets, magnetic monopoles, and vacuum bubbles."
+    }
+  ],
+  "claims": [
+    {
+      "id": "C001",
+      "raw": "Under certain theoretical models of extra dimensions, the LHC could produce microscopic black holes.",
+      "normalized": "Under the ADD model of large extra dimensions, the LHC operating at 14 TeV would have non-negligible probability of producing microscopic black holes.",
+      "source_id": "src_001",
+      "position": "neutral",
+      "domain_type": "theoretical",
+      "confidence": {
+        "level": "medium",
+        "notes": "ADD is a legitimate theoretical framework but lacks empirical confirmation."
+      },
+      "tags": ["extra_dimensions", "theoretical_prediction"],
+      "failure_flags": []
+    },
+    {
+      "id": "C003",
+      "raw": "Even without Hawking radiation, micro black holes produced at the LHC would not be dangerous.",
+      "normalized": "Even assuming Hawking radiation does not occur, LHC-produced micro black holes would not grow to dangerous size, based on astrophysical constraints from observed stability of neutron stars and white dwarfs.",
+      "source_id": "src_001",
+      "position": "con",
+      "domain_type": "empirical",
+      "confidence": {
+        "level": "high",
+        "notes": "Independent of Hawking radiation. Relies on directly observable astrophysical facts."
+      },
+      "tags": ["neutron_stars", "cosmic_rays", "astrophysical_argument"],
+      "failure_flags": []
+    }
+  ],
+  "relations": [
+    {
+      "id": "R003",
+      "from_claim_id": "C003",
+      "to_claim_id": "C007",
+      "type": "attacks",
+      "strength": "strong",
+      "notes": "Astrophysical argument provides empirically grounded rebuttal to the existential risk claim."
+    }
+  ],
+  "cruxes": [
+    {
+      "id": "CX001",
+      "statement": "Do large extra spatial dimensions exist at the scale relevant to LHC collision energies?",
+      "description": "If true, black hole production is theoretically possible. If false, the dispute is moot under the Standard Model. Foundational crux for all other claims.",
+      "dependent_claim_ids": ["C001", "C007"],
+      "status": "empirically_underdetermined",
+      "resolution_notes": "LHC data has constrained but not eliminated the ADD parameter space."
+    }
+  ],
+  "missing_evidence": [
+    {
+      "id": "ME001",
+      "description": "Direct experimental confirmation or disconfirmation of large extra dimensions at LHC-accessible energy scales.",
+      "type": "empirical",
+      "would_affect_ids": ["CX001", "C001"],
+      "priority": "critical"
+    }
+  ],
+  "assessment": {
+    "epistemic_status": "Scientific consensus, well-supported by independent arguments that do not rely on any single contested theoretical assumption.",
+    "resolved": true,
+    "resolution_summary": "LSAG concluded LHC operations pose no catastrophic risk, supported by two independent arguments: Hawking radiation evaporation and astrophysical constraints.",
+    "well_supported_claim_ids": ["C003", "C004", "C006"],
+    "contested_claim_ids": ["C001", "C002", "C005"],
+    "failure_modes_observed": ["scope_creep", "overgeneralization"],
+    "notes": "Failure modes confined to the legal challenge. Scientific literature does not show significant failure modes."
+  }
+}

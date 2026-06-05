@@ -1,0 +1,312 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://epistemic-atlas/schema/v1",
+  "title": "EpistemicAtlas",
+  "description": "Schema for a structured epistemic knowledge base representing a real-world dispute.",
+  "type": "object",
+  "required": ["id", "title", "domain", "status", "data_status", "sources", "claims", "relations", "cruxes", "missing_evidence", "assessment"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique kebab-case identifier for this atlas entry."
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable title of the dispute."
+    },
+    "domain": {
+      "type": "string",
+      "description": "Primary knowledge domain (e.g., particle physics, nutrition science, climate science)."
+    },
+    "subdomain": {
+      "type": "string",
+      "description": "Optional more specific domain label."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "resolved", "partially_resolved", "contested", "archived"],
+      "description": "Current epistemic status of the dispute."
+    },
+    "data_status": {
+      "type": "string",
+      "enum": ["verified", "sample", "partial"],
+      "description": "Whether the entry data has been verified against primary sources. 'sample' = illustrative only, 'partial' = some claims verified, 'verified' = all claims checked."
+    },
+    "summary": {
+      "type": "string",
+      "description": "Neutral description of the dispute (2-5 sentences, no position taken)."
+    },
+    "created": {
+      "type": "string",
+      "format": "date",
+      "description": "Date this atlas entry was created."
+    },
+    "updated": {
+      "type": "string",
+      "format": "date",
+      "description": "Date this atlas entry was last updated."
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Thematic tags for cross-entry indexing."
+    },
+    "sources": {
+      "type": "array",
+      "description": "All sources consulted. Low-credibility sources are included, not discarded.",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "type", "provenance"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["paper", "report", "article", "book", "statement", "legal_filing", "dataset", "preprint", "commentary", "other"]
+          },
+          "provenance": {
+            "type": "object",
+            "required": ["date"],
+            "additionalProperties": false,
+            "properties": {
+              "author": {
+                "oneOf": [
+                  { "type": "string" },
+                  { "type": "array", "items": { "type": "string" } }
+                ]
+              },
+              "institution": { "type": "string" },
+              "date": { "type": "string", "description": "ISO date or year." },
+              "venue": { "type": "string", "description": "Journal, publisher, or outlet." },
+              "url": { "type": "string" },
+              "doi": { "type": "string" },
+              "retrieved": { "type": "string", "format": "date" }
+            }
+          },
+          "credibility": {
+            "type": "string",
+            "enum": ["high", "medium", "low", "unknown"],
+            "description": "Initial credibility assessment based on venue, methodology disclosure, and conflicts of interest."
+          },
+          "conflict_of_interest": {
+            "type": "string",
+            "description": "Known or suspected conflicts of interest (funding source, institutional affiliation, etc.)."
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "description": "Atomic, normalized epistemic claims extracted from sources.",
+      "items": {
+        "type": "object",
+        "required": ["id", "raw", "normalized", "source_id", "position", "domain_type", "confidence"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "raw": {
+            "type": "string",
+            "description": "Verbatim text or close paraphrase from the source."
+          },
+          "normalized": {
+            "type": "string",
+            "description": "Standardized, unambiguous restatement with explicit scope, quantification, and referents."
+          },
+          "source_id": {
+            "type": "string",
+            "description": "ID of the source this claim is drawn from."
+          },
+          "position": {
+            "type": "string",
+            "enum": ["pro", "con", "neutral", "conditional", "methodological"],
+            "description": "Position of this claim relative to the main dispute. 'pro' = supports the primary risk/concern position; 'con' = contradicts or undermines it; 'neutral' = background fact; 'conditional' = depends on conditions not yet resolved; 'methodological' = a claim about how to evaluate evidence."
+          },
+          "domain_type": {
+            "type": "string",
+            "enum": ["empirical", "theoretical", "methodological", "normative", "historical"],
+            "description": "What kind of claim this is."
+          },
+          "confidence": {
+            "type": "object",
+            "required": ["level"],
+            "additionalProperties": false,
+            "properties": {
+              "level": {
+                "type": "string",
+                "enum": ["high", "medium", "low", "speculative"]
+              },
+              "notes": {
+                "type": "string",
+                "description": "Explanation of the confidence level assignment."
+              }
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "failure_flags": {
+            "type": "array",
+            "description": "Epistemic failure modes identified in this specific claim.",
+            "items": {
+              "type": "string",
+              "enum": [
+                "motivated_reasoning",
+                "cherry_picking",
+                "overgeneralization",
+                "false_dichotomy",
+                "appeal_to_authority",
+                "funding_bias",
+                "methodological_weakness",
+                "equivocation",
+                "base_rate_neglect",
+                "status_quo_bias",
+                "asymmetric_skepticism",
+                "publication_bias",
+                "scope_creep",
+                "moving_goalposts",
+                "no_true_scotsman",
+                "false_precision",
+                "suppressed_evidence"
+              ]
+            }
+          },
+          "data_status": {
+            "type": "string",
+            "enum": ["verified", "sample", "partial"],
+            "description": "Overrides the entry-level data_status for this specific claim if different."
+          }
+        }
+      }
+    },
+    "relations": {
+      "type": "array",
+      "description": "Logical and evidential relationships between claims.",
+      "items": {
+        "type": "object",
+        "required": ["id", "from_claim_id", "to_claim_id", "type", "strength"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "from_claim_id": { "type": "string" },
+          "to_claim_id": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["supports", "attacks", "depends_on", "qualifies", "implies", "is_crux_of"],
+            "description": "supports: A provides evidence or justification for B. attacks: A contradicts or undermines B. depends_on: A is only meaningful if B is true. qualifies: A narrows B's scope without contradicting it. implies: A logically entails B. is_crux_of: A is a pivotal load-bearing claim for B."
+          },
+          "strength": {
+            "type": "string",
+            "enum": ["strong", "moderate", "weak"]
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "cruxes": {
+      "type": "array",
+      "description": "Pivotal claims whose resolution would significantly change the dispute.",
+      "items": {
+        "type": "object",
+        "required": ["id", "statement", "status", "dependent_claim_ids"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "statement": {
+            "type": "string",
+            "description": "A single clear question or proposition that is the crux."
+          },
+          "description": {
+            "type": "string",
+            "description": "Why this is a crux: what changes if it is resolved true vs. false."
+          },
+          "dependent_claim_ids": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Claims that depend on this crux."
+          },
+          "status": {
+            "type": "string",
+            "enum": ["unresolved", "resolved_true", "resolved_false", "empirically_underdetermined", "theoretically_underdetermined"]
+          },
+          "resolution_notes": {
+            "type": "string",
+            "description": "How and by what evidence the crux was resolved, if applicable."
+          }
+        }
+      }
+    },
+    "missing_evidence": {
+      "type": "array",
+      "description": "Evidence that does not currently exist but whose existence would change the epistemic status of at least one crux or claim.",
+      "items": {
+        "type": "object",
+        "required": ["id", "description", "type", "would_affect_ids", "priority"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "description": {
+            "type": "string",
+            "description": "What the missing evidence is and why it is absent."
+          },
+          "type": {
+            "type": "string",
+            "enum": ["empirical", "theoretical", "historical", "legal_institutional"]
+          },
+          "would_affect_ids": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "IDs of claims or cruxes that this evidence would affect."
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["critical", "important", "helpful"],
+            "description": "How significantly this evidence gap limits resolution of the dispute."
+          }
+        }
+      }
+    },
+    "assessment": {
+      "type": "object",
+      "required": ["epistemic_status", "well_supported_claim_ids", "contested_claim_ids"],
+      "additionalProperties": false,
+      "description": "Overall epistemic assessment of the dispute.",
+      "properties": {
+        "epistemic_status": {
+          "type": "string",
+          "description": "Plain-language summary of the current epistemic state of the dispute."
+        },
+        "resolved": {
+          "type": "boolean",
+          "description": "Whether the central dispute has a clear resolution supported by strong evidence."
+        },
+        "resolution_summary": {
+          "type": "string",
+          "description": "If resolved, what the resolution is and what resolved it."
+        },
+        "well_supported_claim_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Claims with high or medium confidence and no significant attacks."
+        },
+        "contested_claim_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Claims that remain genuinely contested."
+        },
+        "failure_modes_observed": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Epistemic failure modes identified anywhere in this entry."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Any additional epistemic notes not captured elsewhere."
+        }
+      }
+    }
+  }
+}

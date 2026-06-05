@@ -1,0 +1,134 @@
+{
+  "_note": "DATA STATUS: partial. Relations and assessment are based on the claims as stated. This case remains open.",
+  "relations": [
+    {
+      "id": "R101",
+      "from_claim_id": "C101",
+      "to_claim_id": "C103",
+      "type": "supports",
+      "strength": "moderate",
+      "notes": "If dietary cholesterol raises LDL, and LDL elevation increases CVD risk, then higher egg consumption (which raises dietary cholesterol) would be expected to increase CVD risk. The mechanistic chain supports C103."
+    },
+    {
+      "id": "R102",
+      "from_claim_id": "C102",
+      "to_claim_id": "C103",
+      "type": "attacks",
+      "strength": "moderate",
+      "notes": "The 2013 meta-analysis (C102) directly contradicts the 2019 JAMA study (C103) in direction. Both are prospective observational data; the contradiction is unresolved."
+    },
+    {
+      "id": "R103",
+      "from_claim_id": "C105",
+      "to_claim_id": "C106",
+      "type": "qualifies",
+      "strength": "strong",
+      "notes": "C105 (industry-funded studies are biased) qualifies how much weight to give C106, which comes from an industry-funded source. It does not directly attack C106's content but substantially reduces its credibility weight."
+    },
+    {
+      "id": "R104",
+      "from_claim_id": "C104",
+      "to_claim_id": "C101",
+      "type": "attacks",
+      "strength": "moderate",
+      "notes": "The 2015 dietary guidelines removal of the cholesterol limit (C104) implies that the evidence for C101's clinical significance is weaker than previously believed. Not a direct contradiction but a significant institutional signal."
+    },
+    {
+      "id": "R105",
+      "from_claim_id": "C107",
+      "to_claim_id": "C102",
+      "type": "qualifies",
+      "strength": "strong",
+      "notes": "C107 qualifies C102's 'general population' finding by showing it does not hold for diabetic patients. C102 remains valid for its stated scope; C107 restricts it."
+    },
+    {
+      "id": "R106",
+      "from_claim_id": "C108",
+      "to_claim_id": "C104",
+      "type": "supports",
+      "strength": "moderate",
+      "notes": "If the original 300mg guideline lacked strong direct evidence, the 2015 removal of that limit (C104) is more epistemically justified. C108 provides historical context that supports C104's normative shift."
+    },
+    {
+      "id": "R107",
+      "from_claim_id": "C106",
+      "to_claim_id": "C102",
+      "type": "supports",
+      "strength": "weak",
+      "notes": "C106 (no independent CVD risk in healthy adults) is consistent with C102 but comes from a source with documented funding bias. Weak support due to credibility discount."
+    },
+    {
+      "id": "R108",
+      "from_claim_id": "C103",
+      "to_claim_id": "C104",
+      "type": "attacks",
+      "strength": "moderate",
+      "notes": "The 2019 Zhong et al. finding (C103), published after the 2015 guidelines, suggests the regulatory conclusion in C104 may be premature given emerging evidence."
+    }
+  ],
+  "cruxes": [
+    {
+      "id": "CX101",
+      "statement": "Does dietary cholesterol from egg consumption independently increase cardiovascular disease risk in healthy (non-diabetic) adults, controlling for saturated fat and other dietary confounders?",
+      "description": "This is the central crux. If independent risk exists, C103 and C101 are well-supported and the 2015 guideline change (C104) was premature. If not, C102 and C106 are well-supported and the guideline change was appropriate. The dispute turns on this question. Confounding by saturated fat intake is a major methodological challenge: eggs are rarely eaten alone.",
+      "dependent_claim_ids": ["C101", "C102", "C103", "C104", "C106"],
+      "status": "empirically_underdetermined",
+      "resolution_notes": "Prospective cohort studies disagree. A randomized controlled trial with adequate power and duration would be needed for resolution, but such a trial is not feasible for ethical and practical reasons."
+    },
+    {
+      "id": "CX102",
+      "statement": "Is the effect of eggs on cardiovascular risk meaningfully different between diabetic and non-diabetic populations?",
+      "description": "If effect modification by diabetes status is real and large, then undifferentiated population-level claims about eggs are misleading in both directions. The appropriate policy response would be different recommendations for different groups.",
+      "dependent_claim_ids": ["C102", "C107"],
+      "status": "unresolved",
+      "resolution_notes": "The evidence for differential risk in diabetic patients is consistent across several analyses but is derived from subgroup analysis. A dedicated trial in diabetic populations would be needed for strong resolution."
+    },
+    {
+      "id": "CX103",
+      "statement": "Do food-frequency questionnaire-based dietary assessments reliably capture egg consumption and dietary cholesterol intake at the precision needed to detect effects of the claimed magnitude?",
+      "description": "Both the pro-risk and anti-risk observational studies rely heavily on self-reported dietary recall. If measurement error is large enough to create systematic bias, it could explain the conflicting findings across studies. This is a methodological crux that, if resolved, would change how much weight to give the entire observational literature.",
+      "dependent_claim_ids": ["C102", "C103", "C107"],
+      "status": "unresolved",
+      "resolution_notes": null
+    }
+  ],
+  "missing_evidence": [
+    {
+      "id": "ME101",
+      "description": "A large randomized controlled trial testing the effect of standardized egg consumption on cardiovascular endpoints in non-diabetic adults. Such a trial would require long follow-up, very large sample sizes, and controlled dietary conditions, making it practically infeasible.",
+      "type": "empirical",
+      "would_affect_ids": ["CX101", "C101", "C102", "C103"],
+      "priority": "critical"
+    },
+    {
+      "id": "ME102",
+      "description": "Biomarker-validated dietary intake data (as opposed to self-reported food frequency questionnaires) in a large prospective cohort that includes egg consumption as a primary variable of interest.",
+      "type": "empirical",
+      "would_affect_ids": ["CX103", "C102", "C103"],
+      "priority": "important"
+    },
+    {
+      "id": "ME103",
+      "description": "A systematic analysis of how the specific dietary context (eggs consumed with saturated vs. unsaturated fats, in low-carbohydrate vs. high-carbohydrate diets) modifies the association between egg consumption and cardiovascular outcomes.",
+      "type": "empirical",
+      "would_affect_ids": ["C106", "CX101"],
+      "priority": "important"
+    },
+    {
+      "id": "ME104",
+      "description": "Full disclosure of unpublished industry-funded studies on egg consumption and cardiovascular outcomes. Registration of studies in clinical trial databases suggests unpublished trials may exist.",
+      "type": "legal_institutional",
+      "would_affect_ids": ["C105", "C106"],
+      "priority": "important"
+    }
+  ],
+  "assessment": {
+    "epistemic_status": "Genuinely unresolved. The observational literature is contradictory at the study level, with large high-quality studies on both sides. The central crux (whether egg consumption independently raises CVD risk, controlling for saturated fat) cannot be resolved by available observational data. Regulatory guidance has shifted, but the scientific question that motivated the original guidance has not been clearly resolved -- it has been deprioritized, not answered. Industry funding is a documented confound in a meaningful portion of the favorable-to-eggs literature.",
+    "resolved": false,
+    "resolution_summary": null,
+    "well_supported_claim_ids": ["C105", "C107", "C108"],
+    "contested_claim_ids": ["C101", "C102", "C103", "C104", "C106"],
+    "failure_modes_observed": ["funding_bias", "cherry_picking", "overgeneralization"],
+    "notes": "The regulatory history of this dispute is as important as the scientific one. The 300mg/day limit was set before strong epidemiological evidence existed; its removal in 2015 was a reasonable updating of uncertain guidance, but was widely reported as a vindication of eggs that the evidence does not fully support. This is a case where regulatory communication and scientific evidence tracking diverged."
+  }
+}

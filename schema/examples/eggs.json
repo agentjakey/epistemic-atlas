@@ -1,0 +1,116 @@
+{
+  "id": "dietary-eggs-cvd-risk",
+  "title": "Dietary Egg Consumption and Cardiovascular Disease Risk",
+  "domain": "nutrition science",
+  "subdomain": "dietary cholesterol and lipid metabolism",
+  "status": "open",
+  "data_status": "partial",
+  "summary": "A decades-long dispute over whether regular egg consumption increases cardiovascular disease risk. The dispute involves contradictory observational studies, documented industry funding bias, regulatory guidance that shifted without clear scientific resolution, and methodological disagreements about confounding and dietary assessment.",
+  "created": "2024-01-01",
+  "updated": "2024-06-01",
+  "tags": ["nutrition", "cardiovascular_disease", "dietary_guidelines", "funding_bias", "observational_epidemiology"],
+  "sources": [
+    {
+      "id": "src_102",
+      "title": "Egg consumption and risk of coronary heart disease and stroke: dose-response meta-analysis of prospective cohort studies",
+      "type": "paper",
+      "provenance": {
+        "author": ["Ying Rong", "Li Chen", "Tingting Zhu"],
+        "institution": "Huazhong University of Science and Technology / Harvard School of Public Health",
+        "date": "2013",
+        "venue": "BMJ",
+        "url": null,
+        "doi": "10.1136/bmj.e8539",
+        "retrieved": null
+      },
+      "credibility": "high",
+      "conflict_of_interest": null,
+      "notes": "Meta-analysis. No significant CVD association in general population."
+    },
+    {
+      "id": "src_103",
+      "title": "Association of Egg Consumption with Cardiovascular Disease in a Large Cohort of US Adults",
+      "type": "paper",
+      "provenance": {
+        "author": ["Victor W. Zhong"],
+        "institution": "Northwestern University",
+        "date": "2019",
+        "venue": "JAMA",
+        "url": null,
+        "doi": "10.1001/jama.2019.1572",
+        "retrieved": null
+      },
+      "credibility": "high",
+      "conflict_of_interest": null,
+      "notes": "Large prospective cohort. Found significant positive association with CVD risk."
+    }
+  ],
+  "claims": [
+    {
+      "id": "C102",
+      "raw": "Egg consumption is not significantly associated with coronary heart disease or stroke in the general population.",
+      "normalized": "In the Rong et al. 2013 meta-analysis, egg consumption was not significantly associated with CHD (pooled RR 0.96, 95% CI 0.88-1.05) or stroke in the general population.",
+      "source_id": "src_102",
+      "position": "con",
+      "domain_type": "empirical",
+      "confidence": {
+        "level": "medium",
+        "notes": "Meta-analysis result. Wide CIs. General population only -- diabetes subgroup shows different pattern."
+      },
+      "tags": ["meta_analysis", "general_population"],
+      "failure_flags": []
+    },
+    {
+      "id": "C103",
+      "raw": "Each additional half egg per day was associated with 6% higher CVD risk.",
+      "normalized": "In the Zhong et al. 2019 JAMA study (n=29,615), each additional 0.5 eggs/day was associated with HR 1.06 (95% CI 1.03-1.10) for incident cardiovascular disease.",
+      "source_id": "src_103",
+      "position": "pro",
+      "domain_type": "empirical",
+      "confidence": {
+        "level": "medium",
+        "notes": "Large study with statistical power. Dietary recall measurement error and confounding by dietary cholesterol from non-egg sources are limitations."
+      },
+      "tags": ["dose_response", "prospective_cohort"],
+      "failure_flags": []
+    }
+  ],
+  "relations": [
+    {
+      "id": "R102",
+      "from_claim_id": "C102",
+      "to_claim_id": "C103",
+      "type": "attacks",
+      "strength": "moderate",
+      "notes": "The two large studies contradict each other in direction. Both are high-credibility observational studies."
+    }
+  ],
+  "cruxes": [
+    {
+      "id": "CX101",
+      "statement": "Does dietary cholesterol from eggs independently increase CVD risk in healthy adults, controlling for saturated fat?",
+      "description": "The central unresolved question. Confounding by dietary context (eggs are rarely consumed alone) makes this very difficult to answer with observational data.",
+      "dependent_claim_ids": ["C101", "C102", "C103", "C106"],
+      "status": "empirically_underdetermined",
+      "resolution_notes": null
+    }
+  ],
+  "missing_evidence": [
+    {
+      "id": "ME101",
+      "description": "A large RCT testing standardized egg consumption against cardiovascular endpoints in non-diabetic adults. Practically infeasible due to ethical and logistical constraints.",
+      "type": "empirical",
+      "would_affect_ids": ["CX101"],
+      "priority": "critical"
+    }
+  ],
+  "assessment": {
+    "epistemic_status": "Genuinely unresolved. High-quality studies contradict each other. Industry funding is a documented confound in favorable-to-eggs literature. The regulatory removal of the cholesterol limit in 2015 is reasonable updating under uncertainty but does not constitute scientific resolution.",
+    "resolved": false,
+    "resolution_summary": null,
+    "well_supported_claim_ids": ["C105", "C107", "C108"],
+    "contested_claim_ids": ["C101", "C102", "C103", "C104"],
+    "failure_modes_observed": ["funding_bias", "cherry_picking", "overgeneralization"],
+    "notes": "Regulatory communication diverged from scientific uncertainty. The removal of the 300mg/day limit was widely reported as a vindication of eggs, which the evidence does not fully support."
+  }
+}

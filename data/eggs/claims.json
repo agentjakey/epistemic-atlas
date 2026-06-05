@@ -1,0 +1,117 @@
+{
+  "_note": "DATA STATUS: partial. Claims are based on published source content and may not reflect the most recent literature. Verify specific statistics against primary sources.",
+  "claims": [
+    {
+      "id": "C101",
+      "raw": "Dietary cholesterol raises serum LDL cholesterol levels.",
+      "normalized": "Consumption of dietary cholesterol is associated with increased serum LDL-cholesterol concentration in controlled feeding studies in normocholesterolemic adults.",
+      "source_id": "src_101",
+      "position": "pro",
+      "domain_type": "empirical",
+      "confidence": {
+        "level": "medium",
+        "notes": "The direction of the effect (dietary cholesterol raises LDL) is supported by some controlled feeding studies, but the magnitude is now understood to be substantially smaller than originally believed, and highly variable across individuals. The hyper-responder vs. hypo-responder distinction complicates any simple claim."
+      },
+      "tags": ["ldl", "dietary_cholesterol", "mechanism"],
+      "failure_flags": ["overgeneralization"]
+    },
+    {
+      "id": "C102",
+      "raw": "Egg consumption is not significantly associated with coronary heart disease or stroke risk in the general population.",
+      "normalized": "In prospective cohort studies included in the 2013 Rong et al. meta-analysis, egg consumption was not significantly associated with coronary heart disease (pooled RR 0.96, 95% CI 0.88-1.05) or stroke (pooled RR 0.90, 95% CI 0.79-1.03) in the general population.",
+      "source_id": "src_102",
+      "position": "con",
+      "domain_type": "empirical",
+      "confidence": {
+        "level": "medium",
+        "notes": "Meta-analysis finding. Confidence intervals are wide. The finding is for the general population; the same analysis found increased CHD risk in diabetic subgroups. Observational data with residual confounding."
+      },
+      "tags": ["meta_analysis", "cvd_risk", "general_population"],
+      "failure_flags": []
+    },
+    {
+      "id": "C103",
+      "raw": "Each additional half egg per day was significantly associated with higher cardiovascular disease risk.",
+      "normalized": "In the Zhong et al. 2019 JAMA study (MESA, WHI, ARIC, CHS cohorts, n=29,615), each additional 0.5 eggs consumed per day was associated with a 6% higher risk of incident cardiovascular disease events (HR 1.06, 95% CI 1.03-1.10) after adjustment for multiple confounders.",
+      "source_id": "src_103",
+      "position": "pro",
+      "domain_type": "empirical",
+      "confidence": {
+        "level": "medium",
+        "notes": "Large prospective study with high statistical power. Key limitation: dietary cholesterol intake from non-egg sources was not fully separated from egg cholesterol. Dietary assessment relies on food frequency questionnaires with measurement error. The result contradicts several prior meta-analyses."
+      },
+      "tags": ["cvd_risk", "prospective_cohort", "dose_response"],
+      "failure_flags": []
+    },
+    {
+      "id": "C104",
+      "raw": "Cholesterol is not a nutrient of concern for overconsumption.",
+      "normalized": "The 2015-2020 Dietary Guidelines Advisory Committee concluded that available evidence does not support maintaining a daily limit on dietary cholesterol intake, and removed the previous 300mg/day recommendation.",
+      "source_id": "src_104",
+      "position": "con",
+      "domain_type": "normative",
+      "confidence": {
+        "level": "medium",
+        "notes": "This is a regulatory-normative claim, not a scientific one. The evidence base cited is real, but the 2015 DGAC's conclusion was made before the 2019 Zhong et al. study. The claim reflects the state of evidence as of 2015."
+      },
+      "tags": ["dietary_guidelines", "regulatory", "cholesterol_limit"],
+      "failure_flags": []
+    },
+    {
+      "id": "C105",
+      "raw": "Industry-funded nutrition studies are significantly more likely to produce results favorable to the funder.",
+      "normalized": "A 2013 systematic review of systematic reviews (Bes-Rastrollo et al.) found that nutrition studies with industry funding were more likely to reach conclusions favorable to the funder's products than independently funded studies, after controlling for study design.",
+      "source_id": "src_106",
+      "position": "methodological",
+      "domain_type": "methodological",
+      "confidence": {
+        "level": "high",
+        "notes": "Meta-level empirical finding. This claim does not directly resolve the eggs-CVD question but is relevant to how much weight to assign industry-funded studies in this dispute."
+      },
+      "tags": ["funding_bias", "methodological", "meta_level"],
+      "failure_flags": []
+    },
+    {
+      "id": "C106",
+      "raw": "Dietary cholesterol does not significantly affect cardiovascular risk in most individuals.",
+      "normalized": "Based on the 2018 Blesso and Fernandez review, dietary cholesterol from eggs does not independently raise cardiovascular disease risk in healthy, normolipidemic adults when the overall diet is low in saturated fat.",
+      "source_id": "src_105",
+      "position": "con",
+      "domain_type": "empirical",
+      "confidence": {
+        "level": "low",
+        "notes": "The conclusion is consistent with some evidence but the source has a documented conflict of interest (egg industry funding). The conclusion is also conditional ('when overall diet is low in saturated fat'), which is often not stated in secondary citations of this work."
+      },
+      "tags": ["dietary_cholesterol", "healthy_adults"],
+      "failure_flags": ["funding_bias", "cherry_picking"]
+    },
+    {
+      "id": "C107",
+      "raw": "The effect of eggs on CVD risk differs between diabetic and non-diabetic populations.",
+      "normalized": "In the Rong et al. 2013 meta-analysis, egg consumption was associated with a statistically significant increased risk of coronary heart disease specifically in diabetic patients (pooled RR 1.54, 95% CI 1.14-2.09), while no significant association was found in non-diabetic participants.",
+      "source_id": "src_102",
+      "position": "conditional",
+      "domain_type": "empirical",
+      "confidence": {
+        "level": "medium",
+        "notes": "Subgroup finding with smaller sample size than the main analysis. The biological mechanism for differential risk in diabetic patients is plausible (altered lipid metabolism) but not fully established."
+      },
+      "tags": ["diabetes", "subgroup", "effect_modification"],
+      "failure_flags": []
+    },
+    {
+      "id": "C108",
+      "raw": "The original 300mg/day dietary cholesterol guideline was not based on strong direct evidence from human studies.",
+      "normalized": "The 300mg/day dietary cholesterol limit, established in the 1970s and maintained until 2015, was primarily based on animal studies and mechanistic reasoning about LDL cholesterol, rather than on direct prospective evidence from human populations for cardiovascular endpoints.",
+      "source_id": "src_104",
+      "position": "neutral",
+      "domain_type": "historical",
+      "confidence": {
+        "level": "medium",
+        "notes": "Historical reconstruction. The evidential basis for original dietary guidelines is documented in the guidelines' history but specific characterization of 'not based on strong direct evidence' requires verification against the original guidelines documents."
+      },
+      "tags": ["historical", "guideline_basis", "evidence_quality"],
+      "failure_flags": []
+    }
+  ]
+}

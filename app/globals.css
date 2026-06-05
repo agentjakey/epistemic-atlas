@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: #0f172a;
+  }
+
+  h1, h2, h3, h4 {
+    letter-spacing: -0.02em;
+  }
+
+  code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 0.875em;
+    background-color: #f1f5f9;
+    padding: 0.1em 0.3em;
+    border-radius: 2px;
+  }
+
+  pre code {
+    background-color: transparent;
+    padding: 0;
+  }
+}
+
+@layer components {
+  .prose-atlas {
+    max-width: 72ch;
+  }
+
+  .prose-atlas p {
+    line-height: 1.75;
+    margin-bottom: 1rem;
+    color: #334155;
+  }
+
+  .prose-atlas h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .badge-conf-high {
+    background-color: #f0fdf4;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+  }
+
+  .badge-conf-medium {
+    background-color: #fffbeb;
+    color: #b45309;
+    border: 1px solid #fde68a;
+  }
+
+  .badge-conf-low {
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+  }
+
+  .badge-conf-speculative {
+    background-color: #faf5ff;
+    color: #7c3aed;
+    border: 1px solid #ddd6fe;
+  }
+
+  .badge-pos-pro {
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+  }
+
+  .badge-pos-con {
+    background-color: #f0fdf4;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+  }
+
+  .badge-pos-neutral {
+    background-color: #f8fafc;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+  }
+
+  .badge-pos-conditional {
+    background-color: #fffbeb;
+    color: #b45309;
+    border: 1px solid #fde68a;
+  }
+
+  .badge-pos-methodological {
+    background-color: #eff6ff;
+    color: #1e40af;
+    border: 1px solid #bfdbfe;
+  }
+
+  .badge-flag {
+    background-color: #fff7ed;
+    color: #c2410c;
+    border: 1px solid #fed7aa;
+  }
+
+  .badge-status-resolved {
+    background-color: #f0fdf4;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+  }
+
+  .badge-status-open {
+    background-color: #fffbeb;
+    color: #b45309;
+    border: 1px solid #fde68a;
+  }
+
+  .badge-status-underdetermined {
+    background-color: #f8fafc;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+  }
+
+  .badge-data-partial {
+    background-color: #fff7ed;
+    color: #c2410c;
+    border: 1px solid #fed7aa;
+  }
+
+  .badge-data-verified {
+    background-color: #f0fdf4;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+  }
+
+  .badge-data-sample {
+    background-color: #faf5ff;
+    color: #7c3aed;
+    border: 1px solid #ddd6fe;
+  }
+
+  .section-heading {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #94a3b8;
+    margin-bottom: 1rem;
+  }
+
+  .claim-card {
+    border: 1px solid #e2e8f0;
+    padding: 1rem 1.25rem;
+    background-color: #ffffff;
+  }
+
+  .claim-card + .claim-card {
+    border-top: none;
+  }
+
+  .crux-card {
+    border-left: 3px solid #1e40af;
+    padding: 1rem 1.25rem;
+    background-color: #eff6ff;
+    margin-bottom: 1px;
+  }
+
+  .crux-card.unresolved {
+    border-left-color: #b45309;
+    background-color: #fffbeb;
+  }
+
+  .crux-card.empirically_underdetermined {
+    border-left-color: #6b7280;
+    background-color: #f8fafc;
+  }
+
+  .source-row {
+    border-bottom: 1px solid #f1f5f9;
+    padding: 0.75rem 0;
+  }
+
+  .source-row:last-child {
+    border-bottom: none;
+  }
+}
