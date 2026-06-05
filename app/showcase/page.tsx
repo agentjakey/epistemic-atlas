@@ -116,8 +116,14 @@ export default function ShowcasePage() {
 
         {/* right: claim inspector preview */}
         <div className="lg:col-span-2">
-          <p className="text-xs section-heading mb-4">Claim Inspector Preview</p>
-          <div className="border border-page-border bg-white h-full">
+          <div className="flex items-baseline justify-between mb-4">
+            <p className="text-xs section-heading" style={{ marginBottom: 0 }}>Claim Inspector Preview</p>
+            <Link href="/lhc" className="text-xs text-accent hover:underline">
+              View live case
+            </Link>
+          </div>
+          <Link href="/lhc" className="block group">
+          <div className="border border-page-border bg-white h-full group-hover:border-slate-300 group-hover:shadow-sm transition-all">
             <div className="bg-page-off border-b border-page-border px-4 py-3">
               <p className="text-xs font-mono text-ink-faint">normalized_claim</p>
               <p className="text-sm font-semibold text-ink">NC_012</p>
@@ -195,6 +201,7 @@ export default function ShowcasePage() {
               <p className="text-xs font-mono text-green-700">weak_links: NC_003, NC_005</p>
             </div>
           </div>
+          </Link>
         </div>
       </div>
 

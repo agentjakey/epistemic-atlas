@@ -214,7 +214,7 @@ function WorkflowPanel() {
                   <p className="text-xs text-ink-faint">{node.meta}</p>
                 </div>
                 {node.annotation && (
-                  <div className={`border px-2 py-2 text-xs leading-snug shrink-0 w-28 ${node.annotation.color}`}>
+                  <div className={`hidden lg:block border px-2 py-2 text-xs leading-snug shrink-0 w-28 ${node.annotation.color}`}>
                     {node.annotation.text}
                   </div>
                 )}

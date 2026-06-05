@@ -26,19 +26,33 @@ export default function Nav() {
           Epistemic Atlas
         </Link>
         <nav className="flex items-center gap-6">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-sm transition-colors ${
-                pathname === link.href
-                  ? 'text-ink font-medium'
-                  : 'text-ink-faint hover:text-ink-light'
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {links.map((link) =>
+            link.href === '/showcase' ? (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-xs font-semibold uppercase tracking-wider px-3 py-1 border transition-colors ${
+                  pathname === link.href
+                    ? 'border-accent bg-accent text-white'
+                    : 'border-accent text-accent hover:bg-accent hover:text-white'
+                }`}
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm transition-colors ${
+                  pathname === link.href
+                    ? 'text-ink font-medium'
+                    : 'text-ink-faint hover:text-ink-light'
+                }`}
+              >
+                {link.label}
+              </Link>
+            )
+          )}
         </nav>
       </div>
     </header>
