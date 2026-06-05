@@ -242,7 +242,7 @@ communicate the aggregate unverified status of the entry unless the reader opens
 claim detail panel.
 
 **Future improvement.** Tie the visual style of the case interface to the data_status.
-A partial entry should have a visually distinct presentation from a verified entry --
+A partial entry should have a visually distinct presentation from a verified entry:
 perhaps a muted color scheme, a watermark-style overlay, or a prominent annotation on
 every claim badge. This is a deliberate design inversion: instead of making partial data
 look clean, make clean-looking data signal its verified status. An entry earns visual

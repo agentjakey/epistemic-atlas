@@ -10,7 +10,7 @@ const cases = [
     statusClass: 'badge badge-status-resolved',
     summary:
       'The 2008 dispute over whether the Large Hadron Collider could produce micro black holes capable of catastrophic harm. Involves contested theoretical physics, institutional safety assessment, and a federal legal challenge.',
-    counts: { sources: 8, claims: 12, cruxes: 5, flags: 8 },
+    counts: { sources: 8, 'norm. claims': 12, cruxes: 5, flags: 8 },
     tags: ['risk assessment', 'theoretical physics', 'public communication'],
   },
   {
@@ -21,8 +21,8 @@ const cases = [
     status: 'Open',
     statusClass: 'badge badge-status-open',
     summary:
-      'A decades-long dispute over whether egg consumption increases cardiovascular disease risk. Involves contradictory observational studies, documented industry funding bias, and regulatory guidance that shifted without scientific resolution.',
-    counts: { sources: 8, claims: 12, cruxes: 5, flags: 10 },
+      'A decades-long dispute over whether egg consumption increases cardiovascular disease risk. Involves contradictory observational studies, documented industry funding bias, and dietary guidance that changed under ongoing scientific uncertainty.',
+    counts: { sources: 8, 'norm. claims': 12, cruxes: 5, flags: 10 },
     tags: ['funding bias', 'observational epidemiology', 'dietary guidelines'],
   },
 ]
@@ -86,14 +86,14 @@ export default function HomePage() {
               The system works in three layers: ingestion extracts raw source material
               into typed objects with full provenance; structure normalizes claims and
               maps their logical relations into a directed graph; assessment synthesizes
-              the graph into crux identification, failure mode cataloging, and an honest
-              epistemic verdict with explicit update conditions. Each layer feeds the next
+              the graph into crux identification, failure mode cataloging, and an explicit
+              epistemic assessment with stated update conditions. Each layer feeds the next
               without discarding what came before.
             </p>
             <p>
               Two worked case studies demonstrate the methodology: the 2008 LHC black hole
-              risk dispute (settled, with a clear resolution supported by multiple independent
-              lines of evidence) and the decades-long debate over dietary eggs and
+              risk dispute (settled, with a resolution supported by two independent safety
+              arguments of different epistemic strengths) and the decades-long debate over dietary eggs and
               cardiovascular disease risk (unsettled, with conflicting high-quality studies,
               population heterogeneity, and unresolved cruxes). The cases were chosen because
               they differ in domain, resolution status, and failure mode profile. A schema

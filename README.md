@@ -40,8 +40,8 @@ institutional risk assessment, and public communication.
 
 **Dietary Eggs and Cardiovascular Risk:** The decades-long dispute over whether egg
 consumption increases cardiovascular disease risk. Involves funding patterns, changing
-methodological standards, and regulatory guidance that shifted without a clear
-scientific resolution.
+methodological standards, and dietary guidance that changed under ongoing scientific
+uncertainty.
 
 Both case studies are marked as partial data where specific claim text, source metadata,
 or relation values are based on paraphrase rather than direct primary-source verification.
