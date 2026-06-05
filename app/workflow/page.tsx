@@ -7,87 +7,129 @@ export const metadata: Metadata = {
 const steps = [
   {
     n: '01',
-    title: 'Source Ingestion',
-    file: 'prompts/01_source_ingestion.md',
-    goal: 'Build the sources array with full provenance metadata before extracting any claims.',
-    produces: 'A JSON array of source objects with IDs, type, provenance, credibility, and conflict of interest fields.',
+    title: 'Scope the question',
+    file: 'prompts/01_scope.md',
+    goal: 'Define the central dispute as a single, well-formed question before collecting any sources. A poorly scoped question produces a poorly scoped atlas entry.',
+    produces: 'A case skeleton: id, title, domain, status (open), summary (draft), and a statement of what the atlas is and is not claiming to answer.',
     rules: [
-      'Capture every source regardless of apparent quality. Low-credibility sources are not discarded.',
-      'Do not invent or guess any provenance field. Missing fields are set to null.',
-      'Assign credibility based only on source type and venue, not content agreement.',
-      'Record all known conflicts of interest explicitly.',
+      'The question must be disputable. Not "was X ever true" but "under what conditions is X true and what would resolve the dispute."',
+      'Name the populations, time periods, and conditions that are in scope. Vagueness at this stage propagates through all later steps.',
+      'Do not pre-answer the question. The scope statement is epistemic framing, not a preliminary verdict.',
+      'If the question dissolves into multiple independent questions, record each as a separate case or as named sub-questions with explicit scope boundaries.',
+    ],
+    output: 'case._meta fields: id, title, domain, status, summary (draft)',
+  },
+  {
+    n: '02',
+    title: 'Ingest sources',
+    file: 'prompts/02_source_ingestion.md',
+    goal: 'Build the sources array with full provenance metadata before extracting any claims.',
+    produces: 'A sources array with IDs, type, provenance objects, credibility assessments, and conflict of interest fields.',
+    rules: [
+      'Capture every consulted source regardless of apparent quality. Low-credibility sources are not discarded.',
+      'Do not invent or guess any provenance field. Set missing fields to null explicitly.',
+      'Assign credibility based on source type and venue, not based on whether the content agrees with other sources.',
+      'Record all known or suspected conflicts of interest. When in doubt, record the concern rather than omitting it.',
     ],
     output: 'sources[] -- each with id, title, type, provenance, credibility, conflict_of_interest, notes',
   },
   {
-    n: '02',
-    title: 'Claim Extraction',
-    file: 'prompts/02_claim_extraction.md',
-    goal: 'Extract every significant epistemic claim from each source as an atomic proposition.',
-    produces: 'A raw claims array with verbatim text, source IDs, and domain type. No normalization yet.',
-    rules: [
-      'Each claim is expressible as one declarative sentence.',
-      'Preserve all hedges exactly as stated (may, suggests, is consistent with).',
-      'Preserve all quantification exactly (some studies, most experts, under condition X).',
-      'Do not correct or improve -- capture as stated. Ambiguous claims become two separate claims.',
-    ],
-    output: 'claims[] -- each with id, raw, source_id, domain_type (normalized/position/confidence left null)',
-  },
-  {
     n: '03',
-    title: 'Claim Normalization',
-    file: 'prompts/03_claim_normalization.md',
-    goal: 'Convert raw claims into standardized, unambiguous propositions. Assign position and confidence.',
-    produces: 'A filled claims array with normalized forms, position classifications, confidence levels, and failure flags.',
+    title: 'Extract atomic claims',
+    file: 'prompts/03_claim_extraction.md',
+    goal: 'Extract every significant epistemic claim from each source as an atomic extracted claim object.',
+    produces: 'An extracted_claims array where each item is a minimally processed verbatim or near-verbatim statement from one source.',
     rules: [
-      'Resolve all ambiguous referents. Replace "it", "this study", "they" with explicit referents.',
-      'Make scope explicit. Quantification, conditions, and populations must be named.',
-      'Do not change the meaning. If normalization would change the assertion, preserve raw and flag ambiguity.',
-      'Failure flags attach only to the specific claim where the failure occurs, not the entire source.',
+      'Each extracted claim maps to exactly one source. One source can produce many extracted claims.',
+      'Preserve all hedges exactly as stated: "may," "suggests," "is consistent with," "under some conditions."',
+      'Preserve all quantification exactly: "some studies," "most experts," "under 5 percent."',
+      'Do not normalize. Do not correct. Do not improve. Ambiguous claims become two separate extracted claims.',
     ],
-    output: 'claims[] -- normalized, position, confidence.level, confidence.notes, failure_flags filled in',
+    output: 'extracted_claims[] -- each with id, source_id, raw_text, location, extraction_notes',
   },
   {
     n: '04',
-    title: 'Relation Mapping',
-    file: 'prompts/04_relation_mapping.md',
-    goal: 'Identify and record logical and evidential relationships between normalized claims.',
-    produces: 'A directed relation graph with typed, strength-rated edges between claims.',
+    title: 'Normalize claims',
+    file: 'prompts/04_claim_normalization.md',
+    goal: 'Group extracted claims into normalized claims: unambiguous, scope-explicit propositions with position and confidence assignments.',
+    produces: 'A normalized_claims array where each item synthesizes one or more extracted claims into a single, clearly stated proposition.',
     rules: [
-      'Relations are directed. "A supports B" is not "B supports A".',
-      'Only record logically significant relations -- not every possible connection.',
-      'Do not introduce external facts. Relations are only between claims in the atlas.',
-      'Check for cycles after mapping: A -> B -> A usually indicates an error.',
+      'Resolve all ambiguous referents. Replace "it," "this study," "they" with explicit referents.',
+      'Make scope explicit. Quantification, conditions, and populations must be named in the normalized text.',
+      'Do not change the meaning. If normalization would change the assertion, preserve the raw form and flag the ambiguity.',
+      'Multiple extracted claims from different sources can back one normalized claim. Track the mapping in extracted_claim_ids.',
     ],
-    output: 'relations[] -- each with id, from_claim_id, to_claim_id, type, strength, notes',
+    output: 'normalized_claims[] -- with id, extracted_claim_ids, normalized_text, position, confidence, domain_type',
   },
   {
     n: '05',
-    title: 'Crux and Missing Evidence Assessment',
-    file: 'prompts/05_assessment.md',
-    goal: 'Identify pivotal questions (cruxes), catalog absent evidence, and produce the overall assessment.',
-    produces: 'Crux objects with resolution status, missing evidence items with affected IDs, and overall assessment.',
+    title: 'Map relations',
+    file: 'prompts/05_relation_mapping.md',
+    goal: 'Identify and record logical and evidential relationships between normalized claims.',
+    produces: 'A directed relation graph with typed, strength-rated edges between normalized claims.',
     rules: [
-      'A crux is load-bearing, not merely contested. Aim for 2-5 cruxes per entry.',
-      'Missing evidence is not evidence one side has not provided -- it is evidence that does not exist.',
-      'The overall assessment must be consistent with claim-level and relation-level data.',
-      'Do not flatten genuine uncertainty into consensus. Do not inflate consensus into controversy.',
+      'Relations are directed: "A supports B" is not "B supports A."',
+      'Only record logically significant relations. Not every pair of claims needs an edge.',
+      'Use the full relation vocabulary: supports, attacks, depends_on, reframes, narrows, generalizes, duplicates, conflicts_with, evidence_for, evidence_against.',
+      'Check for cycles after mapping. A depends_on B depends_on A usually indicates an error.',
     ],
-    output: 'cruxes[], missing_evidence[], assessment{}',
+    output: 'relations[] -- each with id, from_id, to_id, type, strength, notes',
   },
   {
     n: '06',
-    title: 'Adversarial Review',
-    file: 'prompts/06_adversarial_review.md',
-    goal: 'Actively try to break the completed entry. Find errors, biases, and inconsistencies.',
-    produces: 'A structured issue log with severity ratings and recommended corrections.',
+    title: 'Identify cruxes',
+    file: 'prompts/06_crux_identification.md',
+    goal: 'Identify pivotal questions whose resolution would significantly change the outcome of the dispute.',
+    produces: 'A cruxes array with resolution status, dependency links to affected normalized claims, and -- where available -- resolution notes.',
     rules: [
-      'Check normalization drift: did normalization change what was being asserted?',
-      'Check asymmetric failure flagging: are both sides scrutinized equally?',
-      'Check crux quality: are identified cruxes actually load-bearing?',
-      'If LLM-assisted: check for hallucinated source references and claim attributions.',
+      'A crux is load-bearing, not merely contested. Identifying more than 5-7 cruxes usually indicates imprecise identification.',
+      'Record resolution status honestly. "Resolved" requires a concrete mechanism, not just expert consensus.',
+      'Link each crux to the normalized claims whose validity depends on it.',
+      'A crux that has been resolved still belongs in the atlas. Resolution is information.',
     ],
-    output: 'adversarial_review[] -- issues with id, category, severity, recommended_action, resolution',
+    output: 'cruxes[] -- each with id, statement, description, dependent_normalized_claim_ids, status, resolution_notes',
+  },
+  {
+    n: '07',
+    title: 'Flag failure modes',
+    file: 'prompts/07_failure_mode_flagging.md',
+    goal: 'Identify and attach epistemic failure modes to individual normalized claims and sources.',
+    produces: 'A failure_mode_flags array where each flag is attached to a specific claim or source with a severity rating and description.',
+    rules: [
+      'Flags attach to specific claims or sources, not to the case as a whole. This granularity is what makes them queryable.',
+      'Apply flags symmetrically. If one side of a dispute is scrutinized for funding bias, scrutinize the other side equally.',
+      'A flag is only valid if it can be substantiated from the source material. Do not flag based on prior beliefs about a source.',
+      'Severity: critical (changes the conclusion), significant (should be disclosed but conclusion may hold), minor (worth noting).',
+    ],
+    output: 'failure_mode_flags[] -- each with id, type, applies_to_id, applies_to_type, severity, description',
+  },
+  {
+    n: '08',
+    title: 'Produce assessment',
+    file: 'prompts/08_assessment.md',
+    goal: 'Synthesize the full graph into an overall epistemic assessment with explicit status, crux dependencies, and update conditions.',
+    produces: 'The assessment object: status, settled_direction (if settled), key_crux_ids, weak_link_ids, dominant_failure_modes, what_would_update.',
+    rules: [
+      'Status must be consistent with the claim-level and crux-level data. Do not flatten genuine uncertainty into consensus.',
+      'Identify weak links: normalized claims that the conclusion most depends on but where confidence is low.',
+      'what_would_update must list concrete scenarios, not vague conditions. "If Hawking radiation is confirmed" is concrete. "If more research is done" is not.',
+      'Do not produce a medical, legal, or policy recommendation. The assessment is epistemic, not actionable.',
+    ],
+    output: 'assessment{} -- status, settled_direction, epistemic_status_summary, key_crux_ids, weak_link_ids, what_would_update, missing_evidence[]',
+  },
+  {
+    n: '09',
+    title: 'Audit and update',
+    file: 'prompts/09_audit.md',
+    goal: 'Actively try to break the completed entry. Find normalization drift, asymmetric flagging, inconsistent crux identification, and hallucinated source references.',
+    produces: 'An audit_notes array with categorized issues, severity ratings, and recommended actions. Update the entry based on findings.',
+    rules: [
+      'Check normalization drift: does the normalized claim accurately represent what the source actually said?',
+      'Check asymmetric failure flagging: are all positions scrutinized with equal rigor?',
+      'If LLM-assisted: verify every source reference and claim attribution against the actual source document.',
+      'Record unresolved issues as open audit notes. A known open issue is better than a silent inaccuracy.',
+    ],
+    output: 'audit_notes[] -- each with id, type, description, applies_to_ids, severity, status',
   },
 ]
 
@@ -98,12 +140,13 @@ export default function WorkflowPage() {
         <p className="text-xs font-semibold uppercase tracking-widest text-ink-faint mb-5">
           Methodology
         </p>
-        <h1 className="text-3xl font-bold text-ink mb-4">Six-Step Pipeline</h1>
+        <h1 className="text-3xl font-bold text-ink mb-4">Nine-Step Pipeline</h1>
         <p className="text-base text-ink-light leading-relaxed">
           The pipeline converts raw source material into a structured atlas entry.
-          Steps 1-5 are constructive. Step 6 is adversarial: it tries to break
-          what the earlier steps built. Each step has a corresponding prompt
-          template in the <code>prompts/</code> directory.
+          Steps 1-8 are constructive. Step 9 is adversarial: it actively tries to
+          break what earlier steps built. Each step has a corresponding prompt template
+          in the <code>prompts/</code> directory, parameterized to take prior step
+          output as input.
         </p>
       </div>
 
@@ -143,7 +186,7 @@ export default function WorkflowPage() {
             <div className="col-span-11 lg:col-span-3">
               <p className="text-xs section-heading">Output</p>
               <div className="bg-page-off border border-page-border p-3">
-                <code className="text-xs text-accent-DEFAULT leading-relaxed block">
+                <code className="text-xs text-accent leading-relaxed block">
                   {step.output}
                 </code>
               </div>
@@ -158,19 +201,24 @@ export default function WorkflowPage() {
           <div className="prose-atlas text-ink-light">
             <p>
               The pipeline is designed for LLM-assisted execution with human oversight at
-              each stage. Steps 1, 2, and 4 can be largely automated with the provided
-              prompts and a human review pass. Steps 3, 5, and 6 require domain judgment
-              and benefit from a human expert reviewer.
+              each stage. Steps 2, 3, and 5 can be largely automated with the provided
+              prompts and a human review pass. Steps 1, 4, 6, 7, and 8 require domain
+              judgment and benefit from a reviewer with subject-matter expertise. Step 9
+              is most valuable when performed by someone who did not build the entry.
             </p>
             <p>
-              Each prompt is parameterized to take prior step output as input. This anchors
-              each step to the actual source material rather than to the LLM's background
-              knowledge, which substantially reduces hallucination risk.
+              Each prompt is parameterized to take prior step output as input, anchoring
+              the LLM to the actual source material rather than to background knowledge.
+              This substantially reduces hallucination risk, but does not eliminate it.
+              Any LLM-assisted entry should be treated as requiring human verification of
+              every source reference and claim attribution before the data_status field
+              is set to anything other than "partial."
             </p>
             <p>
-              A complete atlas entry from 6 sources typically requires 4-8 hours of
-              human review time across all steps. The adversarial review step is most
-              valuable when performed by someone who did not build the entry.
+              A complete atlas entry from 8 sources typically requires 6-10 hours of
+              human review time across all steps. The bottleneck is usually Step 4
+              (normalization) and Step 9 (adversarial audit), both of which require
+              sustained attention to the gap between what was said and what was written.
             </p>
           </div>
         </div>

@@ -22,7 +22,7 @@ const sections = [
       },
       {
         title: 'The failure mode vocabulary is incomplete.',
-        body: 'The 17-item failure flag list does not exhaust the space of epistemic failure modes. It reflects pragmatic coverage of common patterns. Adding new flags without disciplined definition risks making the taxonomy unusable.',
+        body: 'The 12-type failure flag vocabulary does not exhaust the space of epistemic failure modes. It reflects pragmatic coverage of patterns that recur across real disputes. Adding new types without disciplined definition risks making the taxonomy unusable and inconsistently applied.',
       },
     ],
   },

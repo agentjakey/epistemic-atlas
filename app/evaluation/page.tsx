@@ -5,93 +5,46 @@ export const metadata: Metadata = {
   title: 'Evaluation -- Epistemic Atlas',
 }
 
-const dimensions = [
+const lenses = [
   {
     n: '01',
-    title: 'Provenance preservation',
-    question: 'Can every claim be traced to its source without ambiguity?',
-    howAddressed: 'Every claim links to a source object. Every source carries full provenance metadata. Missing provenance is represented as null, not omitted silently.',
-    evidence: 'See the sources arrays in both case studies. The conflict_of_interest field is populated where relevant.',
-    strength: 'Strong',
-    gap: null,
+    title: 'Faithfulness',
+    question: 'Does the encoded representation accurately reflect what the sources actually say?',
+    description: 'A faithful encoding preserves the meaning of claims, not just their surface form. It does not normalize away hedges, does not infer stronger conclusions than the source states, and does not suppress claims that are inconvenient for a tidy narrative. The extraction-normalization split is the main mechanism: extracted claims carry verbatim text, and normalization is an explicit, reviewable transformation.',
+    howAddressed: 'The needs_source_verification flag marks every claim that has not been verified against the primary source. Audit notes track normalization concerns. The adversarial review step explicitly checks for normalization drift.',
+    evidence: 'All 50 extracted claims across both case studies are marked needs_source_verification: true and include raw text. AuditNote AN_001 (LHC) flags the entire entry as LLM-assisted and requiring verification.',
+    strength: 'Partial',
+    gap: 'Neither case study has been fully verified against primary sources. Any claim currently marked needs_source_verification is a faithfulness claim that has not been validated.',
   },
   {
     n: '02',
-    title: 'Structural completeness',
-    question: 'Does the representation capture support, attack, dependency, and qualification relations?',
-    howAddressed: 'Six relation types with direction and strength ratings. The relation graph is directed, typed, and queryable.',
-    evidence: 'See the relations arrays in both case studies. The LHC graph has 9 relations; the eggs graph has 8.',
+    title: 'Usefulness',
+    question: 'Does the structure help a reader understand the dispute better than prose does?',
+    description: 'A useful encoding surfaces something that reading the sources in order does not: the logical structure, the failure mode pattern, the pivotal questions, the update conditions. If the atlas just reproduces what a careful summary would say, it has not added value. Usefulness is measured by whether the structure generates insights that are hard to extract from unstructured text.',
+    howAddressed: 'Cruxes make the pivotal questions explicit and queryable. Failure mode flags create a cross-case comparison surface. What-would-update scenarios make update conditions concrete rather than vague. The interactive claim inspector makes the relation graph navigable.',
+    evidence: 'The Giddings-Mangano HR-independence argument (LHC case) appears as a named crux and several relations. It would be easy to miss in a literature review but is load-bearing for the safety assessment. The eggs case makes explicit that the Zhong 2019 conflict with earlier null findings is unresolved, not merely a dose confusion.',
     strength: 'Strong',
-    gap: 'No visual graph renderer in the current prototype. Relations are displayed as a structured list.',
+    gap: 'Usefulness depends on what questions a reader brings. The schema is most useful for tracing logical dependencies and failure modes. It does not help readers who need a quick policy verdict.',
   },
   {
     n: '03',
-    title: 'Failure mode detection',
-    question: 'Are epistemic failure modes identified at the claim level, not just the case level?',
-    howAddressed: 'A 17-item failure flag vocabulary attaches to individual claims. Flags are applied only where clearly present in the source material.',
-    evidence: 'In the eggs case: C106 flags funding_bias and cherry_picking. In the LHC case: C005 and C007 flag scope_creep and overgeneralization.',
+    title: 'Generality',
+    question: 'Does the schema transfer to substantively different disputes without modification?',
+    description: 'A general schema works on disputes from different domains, with different resolution statuses, and with different failure mode profiles -- without requiring new fields, new vocabularies, or structural hacks. The LHC and eggs cases were chosen specifically to stress-test this: one involves theoretical physics, one involves nutrition epidemiology; one is settled, one is not; one has institutional conflict of interest concerns, one has industry funding concerns.',
+    howAddressed: 'Both cases use exactly the same schema version (v2) with no case-specific extensions. The relation vocabulary, failure mode types, crux structure, and assessment object are identical. The only differences are the domain fields and the resulting data.',
+    evidence: 'The same 10 relation types, 12 failure mode types, and 5 crux status values are used across both cases. Failure modes found in both cases: source_incentive_pressure (CERN in LHC; AHA in eggs), correlated_evidence_treated_as_independent (CERN reports in LHC; Harvard cohort overlaps in eggs).',
     strength: 'Strong',
-    gap: 'The failure flag vocabulary is incomplete. It covers common failure modes but does not exhaust the space.',
+    gap: 'Tested on two cases only. The schema may require extension for purely normative disputes (ethics, policy), disputes turning on legal interpretation, or disputes where the primary evidence is quantitative models rather than empirical measurements.',
   },
   {
     n: '04',
-    title: 'Crux explicitness',
-    question: 'Are the pivotal questions made explicit rather than buried?',
-    howAddressed: 'Cruxes are first-class objects with IDs, resolution status, and dependency links to claims. The two cases demonstrate different crux structures: one largely resolved (LHC), one still open (eggs).',
-    evidence: 'CX001-CX002 in the LHC case; CX101-CX103 in the eggs case.',
-    strength: 'Strong',
-    gap: null,
-  },
-  {
-    n: '05',
-    title: 'Honest incompleteness',
-    question: 'Does the system represent what is not known as well as what is?',
-    howAddressed: 'Missing evidence is a first-class category with type, priority, and affect-IDs. The data_status field distinguishes verified from sample data. The Limitations page is a candid accounting.',
-    evidence: 'See missing_evidence arrays in both cases. ME101 in eggs (the infeasible RCT) is an example of evidence that is missing for structural reasons, not just absence of citation.',
-    strength: 'Strong',
-    gap: 'Confidence levels are ordinal (high/medium/low), not probabilistic. No formal uncertainty propagation across the graph.',
-  },
-]
-
-const selfAssessment = [
-  {
-    question: 'Does the submission identify genuine epistemic failure modes?',
-    answer: 'Yes, at two levels: case-level (paradigm cases of failure) and claim-level (flags on individual claims).',
-  },
-  {
-    question: 'Does it produce a reusable artifact?',
-    answer: 'Yes. The schema is a reusable specification. The pipeline is parameterized and transferable. The prototype demonstrates reuse across two substantively different cases.',
-  },
-  {
-    question: 'Does it handle provenance rigorously?',
-    answer: 'Yes. Provenance is a first-class field with conflict of interest, credibility assessment, and explicit null representation for missing fields.',
-  },
-  {
-    question: 'Does it surface cruxes?',
-    answer: 'Yes. Cruxes are first-class objects with resolution status tracking and dependency links.',
-  },
-  {
-    question: 'Does it represent uncertainty honestly?',
-    answer: 'Yes. Confidence levels, missing evidence, and the data_status field all contribute. The limitations page is an honest account of what the uncertainty representation does not capture.',
-  },
-]
-
-const weaknesses = [
-  {
-    area: 'Primary source verification',
-    detail: 'The case study data is partially verified. Claims marked data_status: partial have not been checked against primary sources. A stronger submission would have every claim verified.',
-  },
-  {
-    area: 'Graph visualization',
-    detail: 'Relations are displayed as a structured list. A force-directed or DAG visualization would make the graph structure more legible.',
-  },
-  {
-    area: 'Quantified uncertainty',
-    detail: 'Confidence levels are ordinal, not probabilistic. No uncertainty propagation across the relation graph is supported.',
-  },
-  {
-    area: 'Cross-dispute comparison',
-    detail: 'The schema supports it in principle, but the prototype does not demonstrate it. Showing that funding bias appears in similar structural positions across multiple disputes would be a meaningful finding.',
+    title: 'Adversarial robustness',
+    question: 'Can the structure resist motivated use -- selective flagging, cherry-picked cruxes, biased normalization?',
+    description: 'A motivated encoder can abuse any schema. They can flag failure modes only on one side, identify cruxes that favor their conclusion, or write normalized claims that subtly shift meaning. Adversarial robustness means the schema makes such manipulation detectable, not that it prevents it. Detection mechanisms: the needs_source_verification flag, the audit_notes type (asymmetric_flagging), and the rule that failure flags must be applied symmetrically.',
+    howAddressed: 'The extraction-normalization split provides a paper trail for normalization choices. The audit_notes object has an explicit asymmetric_flagging type. The adversarial review step (step 9) is designed to check symmetry. The fact that low-credibility sources are retained rather than removed limits selection bias in the source layer.',
+    evidence: 'In the LHC case, conflict of interest flags are applied to CERN-affiliated sources (src_001, src_002, src_003). The competing claim NC_002 (ADD model black hole prediction) is retained even though it is ultimately negated. The Wagner-Sancho complaint (EC_025) is included in the extracted claims despite its source having low credibility.',
+    strength: 'Partial',
+    gap: 'No automated check for asymmetric flagging exists. The schema makes abuse detectable in principle, but detection requires a reviewer who knows to look for it. An encoder who systematically normalizes toward a preferred conclusion will not be caught by the schema alone.',
   },
 ]
 
@@ -104,8 +57,9 @@ export default function EvaluationPage() {
         </p>
         <h1 className="text-3xl font-bold text-ink mb-4">Evaluation</h1>
         <p className="text-base text-ink-light leading-relaxed">
-          This page maps the submission against five evaluation dimensions and
-          provides an honest self-assessment. See also{' '}
+          This page assesses the submission against four evaluation lenses. Each lens has
+          a concrete question, a description of what would satisfy it, an account of how
+          this prototype addresses it, and an honest gap statement. See also{' '}
           <Link href="/limitations" className="text-accent hover:underline">
             Limitations
           </Link>{' '}
@@ -113,77 +67,73 @@ export default function EvaluationPage() {
         </p>
       </div>
 
-      <div className="mb-16">
-        <h2 className="section-heading">Five dimensions</h2>
-        <div className="space-y-0">
-          {dimensions.map((d) => (
-            <div key={d.n} className="py-8 border-b border-page-border grid grid-cols-12 gap-8">
+      <div className="space-y-0">
+        {lenses.map((lens, i) => (
+          <div
+            key={lens.n}
+            className={`py-12 ${i < lenses.length - 1 ? 'border-b border-page-border' : ''}`}
+          >
+            <div className="grid grid-cols-12 gap-8">
               <div className="col-span-1">
-                <span className="text-2xl font-mono font-light text-ink-faint">{d.n}</span>
+                <span className="text-3xl font-mono font-light text-ink-faint">{lens.n}</span>
               </div>
-              <div className="col-span-11 lg:col-span-3">
-                <h3 className="text-sm font-semibold text-ink mb-1">{d.title}</h3>
-                <p className="text-xs text-ink-faint leading-relaxed italic">{d.question}</p>
-                <div className="mt-3">
-                  <span className={`badge ${
-                    d.strength === 'Strong' ? 'badge-conf-high' : 'badge-conf-medium'
-                  }`}>{d.strength}</span>
+
+              <div className="col-span-11">
+                <div className="flex items-start gap-4 mb-4 flex-wrap">
+                  <h2 className="text-xl font-semibold text-ink">{lens.title}</h2>
+                  <span className={`badge shrink-0 mt-1 ${
+                    lens.strength === 'Strong' ? 'badge-conf-high' : 'badge-conf-medium'
+                  }`}>{lens.strength}</span>
+                </div>
+                <p className="text-sm text-ink-faint italic mb-5 leading-relaxed">{lens.question}</p>
+
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                  <div className="lg:col-span-1">
+                    <p className="text-xs section-heading mb-2">What satisfies this lens</p>
+                    <p className="text-sm text-ink-light leading-relaxed">{lens.description}</p>
+                  </div>
+
+                  <div className="lg:col-span-1">
+                    <p className="text-xs section-heading mb-2">How addressed</p>
+                    <p className="text-sm text-ink-light leading-relaxed mb-4">{lens.howAddressed}</p>
+                    <div className="bg-page-off border border-page-border p-3">
+                      <p className="text-xs text-ink-faint leading-relaxed">{lens.evidence}</p>
+                    </div>
+                  </div>
+
+                  <div className="lg:col-span-1">
+                    <p className="text-xs section-heading mb-2">Gap</p>
+                    <div className="border-l-4 border-l-amber-400 bg-amber-50 p-3">
+                      <p className="text-sm text-ink-light leading-relaxed">{lens.gap}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="col-span-11 lg:col-span-5">
-                <p className="text-xs section-heading">How addressed</p>
-                <p className="text-sm text-ink-light leading-relaxed">{d.howAddressed}</p>
-                <p className="text-xs text-ink-faint mt-3 leading-relaxed">
-                  {d.evidence}
-                </p>
-              </div>
-              <div className="col-span-11 lg:col-span-3">
-                {d.gap ? (
-                  <>
-                    <p className="text-xs section-heading">Gap</p>
-                    <p className="text-sm text-ink-faint leading-relaxed">{d.gap}</p>
-                  </>
-                ) : (
-                  <p className="text-xs text-green-700 bg-green-50 border border-green-100 px-3 py-2">
-                    No significant gap identified.
-                  </p>
-                )}
-              </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
 
-      <div className="mb-16">
-        <h2 className="section-heading">Judging criteria Q&amp;A</h2>
-        <div className="border border-page-border">
-          {selfAssessment.map((item, i) => (
-            <div
-              key={i}
-              className={`p-5 grid grid-cols-12 gap-6 ${i < selfAssessment.length - 1 ? 'border-b border-page-border' : ''}`}
-            >
-              <div className="col-span-12 lg:col-span-5">
-                <p className="text-sm font-medium text-ink">{item.question}</p>
-              </div>
-              <div className="col-span-12 lg:col-span-7">
-                <p className="text-sm text-ink-light leading-relaxed">{item.answer}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <h2 className="section-heading">Known weaknesses</h2>
-        <div className="space-y-4">
-          {weaknesses.map((w) => (
-            <div key={w.area} className="flex gap-6 p-4 border border-page-border">
-              <div className="w-48 shrink-0">
-                <p className="text-sm font-semibold text-ink">{w.area}</p>
-              </div>
-              <p className="text-sm text-ink-light leading-relaxed">{w.detail}</p>
-            </div>
-          ))}
+      <div className="mt-12 pt-10 border-t border-page-border">
+        <div className="max-w-2xl">
+          <h2 className="section-heading mb-4">Overall assessment</h2>
+          <div className="prose-atlas text-ink-light">
+            <p>
+              Faithfulness and adversarial robustness are both marked Partial because the
+              prototype relies on human judgment and human review at every quality-sensitive
+              step. The schema provides structure and makes manipulation detectable; it does
+              not provide guarantees. A submission with fully verified source claims and an
+              independent adversarial reviewer would rate higher on both lenses.
+            </p>
+            <p>
+              Usefulness and generality are both Strong. The interactive claim inspector
+              surfaces logical dependencies that are invisible in prose. The two case studies
+              demonstrate that the same schema handles substantively different domains,
+              resolution statuses, and failure mode profiles without structural modification.
+              These are the properties that make a schema a reusable tool rather than a
+              one-off annotation.
+            </p>
+          </div>
         </div>
       </div>
     </div>

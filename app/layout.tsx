@@ -28,7 +28,7 @@ export default function RootLayout({
               Epistemic Atlas -- FLF Epistemic Case Study Competition
             </span>
             <span className="text-xs text-ink-faint">
-              Schema v1 -- Data status: partial
+              Schema v2 -- Data status: partial
             </span>
           </div>
         </footer>
