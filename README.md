@@ -3,6 +3,8 @@
 A methodology, schema, and static prototype for converting real-world epistemic disputes
 into structured, queryable knowledge bases.
 
+<img width="1870" height="984" alt="Screenshot 2026-06-05 001331" src="https://github.com/user-attachments/assets/e873bece-3480-41bd-af4d-87abaaca173f" />
+
 ## What This Is
 
 Epistemic Atlas is a submission to the FLF Epistemic Case Study Competition. It proposes
