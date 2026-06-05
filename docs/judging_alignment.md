@@ -1,70 +1,194 @@
 # Judging Alignment
 
-This document maps Epistemic Atlas against the evaluation criteria we expect FLF judges to apply. It is written candidly -- including where the submission falls short.
+This document maps Epistemic Atlas against eight questions we expect FLF judges to ask.
+For each question: how the submission addresses it, one concrete example from the case
+studies, and an honest statement of where the answer falls short.
 
 ---
 
-## Does the submission identify genuine epistemic failure modes?
+## 1. Would this actually help someone reason better about this case?
 
-Yes, and at two levels.
+**How addressed.** The interactive prototype lets a reader navigate the epistemic structure
+of a dispute rather than read it sequentially. Clicking a normalized claim shows its
+provenance (which source said what, verbatim), its support and attack relations to other
+claims, which cruxes it is implicated in, and what scenarios would update its status. This
+is not available from any prose reading of the primary literature.
 
-At the **case level**, the two selected disputes are paradigm cases of epistemic failure. The LHC controversy illustrates failures of scientific communication and risk framing -- technical consensus existed but was not transmitted effectively, and a legal challenge was mounted on grounds that misunderstood the underlying physics. The dietary eggs dispute illustrates a decades-long failure to calibrate public health guidance to actual evidence quality, compounded by funding bias and regulatory inertia.
+**Concrete example.** In the LHC case, a reader following the safety argument will find
+that the LSAG 2008 conclusion (NC_012) carries two failure mode flags -- correlated evidence
+treated as independent, and expert consensus without dependency map -- while the
+Giddings-Mangano accretion argument (NC_004) carries none and provides the structurally
+strongest support. A careful reading of the literature would surface this eventually; the
+atlas surfaces it in one click. That is a genuine reasoning aid.
 
-At the **claim level**, the schema captures failure modes as structured data. Every claim in the atlas can carry failure flags (motivated_reasoning, cherry_picking, funding_bias, methodological_weakness, etc.) attached to the specific claim where the failure occurs. This is more precise than labeling an entire source as biased.
-
----
-
-## Does the submission produce a reusable artifact, not just an analysis?
-
-Yes. The schema is a reusable specification, not a case-specific artifact. A new dispute can be encoded using the same schema, the same pipeline, and the same failure mode vocabulary. The prototype demonstrates this with two cases that are structurally similar but substantively different.
-
-The prompts in `prompts/` are parameterized and documented to support reuse. They are not bespoke prompts written for one case.
-
----
-
-## Does the submission handle provenance rigorously?
-
-This is an area of genuine strength. Provenance is a first-class field in the schema: every claim links to a source object, and every source object captures author, institution, date, venue, and credibility assessment. Missing provenance is represented explicitly (not silently omitted) via the `credibility: "unknown"` field and notes.
-
-The schema examples in `schema/examples/` demonstrate provenance capture for real sources.
+**Limitation.** The aid is only as good as the encoding. If a key claim was missed during
+extraction, if a normalization shifted the meaning of a source claim, or if a crux was not
+identified, the atlas gives the reader a false sense of completeness. The needs_source_
+verification flags and the adversarial audit section document where these risks are highest
+in the current entries.
 
 ---
 
-## Does the submission surface cruxes?
+## 2. Does it generalize?
 
-Yes. Cruxes are first-class objects in the schema with their own ID space, dependency links to claims, and resolution status tracking. The two case studies demonstrate crux identification on disputes with different crux structures: the LHC case has cruxes that were effectively resolved by the safety assessment; the eggs case has cruxes that remain empirically underdetermined.
+**How addressed.** The schema is domain-agnostic. The same ten relation types, twelve
+failure mode types, and nine-step pipeline were applied to theoretical physics (LHC) and
+observational epidemiology (eggs) without any case-specific extensions. The schema version
+is tracked in each file's _meta field; a third case would use schema v2 without modification.
 
----
+**Concrete example.** The failure mode correlated_evidence_treated_as_independent appears
+in both cases. In the LHC case it flags that the 2003 CERN report and the 2008 LSAG report
+share the same five authors. In the eggs case it flags that two decades of Harvard cohort
+studies share data, authorship, and institutional context. The structural pattern is
+identical despite the surface content being completely different. A cross-case query on
+this failure mode type would surface both entries.
 
-## Does the submission represent uncertainty honestly?
-
-Structurally, yes. The confidence field on claims has a controlled vocabulary (high/medium/low/speculative) with notes. The overall assessment object includes both well-supported and contested claim lists. Missing evidence is a first-class category.
-
-In the sample data, claims are marked with their confidence levels, and the `data_status: "sample"` flag on illustrative data is applied consistently.
-
-The limitations document (`docs/limitations.md`) is an honest account of where the uncertainty representation is underconstrained.
-
----
-
-## Where the submission is weakest
-
-**Primary source verification.** The case study data is partially verified. A number of claims are marked as sample data and have not been checked directly against primary sources. A stronger submission would have every claim and every source reference verified. This was a scope tradeoff given prototype timelines.
-
-**Graph visualization.** The current prototype displays relations as a structured list rather than as a visual graph. A force-directed or DAG visualization would make the relation structure more legible. This is a prototype limitation.
-
-**Quantified uncertainty.** The confidence levels are ordinal, not probabilistic. A stronger epistemic infrastructure would allow for uncertainty propagation -- if a claim with 60% confidence supports another claim, how does that affect the confidence of the second? The current schema does not support this.
-
-**Cross-dispute comparison.** The schema supports it in principle, but the prototype does not demonstrate it. Showing that funding bias appears in a similar structural position in multiple disputes would be a meaningful epistemic finding.
+**Limitation.** Tested on two cases only. The schema may need extension for purely
+normative disputes (ethics, rights, policy), disputes where the primary evidence is
+quantitative models or forecasts rather than empirical studies, or legal disputes where
+the interpretation of statutory language is the crux. These categories were not tested.
 
 ---
 
-## Summary Assessment
+## 3. Does it scale with better AI or more compute?
 
-Epistemic Atlas makes a genuine contribution to the problem of epistemic infrastructure -- not by solving it, but by specifying what a solution looks like at the schema and process level. The two case studies are worked examples with enough structure to be credible and enough honest incompleteness to be realistic.
+**How addressed.** The pipeline is designed so that steps 2, 3, and 5 (source ingestion,
+claim extraction, relation mapping) are the most automatable -- they involve structured
+transformation of source text into schema-conformant objects with relatively clear
+correctness criteria. These are the steps that benefit most directly from better language
+models. Steps 1, 4, 6, 7, and 8 (scoping, normalization, crux identification, failure mode
+flagging, assessment) require judgment that scales with human expertise rather than compute.
 
-The strongest claims this submission can make are:
+**Concrete example.** The extracted claims in both case studies were generated with LLM
+assistance in step 3. A more capable model with better instruction following and less
+hallucination risk would produce higher-quality extracted claims with less human correction
+required. The normalization step (step 4) requires a human to decide whether two extracted
+claims from different sources are asserting the same proposition or subtly different ones;
+that judgment does not obviously improve with scale.
 
-1. The schema captures more of the epistemic content of a dispute than any existing summary format.
-2. The pipeline is reproducible and transferable to new disputes.
-3. The prototype demonstrates the schema's expressive range on two substantively different cases.
-4. The failure mode vocabulary, crux structure, and missing evidence category are genuine additions to how these disputes are typically represented.
+**Limitation.** The bottleneck steps (normalization, crux identification) involve subtle
+semantic judgments. It is not clear that these improve reliably with current LLM scale.
+Automated normalization that silently merges claims that are materially different is a
+worse failure mode than slow normalization. The schema's design of preserving raw extracted
+text alongside normalized text is intended to make this failure detectable, but detection
+requires a reviewer.
+
+---
+
+## 4. Does it compound across people or teams?
+
+**How addressed.** The JSON output is static, versioned, and format-stable. Multiple
+people can extend the same entry by adding sources, claims, and relations without
+rebuilding from scratch. The update_conditions field in the assessment object explicitly
+states what new evidence would change which claims. The schema supports a team working
+from the same data with a shared vocabulary. The AuditNote type records open issues so
+reviewers who come later know what the prior reviewer flagged.
+
+**Concrete example.** If a new prospective study on eggs and CVD is published, a second
+researcher can add it to data/eggs/sources.json and data/eggs/claims.json, record new
+relations in graph.json, and update the assessment if the crux status changes. The prior
+encoding is not discarded; it is extended. This is not how any current epistemic artifact
+(summary, meta-analysis, Wikipedia article) is maintained.
+
+**Limitation.** The schema has no formal conflict resolution mechanism. If two annotators
+produce different normalizations of the same claim, there is no automated way to detect
+or reconcile the conflict. The current prototype supports one encoding per case; a
+multi-annotator workflow requires tooling that is not yet built.
+
+---
+
+## 5. Does it preserve provenance?
+
+**How addressed.** Provenance is a first-class schema field, not a citation footnote. Each
+source object carries author (string or array), institution, date, publication venue, DOI,
+URL, retrieval date, and page range. Each extracted claim records its source ID and
+location within the source. The conflict_of_interest field is populated where relevant.
+Missing provenance fields are set to null, not omitted.
+
+**Concrete example.** The Wagner-Sancho legal complaint (src_008, LHC case) is a
+low-credibility source with a non-scientific basis. It is retained in full with credibility
+rated low and its nature described in the notes field. The extracted claim drawn from it
+(EC_025) is included in NC_002's extracted_claim_ids not as scientific evidence but
+because it documents the public risk concern that made the ADD model's prediction socially
+significant. Provenance preservation makes this distinction recordable; a summary that
+omits the complaint or treats it as equivalent to the CERN safety report would lose it.
+
+**Limitation.** All 50 extracted claims across both case studies are marked
+needs_source_verification: true. The specific effect sizes, statistical values, and
+attribution claims in the extracted claims were generated with LLM assistance and have
+not been checked against primary source documents. The provenance chain is structurally
+sound; its content is not yet fully verified.
+
+---
+
+## 6. Does it preserve nuance rather than flattening?
+
+**How addressed.** Several design decisions resist flattening. The extraction-normalization
+split preserves the original phrasing alongside the interpreted form. The position field
+has five values (pro, con, neutral, conditional, methodological) rather than a binary.
+Confidence has four levels with an explanatory notes field. The assessment status has
+three values (settled, unsettled, partially_settled) and the settled_direction field
+distinguishes direction from status. Missing evidence is a first-class category, not a
+binary "more research needed" note.
+
+**Concrete example.** The eggs assessment does not produce a single verdict. It explicitly
+records three sub-questions with different epistemic statuses: the question for healthy
+adults consuming one egg or fewer per day (most null findings apply here), the question
+for diabetic populations (NC_104, multiple studies suggest elevated risk, but CX_103 is
+empirically underdetermined), and the question for eggs in the context of a high saturated
+fat dietary pattern (NC_106, evidence is insufficient to separate the egg contribution).
+The vague_question flag on NC_101 is marked affects_conclusion: true to make explicit that
+the ambiguity is not minor.
+
+**Limitation.** Nuance at the level of the normalized claim does not prevent a casual
+reader from reading the assessment settled_direction field and stopping there. The
+prototype does not enforce careful reading. Readers who want a quick answer can take the
+assessment at face value and miss the qualifications recorded in weak_link_ids and the
+crux resolution statuses. This is a design choice, not an oversight; the assessment is
+meant to be informative quickly, with depth available on demand.
+
+---
+
+## 7. Does it survive adversarial scrutiny?
+
+**How addressed.** Two mechanisms are built in. The extraction-normalization split creates
+a paper trail: a reviewer can compare any normalized claim against its extracted claims
+and source text to detect drift. The AuditNote type includes an asymmetric_flagging
+subtype specifically to record cases where failure mode flags were applied unevenly across
+positions. The adversarial review step (step 9 of the pipeline) is a dedicated pass to
+catch normalization errors, missing cruxes, and flag asymmetry.
+
+**Concrete example.** AuditNote AN_001 in the LHC case records that the entire entry is
+LLM-assisted and that every source reference requires verification. This is an open audit
+note, not a resolved one. A judge reviewing the entry knows exactly where the highest
+hallucination risk is and what it would take to resolve it.
+
+**Limitation.** An encoder who wants to produce a motivated result can abuse any schema.
+They can normalize toward a preferred conclusion, selectively apply flags to one side,
+identify cruxes that happen to favor a desired assessment, or write what_would_update
+scenarios that are technically possible but practically implausible. The schema makes these
+moves detectable by a careful reviewer but does not prevent them. A multi-annotator
+inter-rater study would provide the only strong evidence that the encoding is not
+systematically biased, and no such study has been conducted.
+
+---
+
+## 8. Is it easy for judges to inspect and reimplement?
+
+**How addressed.** The data is static JSON in data/lhc/ and data/eggs/, readable without
+running any code. The schema is published in schema/epistemic-atlas.schema.json with a
+plain-English companion guide in schema/GUIDE.md. The TypeScript types in lib/types_v2.ts
+serve as an executable specification. A judge who wants to build a third case study has
+a schema, a type system, a nine-step pipeline with prompt templates, and two worked
+examples to reference.
+
+**Concrete example.** The schema/examples/ directory contains two small valid JSON files
+(lhc_black_holes.json and eggs.json) that validate against the full schema. These are
+separate from the full case study data and are specifically designed as minimal valid
+examples a new implementer can start from.
+
+**Limitation.** The interactive prototype requires Node.js and npm to run locally. A judge
+who wants to inspect the data without running the prototype can read the JSON files
+directly, but the claim inspection features (relation traversal, flag display, provenance
+lookup) are only available in the running app. A static HTML export would remove this
+dependency and is a reasonable addition before the final submission.

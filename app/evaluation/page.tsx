@@ -136,6 +136,94 @@ export default function EvaluationPage() {
           </div>
         </div>
       </div>
+
+      <div className="mt-16 pt-10 border-t border-page-border">
+        <h2 className="section-heading mb-2">Adversarial self-audit</h2>
+        <p className="text-sm text-ink-faint mb-8 max-w-2xl leading-relaxed">
+          Eight specific ways this system can fail to do what it claims, how each is
+          mitigated, and where the mitigation is still insufficient. Full analysis in{' '}
+          <code className="text-accent">docs/adversarial_audit.md</code>.
+        </p>
+        <div className="space-y-0 border border-page-border">
+          {auditItems.map((item, i) => (
+            <div
+              key={item.label}
+              className={`p-5 grid grid-cols-12 gap-6 ${
+                i < auditItems.length - 1 ? 'border-b border-page-border' : ''
+              }`}
+            >
+              <div className="col-span-12 lg:col-span-4">
+                <div className="flex items-start gap-3 mb-2">
+                  <span className="text-xs font-mono text-ink-faint shrink-0 mt-0.5 w-6">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="text-sm font-semibold text-ink leading-snug">{item.label}</h3>
+                </div>
+                <p className="text-xs text-ink-faint leading-relaxed ml-9">{item.risk}</p>
+              </div>
+              <div className="col-span-12 lg:col-span-4">
+                <p className="text-xs section-heading mb-1.5">Mitigation</p>
+                <p className="text-xs text-ink-light leading-relaxed">{item.mitigation}</p>
+              </div>
+              <div className="col-span-12 lg:col-span-4">
+                <p className="text-xs section-heading mb-1.5">Still insufficient</p>
+                <p className="text-xs text-ink-faint leading-relaxed">{item.gap}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
+
+const auditItems = [
+  {
+    label: 'Extracting a claim not actually in the source',
+    risk: 'LLM paraphrase or confabulation enters the pipeline as a source-attributed object. All downstream claims inherit the error.',
+    mitigation: 'needs_source_verification flag on every extracted claim. AuditNote type for verification_needed. Step 3 prompt instructs verbatim preservation.',
+    gap: 'The flag is a warning, not a correction. A well-formed unverified claim with a DOI still looks authoritative to a casual reader.',
+  },
+  {
+    label: 'Merging two claims that are materially different',
+    risk: 'Normalization groups two extracted claims that differ on a condition, population, or threshold. The merged claim appears to have stronger backing than either source provides.',
+    mitigation: 'extracted_claim_ids preserves the source claims. Normalization rules forbid merging when meaning changes.',
+    gap: 'The paper trail exists but readers must click into the detail panel to see it. Divergence between extracted and normalized text is not surfaced by default.',
+  },
+  {
+    label: 'Treating correlated evidence as independent',
+    risk: 'Three citations from three sources looks like triple confirmation. If the sources share authors or data, the independence is illusory.',
+    mitigation: 'correlated_evidence_treated_as_independent failure mode type. conflict_of_interest source field. Applied in both case studies.',
+    gap: 'The flag is advisory. Claim confidence is not automatically reduced. The flag and the confidence badge can send contradictory signals without reconciliation.',
+  },
+  {
+    label: 'Overweighting institutional authority',
+    risk: 'A high-credibility source (CERN, JAMA) may be given more epistemic weight than the specific claim it supports actually warrants.',
+    mitigation: 'Credibility is defined as source-type and venue, not content. Claim confidence is assessed independently. source_incentive_pressure type flags institutional bias.',
+    gap: 'Credibility is displayed prominently in the source list. Readers may substitute source credibility for claim confidence without comparing the two.',
+  },
+  {
+    label: 'Overweighting vivid contrarian arguments',
+    risk: 'A well-stated minority position gets more claim granularity than the consensus, making the atlas look like both sides are equally supported.',
+    mitigation: 'Position field classifies every claim. Assessment provides well_supported_claim_ids and contested_claim_ids. Step 9 checks flag asymmetry.',
+    gap: 'No automated check for claim count by position. Asymmetry may be deliberate or accidental with no current way to distinguish them.',
+  },
+  {
+    label: 'Producing a clean graph that hides uncertainty',
+    risk: 'The structure of a well-formed relation graph implies epistemic clarity. Structure is not evidence of clarity.',
+    mitigation: 'data_status badge on case headers. Crux resolution status is visually distinguished. Assessment status separates settled from unsettled.',
+    gap: 'The badge is small. A polished interface generates trust that partially verified data does not warrant. The visual design and the data status send conflicting signals.',
+  },
+  {
+    label: 'Turning an open question into a binary verdict',
+    risk: 'The assessment settled_direction text may communicate more certainty than the crux-level data supports. Readers anchor on the verdict and miss the qualifications.',
+    mitigation: 'Eggs case assessment is unsettled with null settled_direction and an explicit three-way sub-question structure. LHC weak_link_ids and unresolved cruxes are recorded.',
+    gap: 'The LHC verdict reads cleanly as settled without surfacing that CX_002 and CX_003 remain underdetermined unless the reader inspects the crux list.',
+  },
+  {
+    label: 'Creating false confidence through visual polish',
+    risk: 'A well-designed interface communicates competence. Competence applied to a working draft produces misplaced trust.',
+    mitigation: 'data_status: partial is displayed in the header. Limitations page and writeup are explicit about verification status.',
+    gap: 'The badge does not dominate. Claim-level UI does not communicate aggregate unverified status unless the reader opens a detail panel. Visual clarity should be earned by verification, not assumed.',
+  },
+]
