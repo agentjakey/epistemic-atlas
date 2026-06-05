@@ -1,14 +1,16 @@
 {
   "id": "lhc-black-holes-2008",
+  "schema_version": "2",
   "title": "LHC Black Holes and Catastrophic Risk",
   "domain": "particle physics",
   "subdomain": "accelerator safety and quantum gravity",
   "status": "resolved",
-  "data_status": "partial",
-  "summary": "In 2008, concerns were raised that the Large Hadron Collider could produce microscopic black holes capable of destroying Earth. CERN commissioned a formal safety assessment, which was reviewed independently. A legal challenge was filed and dismissed.",
+  "data_status": "sample",
+  "summary": "In 2008, a concern arose that the Large Hadron Collider could produce microscopic black holes capable of catastrophic harm. CERN commissioned a formal safety assessment, independently reviewed. The case illustrates how independent safety arguments with different epistemic bases can jointly support a conclusion even when individual arguments carry unverified assumptions.",
   "created": "2024-01-01",
-  "updated": "2024-06-01",
-  "tags": ["particle_physics", "risk_assessment", "public_communication", "legal_challenge"],
+  "updated": "2026-06-04",
+  "tags": ["particle physics", "risk assessment", "analogy argument", "Hawking radiation", "extra dimensions"],
+
   "sources": [
     {
       "id": "src_001",
@@ -18,82 +20,236 @@
         "author": ["John Ellis", "Gian Giudice", "Michelangelo Mangano", "Igor Tkachev", "Urs Wiedemann"],
         "institution": "CERN",
         "date": "2008",
-        "venue": "Journal of Physics G",
+        "venue": "Journal of Physics G: Nuclear and Particle Physics",
         "url": "https://arxiv.org/abs/0806.3414",
         "doi": "10.1088/0954-3899/35/11/115004",
-        "retrieved": null
+        "retrieved": null,
+        "page_range": null
       },
       "credibility": "high",
-      "conflict_of_interest": "Authors are employed by CERN, which operates the LHC.",
-      "notes": "Primary CERN safety assessment. Peer-reviewed. Addresses black holes, strangelets, magnetic monopoles, and vacuum bubbles."
-    }
-  ],
-  "claims": [
-    {
-      "id": "C001",
-      "raw": "Under certain theoretical models of extra dimensions, the LHC could produce microscopic black holes.",
-      "normalized": "Under the ADD model of large extra dimensions, the LHC operating at 14 TeV would have non-negligible probability of producing microscopic black holes.",
-      "source_id": "src_001",
-      "position": "neutral",
-      "domain_type": "theoretical",
-      "confidence": {
-        "level": "medium",
-        "notes": "ADD is a legitimate theoretical framework but lacks empirical confirmation."
-      },
-      "tags": ["extra_dimensions", "theoretical_prediction"],
-      "failure_flags": []
+      "conflict_of_interest": "Authors are employed by CERN, which operates the LHC. The report was peer-reviewed and published independently.",
+      "retracted": false,
+      "needs_source_verification": false,
+      "notes": "Primary CERN safety assessment (LSAG report). Addresses black holes, strangelets, magnetic monopoles, and vacuum bubbles."
     },
     {
-      "id": "C003",
-      "raw": "Even without Hawking radiation, micro black holes produced at the LHC would not be dangerous.",
-      "normalized": "Even assuming Hawking radiation does not occur, LHC-produced micro black holes would not grow to dangerous size, based on astrophysical constraints from observed stability of neutron stars and white dwarfs.",
+      "id": "src_002",
+      "title": "Astrophysical implications of hypothetical stable TeV-scale black holes",
+      "type": "paper",
+      "provenance": {
+        "author": ["Steven B. Giddings", "Michelangelo Mangano"],
+        "institution": "University of California Santa Barbara / CERN",
+        "date": "2008",
+        "venue": "Physical Review D",
+        "url": "https://arxiv.org/abs/0806.3381",
+        "doi": "10.1103/PhysRevD.78.035009",
+        "retrieved": null,
+        "page_range": null
+      },
+      "credibility": "high",
+      "conflict_of_interest": "Mangano is employed by CERN. Giddings is an independent academic physicist.",
+      "retracted": false,
+      "needs_source_verification": false,
+      "notes": "Specifically addresses the scenario where Hawking radiation does not occur. Argues safety via astrophysical constraints."
+    }
+  ],
+
+  "extracted_claims": [
+    {
+      "id": "EC_001",
       "source_id": "src_001",
-      "position": "con",
+      "raw_text": "Neutron stars and white dwarfs have been exposed throughout their lifetimes to cosmic rays at energies many orders of magnitude above LHC collision energies, and these objects have not been destroyed.",
+      "location": { "page": null, "section": "Black holes", "paragraph": null },
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the astrophysical analogy argument. Verbatim wording requires primary source verification.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_002",
+      "source_id": "src_002",
+      "raw_text": "Even in the absence of Hawking radiation, any micro-black hole produced at LHC energies would have an accretion cross-section too small to grow to dangerous size within any relevant timescale.",
+      "location": { "page": null, "section": null, "paragraph": null },
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the central Giddings-Mangano argument. Verbatim wording requires primary source verification.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_003",
+      "source_id": "src_001",
+      "raw_text": "Under certain theoretical models of extra spatial dimensions, the LHC could in principle produce microscopic black holes.",
+      "location": { "page": null, "section": "Black holes", "paragraph": null },
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the conditional theoretical possibility statement from the LSAG report.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_004",
+      "source_id": "src_001",
+      "raw_text": "No microscopic black holes have been produced at any accelerator to date, and Hawking radiation has not been directly observed in any experimental system.",
+      "location": { "page": null, "section": null, "paragraph": null },
+      "speaker": null,
+      "extraction_notes": "Paraphrase. The factual component about Hawking radiation being unobserved is uncontroversial; exact wording unverified.",
+      "needs_source_verification": true
+    }
+  ],
+
+  "normalized_claims": [
+    {
+      "id": "NC_001",
+      "extracted_claim_ids": ["EC_001", "EC_002"],
+      "normalized_text": "Regardless of whether Hawking radiation occurs, the observed survival of neutron stars and white dwarfs under cosmic ray bombardment at energies far exceeding LHC collision energies provides an independent empirical constraint: stable microscopic black holes that could grow to dangerous size are not produced in such high-energy collisions.",
       "domain_type": "empirical",
+      "scope": "Applies to collisions at and below LHC design energies of 14 TeV center-of-mass, for the specific scenario of micro-black-hole formation under ADD-type extra dimension models.",
+      "quantification": null,
+      "hedges": [],
+      "position": "con",
       "confidence": {
         "level": "high",
-        "notes": "Independent of Hawking radiation. Relies on directly observable astrophysical facts."
+        "notes": "This argument does not depend on any unverified theoretical assumption. The observational basis (neutron star and white dwarf survival) is not in dispute. The analogy carries its own limitations (see FF_001)."
       },
-      "tags": ["neutron_stars", "cosmic_rays", "astrophysical_argument"],
-      "failure_flags": []
+      "failure_mode_flag_ids": ["FF_001"],
+      "tags": ["astrophysical_argument", "cosmic_rays", "neutron_stars"],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_002",
+      "extracted_claim_ids": ["EC_003"],
+      "normalized_text": "Under the ADD (Arkani-Hamed, Dimopoulos, Dvali) model of large extra spatial dimensions, the LHC operating at 14 TeV center-of-mass energy would have non-zero theoretical probability of producing microscopic black holes. This is conditional on large extra dimensions existing at the relevant scale.",
+      "domain_type": "theoretical",
+      "scope": "Conditional on ADD model being correct. Not a prediction of the Standard Model without extra dimensions.",
+      "quantification": "Non-zero theoretical probability; specific rate depends on model parameters.",
+      "hedges": ["conditional on", "in principle"],
+      "position": "conditional",
+      "confidence": {
+        "level": "medium",
+        "notes": "The ADD model is a legitimate theoretical framework but lacks direct empirical confirmation. The Standard Model alone predicts no BH production at LHC energies. NC_002 is only relevant if ADD is true."
+      },
+      "failure_mode_flag_ids": ["FF_002"],
+      "tags": ["ADD_model", "extra_dimensions", "theoretical_prediction"],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_003",
+      "extracted_claim_ids": ["EC_004"],
+      "normalized_text": "As of the publication of the LSAG report (2008), Hawking radiation had not been directly detected in any laboratory experiment or unambiguously confirmed in any astrophysical observation.",
+      "domain_type": "empirical",
+      "scope": "State of experimental and observational evidence as of 2008.",
+      "quantification": null,
+      "hedges": ["as of 2008"],
+      "position": "neutral",
+      "confidence": {
+        "level": "high",
+        "notes": "The absence of direct Hawking radiation detection as of 2008 is factually uncontroversial. Indirect analog-system evidence (acoustic black holes) is not confirmed gravitational Hawking radiation."
+      },
+      "failure_mode_flag_ids": [],
+      "tags": ["Hawking_radiation", "observation_gap"],
+      "needs_source_verification": true
     }
   ],
+
   "relations": [
     {
-      "id": "R003",
-      "from_claim_id": "C003",
-      "to_claim_id": "C007",
-      "type": "attacks",
+      "id": "R_001",
+      "from_id": "NC_001",
+      "to_id": "NC_002",
+      "type": "evidence_against",
       "strength": "strong",
-      "notes": "Astrophysical argument provides empirically grounded rebuttal to the existential risk claim."
+      "notes": "NC_001 (astrophysical constraint) provides empirical evidence against the dangerous interpretation of NC_002. Even if micro-BHs could form under ADD, the neutron star argument shows they cannot grow to dangerous size. NC_001 does not falsify NC_002 (BHs might still form) -- it specifically attacks the dangerous-outcome reading."
+    },
+    {
+      "id": "R_002",
+      "from_id": "NC_003",
+      "to_id": "NC_001",
+      "type": "narrows",
+      "strength": "moderate",
+      "notes": "NC_003 (Hawking radiation undetected) narrows the scope of NC_001's safety case by establishing that the HR-based evaporation argument within NC_001's conceptual background is built on an unverified theoretical assumption. The astrophysical part of NC_001 remains unaffected, but this note restricts overconfident claims that 'the safety case is fully verified'."
     }
   ],
+
   "cruxes": [
     {
-      "id": "CX001",
-      "statement": "Do large extra spatial dimensions exist at the scale relevant to LHC collision energies?",
-      "description": "If true, black hole production is theoretically possible. If false, the dispute is moot under the Standard Model. Foundational crux for all other claims.",
-      "dependent_claim_ids": ["C001", "C007"],
-      "status": "empirically_underdetermined",
-      "resolution_notes": "LHC data has constrained but not eliminated the ADD parameter space."
+      "id": "CX_001",
+      "statement": "Does the analogy between LHC high-energy collisions and cosmic ray bombardment of neutron stars and white dwarfs validly preclude dangerous stable black hole formation, accounting for kinematic differences between fixed-target and center-of-mass regimes?",
+      "description": "If the analogy holds: NC_001 is a strong empirical safety argument and the case is settled in the 'safe' direction. If the analogy fails at some relevant parameter (different momentum transfer, different collision geometry, different density of matter involved): the astrophysical argument loses its force and the safety case would need to rely more heavily on Hawking radiation, which carries its own unverified assumption. The LSAG report argues the analogy does hold, but the specific kinematic analysis is technical.",
+      "dependent_normalized_claim_ids": ["NC_001"],
+      "status": "resolved_true",
+      "resolution_notes": "The Giddings-Mangano paper (src_002) specifically addresses this and concludes the astrophysical argument holds across the kinematic regimes relevant to the LHC. The LSAG report concurs. An independent review commission confirmed the analysis.",
+      "resolution_source_ids": ["src_001", "src_002"]
     }
   ],
+
+  "failure_mode_flags": [
+    {
+      "id": "FF_001",
+      "type": "analogy_dependency",
+      "description": "The astrophysical safety argument (NC_001) depends on the analogy between LHC collision products and the products of cosmic ray collisions with neutron star and white dwarf matter. The analogy is strong but not perfect: cosmic rays hitting a neutron star involve fixed-target kinematics, while LHC collisions are center-of-mass. Giddings and Mangano specifically address this distinction in src_002 and conclude the analogy is valid for the relevant mass and momentum regime, but the argument formally depends on this analogy holding.",
+      "applies_to_id": "NC_001",
+      "applies_to_type": "normalized_claim",
+      "severity": "minor",
+      "affects_conclusion": false,
+      "notes": "The severity is minor because Giddings-Mangano specifically analyzed and defended the kinematic analogy. Noting the dependency is correct epistemic hygiene."
+    },
+    {
+      "id": "FF_002",
+      "type": "direct_evidence_absent",
+      "description": "NC_002 (micro-BH formation possible under ADD model) is a theoretical prediction. There is no direct evidence that large extra dimensions exist at the relevant scale, and no micro-BH has ever been observed at any accelerator. The entire claim is model-dependent. The ADD model has not been empirically confirmed.",
+      "applies_to_id": "NC_002",
+      "applies_to_type": "normalized_claim",
+      "severity": "significant",
+      "affects_conclusion": false,
+      "notes": "This flag does not undermine the safety conclusion -- it actually reduces the probability that the dangerous scenario is physically realized. The flag is significant because NC_002 is sometimes stated as if ADD micro-BH production is an established possibility rather than a model-dependent one."
+    }
+  ],
+
+  "assessment": {
+    "status": "settled",
+    "settled_direction": "LHC operations do not pose a risk of catastrophic harm from micro-black-holes. The safety case is established through two independent arguments: the astrophysical analogy (NC_001, high confidence, does not depend on Hawking radiation) and the Hawking radiation evaporation argument (not shown in this small example). The LSAG conclusion was confirmed by independent review.",
+    "epistemic_status_summary": "Scientific consensus, well-supported, with two independent lines of argument. The strongest argument (NC_001) does not rely on any unverified theoretical assumption.",
+    "key_crux_ids": ["CX_001"],
+    "weak_link_ids": ["NC_002"],
+    "what_would_update": [
+      {
+        "scenario": "Discovery of direct evidence for large extra spatial dimensions at sub-millimeter scales (e.g., from LHC data showing Kaluza-Klein graviton signatures or micro-BH production events)",
+        "would_affect_ids": ["NC_002", "CX_001"],
+        "direction": "strengthen",
+        "magnitude": "significant"
+      },
+      {
+        "scenario": "A rigorous theoretical demonstration that the kinematic analogy between LHC collisions and cosmic ray/neutron-star interactions fails to preclude dangerous stable black hole formation under any plausible ADD parameter set",
+        "would_affect_ids": ["NC_001", "CX_001"],
+        "direction": "weaken",
+        "magnitude": "decisive"
+      }
+    ],
+    "well_supported_claim_ids": ["NC_001", "NC_003"],
+    "contested_claim_ids": ["NC_002"],
+    "dominant_failure_modes": ["analogy_dependency", "direct_evidence_absent"],
+    "notes": "The failure modes identified are present but do not undermine the settled conclusion. FF_001 (analogy_dependency) is addressed directly in src_002. FF_002 (direct_evidence_absent) actually reduces the prior probability of the dangerous scenario."
+  },
+
   "missing_evidence": [
     {
-      "id": "ME001",
-      "description": "Direct experimental confirmation or disconfirmation of large extra dimensions at LHC-accessible energy scales.",
+      "id": "ME_001",
+      "description": "Direct experimental confirmation or falsification of large extra dimensions at LHC-accessible energy scales. LHC Run 2 data has constrained but not eliminated the ADD parameter space. Future collider experiments could narrow or close the remaining window.",
       "type": "empirical",
-      "would_affect_ids": ["CX001", "C001"],
-      "priority": "critical"
+      "would_affect_ids": ["NC_002", "CX_001"],
+      "priority": "important",
+      "reason_absent": "The relevant extra dimension scale may simply be smaller than what any current or near-future collider can probe, or extra dimensions may not exist.",
+      "feasibility": "feasible"
     }
   ],
-  "assessment": {
-    "epistemic_status": "Scientific consensus, well-supported by independent arguments that do not rely on any single contested theoretical assumption.",
-    "resolved": true,
-    "resolution_summary": "LSAG concluded LHC operations pose no catastrophic risk, supported by two independent arguments: Hawking radiation evaporation and astrophysical constraints.",
-    "well_supported_claim_ids": ["C003", "C004", "C006"],
-    "contested_claim_ids": ["C001", "C002", "C005"],
-    "failure_modes_observed": ["scope_creep", "overgeneralization"],
-    "notes": "Failure modes confined to the legal challenge. Scientific literature does not show significant failure modes."
-  }
+
+  "audit_notes": [
+    {
+      "id": "AN_001",
+      "type": "verification_needed",
+      "description": "All four extracted claims are paraphrases marked needs_source_verification: true. The verbatim text of the astrophysical analogy argument in src_001 and the specific kinematic analysis in src_002 should be verified against the primary source documents before treating this entry as more than a sample.",
+      "applies_to_ids": ["EC_001", "EC_002", "EC_003", "EC_004"],
+      "severity": "significant",
+      "author": null,
+      "date": "2026-06-04",
+      "status": "open",
+      "resolution": null
+    }
+  ]
 }
