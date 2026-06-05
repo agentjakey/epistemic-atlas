@@ -43,8 +43,8 @@ exposure visible at the point where it matters, not just at the extraction layer
 
 ## Failure 2: The system merges two claims that are similar but materially different.
 
-**The risk.** During normalization (step 4), the annotator -- or the LLM assisting with
-it -- groups two extracted claims from different sources into a single normalized claim
+**The risk.** During normalization (step 4), the annotator (or the LLM assisting with
+normalization) groups two extracted claims from different sources into a single normalized claim
 because they appear to assert the same thing. If the two claims differ on a condition,
 a population, a time period, or a quantitative threshold, merging them silently discards
 the difference. The atlas then treats the merged claim as having stronger support than
@@ -97,7 +97,7 @@ implicit messages without explicit reconciliation.
 **Future improvement.** When a normalized claim has an active
 correlated_evidence_treated_as_independent flag, automatically display an inline caveat
 next to the confidence badge in the claim list: something like "confidence may be
-overstated -- correlated sources." This reconciles the flag with the confidence display
+overstated: correlated sources." This reconciles the flag with the confidence display
 rather than leaving them in silent tension.
 
 ---
@@ -121,7 +121,7 @@ source list and in the provenance panel of the claim inspector. A reader who see
 "credibility: high" next to a source will likely read the extracted claim from that source
 with more trust than the claim-level confidence warrants. The schema preserves the
 distinction but the visual design does not enforce it. In the LHC case, the LSAG report
-is credibility: high and backs NC_012 (confidence: high) -- this is technically accurate,
+is credibility: high and backs NC_012 (confidence: high), which is technically accurate,
 but the failure mode flags on NC_012 mean the true epistemic situation is more uncertain
 than either badge suggests independently.
 
@@ -135,8 +135,8 @@ reduces the risk that one is substituted for the other.
 
 ## Failure 5: The system overweights contrarian arguments because they are rhetorically vivid.
 
-**The risk.** A well-stated minority position -- one that is clearly phrased, structurally
-interesting, or emotionally engaging -- may be encoded with more attention and nuance than
+**The risk.** A well-stated minority position (one that is clearly phrased, structurally
+interesting, or emotionally engaging) may be encoded with more attention and nuance than
 the boring consensus position. The consensus view gets a single normalized claim with
 high confidence; the contrarian view gets three normalized claims tracing its logical
 structure. The atlas then looks like the consensus and the contrarian view are comparably
@@ -159,7 +159,7 @@ narrative. There is currently no way to distinguish these.
 
 **Future improvement.** Add a section to the adversarial audit step that explicitly counts
 normalized claims by position and flags large imbalances for review. The goal is not
-forced balance -- the epistemic situation may genuinely be asymmetric -- but to ensure
+forced balance (the epistemic situation may genuinely be asymmetric) but to ensure
 that asymmetry is deliberate and documented rather than accidental.
 
 ---
@@ -186,7 +186,7 @@ The current design does not adequately resolve this conflict.
 
 **Future improvement.** Add a persistent visual indicator at the top of each case page
 that makes the partial data status hard to miss: a clearly styled banner that says
-"Working draft -- 0 of 50 extracted claims verified against primary sources" with the
+"Working draft: 0 of 50 extracted claims verified against primary sources" with the
 number updating as verification progresses. The banner should not be dismissible. The
 goal is to make data status as salient as claim content, not a badge that fades into the
 header.
@@ -211,12 +211,12 @@ weak_link_ids fields point readers toward the most uncertain parts of the argume
 This is the most honest available characterization, but it buries the residual uncertainty
 in CX_002 (Hawking radiation theoretically underdetermined) and CX_003 (ADD model
 empirically underdetermined) that the body of the entry makes clear. A reader who reads
-the assessment heading -- "settled" -- and the settled_direction text will come away with
+the assessment heading ("settled") and the settled_direction text will come away with
 a cleaner picture than the crux data supports.
 
 **Future improvement.** In the assessment display, show the crux resolution statuses
-inline with the assessment status: "Status: settled -- but 2 of 5 cruxes are unresolved
-or theoretically underdetermined." This prevents the assessment verdict from being read
+inline with the assessment status: "Status: settled (2 of 5 cruxes are unresolved
+or theoretically underdetermined)." This prevents the assessment verdict from being read
 without the qualification the crux data provides. The verdict is still accurate; it is
 now accompanied by the conditions under which it is accurate.
 
@@ -226,8 +226,7 @@ now accompanied by the conditions under which it is accurate.
 
 **The risk.** This is related to failure 6 but distinct. A well-designed interface
 communicates competence. Competence creates trust. Trust applied to a partially verified
-working draft is misplaced trust. The design choices that make the prototype useful --
-clear typography, color-coded badges, expandable detail panels -- may inadvertently
+working draft is misplaced trust. The design choices that make the prototype useful (clear typography, color-coded badges, expandable detail panels) may inadvertently
 communicate a level of rigor that the underlying data does not yet have.
 
 **Current mitigation.** The data_status: partial metadata is displayed as a badge on
@@ -259,9 +258,8 @@ the confidence and failure mode flag signals are in tension without explicit
 reconciliation, and the clean interface creates an impression of completeness that the
 data does not fully support.
 
-The mitigation mechanisms -- needs_source_verification flags, the extraction-
-normalization paper trail, the adversarial audit step, the honest limitations page --
-are genuine. They make the failures detectable and documentable. They do not eliminate
+The mitigation mechanisms (needs_source_verification flags, the extraction-normalization
+paper trail, the adversarial audit step, the honest limitations page) are genuine. They make the failures detectable and documentable. They do not eliminate
 the failures. The practical standard the current prototype can honestly claim is:
 "If you look carefully at everything this system shows you, including the flags and audit
 notes, you will not be misled." That is a meaningful standard. It is not the same as

@@ -15,8 +15,8 @@ claims, which cruxes it is implicated in, and what scenarios would update its st
 is not available from any prose reading of the primary literature.
 
 **Concrete example.** In the LHC case, a reader following the safety argument will find
-that the LSAG 2008 conclusion (NC_012) carries two failure mode flags -- correlated evidence
-treated as independent, and expert consensus without dependency map -- while the
+that the LSAG 2008 conclusion (NC_012) carries two failure mode flags (correlated evidence
+treated as independent, and expert consensus without dependency map) while the
 Giddings-Mangano accretion argument (NC_004) carries none and provides the structurally
 strongest support. A careful reading of the literature would surface this eventually; the
 atlas surfaces it in one click. That is a genuine reasoning aid.
@@ -32,7 +32,7 @@ in the current entries.
 ## 2. Does it generalize?
 
 **How addressed.** The schema is domain-agnostic. The same ten relation types, twelve
-failure mode types, and nine-step pipeline were applied to theoretical physics (LHC) and
+failure mode types, and six-stage pipeline were applied to theoretical physics (LHC) and
 observational epidemiology (eggs) without any case-specific extensions. The schema version
 is tracked in each file's _meta field; a third case would use schema v2 without modification.
 
@@ -53,7 +53,7 @@ the interpretation of statutory language is the crux. These categories were not 
 ## 3. Does it scale with better AI or more compute?
 
 **How addressed.** The pipeline is designed so that steps 2, 3, and 5 (source ingestion,
-claim extraction, relation mapping) are the most automatable -- they involve structured
+claim extraction, relation mapping) are the most automatable; they involve structured
 transformation of source text into schema-conformant objects with relatively clear
 correctness criteria. These are the steps that benefit most directly from better language
 models. Steps 1, 4, 6, 7, and 8 (scoping, normalization, crux identification, failure mode
@@ -179,7 +179,7 @@ systematically biased, and no such study has been conducted.
 running any code. The schema is published in schema/epistemic-atlas.schema.json with a
 plain-English companion guide in schema/GUIDE.md. The TypeScript types in lib/types_v2.ts
 serve as an executable specification. A judge who wants to build a third case study has
-a schema, a type system, a nine-step pipeline with prompt templates, and two worked
+a schema, a type system, a six-stage pipeline with prompt templates, and two worked
 examples to reference.
 
 **Concrete example.** The schema/examples/ directory contains two small valid JSON files

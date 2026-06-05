@@ -3,17 +3,17 @@
 **Competition:** FLF Epistemic Case Study Competition
 **Submission type:** Methodology + Schema + Interactive Prototype
 **Schema version:** 2 (JSON Schema Draft 2020-12)
-**Data status:** Partial -- all extracted claims require primary source verification
+**Data status:** Partial; all extracted claims require primary source verification
 
 ---
 
 ## Abstract
 
-Public epistemic disputes leave behind prose. Newspaper articles, journal papers, safety reports, and regulatory filings are the medium in which disputes unfold, but prose does not preserve the logical structure of a dispute. It does not record which claims depend on which others, which questions are genuinely pivotal, or where specific failure modes enter the argument. When a dispute ends -- or seems to end -- the record of why it ended is usually lost. The same failure modes recur across decades and domains because they are never made queryable.
+Public epistemic disputes leave behind prose. Newspaper articles, journal papers, safety reports, and regulatory filings are the medium in which disputes unfold, but prose does not preserve the logical structure of a dispute. It does not record which claims depend on which others, which questions are genuinely pivotal, or where specific failure modes enter the argument. When a dispute ends (or seems to end), the record of why it ended is usually lost. The same failure modes recur across decades and domains because they are never made queryable.
 
-Epistemic Atlas proposes a schema and nine-step pipeline for converting real-world disputes into structured, queryable knowledge bases. Each entry encodes claims at two levels (verbatim extraction and normalized proposition), maps relations between normalized claims as a typed directed graph, flags epistemic failure modes at the individual claim and source level, identifies pivotal cruxes with resolution status, and produces a structured assessment with explicit update conditions. The output is a machine-readable JSON file conforming to a published schema. It is also a human-navigable artifact.
+Epistemic Atlas proposes a schema and six-stage human-AI pipeline for converting real-world disputes into structured, queryable knowledge bases. Each entry encodes claims at two levels (verbatim extraction and normalized proposition), maps relations between normalized claims as a typed directed graph, flags epistemic failure modes at the individual claim and source level, identifies pivotal cruxes with resolution status, and produces a structured assessment with explicit update conditions. The output is a machine-readable JSON file conforming to a published schema. It is also a human-navigable artifact.
 
-This submission includes two fully structured case studies -- the 2008 LHC black-hole risk dispute (settled) and the decades-long debate over dietary eggs and cardiovascular disease risk (unsettled) -- together with an interactive web prototype that lets a reader inspect any claim's provenance, relations, failure mode flags, crux dependencies, and update conditions. The primary claim is not that this prototype is complete. It is that the structural approach is sound, demonstrably general across substantively different disputes, and composable in ways that prose summaries and LLM-generated overviews are not.
+This submission includes two partially verified worked examples: the 2008 LHC black-hole risk dispute and the decades-long debate over dietary eggs and cardiovascular disease risk. These examples are structured enough to demonstrate the workflow, schema, and interface, but they should not yet be treated as final authoritative knowledge bases. The submission also includes an interactive web prototype that lets a reader inspect any claim's provenance, relations, failure mode flags, crux dependencies, and update conditions. The primary claim is not that this prototype is complete. It is that the structural approach is sound, demonstrably general across substantively different disputes, and composable in ways that prose summaries and LLM-generated overviews are not.
 
 ---
 
@@ -23,7 +23,7 @@ The standard response to a complicated dispute is a summary. A careful writer re
 
 A summary compresses. It selects which claims to include and which to omit, which conflicts to name explicitly and which to dissolve into hedged prose, which sources to cite and which to mention in passing. These are unavoidable editorial choices, and they are not preserved in the output. A reader of a summary cannot ask: which of these sentences depends on which others? Which conclusion would change if the third-paragraph study turns out to replicate poorly? Which sources share authors?
 
-The compression is especially damaging along three dimensions. First, it destroys provenance chains. A summary statement like "most researchers agree that X" does not tell you who those researchers are, what institutional contexts they work in, whether their agreement is independent or reflects a shared intellectual lineage, or what the basis of their agreement actually is. Second, it buries cruxes. The pivotal empirical question that the entire dispute turns on often appears as a subordinate clause in a summary paragraph, when it should be the most visible element of the map. Third, it prevents cross-case learning. The same epistemic failure modes -- funding bias in proximal observational studies, correlated evidence treated as independent, analogy arguments that do not transfer -- recur across decades and domains. But because disputes live in prose, there is no surface to query across cases.
+The compression is especially damaging along three dimensions. First, it destroys provenance chains. A summary statement like "most researchers agree that X" does not tell you who those researchers are, what institutional contexts they work in, whether their agreement is independent or reflects a shared intellectual lineage, or what the basis of their agreement actually is. Second, it buries cruxes. The pivotal empirical question that the entire dispute turns on often appears as a subordinate clause in a summary paragraph, when it should be the most visible element of the map. Third, it prevents cross-case learning. The same epistemic failure modes (funding bias in proximal observational studies, correlated evidence treated as independent, analogy arguments that do not transfer) recur across decades and domains. But because disputes live in prose, there is no surface to query across cases.
 
 These are not failures of the summary writers. They reflect the fundamental limitations of prose as an epistemic medium. Prose is sequential. It can describe structure but cannot preserve it. A schema-based approach preserves structure by recording it explicitly, at the cost of requiring more time to build an entry than to write a summary.
 
@@ -37,7 +37,7 @@ Six goals shaped the schema and pipeline design. They are not all fully achieved
 
 **G1. Preserve provenance without requiring it to be perfect.** Every claim must be traceable to a source. Every source must carry as much provenance metadata as is available. Missing provenance is represented as null, not omitted silently. A low-credibility source is retained and labeled, not discarded. The design handles the realistic case where provenance is incomplete without pretending it is complete.
 
-**G2. Separate extraction from normalization.** The gap between what a source actually says and what an annotator makes of it is where most interpretive work -- and most error -- happens. Making this gap explicit, by preserving both the verbatim extracted claim and the normalized proposition, creates a paper trail that can be audited. It also prevents normalization from compressing what was said into what the annotator expected.
+**G2. Separate extraction from normalization.** The gap between what a source actually says and what an annotator makes of it is where most interpretive work (and most error) happens. Making this gap explicit, by preserving both the verbatim extracted claim and the normalized proposition, creates a paper trail that can be audited. It also prevents normalization from compressing what was said into what the annotator expected.
 
 **G3. Make cruxes first-class objects.** A crux is a question whose resolution would significantly change the overall dispute. Treating cruxes as first-class objects with IDs, resolution status, and dependency links to normalized claims changes how a reader engages with the dispute. It is not an annotation on the margin; it is a navigational landmark.
 
@@ -51,25 +51,19 @@ Six goals shaped the schema and pipeline design. They are not all fully achieved
 
 ## 3. Workflow Overview
 
-The nine-step pipeline converts raw source material into a structured atlas entry. Steps 1 through 8 are constructive. Step 9 is adversarial: it actively tries to find errors in what the earlier steps built.
+The pipeline converts raw source material into a structured atlas entry in six stages. Stages 1 through 5 are constructive. Stage 6 is adversarial: it actively tries to find errors in what the earlier stages built.
 
-**Step 1 (Scope the question):** Define the central dispute as a single well-formed question before collecting sources. Vagueness at this step propagates through all later steps. The question must be disputable, not settled by definition, and must name its in-scope populations, time periods, and conditions.
+**Stage 1 (Scope the question):** Define the central dispute as a single well-formed question before collecting sources. Vagueness at this stage propagates through all later stages. The question must be disputable, not settled by definition, and must name its in-scope populations, time periods, and conditions.
 
-**Step 2 (Ingest sources):** Build source objects with full provenance metadata. All consulted sources are retained regardless of quality or position. Missing provenance is set to null, not invented. Conflicts of interest are recorded when known.
+**Stage 2 (Ingest sources):** Build source objects with full provenance metadata. All consulted sources are retained regardless of quality or position. Missing provenance is set to null, not invented. Conflicts of interest are recorded when known.
 
-**Step 3 (Extract atomic claims):** Extract every significant epistemic claim as an ExtractedClaim object with verbatim or near-verbatim text. No normalization. No interpretation. Hedges and quantification are preserved exactly.
+**Stage 3 (Extract and normalize claims):** Extract every significant epistemic claim as an ExtractedClaim object with verbatim or near-verbatim text. Then group extracted claims into NormalizedClaim objects: unambiguous, scope-explicit propositions. The extracted_claim_ids field preserves the link to the source material. A single normalized claim can synthesize evidence from multiple extracted claims and sources.
 
-**Step 4 (Normalize claims):** Group extracted claims into NormalizedClaim objects: unambiguous, scope-explicit propositions. The normalization step makes quantification, scope conditions, and referents explicit. The extracted_claim_ids field preserves the link to the source material. A single normalized claim can synthesize evidence from multiple extracted claims and sources.
+**Stage 4 (Map structure):** Build a directed typed relation graph between normalized claims using ten relation types. Identify 2 to 7 pivotal questions as Crux objects with resolution status and dependency links. Attach FailureModeFlag objects to specific normalized claims or sources using a twelve-type controlled vocabulary. Flags must be applied symmetrically across all positions in the dispute.
 
-**Step 5 (Map relations):** Build a directed typed relation graph between normalized claims. The vocabulary has ten relation types: supports, attacks, depends_on, reframes, narrows, generalizes, duplicates, conflicts_with, evidence_for, evidence_against. Each relation carries a strength rating (strong, moderate, weak) and an optional explanatory note.
+**Stage 5 (Produce assessment):** Synthesize the graph into an Assessment object: status (settled, unsettled, or partially_settled), settled_direction if settled, key crux IDs, weak link IDs, dominant failure modes, and explicit what-would-update scenarios. The assessment must be internally consistent with the claim and crux-level data.
 
-**Step 6 (Identify cruxes):** Identify 2 to 7 pivotal questions as Crux objects with resolution status and dependency links. A crux is load-bearing, not merely contested. The resolution status distinguishes: unresolved, resolved_true, resolved_false, empirically_underdetermined, theoretically_underdetermined.
-
-**Step 7 (Flag failure modes):** Attach FailureModeFlag objects to specific normalized claims or sources. The vocabulary has twelve types. Flags must be applied symmetrically: if one side of a dispute is examined for funding bias, the other side must be examined equally.
-
-**Step 8 (Produce assessment):** Synthesize the graph into an Assessment object: status (settled, unsettled, or partially_settled), settled_direction (if settled), key crux IDs, weak link IDs, dominant failure modes, and explicit what-would-update scenarios. The assessment must be internally consistent with the claim- and crux-level data.
-
-**Step 9 (Audit and update):** Adversarially review the completed entry for normalization drift, asymmetric flagging, inconsistent crux identification, and -- if LLM-assisted -- hallucinated source references. Record unresolved issues as AuditNote objects. A known open issue is better than a silent inaccuracy.
+**Stage 6 (Adversarial audit):** Actively review the completed entry for normalization drift, asymmetric failure flagging, inconsistent crux identification, and hallucinated source references if the entry was LLM-assisted. Record unresolved issues as AuditNote objects. A known open issue is better than a silent inaccuracy.
 
 ---
 
@@ -97,7 +91,7 @@ In 2008, as the Large Hadron Collider was being commissioned, a public dispute a
 
 ### What the Atlas Encodes
 
-The LHC case encodes 8 sources, 25 extracted claims, 12 normalized claims, 20 relations, 5 cruxes, and 8 failure mode flags.
+The LHC case encodes 8 sources, 25 extracted claims, 12 normalized claims, 20 relations, 5 cruxes, and 8 failure mode flags. All extracted claim text is based on LLM-assisted paraphrase and has not been verified against primary source documents.
 
 The five cruxes reveal the logical structure of the dispute. CX_001 (whether the kinematic analogy between LHC collisions and cosmic ray interactions is valid) was resolved true by the Giddings-Mangano analysis, which showed that cosmic rays have been delivering far higher equivalent energies to astrophysical bodies for billions of years without catastrophic effect. CX_002 (whether Hawking radiation occurs at the Planck scale) remains theoretically underdetermined: there is no confirmed experimental detection of Hawking radiation, and its occurrence at the relevant scales is a theoretical inference, not an observation. CX_003 (whether the ADD model's prediction of large extra dimensions holds) remains empirically underdetermined; CMS Run 1 data (NC_009) placed constraints but did not exclude the full parameter space. CX_004 (whether the Giddings-Mangano accretion argument is valid) was resolved true as a separate line of argument: even if Hawking radiation were absent, the accumulation timescale for black holes in the density regime of Earth makes catastrophic harm physically implausible on human timescales. CX_005 (whether the 2003 and 2008 CERN safety reports are meaningfully independent) remains unresolved.
 
@@ -117,7 +111,7 @@ Whether regular egg consumption increases cardiovascular disease (CVD) risk is a
 
 ### What the Atlas Encodes
 
-The eggs case encodes 8 sources, 25 extracted claims, 12 normalized claims, 20 relations, 5 cruxes, and 10 failure mode flags.
+The eggs case encodes 8 sources, 25 extracted claims, 12 normalized claims, 20 relations, 5 cruxes, and 10 failure mode flags. All extracted claim text is based on LLM-assisted paraphrase and has not been verified against primary source documents.
 
 The five cruxes are all either unresolved or empirically underdetermined. CX_101 (whether the Zhong 2019 positive association reflects a causal relationship or a confounding artifact) is unresolved: the study is observational, and residual confounding by dietary pattern and socioeconomic factors is a documented concern. CX_102 (whether dietary pattern context determines the egg-CVD relationship) is unresolved: the evidence for dietary pattern mediation comes from observational studies with the same confounding limitations. CX_103 (whether the elevated risk in diabetic and pre-diabetic subgroups represents a meaningful biological difference) is empirically underdetermined: no adequately powered dedicated study exists for this subgroup. CX_104 (whether LDL is a valid proxy for egg-related CVD risk) is unresolved: eggs raise both LDL and HDL, and the net effect on cardiovascular risk via the LDL pathway is contested. CX_105 (whether the heterogeneity observed in meta-analyses between Asian and Western populations is biological or methodological in origin) is empirically underdetermined.
 
@@ -147,7 +141,7 @@ Four lenses were used to assess the submission.
 
 **Usefulness:** Does the structure help a reader understand the dispute better than prose does? Strong. Both case studies surface findings that are non-obvious from the prose literature. In the LHC case, the atlas makes clear that the Giddings-Mangano accretion argument is epistemically independent from the Hawking radiation argument, and that the primary safety report carries correlated-evidence flags that other lines of evidence do not. In the eggs case, the atlas makes explicit that the conflict between Zhong 2019 and earlier null findings is not resolvable by dose adjustment alone (a common rhetorical move in this literature) and is recorded as a genuine unresolved crux.
 
-**Generality:** Does the schema transfer across substantively different disputes? Strong. The LHC and eggs cases involve different domains (theoretical physics vs. observational epidemiology), different resolution statuses (settled vs. unsettled), different primary failure mode profiles (institutional correlated evidence vs. population heterogeneity and funding pressure), and different crux structures (mostly resolved vs. all unresolved). Both cases use schema version 2 without any case-specific extensions. The fact that correlated_evidence_treated_as_independent appears as a key failure mode flag in both cases -- for different structural reasons -- illustrates how the schema enables cross-case pattern recognition.
+**Generality:** Does the schema transfer across substantively different disputes? Strong. The LHC and eggs cases involve different domains (theoretical physics vs. observational epidemiology), different resolution statuses (settled vs. unsettled), different primary failure mode profiles (institutional correlated evidence vs. population heterogeneity and funding pressure), and different crux structures (mostly resolved vs. all unresolved). Both cases use schema version 2 without any case-specific extensions. The fact that correlated_evidence_treated_as_independent appears as a key failure mode flag in both cases (for different structural reasons) illustrates how the schema enables cross-case pattern recognition.
 
 **Adversarial robustness:** Can the structure resist motivated use? Partial. The schema makes motivated encoding detectable but does not prevent it. An encoder who systematically normalizes claims toward a preferred conclusion, selectively applies failure mode flags to one side, or identifies cruxes that happen to favor a desired assessment will not be caught by the schema alone. The detection mechanisms are: the needs_source_verification flag (which marks claims that have not been checked), the AuditNote type asymmetric_flagging (which the adversarial review step is designed to produce), and the explicit preservation of extracted claims for comparison against normalized claims. These mechanisms require a reviewer who knows to look for the problem. They do not automate the check.
 
@@ -155,7 +149,7 @@ Four lenses were used to assess the submission.
 
 ## 8. What This Submission Is Not
 
-**It is not a fully autonomous truth machine.** Every quality-sensitive step in the pipeline -- scoping the question, normalizing claims, identifying cruxes, applying failure mode flags, producing the assessment -- requires human judgment. The nine-step pipeline is designed for LLM-assisted execution with human oversight at each stage. LLM assistance reduces the time cost of steps 2, 3, and 5. It increases the risk of hallucination in source references and claim attributions. The net result is a prototype that can be built faster but that requires more careful verification than a fully human-generated entry would.
+**It is not a fully autonomous truth machine.** Every quality-sensitive step in the pipeline (scoping the question, normalizing claims, identifying cruxes, applying failure mode flags, producing the assessment) requires human judgment. The pipeline is designed for LLM-assisted execution with human oversight at each stage. LLM assistance reduces the time cost of source ingestion, claim extraction, and relation mapping. It increases the risk of hallucination in source references and claim attributions. The net result is a prototype that can be built faster but that requires more careful verification than a fully human-generated entry would.
 
 **It is not a replacement for domain experts.** The LHC case required familiarity with the theoretical physics literature on extra dimensions, Hawking radiation, and cosmic ray physics. The eggs case required familiarity with observational epidemiology methodology, lipid metabolism research, and dietary cohort study design. The schema structures what experts know; it does not substitute for knowing it. An atlas entry built without domain expertise will have normalization errors that are not detectable from the schema alone.
 
@@ -169,9 +163,9 @@ Four lenses were used to assess the submission.
 
 The following limitations are structural features of the current design, not implementation gaps that better engineering would resolve.
 
-**Atomicity is not fully systematizable.** The requirement that each claim be atomic -- one proposition, one testable assertion -- is a target standard, not a guaranteed output. Many real-world claims bundle multiple propositions. Deciding where to split them involves judgment that the pipeline does not fully prescribe. Different annotators working from the same source text will produce different decompositions, reducing inter-annotator reliability.
+**Atomicity is not fully systematizable.** The requirement that each claim be atomic (one proposition, one testable assertion) is a target standard, not a guaranteed output. Many real-world claims bundle multiple propositions. Deciding where to split them involves judgment that the pipeline does not fully prescribe. Different annotators working from the same source text will produce different decompositions, reducing inter-annotator reliability.
 
-**Normalization is interpretation.** The extracted-to-normalized gap is where the most consequential interpretive work happens. The schema preserves both forms and records the mapping, but there is no automated check that the normalized form accurately represents the extracted form. Normalization drift -- where the normalized claim shifts the meaning of the original -- is the failure mode most likely to go undetected and most damaging to faithfulness.
+**Normalization is interpretation.** The extracted-to-normalized gap is where the most consequential interpretive work happens. The schema preserves both forms and records the mapping, but there is no automated check that the normalized form accurately represents the extracted form. Normalization drift (where the normalized claim shifts the meaning of the original) is the failure mode most likely to go undetected and most damaging to faithfulness.
 
 **Relation strength is subjective.** The strong / moderate / weak scale for relation strength is not formally defined. Two annotators working from the same source material will often assign different strengths to the same relation. The schema records the judgment but does not calibrate it.
 
@@ -181,7 +175,7 @@ The following limitations are structural features of the current design, not imp
 
 **No uncertainty quantification.** Confidence levels are ordinal categories, not probability estimates. A claim rated "medium" confidence that depends_on a claim rated "low" confidence has no derived confidence level. Uncertainty does not propagate across the graph. This is a significant limitation for any downstream use that requires formal reasoning under uncertainty.
 
-**Time cost.** A complete atlas entry from 8 sources typically requires 6 to 10 hours of human review time across all nine steps. This cost is not reducible to near-zero by LLM automation without sacrificing the quality properties that make the schema useful. The schema is designed for important disputes, not for every dispute.
+**Time cost.** A complete atlas entry from 8 sources typically requires 6 to 10 hours of human review time across all stages. This cost is not reducible to near-zero by LLM automation without sacrificing the quality properties that make the schema useful. The schema is designed for important disputes, not for every dispute.
 
 ---
 
@@ -213,11 +207,11 @@ Several extensions would substantially increase the value of this approach.
 
 **Quantified uncertainty propagation.** Replacing ordinal confidence levels with probability estimates and propagating uncertainty through the depends_on relation graph would enable formal reasoning about how confidence in the assessment depends on confidence in the weak links. This would require a significant schema extension but would address the most serious formal limitation of the current design.
 
-**Cross-case crux linkage.** The schema currently supports within-case crux dependencies. Supporting explicit links between cruxes in different cases -- "resolving CX_104 in the eggs case would also update CX_201 in the red meat case" -- would be the first step toward a library with connected structure rather than isolated entries.
+**Cross-case crux linkage.** The schema currently supports within-case crux dependencies. Supporting explicit links between cruxes in different cases (for example, "resolving CX_104 in the eggs case would also update CX_201 in the red meat case") would be the first step toward a library with connected structure rather than isolated entries.
 
 **Standardized adversarial review protocol.** A structured rubric for Step 9, with specific checks and inter-rater reliability targets, would make the adversarial review step more systematically useful and less dependent on individual reviewer quality.
 
 ---
 
 *This document is the primary submission writeup for Epistemic Atlas. The full submission includes:*
-*schema/epistemic-atlas.schema.json, schema/GUIDE.md, schema/examples/, data/lhc/, data/eggs/, prompts/ (nine prompt templates), lib/types_v2.ts (TypeScript types), the interactive Next.js prototype (app/), and the companion documents docs/methodology.md, docs/limitations.md, and docs/judging_alignment.md.*
+*schema/epistemic-atlas.schema.json, schema/GUIDE.md, schema/examples/, data/lhc/, data/eggs/, prompts/ (prompt templates for the six-stage pipeline), lib/types_v2.ts (TypeScript types), the interactive Next.js prototype (app/), and the companion documents docs/methodology.md, docs/limitations.md, and docs/judging_alignment.md.*

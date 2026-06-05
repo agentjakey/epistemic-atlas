@@ -244,7 +244,7 @@
       "position": "con",
       "confidence": {
         "level": "high",
-        "notes": "This argument does not depend on any unverified theoretical assumption. The observational basis -- neutron star and white dwarf survival -- is not in dispute. The analogy carries limitations addressed by Giddings-Mangano (see FF_001)."
+        "notes": "This argument does not depend on any unverified theoretical assumption. The observational basis (neutron star and white dwarf survival) is not in dispute. The analogy carries limitations addressed by Giddings-Mangano (see FF_001)."
       },
       "failure_mode_flag_ids": ["FF_001"],
       "tags": ["astrophysical_argument", "cosmic_rays", "neutron_stars", "white_dwarfs"],
@@ -253,7 +253,7 @@
     {
       "id": "NC_002",
       "extracted_claim_ids": ["EC_018", "EC_019", "EC_020", "EC_023", "EC_025"],
-      "normalized_text": "Under the ADD (Arkani-Hamed, Dimopoulos, Dvali) model of large extra spatial dimensions -- in which the effective Planck scale is near the TeV range -- the LHC would have a non-zero theoretical probability of producing microscopic black holes. This possibility is strictly conditional on the ADD model being correct. The ADD model had not been empirically confirmed as of the LSAG review in 2008, and the Standard Model alone predicts no black hole production at LHC energies.",
+      "normalized_text": "Under the ADD (Arkani-Hamed, Dimopoulos, Dvali) model of large extra spatial dimensions (in which the effective Planck scale is near the TeV range), the LHC would have a non-zero theoretical probability of producing microscopic black holes. This possibility is strictly conditional on the ADD model being correct. The ADD model had not been empirically confirmed as of the LSAG review in 2008, and the Standard Model alone predicts no black hole production at LHC energies.",
       "domain_type": "theoretical",
       "scope": "Conditional on ADD model being correct and on extra dimensions existing at the relevant scale.",
       "quantification": "Non-zero theoretical probability; specific production rate depends on the number of extra dimensions and the effective Planck scale value assumed.",
@@ -389,7 +389,7 @@
     {
       "id": "NC_010",
       "extracted_claim_ids": ["EC_016"],
-      "normalized_text": "The CMS exclusion of micro-BH production applies to specific ADD benchmark parameter sets -- particular choices for the number of extra dimensions and the effective Planck scale value -- in the tested mass range. Untested parameter configurations and higher mass thresholds remain outside the exclusion region.",
+      "normalized_text": "The CMS exclusion of micro-BH production applies to specific ADD benchmark parameter sets (particular choices for the number of extra dimensions and the effective Planck scale value) in the tested mass range. Untested parameter configurations and higher mass thresholds remain outside the exclusion region.",
       "domain_type": "methodological",
       "scope": "Scope qualification on NC_009; describes the partial coverage of the ADD parameter space by the CMS 7 TeV result.",
       "quantification": null,

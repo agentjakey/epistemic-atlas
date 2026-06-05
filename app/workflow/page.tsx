@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Workflow -- Epistemic Atlas',
+  title: 'Workflow | Epistemic Atlas',
 }
 
 const steps = [
@@ -31,7 +31,7 @@ const steps = [
       'Assign credibility based on source type and venue, not based on whether the content agrees with other sources.',
       'Record all known or suspected conflicts of interest. When in doubt, record the concern rather than omitting it.',
     ],
-    output: 'sources[] -- each with id, title, type, provenance, credibility, conflict_of_interest, notes',
+    output: 'sources[]: each with id, title, type, provenance, credibility, conflict_of_interest, notes',
   },
   {
     n: '03',
@@ -45,7 +45,7 @@ const steps = [
       'Preserve all quantification exactly: "some studies," "most experts," "under 5 percent."',
       'Do not normalize. Do not correct. Do not improve. Ambiguous claims become two separate extracted claims.',
     ],
-    output: 'extracted_claims[] -- each with id, source_id, raw_text, location, extraction_notes',
+    output: 'extracted_claims[]: each with id, source_id, raw_text, location, extraction_notes',
   },
   {
     n: '04',
@@ -59,7 +59,7 @@ const steps = [
       'Do not change the meaning. If normalization would change the assertion, preserve the raw form and flag the ambiguity.',
       'Multiple extracted claims from different sources can back one normalized claim. Track the mapping in extracted_claim_ids.',
     ],
-    output: 'normalized_claims[] -- with id, extracted_claim_ids, normalized_text, position, confidence, domain_type',
+    output: 'normalized_claims[]: with id, extracted_claim_ids, normalized_text, position, confidence, domain_type',
   },
   {
     n: '05',
@@ -73,21 +73,21 @@ const steps = [
       'Use the full relation vocabulary: supports, attacks, depends_on, reframes, narrows, generalizes, duplicates, conflicts_with, evidence_for, evidence_against.',
       'Check for cycles after mapping. A depends_on B depends_on A usually indicates an error.',
     ],
-    output: 'relations[] -- each with id, from_id, to_id, type, strength, notes',
+    output: 'relations[]: each with id, from_id, to_id, type, strength, notes',
   },
   {
     n: '06',
     title: 'Identify cruxes',
     file: 'prompts/06_crux_identification.md',
     goal: 'Identify pivotal questions whose resolution would significantly change the outcome of the dispute.',
-    produces: 'A cruxes array with resolution status, dependency links to affected normalized claims, and -- where available -- resolution notes.',
+    produces: 'A cruxes array with resolution status, dependency links to affected normalized claims, and (where available) resolution notes.',
     rules: [
       'A crux is load-bearing, not merely contested. Identifying more than 5-7 cruxes usually indicates imprecise identification.',
       'Record resolution status honestly. "Resolved" requires a concrete mechanism, not just expert consensus.',
       'Link each crux to the normalized claims whose validity depends on it.',
       'A crux that has been resolved still belongs in the atlas. Resolution is information.',
     ],
-    output: 'cruxes[] -- each with id, statement, description, dependent_normalized_claim_ids, status, resolution_notes',
+    output: 'cruxes[]: each with id, statement, description, dependent_normalized_claim_ids, status, resolution_notes',
   },
   {
     n: '07',
@@ -101,7 +101,7 @@ const steps = [
       'A flag is only valid if it can be substantiated from the source material. Do not flag based on prior beliefs about a source.',
       'Severity: critical (changes the conclusion), significant (should be disclosed but conclusion may hold), minor (worth noting).',
     ],
-    output: 'failure_mode_flags[] -- each with id, type, applies_to_id, applies_to_type, severity, description',
+    output: 'failure_mode_flags[]: each with id, type, applies_to_id, applies_to_type, severity, description',
   },
   {
     n: '08',
@@ -115,7 +115,7 @@ const steps = [
       'what_would_update must list concrete scenarios, not vague conditions. "If Hawking radiation is confirmed" is concrete. "If more research is done" is not.',
       'Do not produce a medical, legal, or policy recommendation. The assessment is epistemic, not actionable.',
     ],
-    output: 'assessment{} -- status, settled_direction, epistemic_status_summary, key_crux_ids, weak_link_ids, what_would_update, missing_evidence[]',
+    output: 'assessment{}: status, settled_direction, epistemic_status_summary, key_crux_ids, weak_link_ids, what_would_update, missing_evidence[]',
   },
   {
     n: '09',
@@ -129,7 +129,7 @@ const steps = [
       'If LLM-assisted: verify every source reference and claim attribution against the actual source document.',
       'Record unresolved issues as open audit notes. A known open issue is better than a silent inaccuracy.',
     ],
-    output: 'audit_notes[] -- each with id, type, description, applies_to_ids, severity, status',
+    output: 'audit_notes[]: each with id, type, description, applies_to_ids, severity, status',
   },
 ]
 
@@ -140,7 +140,7 @@ export default function WorkflowPage() {
         <p className="text-xs font-semibold uppercase tracking-widest text-ink-faint mb-5">
           Methodology
         </p>
-        <h1 className="text-3xl font-bold text-ink mb-4">Nine-Step Pipeline</h1>
+        <h1 className="text-3xl font-bold text-ink mb-4">Pipeline</h1>
         <p className="text-base text-ink-light leading-relaxed">
           The pipeline converts raw source material into a structured atlas entry.
           Steps 1-8 are constructive. Step 9 is adversarial: it actively tries to

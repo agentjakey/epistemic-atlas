@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Evaluation -- Epistemic Atlas',
+  title: 'Evaluation | Epistemic Atlas',
 }
 
 const lenses = [
@@ -30,7 +30,7 @@ const lenses = [
     n: '03',
     title: 'Generality',
     question: 'Does the schema transfer to substantively different disputes without modification?',
-    description: 'A general schema works on disputes from different domains, with different resolution statuses, and with different failure mode profiles -- without requiring new fields, new vocabularies, or structural hacks. The LHC and eggs cases were chosen specifically to stress-test this: one involves theoretical physics, one involves nutrition epidemiology; one is settled, one is not; one has institutional conflict of interest concerns, one has industry funding concerns.',
+    description: 'A general schema works on disputes from different domains, with different resolution statuses, and with different failure mode profiles, without requiring new fields, new vocabularies, or structural hacks. The LHC and eggs cases were chosen specifically to stress-test this: one involves theoretical physics, one involves nutrition epidemiology; one is settled, one is not; one has institutional conflict of interest concerns, one has industry funding concerns.',
     howAddressed: 'Both cases use exactly the same schema version (v2) with no case-specific extensions. The relation vocabulary, failure mode types, crux structure, and assessment object are identical. The only differences are the domain fields and the resulting data.',
     evidence: 'The same 10 relation types, 12 failure mode types, and 5 crux status values are used across both cases. Failure modes found in both cases: source_incentive_pressure (CERN in LHC; AHA in eggs), correlated_evidence_treated_as_independent (CERN reports in LHC; Harvard cohort overlaps in eggs).',
     strength: 'Strong',
@@ -39,7 +39,7 @@ const lenses = [
   {
     n: '04',
     title: 'Adversarial robustness',
-    question: 'Can the structure resist motivated use -- selective flagging, cherry-picked cruxes, biased normalization?',
+    question: 'Can the structure resist motivated use: selective flagging, cherry-picked cruxes, biased normalization?',
     description: 'A motivated encoder can abuse any schema. They can flag failure modes only on one side, identify cruxes that favor their conclusion, or write normalized claims that subtly shift meaning. Adversarial robustness means the schema makes such manipulation detectable, not that it prevents it. Detection mechanisms: the needs_source_verification flag, the audit_notes type (asymmetric_flagging), and the rule that failure flags must be applied symmetrically.',
     howAddressed: 'The extraction-normalization split provides a paper trail for normalization choices. The audit_notes object has an explicit asymmetric_flagging type. The adversarial review step (step 9) is designed to check symmetry. The fact that low-credibility sources are retained rather than removed limits selection bias in the source layer.',
     evidence: 'In the LHC case, conflict of interest flags are applied to CERN-affiliated sources (src_001, src_002, src_003). The competing claim NC_002 (ADD model black hole prediction) is retained even though it is ultimately negated. The Wagner-Sancho complaint (EC_025) is included in the extracted claims despite its source having low credibility.',

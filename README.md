@@ -1,36 +1,55 @@
 # Epistemic Atlas
 
-A methodology and prototype schema for converting real-world epistemic disputes into structured, queryable knowledge bases.
+A methodology, schema, and static prototype for converting real-world epistemic disputes
+into structured, queryable knowledge bases.
 
 ## What This Is
 
-Epistemic Atlas is a submission to the FLF Epistemic Case Study Competition. It proposes a protocol for taking messy, contested, multi-source disputes and encoding them as structured knowledge graphs that preserve provenance, track epistemic failure modes, surface cruxes, and flag missing evidence.
+Epistemic Atlas is a submission to the FLF Epistemic Case Study Competition. It proposes
+a six-stage human-AI workflow for taking messy, contested, multi-source disputes and
+encoding them as structured knowledge graphs that preserve provenance, track epistemic
+failure modes, surface cruxes, and flag missing evidence.
 
-The goal is not to summarize debates. It is to make their epistemic content explicit and reusable.
+The goal is not to summarize debates. It is to make their epistemic content explicit
+and reusable: who said what, what depends on what, where the pivotal questions are,
+and what would change the conclusion.
 
-## Why It Exists
+## What This Is Not
 
-Public epistemic failures tend to share common structural features: claims that outlived their evidence, missing provenance chains, unacknowledged cruxes, and failure modes that went unidentified because no one was tracking them. Standard summary tools compress this structure away. A structured knowledge base preserves it.
+Epistemic Atlas is not a truth machine, a fact-checker, or a final authority on any
+scientific or medical question. The two case studies in this submission are partially
+verified worked examples that demonstrate the workflow and schema. They should not be
+treated as authoritative analyses.
 
 ## What Is Inside
 
 ```
 docs/               Contest writeup, methodology, limitations, judging alignment
 schema/             JSON Schema specification and worked examples
-prompts/            Six-step prompt pipeline for building an Epistemic Atlas entry
-data/               Two fully structured case studies (LHC black holes, dietary eggs)
-app/                Next.js prototype for exploring case studies
+prompts/            Six-stage prompt pipeline for building an atlas entry
+data/               Two partially verified worked examples (LHC black holes, dietary eggs)
+app/                Next.js static prototype for exploring case studies
+lib/                TypeScript types for schema v2
 ```
 
 ## Case Studies
 
-**LHC Black Holes (2008)** -- The dispute over whether the Large Hadron Collider could produce micro black holes capable of destroying Earth. Involves theoretical physics, risk assessment, and public communication failures.
+**LHC Black Holes (2008):** The dispute over whether the Large Hadron Collider could
+produce micro black holes capable of destroying Earth. Involves theoretical physics,
+institutional risk assessment, and public communication.
 
-**Dietary Eggs and Cardiovascular Risk** -- The decades-long dispute over whether egg consumption increases cardiovascular disease risk. Involves funding bias, changing methodological standards, and regulatory lag.
+**Dietary Eggs and Cardiovascular Risk:** The decades-long dispute over whether egg
+consumption increases cardiovascular disease risk. Involves funding patterns, changing
+methodological standards, and regulatory guidance that shifted without a clear
+scientific resolution.
 
-Both case studies are marked with `"data_status": "sample"` where specific claim text, source metadata, or relation weights are illustrative rather than directly verified from primary sources.
+Both case studies are marked as partial data where specific claim text, source metadata,
+or relation values are based on paraphrase rather than direct primary-source verification.
+All extracted claims carry the `needs_source_verification: true` flag.
 
 ## Running the Prototype
+
+No external API or database required. All data is static JSON.
 
 ```bash
 npm install
@@ -39,34 +58,45 @@ npm run dev
 
 Open http://localhost:3000
 
+The prototype reads all data from the `data/` directory at build time. No server is
+required after build.
+
 ## Schema
 
-The `schema/epistemic-atlas.schema.json` file defines the canonical structure. Each entry in the atlas contains:
+The `schema/epistemic-atlas.schema.json` file defines the canonical structure (JSON Schema
+Draft 2020-12). Each atlas entry encodes:
 
-- **Sources** with full provenance
-- **Claims** as atomic, normalized propositions
-- **Relations** (supports, attacks, depends on, qualifies)
-- **Cruxes** -- pivotal claims whose resolution would significantly change the dispute
-- **Missing evidence** -- what would need to exist to resolve open questions
-- **Failure flags** -- detected epistemic failure modes at the claim level
-- **Assessment** -- overall epistemic status and a summary of well-supported vs. contested claims
+- **Sources:** full provenance, credibility, and conflict of interest
+- **Extracted claims:** verbatim or near-verbatim text from each source
+- **Normalized claims:** unambiguous, scope-explicit propositions with position and confidence
+- **Relations:** typed directed edges (supports, attacks, depends_on, reframes, narrows,
+  generalizes, duplicates, conflicts_with, evidence_for, evidence_against)
+- **Cruxes:** pivotal questions with resolution status and dependency links
+- **Failure mode flags:** claim-level and source-level epistemic failure modes
+- **Assessment:** overall status, weak links, and explicit update conditions
+- **Missing evidence:** what evidence would change the assessment and why it does not exist
+- **Audit notes:** open issues from the adversarial review step
 
-## Six-Step Pipeline
+## Six-Stage Pipeline
 
-The `prompts/` directory contains the full prompt pipeline used to build an atlas entry from raw sources:
+The `prompts/` directory contains the full prompt pipeline for building an atlas entry
+from raw sources:
 
-1. Source ingestion and provenance capture
-2. Atomic claim extraction
-3. Claim normalization
-4. Relation mapping
-5. Crux and missing evidence assessment
-6. Adversarial review
+1. Scope the question
+2. Source ingestion and provenance capture
+3. Atomic claim extraction
+4. Claim normalization
+5. Relation mapping, crux identification, failure mode flagging, and assessment
+6. Adversarial review and audit
 
-See `docs/methodology.md` for full pipeline description.
+See `docs/methodology.md` for the full pipeline description.
 
-## Status
+## Prototype Status
 
-Prototype. The schema is stable. The case study data is partially verified sample data. The Next.js app demonstrates the schema visually. This project is designed to be extended with real verified data.
+Prototype. The schema is usable for this submission, but still open to revision after
+reviewer feedback. The two worked examples demonstrate the schema's expressive range
+and the workflow on structurally different disputes. Neither case study should be treated
+as a completed source-verified analysis.
 
 ## License
 

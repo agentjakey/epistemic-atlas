@@ -12,7 +12,7 @@
       "to_id": "NC_102",
       "type": "conflicts_with",
       "strength": "strong",
-      "notes": "NC_101 (up to one egg/day not associated with CVD in most studies) and NC_102 (3-4 eggs/week associated with 6% higher CVD risk in Zhong 2019) appear contradictory. They are not strictly logically incompatible -- NC_102 uses a lower threshold (3-4/week) and a different population -- but they cannot both be straightforwardly true of the same population. The conflict reflects genuine epistemic disagreement in the literature, not a simple dose confusion.",
+      "notes": "NC_101 (up to one egg/day not associated with CVD in most studies) and NC_102 (3-4 eggs/week associated with 6% higher CVD risk in Zhong 2019) appear contradictory. They are not strictly logically incompatible: NC_102 uses a lower threshold (3-4/week) and a different population, but they cannot both be straightforwardly true of the same population. The conflict reflects genuine epistemic disagreement in the literature, not a simple dose confusion.",
       "needs_source_verification": false
     },
     {
@@ -248,7 +248,7 @@
     {
       "id": "FF_102",
       "type": "population_heterogeneity",
-      "description": "NC_102 (Zhong 2019 positive association) is based on six US prospective cohort populations. The US dietary context -- where egg consumption may co-occur with high saturated fat, processed food, and sedentary behavior -- may not represent global populations. The 6% and 8% associations may not generalize to populations with different baseline diets.",
+      "description": "NC_102 (Zhong 2019 positive association) is based on six US prospective cohort populations. The US dietary context (where egg consumption may co-occur with high saturated fat, processed food, and sedentary behavior) may not represent global populations. The 6% and 8% associations may not generalize to populations with different baseline diets.",
       "applies_to_id": "NC_102",
       "applies_to_type": "normalized_claim",
       "severity": "significant",
@@ -298,7 +298,7 @@
     {
       "id": "FF_107",
       "type": "correlated_evidence_treated_as_independent",
-      "description": "NC_105 (Hu 1999 null finding) draws on the Nurses' Health Study and Health Professionals Follow-up Study -- the same cohorts that underlie several subsequent egg consumption studies including the Drouin-Chartier 2020 analysis (src_106). The null finding in NC_105 and the null finding in NC_101 are not independent if they draw on overlapping participant data.",
+      "description": "NC_105 (Hu 1999 null finding) draws on the Nurses' Health Study and Health Professionals Follow-up Study, the same cohorts that underlie several subsequent egg consumption studies including the Drouin-Chartier 2020 analysis (src_106). The null finding in NC_105 and the null finding in NC_101 are not independent if they draw on overlapping participant data.",
       "applies_to_id": "NC_105",
       "applies_to_type": "normalized_claim",
       "severity": "significant",
@@ -313,7 +313,7 @@
       "applies_to_type": "normalized_claim",
       "severity": "significant",
       "affects_conclusion": false,
-      "notes": "This is not just a methodological note -- it directly undermines arguments that use LDL response as the primary reasoning chain for why eggs do or do not pose CVD risk."
+      "notes": "This is not just a methodological note: it directly undermines arguments that use LDL response as the primary reasoning chain for why eggs do or do not pose CVD risk."
     },
     {
       "id": "FF_109",
@@ -371,7 +371,7 @@
     "well_supported_claim_ids": ["NC_104", "NC_107", "NC_109", "NC_110"],
     "contested_claim_ids": ["NC_101", "NC_102", "NC_103"],
     "dominant_failure_modes": ["population_heterogeneity", "correlated_evidence_treated_as_independent", "vague_question", "proxy_measure_problem"],
-    "notes": "The practical guidance implication is not a function of settling this epistemic case -- uncertainty at the research level does not require uncertainty at the individual guidance level. The available evidence supports: (1) moderate egg consumption (up to one per day) is unlikely to substantially increase CVD risk in healthy adults without diabetes; (2) individuals with diabetes or elevated CVD risk should exercise more caution; (3) overall dietary pattern matters more than egg-specific restriction. These conclusions follow from the current evidence even while the specific causal questions remain unresolved. This document is not medical advice."
+    "notes": "The practical guidance implication is not a function of settling this epistemic case; uncertainty at the research level does not require uncertainty at the individual guidance level. The available evidence supports: (1) moderate egg consumption (up to one per day) is unlikely to substantially increase CVD risk in healthy adults without diabetes; (2) individuals with diabetes or elevated CVD risk should exercise more caution; (3) overall dietary pattern matters more than egg-specific restriction. These conclusions follow from the current evidence even while the specific causal questions remain unresolved. This document is not medical advice."
   },
   "missing_evidence": [
     {

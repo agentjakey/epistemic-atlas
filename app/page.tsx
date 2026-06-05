@@ -77,8 +77,8 @@ export default function HomePage() {
             <p>
               Epistemic Atlas is a schema, methodology, and interactive prototype for
               converting real-world disputes into structured, queryable knowledge bases.
-              The goal is to make the full epistemic content of a dispute -- sources,
-              claims, logical relations, failure modes, cruxes -- explicit, navigable,
+              The goal is to make the full epistemic content of a dispute (sources,
+              claims, logical relations, failure modes, cruxes) explicit, navigable,
               and reusable over time, rather than buried in prose or collapsed into a
               summary verdict.
             </p>
@@ -194,7 +194,7 @@ export default function HomePage() {
         <h2 className="text-sm section-heading mb-6">Project Artifacts</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { href: '/workflow', title: 'Workflow', desc: 'Nine-step pipeline with prompt templates' },
+            { href: '/workflow', title: 'Workflow', desc: 'Six-stage pipeline with prompt templates' },
             { href: '/schema', title: 'Schema', desc: 'JSON Schema specification v2' },
             { href: '/evaluation', title: 'Evaluation', desc: 'Four evaluation lenses with honest gaps' },
             { href: '/limitations', title: 'Limitations', desc: 'Candid account of what this is not' },

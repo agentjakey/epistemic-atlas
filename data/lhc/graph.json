@@ -165,7 +165,7 @@
       "to_id": "NC_003",
       "type": "reframes",
       "strength": "moderate",
-      "notes": "The Giddings-Mangano analysis (NC_004) reframes the safety argument from requiring Hawking radiation to requiring only that the accretion rate is insufficient -- a claim with a different and more direct astrophysical basis that does not inherit NC_003's unverified theoretical dependency.",
+      "notes": "The Giddings-Mangano analysis (NC_004) reframes the safety argument from requiring Hawking radiation to requiring only that the accretion rate is insufficient, a claim with a different and more direct astrophysical basis that does not inherit NC_003's unverified theoretical dependency.",
       "needs_source_verification": false
     },
     {
@@ -253,7 +253,7 @@
       "applies_to_type": "normalized_claim",
       "severity": "significant",
       "affects_conclusion": false,
-      "notes": "This flag does not undermine the safety conclusion -- it actually reduces the prior probability that the dangerous scenario is physically realized. The flag is significant because NC_002 is sometimes stated as if ADD micro-BH production is an established possibility rather than a model-dependent one."
+      "notes": "This flag does not undermine the safety conclusion; it actually reduces the prior probability that the dangerous scenario is physically realized. The flag is significant because NC_002 is sometimes stated as if ADD micro-BH production is an established possibility rather than a model-dependent one."
     },
     {
       "id": "FF_003",
@@ -263,7 +263,7 @@
       "applies_to_type": "source",
       "severity": "significant",
       "affects_conclusion": false,
-      "notes": "The CERN employment conflict does not mean the conclusions are wrong. It does mean the report requires independent corroboration -- which is partially provided by Giddings-Mangano (src_002) where Giddings has no CERN affiliation."
+      "notes": "The CERN employment conflict does not mean the conclusions are wrong. It does mean the report requires independent corroboration, which is partially provided by Giddings-Mangano (src_002) where Giddings has no CERN affiliation."
     },
     {
       "id": "FF_004",
@@ -308,7 +308,7 @@
     {
       "id": "FF_008",
       "type": "expert_consensus_without_dependency_map",
-      "description": "NC_012 (LSAG safety conclusion) is sometimes cited as representing expert consensus without a full map of what that consensus depends on. The conclusion is supported by specific arguments (NC_001, NC_004) but also by references to consensus among particle physicists. The consensus itself is not independently analyzed -- it is not clear which physicists independently evaluated the Giddings-Mangano analysis versus which deferred to the LSAG committee.",
+      "description": "NC_012 (LSAG safety conclusion) is sometimes cited as representing expert consensus without a full map of what that consensus depends on. The conclusion is supported by specific arguments (NC_001, NC_004) but also by references to consensus among particle physicists. The consensus itself is not independently analyzed; it is not clear which physicists independently evaluated the Giddings-Mangano analysis versus which deferred to the LSAG committee.",
       "applies_to_id": "NC_012",
       "applies_to_type": "normalized_claim",
       "severity": "minor",

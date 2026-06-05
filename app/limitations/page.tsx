@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Limitations -- Epistemic Atlas',
+  title: 'Limitations | Epistemic Atlas',
 }
 
 const sections = [
@@ -82,7 +82,7 @@ const sections = [
 const notFor = [
   'Producing authoritative verdicts on active scientific disputes.',
   'Replacing domain expert review in high-stakes policy contexts.',
-  'Any use case requiring the entry to be fully verified against primary sources -- check the data_status fields.',
+  'Any use case requiring the entry to be fully verified against primary sources (check the data_status fields).',
   'Generating legally or medically actionable conclusions.',
 ]
 

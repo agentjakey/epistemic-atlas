@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Schema -- Epistemic Atlas',
+  title: 'Schema | Epistemic Atlas',
 }
 
 const objectTypes = [
@@ -188,7 +188,7 @@ export default function SchemaPage() {
         </p>
         <p className="text-sm text-ink-faint">
           The v2 schema separates extracted claims from normalized claims. This preserves
-          verbatim source text while allowing structured normalization -- and makes it explicit
+          verbatim source text while allowing structured normalization, and makes it explicit
           when a single normalized claim is backed by evidence from multiple independent sources.
         </p>
       </div>

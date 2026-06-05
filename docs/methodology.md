@@ -36,13 +36,13 @@ For each source, capture:
 
 **Goal:** Extract individual, testable claims from each source.
 
-A claim is atomic if it cannot be split into two independent claims without losing meaning. "The LHC is safe and scientists agree" is not atomic -- it bundles an empirical claim with a social claim. "The LSAG report concluded that LHC operations do not present risk of catastrophic harm" is atomic.
+A claim is atomic if it cannot be split into two independent claims without losing meaning. "The LHC is safe and scientists agree" is not atomic; it bundles an empirical claim with a social claim. "The LSAG report concluded that LHC operations do not present risk of catastrophic harm" is atomic.
 
 **Extraction rules:**
 1. Each claim should be expressible as a single declarative sentence.
 2. Quantified claims must preserve their quantification ("some", "most", "all", "under condition X").
 3. Hedged claims must preserve their hedges ("may", "suggests", "is consistent with").
-4. Do not correct or disambiguate at this stage -- capture the claim as it is made.
+4. Do not correct or disambiguate at this stage; capture the claim as it is made.
 5. Record the raw text (or close paraphrase) and the source ID.
 
 **What counts as a claim:**
@@ -61,7 +61,7 @@ A claim is atomic if it cannot be split into two independent claims without losi
 Normalization resolves:
 - Ambiguous referents ("it", "this", "the study")
 - Undefined technical terms (expand or note the definition used)
-- Implicit scope ("eggs are bad for you" -- for whom? under what conditions?)
+- Implicit scope ("eggs are bad for you": for whom? under what conditions?)
 - Hedges that need to be made explicit
 - Conflated claims that should be separated
 
@@ -73,7 +73,7 @@ Raw: "Experts say the collider is safe."
 Normalized: "The CERN Large Hadron Collider Safety Assessment Group concluded in 2008 that LHC operations present no risk of catastrophic harm."
 
 Raw: "Eggs raise your cholesterol."
-Normalized: "Consumption of eggs raises serum LDL-cholesterol in normocholesterolemic adults." (Note: this would then be flagged as needing verification -- the empirical record on this is contested.)
+Normalized: "Consumption of eggs raises serum LDL-cholesterol in normocholesterolemic adults." (Note: this would then be flagged as needing verification; the empirical record on this is contested.)
 
 ---
 

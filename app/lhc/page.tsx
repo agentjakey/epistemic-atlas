@@ -14,12 +14,18 @@ import type {
 } from '@/lib/types_v2'
 
 export const metadata = {
-  title: 'LHC Black Holes -- Epistemic Atlas',
+  title: 'LHC Black Holes | Epistemic Atlas',
 }
 
 export default function LHCPage() {
   return (
-    <CaseStudyView
+    <>
+      <div className="max-w-7xl mx-auto px-6 pt-6">
+        <p className="text-xs text-ink-faint border border-amber-200 bg-amber-50 px-3 py-2">
+          The current case data is a partially verified worked example intended to demonstrate the workflow. All extracted claims are marked needs_source_verification: true and have not been checked against primary source documents.
+        </p>
+      </div>
+      <CaseStudyView
       title="LHC Black Holes and Catastrophic Risk"
       domain="Particle physics"
       subdomain="Accelerator safety and quantum gravity"
@@ -36,5 +42,6 @@ export default function LHCPage() {
       assessment={(graphData as any).assessment as Assessment}
       missingEvidence={(graphData as any).missing_evidence as MissingEvidence[]}
     />
+    </>
   )
 }

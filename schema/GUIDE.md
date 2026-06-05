@@ -1,4 +1,4 @@
-# Epistemic Atlas Schema v2 -- Plain English Guide
+# Epistemic Atlas Schema v2: Plain English Guide
 
 This guide explains what the schema does and why, in the order you would encounter the objects when building an atlas entry.
 
@@ -41,11 +41,11 @@ The `conflict_of_interest` field is populated even when there is no conflict (`n
 
 ## ExtractedClaim
 
-The raw claim as it appears in the source -- verbatim or minimal paraphrase. Nothing is changed at this stage.
+The raw claim as it appears in the source: verbatim or minimal paraphrase. Nothing is changed at this stage.
 
 **Rule**: preserve all hedges (`may`, `suggests`, `is consistent with`) and all quantification (`some studies`, `in populations with X`). A claim with a hedge is not the same claim without it.
 
-Why separate from NormalizedClaim? Because multiple sources can say essentially the same thing. By keeping extraction separate from normalization, multiple ExtractedClaims from different sources can be aggregated into one NormalizedClaim -- and the full provenance of each extracted form is preserved.
+Why separate from NormalizedClaim? Because multiple sources can say essentially the same thing. By keeping extraction separate from normalization, multiple ExtractedClaims from different sources can be aggregated into one NormalizedClaim, and the full provenance of each extracted form is preserved.
 
 ---
 
@@ -55,11 +55,11 @@ The standardized, unambiguous version. This is where the real interpretive work 
 
 Normalization resolves:
 - Ambiguous referents ("it", "this study")
-- Undefined scope ("eggs are bad" -- for whom? under what conditions?)
+- Undefined scope ("eggs are bad": for whom? under what conditions?)
 - Implicit quantification
 - Hedges that need to be made explicit in the statement text
 
-The `extracted_claim_ids` field links to all the ExtractedClaims this normalization is based on. When multiple sources make the same claim, this field has multiple IDs -- and that is itself epistemically significant (independent corroboration).
+The `extracted_claim_ids` field links to all the ExtractedClaims this normalization is based on. When multiple sources make the same claim, this field has multiple IDs, and that is itself epistemically significant (independent corroboration).
 
 The `hedges` field preserves the original epistemic hedging as metadata, even when it is also embedded in the normalized text.
 
@@ -75,15 +75,15 @@ The vocabulary distinguishes:
 - **Structural** (`depends_on`, `narrows`, `generalizes`, `reframes`): how claims constrain or contextualize each other
 - **Epistemic status** (`duplicates`, `conflicts_with`): how claims relate without necessarily being in logical opposition
 
-The difference between `attacks` and `conflicts_with`: attacks implies direct logical contradiction. `conflicts_with` says the claims cannot both be fully right but neither strictly entails the other's falsity -- they are in tension without clean logical resolution. This distinction matters for accurately representing the state of a dispute.
+The difference between `attacks` and `conflicts_with`: attacks implies direct logical contradiction. `conflicts_with` says the claims cannot both be fully right but neither strictly entails the other's falsity; they are in tension without clean logical resolution. This distinction matters for accurately representing the state of a dispute.
 
-The difference between `supports` and `evidence_for`: `supports` covers both logical justification and empirical support. `evidence_for` specifically means observational data that increases the probability of B -- it is more precise and carries stronger epistemic weight.
+The difference between `supports` and `evidence_for`: `supports` covers both logical justification and empirical support. `evidence_for` specifically means observational data that increases the probability of B; it is more precise and carries stronger epistemic weight.
 
 ---
 
 ## Crux
 
-A pivotal question. Not just any contested claim -- specifically a load-bearing one.
+A pivotal question. Not just any contested claim; specifically a load-bearing one.
 
 Test: if you resolve the crux one way, does one major position in the dispute become significantly harder to hold? If yes for both directions, it is a crux.
 
@@ -93,7 +93,7 @@ The `status` field distinguishes between `unresolved` (work to be done), `empiri
 
 ## FailureModeFlag
 
-A first-class annotation for specific epistemic failure modes. Flags attach to individual NormalizedClaims, Sources, or Relations -- not to the case as a whole. This precision matters for cross-case analysis.
+A first-class annotation for specific epistemic failure modes. Flags attach to individual NormalizedClaims, Sources, or Relations, not to the case as a whole. This precision matters for cross-case analysis.
 
 The vocabulary was chosen to cover failures that are hard to notice but common:
 
@@ -117,7 +117,7 @@ The vocabulary was chosen to cover failures that are hard to notice but common:
 
 - `analogy_dependency`: the cosmic ray argument in the LHC case is an analogy. Analogies are valid as far as they hold. The flag marks places where the analogy's limits are not acknowledged.
 
-- `direct_evidence_absent`: the conclusion goes beyond what direct evidence supports. This is stronger than `hidden_assumption` -- it means the entire evidentiary basis is indirect.
+- `direct_evidence_absent`: the conclusion goes beyond what direct evidence supports. This is stronger than `hidden_assumption`; it means the entire evidentiary basis is indirect.
 
 - `expert_consensus_without_dependency_map`: citing expert consensus is common and sometimes legitimate, but it is epistemically shallow unless you can also show what that consensus depends on. If the dependencies are not mapped, you cannot assess whether new evidence should update the consensus.
 
@@ -127,7 +127,7 @@ The vocabulary was chosen to cover failures that are hard to notice but common:
 
 The overall verdict. Three things distinguish the v2 assessment from a generic summary:
 
-**Settled vs. unsettled**: The assessment must take a position on whether the dispute has a clear resolution. Not "there is ongoing debate" -- that is always true of any documented dispute. The question is whether the evidence supports a clear conclusion.
+**Settled vs. unsettled**: The assessment must take a position on whether the dispute has a clear resolution. Not "there is ongoing debate"; that is always true of any documented dispute. The question is whether the evidence supports a clear conclusion.
 
 **Weak links**: The assessment identifies which NormalizedClaims are the weakest links in the dominant argument. If the argument depends on a claim with `closed_case_overconfidence` and `low` confidence, that is a weak link that should be named.
 
@@ -150,6 +150,6 @@ The `reason_absent` and `feasibility` fields make explicit why the evidence does
 
 The adversarial review record. AuditNotes are created during Step 6 (adversarial review) and may also be added by readers.
 
-The `status` field (`open`, `resolved`, `dismissed`) keeps the audit log live. A `dismissed` note with a `resolution` explanation is better than a deleted note -- it shows the issue was considered.
+The `status` field (`open`, `resolved`, `dismissed`) keeps the audit log live. A `dismissed` note with a `resolution` explanation is better than a deleted note; it shows the issue was considered.
 
 The `llm_artifact` type is specifically for atlas entries built with LLM assistance, where a claim, source reference, or relation may have been generated without grounding in actual source text.

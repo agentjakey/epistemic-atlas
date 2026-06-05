@@ -25,10 +25,10 @@ export default function RootLayout({
         <footer className="border-t border-page-border mt-24 py-8">
           <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
             <span className="text-xs text-ink-faint uppercase tracking-wide">
-              Epistemic Atlas -- FLF Epistemic Case Study Competition
+              Epistemic Atlas | FLF Epistemic Case Study Competition
             </span>
             <span className="text-xs text-ink-faint">
-              Schema v2 -- Data status: partial
+              Schema v2 | Data status: partial
             </span>
           </div>
         </footer>

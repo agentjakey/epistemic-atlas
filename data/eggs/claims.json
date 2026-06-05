@@ -321,7 +321,7 @@
     {
       "id": "NC_106",
       "extracted_claim_ids": ["EC_103", "EC_106"],
-      "normalized_text": "The cardiovascular health impact of egg consumption may depend substantially on the overall dietary pattern in which eggs are consumed -- including what foods eggs replace or accompany -- rather than on eggs as an isolated food item. Eggs in a plant-rich dietary pattern represent a different nutritional context than eggs in a Western diet high in saturated fat.",
+      "normalized_text": "The cardiovascular health impact of egg consumption may depend substantially on the overall dietary pattern in which eggs are consumed (including what foods eggs replace or accompany) rather than on eggs as an isolated food item. Eggs in a plant-rich dietary pattern represent a different nutritional context than eggs in a Western diet high in saturated fat.",
       "domain_type": "empirical",
       "scope": "Dietary pattern hypothesis; implies that isolating the egg-specific effect from dietary context may not be feasible with observational methods.",
       "quantification": null,
