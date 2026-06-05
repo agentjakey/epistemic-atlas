@@ -1,107 +1,170 @@
 {
-  "_note": "DATA STATUS: partial. Source metadata is drawn from publicly documented records. Specific findings and statistics require primary source verification.",
+  "_meta": {
+    "schema_version": "2",
+    "case_id": "eggs-cardiovascular-2020",
+    "data_status": "partial",
+    "note": "Source metadata is drawn from publicly documented records. Specific findings, effect sizes, and statistical values in extracted claims require verification against primary source documents before treating this file as anything beyond a working draft."
+  },
   "sources": [
     {
       "id": "src_101",
-      "title": "Atherosclerosis: A Problem in Newer Public Health",
-      "type": "paper",
+      "title": "Are eggs risky for heart health?",
+      "type": "article",
       "provenance": {
-        "author": "Ancel Keys",
-        "institution": "University of Minnesota",
-        "date": "1953",
-        "venue": "Journal of the Mount Sinai Hospital",
+        "author": "Harvard Health Publishing",
+        "institution": "Harvard Medical School",
+        "date": "2022",
+        "venue": "Harvard Health Publishing",
         "url": null,
         "doi": null,
-        "retrieved": null
+        "retrieved": null,
+        "page_range": null
       },
       "credibility": "medium",
       "conflict_of_interest": null,
-      "notes": "Early influential paper arguing for a diet-heart link. Keys's later Seven Countries Study was more influential; this earlier paper established the framework. Methodological criticisms of Keys's country selection have been raised in subsequent decades."
+      "retracted": false,
+      "needs_source_verification": true,
+      "notes": "Secondary source summarizing research findings for a general audience. Harvard Health Publishing is affiliated with Harvard Medical School and generally reflects mainstream medical consensus. Specific date and version require verification; the publication is periodically updated."
     },
     {
       "id": "src_102",
-      "title": "Egg consumption and risk of coronary heart disease and stroke: dose-response meta-analysis of prospective cohort studies",
-      "type": "paper",
+      "title": "Eggs (The Nutrition Source)",
+      "type": "article",
       "provenance": {
-        "author": ["Ying Rong", "Li Chen", "Tingting Zhu", "Yadong Song", "Meng Yu", "Zhilei Shan", "An Pan", "Frank B. Hu", "Liegang Liu"],
-        "institution": "Huazhong University of Science and Technology / Harvard School of Public Health",
-        "date": "2013",
-        "venue": "BMJ",
+        "author": "Harvard T.H. Chan School of Public Health",
+        "institution": "Harvard T.H. Chan School of Public Health",
+        "date": "2023",
+        "venue": "The Nutrition Source, HSPH",
         "url": null,
-        "doi": "10.1136/bmj.e8539",
-        "retrieved": null
+        "doi": null,
+        "retrieved": null,
+        "page_range": null
       },
-      "credibility": "high",
+      "credibility": "medium",
       "conflict_of_interest": null,
-      "notes": "Meta-analysis of prospective cohort studies. Found no significant association between egg consumption and coronary heart disease or stroke risk in the general population, but found increased risk in diabetic patients."
+      "retracted": false,
+      "needs_source_verification": true,
+      "notes": "Secondary source providing nutrition guidance and summaries of recent research. The Nutrition Source is a public-facing resource of the Department of Nutrition at HSPH. Content is updated periodically; the 2020 meta-analysis summary referenced in extracted claims should be traced to its primary source."
     },
     {
       "id": "src_103",
-      "title": "Association of Egg Consumption with Cardiovascular Disease in a Large Cohort of US Adults",
+      "title": "Associations of Dietary Cholesterol or Egg Consumption With Incident Cardiovascular Disease and Mortality",
       "type": "paper",
       "provenance": {
-        "author": ["Victor W. Zhong", "Linda Van Horn", "Marilyn C. Cornelis", "John T. Wilkins", "Hongyan Ning", "Mercedes R. Carnethon", "Philip Greenland", "R. Nazmus Saquib", "Cynthia A. Thomson", "Marian L. Neuhouser", "Lesley F. Tinker", "Matthew A. Allison", "Nathan D. Wong", "Kiang Liu", "Martha L. Daviglus", "Norrina B. Allen", "Mark J. Stampfer", "Donald M. Lloyd-Jones"],
-        "institution": "Northwestern University / Harvard",
+        "author": ["Victor W. Zhong", "Linda Van Horn", "Marilyn C. Cornelis", "J. David Carr", "Hongyan Ning", "Martha L. Carnethon", "Philip Greenland", "R. Jay Kaufman", "Katherine L. Tucker", "Lihui Zhao", "Yifan Gao", "Norrina B. Allen", "Donald M. Lloyd-Jones"],
+        "institution": "Northwestern University Feinberg School of Medicine",
         "date": "2019",
-        "venue": "JAMA",
+        "venue": "JAMA, vol. 321, no. 11, pp. 1081-1095",
         "url": null,
         "doi": "10.1001/jama.2019.1572",
-        "retrieved": null
+        "retrieved": null,
+        "page_range": "1081-1095"
       },
       "credibility": "high",
-      "conflict_of_interest": null,
-      "notes": "Large prospective cohort study. Found that each additional half egg per day was significantly associated with higher risk of cardiovascular disease and all-cause mortality. Contradicts the 2013 Rong meta-analysis in direction. Sparked renewed debate."
+      "conflict_of_interest": "Funding sources and potential conflicts should be verified against the published paper's disclosure section. At least one author reported receiving research support from the American Heart Association.",
+      "retracted": false,
+      "needs_source_verification": true,
+      "notes": "A pooled prospective analysis of six US cohort studies. Published in JAMA with peer review. A notable study in the field because it reported a positive association between egg consumption and CVD risk that conflicted with several earlier null findings. Specific effect sizes should be verified against the primary paper."
     },
     {
       "id": "src_104",
-      "title": "2015-2020 Dietary Guidelines for Americans",
-      "type": "report",
-      "provenance": {
-        "author": "Dietary Guidelines Advisory Committee",
-        "institution": "US Department of Health and Human Services / US Department of Agriculture",
-        "date": "2015",
-        "venue": null,
-        "url": "https://health.gov/dietaryguidelines/2015/",
-        "doi": null,
-        "retrieved": null
-      },
-      "credibility": "high",
-      "conflict_of_interest": "The 2015 DGAC process has been criticized for food industry involvement in past cycles. This conflict is documented in academic literature.",
-      "notes": "Removed the longstanding 300mg/day dietary cholesterol limit. Stated that 'cholesterol is not a nutrient of concern for overconsumption.' This represented a significant shift from prior guidance."
-    },
-    {
-      "id": "src_105",
-      "title": "Dietary cholesterol and cardiovascular disease: a systematic review and meta-analysis",
+      "title": "A prospective study of egg consumption and risk of cardiovascular disease in men and women",
       "type": "paper",
       "provenance": {
-        "author": ["Christopher N. Blesso", "Maria Luz Fernandez"],
-        "institution": "University of Connecticut",
-        "date": "2018",
-        "venue": "Nutrients",
+        "author": ["Frank B. Hu", "Meir J. Stampfer", "Eric B. Rimm", "JoAnn E. Manson", "Alberto Ascherio", "Graham A. Colditz", "Bernard A. Rosner", "Donna Spiegelman", "Frank E. Speizer", "Frank M. Sacks", "Charles H. Hennekens", "Walter C. Willett"],
+        "institution": "Harvard School of Public Health",
+        "date": "1999",
+        "venue": "JAMA, vol. 281, no. 15, pp. 1387-1394",
         "url": null,
-        "doi": "10.3390/nu10060780",
-        "retrieved": null
-      },
-      "credibility": "medium",
-      "conflict_of_interest": "Fernandez has received research funding from the egg industry (American Egg Board / Egg Nutrition Center). This is a documented conflict relevant to interpreting her work on eggs.",
-      "notes": "Review arguing that dietary cholesterol does not significantly affect cardiovascular risk in most individuals. Conflict of interest is relevant here."
-    },
-    {
-      "id": "src_106",
-      "title": "Industry funding and the nutritional research agenda: A systematic review of systematic reviews",
-      "type": "paper",
-      "provenance": {
-        "author": ["Maira Bes-Rastrollo", "Matthias B. Schulze", "Miguel Ruiz-Canela", "Miguel A. Martinez-Gonzalez"],
-        "institution": "University of Navarra / German Institute of Human Nutrition",
-        "date": "2013",
-        "venue": "PLOS Medicine",
-        "url": null,
-        "doi": "10.1371/journal.pmed.1001578",
-        "retrieved": null
+        "doi": "10.1001/jama.281.15.1387",
+        "retrieved": null,
+        "page_range": "1387-1394"
       },
       "credibility": "high",
       "conflict_of_interest": null,
-      "notes": "Meta-level study documenting the relationship between industry funding and favorable nutrition research conclusions. Provides the evidential basis for weighting industry-funded studies in this dispute."
+      "retracted": false,
+      "needs_source_verification": true,
+      "notes": "One of the foundational large prospective cohort studies on egg consumption and CVD. Based on the Nurses' Health Study and Health Professionals Follow-up Study with over 80,000 women and 37,000 men followed for 8-14 years. Notable for finding a null result in the overall population but a significant positive association in diabetic subgroups. Specific statistics require verification."
+    },
+    {
+      "id": "src_105",
+      "title": "Egg consumption and risk of coronary heart disease and stroke: dose-response meta-analysis of prospective cohort studies",
+      "type": "paper",
+      "provenance": {
+        "author": ["Ying Rong", "Li Chen", "Tingting Zhu", "Yiqing Song", "Meiping Yu", "Zhilei Shan", "Amanda Sands", "Frank B. Hu", "Liegang Liu"],
+        "institution": "Huazhong University of Science and Technology / Harvard School of Public Health",
+        "date": "2013",
+        "venue": "BMJ, vol. 346, e8539",
+        "url": null,
+        "doi": "10.1136/bmj.e8539",
+        "retrieved": null,
+        "page_range": null
+      },
+      "credibility": "high",
+      "conflict_of_interest": null,
+      "retracted": false,
+      "needs_source_verification": true,
+      "notes": "Dose-response meta-analysis of prospective cohort studies on egg consumption and coronary heart disease and stroke risk. Included a large number of studies and participants. Notable for finding significant heterogeneity and different results for diabetic subgroups. Frank B. Hu is also a co-author of src_104, creating partial overlap in intellectual lineage."
+    },
+    {
+      "id": "src_106",
+      "title": "Egg consumption and risk of cardiovascular disease: three large prospective US cohort studies, systematic review, and updated meta-analysis",
+      "type": "paper",
+      "provenance": {
+        "author": ["Jean-Philippe Drouin-Chartier", "Siyu Chen", "Yanping Li", "Joseph D. Schwab", "Qi Sun", "Eric B. Rimm", "Meir J. Stampfer", "JoAnn E. Manson", "Walter C. Willett", "Frank B. Hu"],
+        "institution": "Harvard T.H. Chan School of Public Health",
+        "date": "2020",
+        "venue": "BMJ, vol. 368, m513",
+        "url": null,
+        "doi": "10.1136/bmj.m513",
+        "retrieved": null,
+        "page_range": null
+      },
+      "credibility": "high",
+      "conflict_of_interest": "Several authors are affiliated with the same institution (Harvard HSPH) and share co-authorship on multiple egg-consumption studies. Frank B. Hu is co-author of both src_104 and src_106, representing correlated rather than fully independent evidence streams.",
+      "retracted": false,
+      "needs_source_verification": true,
+      "notes": "The 2020 study referenced by Harvard T.H. Chan School of Public Health (src_102). Uses three large Harvard cohorts (NHS, NHS2, HPFS) and a systematic review and meta-analysis. Found no significant association between up to one egg per day and CVD risk in the general population. Key overlap: the cohorts analyzed overlap with those used in src_104."
+    },
+    {
+      "id": "src_107",
+      "title": "Scientific Report of the 2015 Dietary Guidelines Advisory Committee",
+      "type": "report",
+      "provenance": {
+        "author": "2015 Dietary Guidelines Advisory Committee",
+        "institution": "U.S. Department of Health and Human Services / U.S. Department of Agriculture",
+        "date": "2015",
+        "venue": "USDA/HHS",
+        "url": null,
+        "doi": null,
+        "retrieved": null,
+        "page_range": null
+      },
+      "credibility": "high",
+      "conflict_of_interest": "Committee members are government-appointed scientists; potential conflicts should be verified against published disclosures. Institutional conservatism in dietary guidance is a known concern in this domain.",
+      "retracted": false,
+      "needs_source_verification": true,
+      "notes": "The DGAC report that informed the 2015-2020 Dietary Guidelines for Americans. The committee removed the longstanding 300 mg/day dietary cholesterol limit after reviewing the available evidence. This was a significant shift from prior guidance and is often cited as a turning point in dietary cholesterol policy."
+    },
+    {
+      "id": "src_108",
+      "title": "Healthy Eating: Eggs",
+      "type": "statement",
+      "provenance": {
+        "author": "American Heart Association",
+        "institution": "American Heart Association",
+        "date": "2021",
+        "venue": "American Heart Association website / patient guidance",
+        "url": null,
+        "doi": null,
+        "retrieved": null,
+        "page_range": null
+      },
+      "credibility": "medium",
+      "conflict_of_interest": "The AHA receives funding from food industry stakeholders including egg producers and dairy interests. The AHA's Heart-Check certification program involves fees from food manufacturers. These relationships may introduce incentive pressure on the specificity of dietary guidance.",
+      "retracted": false,
+      "needs_source_verification": true,
+      "notes": "Institutional dietary guidance from the American Heart Association. The AHA has historically been cautious about reversing prior dietary cholesterol guidance. Its current egg guidance allows moderate consumption but emphasizes overall dietary pattern. Secondary source; primary recommendations should be verified against current AHA position statements."
     }
   ]
 }

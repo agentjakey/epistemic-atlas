@@ -1,117 +1,441 @@
 {
-  "_note": "DATA STATUS: partial. Claims are based on published source content and may not reflect the most recent literature. Verify specific statistics against primary sources.",
-  "claims": [
+  "_meta": {
+    "schema_version": "2",
+    "case_id": "eggs-cardiovascular-2020",
+    "data_status": "partial",
+    "note": "All extracted claims are paraphrases constructed from published source metadata and content descriptions. Specific effect sizes, confidence intervals, and p-values require verification against primary source documents. This file is a working draft."
+  },
+  "extracted_claims": [
     {
-      "id": "C101",
-      "raw": "Dietary cholesterol raises serum LDL cholesterol levels.",
-      "normalized": "Consumption of dietary cholesterol is associated with increased serum LDL-cholesterol concentration in controlled feeding studies in normocholesterolemic adults.",
+      "id": "EC_101",
       "source_id": "src_101",
-      "position": "pro",
-      "domain_type": "empirical",
-      "confidence": {
-        "level": "medium",
-        "notes": "The direction of the effect (dietary cholesterol raises LDL) is supported by some controlled feeding studies, but the magnitude is now understood to be substantially smaller than originally believed, and highly variable across individuals. The hyper-responder vs. hypo-responder distinction complicates any simple claim."
-      },
-      "tags": ["ldl", "dietary_cholesterol", "mechanism"],
-      "failure_flags": ["overgeneralization"]
+      "raw_text": "Harvard Health Publishing states that for most people, eating one egg per day does not appear to increase the risk of heart attack, stroke, or other forms of cardiovascular disease.",
+      "location": {"page": null, "section": null, "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the summary position in the Harvard Health article. Exact wording and specific caveats require primary source verification.",
+      "needs_source_verification": true
     },
     {
-      "id": "C102",
-      "raw": "Egg consumption is not significantly associated with coronary heart disease or stroke risk in the general population.",
-      "normalized": "In prospective cohort studies included in the 2013 Rong et al. meta-analysis, egg consumption was not significantly associated with coronary heart disease (pooled RR 0.96, 95% CI 0.88-1.05) or stroke (pooled RR 0.90, 95% CI 0.79-1.03) in the general population.",
+      "id": "EC_102",
+      "source_id": "src_101",
+      "raw_text": "Harvard Health Publishing notes that earlier dietary guidelines limiting cholesterol intake were based on concerns that dietary cholesterol raised blood cholesterol, but that research has since shown the dietary cholesterol to serum cholesterol relationship is more complicated than a simple linear dose-response.",
+      "location": {"page": null, "section": null, "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase reflecting the history of dietary cholesterol guidance. Exact wording requires verification.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_103",
+      "source_id": "src_101",
+      "raw_text": "Harvard Health Publishing notes that how eggs are prepared and what they are eaten with may affect their health impact; eggs with bacon or refined carbohydrates represent a different dietary context than eggs with vegetables.",
+      "location": {"page": null, "section": null, "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the dietary context observation. Specific examples require verification.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_104",
       "source_id": "src_102",
-      "position": "con",
-      "domain_type": "empirical",
-      "confidence": {
-        "level": "medium",
-        "notes": "Meta-analysis finding. Confidence intervals are wide. The finding is for the general population; the same analysis found increased CHD risk in diabetic subgroups. Observational data with residual confounding."
-      },
-      "tags": ["meta_analysis", "cvd_risk", "general_population"],
-      "failure_flags": []
+      "raw_text": "The Harvard T.H. Chan School of Public Health Nutrition Source states that for healthy individuals, consuming up to one egg per day does not appear to be associated with cardiovascular disease risk.",
+      "location": {"page": null, "section": null, "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the Nutrition Source summary position. Exact wording and the studies cited require verification.",
+      "needs_source_verification": true
     },
     {
-      "id": "C103",
-      "raw": "Each additional half egg per day was significantly associated with higher cardiovascular disease risk.",
-      "normalized": "In the Zhong et al. 2019 JAMA study (MESA, WHI, ARIC, CHS cohorts, n=29,615), each additional 0.5 eggs consumed per day was associated with a 6% higher risk of incident cardiovascular disease events (HR 1.06, 95% CI 1.03-1.10) after adjustment for multiple confounders.",
+      "id": "EC_105",
+      "source_id": "src_102",
+      "raw_text": "The Harvard T.H. Chan Nutrition Source summarizes a 2020 study and meta-analysis as finding that consuming up to one egg per day is not associated with cardiovascular disease risk in the general population.",
+      "location": {"page": null, "section": null, "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "The 2020 study referenced is Drouin-Chartier et al. 2020 (src_106). The verbatim summary language requires verification.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_106",
+      "source_id": "src_102",
+      "raw_text": "The Harvard T.H. Chan Nutrition Source notes that the health effects of eggs may depend on overall dietary context; eggs eaten within a Mediterranean or plant-rich dietary pattern may behave differently from eggs eaten within a typical Western dietary pattern high in saturated fat and processed foods.",
+      "location": {"page": null, "section": null, "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of dietary context guidance from the Nutrition Source. Specific dietary pattern examples require verification.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_107",
+      "source_id": "src_102",
+      "raw_text": "The Harvard T.H. Chan Nutrition Source notes that the 2015 Dietary Guidelines removed the explicit 300 mg per day dietary cholesterol cap, but emphasizes that limiting dietary cholesterol remains a sensible component of a heart-healthy diet.",
+      "location": {"page": null, "section": null, "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the Nutrition Source's commentary on the 2015 guideline change. Exact wording requires verification.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_108",
       "source_id": "src_103",
-      "position": "pro",
-      "domain_type": "empirical",
-      "confidence": {
-        "level": "medium",
-        "notes": "Large prospective study with high statistical power. Key limitation: dietary cholesterol intake from non-egg sources was not fully separated from egg cholesterol. Dietary assessment relies on food frequency questionnaires with measurement error. The result contradicts several prior meta-analyses."
-      },
-      "tags": ["cvd_risk", "prospective_cohort", "dose_response"],
-      "failure_flags": []
+      "raw_text": "Zhong et al. (2019) report that in a pooled analysis of six prospective US cohort studies comprising nearly 30,000 adults followed for an average of 17.5 years, eating three to four whole eggs per week was associated with a statistically significant approximately 6 percent higher risk of incident cardiovascular disease.",
+      "location": {"page": "1081-1095", "section": "Results", "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the central CVD finding. The specific percentage (6%), cohort size, and follow-up period require verification against the primary paper's Table 2 or equivalent.",
+      "needs_source_verification": true
     },
     {
-      "id": "C104",
-      "raw": "Cholesterol is not a nutrient of concern for overconsumption.",
-      "normalized": "The 2015-2020 Dietary Guidelines Advisory Committee concluded that available evidence does not support maintaining a daily limit on dietary cholesterol intake, and removed the previous 300mg/day recommendation.",
+      "id": "EC_109",
+      "source_id": "src_103",
+      "raw_text": "Zhong et al. (2019) report that each additional 300 milligrams per day of dietary cholesterol consumption was associated with a statistically significant approximately 17 percent higher risk of incident cardiovascular disease.",
+      "location": {"page": "1081-1095", "section": "Results", "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the dietary cholesterol finding. The specific percentage (17%) requires verification against the primary paper.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_110",
+      "source_id": "src_103",
+      "raw_text": "Zhong et al. (2019) report that eating three to four whole eggs per week was associated with a statistically significant approximately 8 percent higher risk of all-cause mortality.",
+      "location": {"page": "1081-1095", "section": "Results", "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the all-cause mortality finding. The specific percentage (8%) requires verification against the primary paper.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_111",
+      "source_id": "src_103",
+      "raw_text": "Zhong et al. (2019) note that their analysis adjusted for a large number of dietary and lifestyle covariates including energy intake, other dietary components, physical activity, smoking, alcohol use, and socioeconomic factors.",
+      "location": {"page": "1081-1095", "section": "Methods", "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the covariate adjustment description. The specific number and list of covariates require verification against the paper's methods section.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_112",
+      "source_id": "src_103",
+      "raw_text": "Zhong et al. (2019) report that sensitivity analyses stratified by diabetes status showed a numerically larger positive association between egg consumption and CVD risk in participants with diabetes compared to those without, although the formal interaction term did not reach statistical significance.",
+      "location": {"page": "1081-1095", "section": "Results -- subgroup analyses", "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the diabetes subgroup finding. The specific interaction test result and direction require verification against the primary paper.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_113",
       "source_id": "src_104",
-      "position": "con",
-      "domain_type": "normative",
+      "raw_text": "Hu et al. (1999) report that in a combined analysis of the Nurses' Health Study and Health Professionals Follow-up Study, consuming up to one egg per day was not significantly associated with increased risk of coronary heart disease or stroke in the overall population of health professionals.",
+      "location": {"page": "1387-1394", "section": "Results", "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the central null finding. The specific relative risk estimates and confidence intervals require verification.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_114",
+      "source_id": "src_104",
+      "raw_text": "Hu et al. (1999) report that the association between egg consumption and coronary heart disease differed by diabetes status: among participants with diabetes, consumption of one or more eggs per day was associated with a statistically significant elevated risk of coronary heart disease.",
+      "location": {"page": "1387-1394", "section": "Results", "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the diabetic subgroup finding, one of the most frequently cited results of the study. Specific effect size and statistical test require verification.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_115",
+      "source_id": "src_104",
+      "raw_text": "Hu et al. (1999) note that egg consumption in their cohorts was correlated with other dietary behaviors including smoking, less physical activity, and higher intake of saturated fat, requiring careful statistical adjustment to isolate the effect of eggs specifically.",
+      "location": {"page": "1387-1394", "section": "Discussion", "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the confounding discussion. Exact wording requires verification.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_116",
+      "source_id": "src_104",
+      "raw_text": "Hu et al. (1999) note that the serum cholesterol response to dietary cholesterol intake is attenuated or enhanced depending on background saturated fat intake, and that this interaction complicates simple attribution of cardiovascular risk to dietary cholesterol alone.",
+      "location": {"page": "1387-1394", "section": "Discussion", "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the dietary fat interaction discussion. Specific mechanism references require verification.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_117",
+      "source_id": "src_105",
+      "raw_text": "Rong et al. (2013), in a dose-response meta-analysis of prospective cohort studies, report no statistically significant association between egg consumption and coronary heart disease risk in the overall study population.",
+      "location": {"page": null, "section": "Results", "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the main null finding of the Rong 2013 BMJ meta-analysis. Specific summary risk ratios and confidence intervals require verification.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_118",
+      "source_id": "src_105",
+      "raw_text": "Rong et al. (2013) report that among diabetic participants in the included studies, each one-egg-per-day increment was associated with a statistically significantly higher risk of coronary heart disease.",
+      "location": {"page": null, "section": "Results -- subgroup analyses", "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the diabetic subgroup finding, which corroborates the similar finding in Hu 1999 (src_104). Specific effect size requires verification.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_119",
+      "source_id": "src_105",
+      "raw_text": "Rong et al. (2013) report substantial heterogeneity across the included studies, as indicated by the I-squared statistic, which limits confidence in any single summary pooled effect estimate.",
+      "location": {"page": null, "section": "Results", "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the heterogeneity finding. The specific I-squared value and its interpretation require verification against the primary paper.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_120",
+      "source_id": "src_105",
+      "raw_text": "Rong et al. (2013) note that studies conducted in US populations showed different effect estimates from studies conducted in European populations, suggesting geographic or lifestyle factors may modify any association between egg consumption and cardiovascular risk.",
+      "location": {"page": null, "section": "Discussion", "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the geographic heterogeneity finding. Direction and magnitude of the difference require verification.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_121",
+      "source_id": "src_106",
+      "raw_text": "Drouin-Chartier et al. (2020) report that in a prospective analysis of three large US cohorts and an updated meta-analysis, consuming up to one egg per day was not significantly associated with increased cardiovascular disease risk in the general population.",
+      "location": {"page": null, "section": "Results", "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the main null finding of src_106. Specific risk estimates require verification against the primary paper.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_122",
+      "source_id": "src_106",
+      "raw_text": "Drouin-Chartier et al. (2020) note that their meta-analysis encompassed data from millions of individuals across multiple prospective cohort studies, representing a large evidence base.",
+      "location": {"page": null, "section": "Abstract or Methods", "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase. The specific number of participants in the meta-analysis requires verification.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_123",
+      "source_id": "src_106",
+      "raw_text": "Drouin-Chartier et al. (2020) note that LDL cholesterol is a limited proxy measure for cardiovascular disease risk in the context of egg consumption, because eggs simultaneously raise HDL cholesterol and contain other bioactive components including choline and lutein that may offset LDL increases.",
+      "location": {"page": null, "section": "Discussion", "paragraph": null},
+      "speaker": null,
+      "extraction_notes": "Paraphrase of the proxy measure discussion in src_106. Specific bioactive compounds listed require verification.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_124",
+      "source_id": "src_107",
+      "raw_text": "The 2015 Dietary Guidelines Advisory Committee removed the longstanding 300 milligrams per day dietary cholesterol recommendation, stating that available evidence does not support a specific dietary cholesterol daily limit, while noting that dietary patterns low in cholesterol are associated with reduced cardiovascular disease risk.",
+      "location": {"page": null, "section": "Part D, Chapter 1: Food and Nutrient Intakes", "paragraph": null},
+      "speaker": "2015 Dietary Guidelines Advisory Committee",
+      "extraction_notes": "Paraphrase of the DGAC dietary cholesterol conclusion. Verbatim wording and the specific section require verification against the published scientific report.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_125",
+      "source_id": "src_108",
+      "raw_text": "The American Heart Association's dietary guidance states that eggs can be incorporated into a heart-healthy dietary pattern and recommends that individuals seeking to reduce cardiovascular disease risk focus primarily on limiting saturated and trans fats rather than dietary cholesterol in isolation.",
+      "location": {"page": null, "section": null, "paragraph": null},
+      "speaker": "American Heart Association",
+      "extraction_notes": "Paraphrase of AHA dietary guidance on eggs. The specific AHA position document and current version require verification.",
+      "needs_source_verification": true
+    }
+  ],
+  "normalized_claims": [
+    {
+      "id": "NC_101",
+      "extracted_claim_ids": ["EC_101", "EC_104", "EC_121", "EC_122"],
+      "normalized_text": "Multiple large observational studies and meta-analyses, including a 2020 analysis of three major Harvard cohorts, find that consuming up to approximately one egg per day is not significantly associated with increased cardiovascular disease risk in healthy adults. This finding is consistent across several large prospective cohorts.",
+      "domain_type": "empirical",
+      "scope": "Applies to healthy adults without diabetes or pre-existing elevated CVD risk, consuming up to approximately one egg per day, as measured in large US and some international prospective cohorts.",
+      "quantification": "Up to approximately one egg per day; no significant increase in CVD risk in these studies.",
+      "hedges": ["not significantly associated", "in healthy adults", "up to approximately one egg per day"],
+      "position": "neutral",
       "confidence": {
         "level": "medium",
-        "notes": "This is a regulatory-normative claim, not a scientific one. The evidence base cited is real, but the 2015 DGAC's conclusion was made before the 2019 Zhong et al. study. The claim reflects the state of evidence as of 2015."
+        "notes": "Multiple large studies report this null finding, but significant heterogeneity in the literature (NC_107) and unresolved confounding concerns (NC_109) prevent high confidence. The null finding may be population-specific (see NC_108)."
       },
-      "tags": ["dietary_guidelines", "regulatory", "cholesterol_limit"],
-      "failure_flags": []
+      "failure_mode_flag_ids": ["FF_101", "FF_105"],
+      "tags": ["null_finding", "moderate_consumption", "healthy_adults", "observational"],
+      "needs_source_verification": true
     },
     {
-      "id": "C105",
-      "raw": "Industry-funded nutrition studies are significantly more likely to produce results favorable to the funder.",
-      "normalized": "A 2013 systematic review of systematic reviews (Bes-Rastrollo et al.) found that nutrition studies with industry funding were more likely to reach conclusions favorable to the funder's products than independently funded studies, after controlling for study design.",
-      "source_id": "src_106",
-      "position": "methodological",
-      "domain_type": "methodological",
-      "confidence": {
-        "level": "high",
-        "notes": "Meta-level empirical finding. This claim does not directly resolve the eggs-CVD question but is relevant to how much weight to assign industry-funded studies in this dispute."
-      },
-      "tags": ["funding_bias", "methodological", "meta_level"],
-      "failure_flags": []
-    },
-    {
-      "id": "C106",
-      "raw": "Dietary cholesterol does not significantly affect cardiovascular risk in most individuals.",
-      "normalized": "Based on the 2018 Blesso and Fernandez review, dietary cholesterol from eggs does not independently raise cardiovascular disease risk in healthy, normolipidemic adults when the overall diet is low in saturated fat.",
-      "source_id": "src_105",
-      "position": "con",
+      "id": "NC_102",
+      "extracted_claim_ids": ["EC_108", "EC_110"],
+      "normalized_text": "In a pooled analysis of six prospective US cohorts (Zhong et al. 2019), consuming three to four whole eggs per week was associated with a statistically significant approximately 6 percent higher risk of incident cardiovascular disease and approximately 8 percent higher risk of all-cause mortality, after adjustment for dietary and lifestyle covariates.",
       "domain_type": "empirical",
+      "scope": "Applies to the six US cohort populations studied; generalizability to other populations is uncertain. The analysis adjusted for multiple covariates but residual confounding cannot be excluded.",
+      "quantification": "Approximately 6% higher CVD risk and 8% higher all-cause mortality for 3-4 eggs per week; specific confidence intervals require primary source verification.",
+      "hedges": ["associated with", "after adjustment for covariates", "residual confounding cannot be excluded"],
+      "position": "pro",
+      "confidence": {
+        "level": "medium",
+        "notes": "The association is statistically significant in a large pooled dataset, but conflicts with the null findings from multiple other large cohorts (NC_101, NC_105). The direction and magnitude may reflect residual confounding (NC_109)."
+      },
+      "failure_mode_flag_ids": ["FF_102", "FF_104"],
+      "tags": ["positive_association", "Zhong_2019", "dietary_cholesterol", "pooled_cohort"],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_103",
+      "extracted_claim_ids": ["EC_109"],
+      "normalized_text": "Zhong et al. (2019) found that each additional 300 milligrams of dietary cholesterol per day was associated with approximately 17 percent higher incident cardiovascular disease risk, suggesting that dietary cholesterol content may be a candidate mediator of any egg-associated CVD risk.",
+      "domain_type": "empirical",
+      "scope": "Derived from the same pooled cohort analysis as NC_102. The association between dietary cholesterol specifically and CVD risk is conditional on the adequacy of dietary cholesterol measurement via food frequency questionnaire.",
+      "quantification": "Approximately 17% higher CVD risk per 300 mg/day of dietary cholesterol; specific confidence intervals require verification.",
+      "hedges": ["may be a candidate mediator", "associated with", "conditional on adequate measurement"],
+      "position": "pro",
       "confidence": {
         "level": "low",
-        "notes": "The conclusion is consistent with some evidence but the source has a documented conflict of interest (egg industry funding). The conclusion is also conditional ('when overall diet is low in saturated fat'), which is often not stated in secondary citations of this work."
+        "notes": "This finding is specifically from Zhong 2019 and sits in tension with the DGAC's 2015 removal of the dietary cholesterol cap. The dietary cholesterol-to-CVD pathway is modulated by many factors (NC_111). LDL as a proxy measure is problematic in this context (NC_112)."
       },
-      "tags": ["dietary_cholesterol", "healthy_adults"],
-      "failure_flags": ["funding_bias", "cherry_picking"]
+      "failure_mode_flag_ids": ["FF_103", "FF_110"],
+      "tags": ["dietary_cholesterol", "mediator_hypothesis", "observational"],
+      "needs_source_verification": true
     },
     {
-      "id": "C107",
-      "raw": "The effect of eggs on CVD risk differs between diabetic and non-diabetic populations.",
-      "normalized": "In the Rong et al. 2013 meta-analysis, egg consumption was associated with a statistically significant increased risk of coronary heart disease specifically in diabetic patients (pooled RR 1.54, 95% CI 1.14-2.09), while no significant association was found in non-diabetic participants.",
-      "source_id": "src_102",
-      "position": "conditional",
+      "id": "NC_104",
+      "extracted_claim_ids": ["EC_112", "EC_114", "EC_118"],
+      "normalized_text": "Evidence from multiple cohort studies and meta-analyses consistently suggests that the association between egg consumption and CVD risk is stronger in individuals with diabetes or elevated baseline CVD risk than in the general healthy adult population. This pattern appears in Hu 1999, Rong 2013, and Zhong 2019.",
       "domain_type": "empirical",
+      "scope": "Applies specifically to diabetic subgroups; the interaction with CVD baseline risk and other high-risk groups is less clearly documented.",
+      "quantification": "Elevated CVD risk in diabetic subgroups across studies; specific effect size varies by study.",
+      "hedges": ["suggests", "appears", "in individuals with diabetes"],
+      "position": "pro",
       "confidence": {
         "level": "medium",
-        "notes": "Subgroup finding with smaller sample size than the main analysis. The biological mechanism for differential risk in diabetic patients is plausible (altered lipid metabolism) but not fully established."
+        "notes": "The diabetic subgroup finding is consistent across three major studies, which increases confidence. However, the statistical interaction term in Zhong 2019 did not reach significance, and the finding is observational with potential for residual confounding in the diabetic subgroup specifically."
       },
-      "tags": ["diabetes", "subgroup", "effect_modification"],
-      "failure_flags": []
+      "failure_mode_flag_ids": ["FF_101"],
+      "tags": ["subgroup_analysis", "diabetes", "effect_modification", "higher_risk"],
+      "needs_source_verification": true
     },
     {
-      "id": "C108",
-      "raw": "The original 300mg/day dietary cholesterol guideline was not based on strong direct evidence from human studies.",
-      "normalized": "The 300mg/day dietary cholesterol limit, established in the 1970s and maintained until 2015, was primarily based on animal studies and mechanistic reasoning about LDL cholesterol, rather than on direct prospective evidence from human populations for cardiovascular endpoints.",
-      "source_id": "src_104",
+      "id": "NC_105",
+      "extracted_claim_ids": ["EC_113"],
+      "normalized_text": "The Hu et al. (1999) prospective cohort study of male and female health professionals found no statistically significant association between consuming up to one egg per day and coronary heart disease or stroke risk in the overall non-diabetic study population.",
+      "domain_type": "empirical",
+      "scope": "Applies to the specific health professional cohorts studied (Nurses' Health Study, Health Professionals Follow-up Study). These cohorts are educated, health-conscious populations, which may limit generalizability.",
+      "quantification": null,
+      "hedges": ["not statistically significant", "up to one egg per day", "in the overall non-diabetic population"],
       "position": "neutral",
-      "domain_type": "historical",
       "confidence": {
         "level": "medium",
-        "notes": "Historical reconstruction. The evidential basis for original dietary guidelines is documented in the guidelines' history but specific characterization of 'not based on strong direct evidence' requires verification against the original guidelines documents."
+        "notes": "Large prospective cohort study with long follow-up. The health professional population may not be representative of the general population (see FF_107). Frank B. Hu is a co-author of both src_104 and src_106, creating correlated rather than fully independent findings."
       },
-      "tags": ["historical", "guideline_basis", "evidence_quality"],
-      "failure_flags": []
+      "failure_mode_flag_ids": ["FF_107"],
+      "tags": ["null_finding", "prospective_cohort", "Hu_1999", "health_professionals"],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_106",
+      "extracted_claim_ids": ["EC_103", "EC_106"],
+      "normalized_text": "The cardiovascular health impact of egg consumption may depend substantially on the overall dietary pattern in which eggs are consumed -- including what foods eggs replace or accompany -- rather than on eggs as an isolated food item. Eggs in a plant-rich dietary pattern represent a different nutritional context than eggs in a Western diet high in saturated fat.",
+      "domain_type": "empirical",
+      "scope": "Dietary pattern hypothesis; implies that isolating the egg-specific effect from dietary context may not be feasible with observational methods.",
+      "quantification": null,
+      "hedges": ["may depend substantially on", "rather than in isolation"],
+      "position": "neutral",
+      "confidence": {
+        "level": "medium",
+        "notes": "This is a plausible and widely cited hypothesis but is difficult to test rigorously with observational data. It is supported by mechanistic reasoning but has limited direct experimental evidence."
+      },
+      "failure_mode_flag_ids": [],
+      "tags": ["dietary_pattern", "substitution_hypothesis", "context_dependence"],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_107",
+      "extracted_claim_ids": ["EC_117", "EC_119"],
+      "normalized_text": "Existing meta-analyses of egg consumption and CVD risk show statistically significant heterogeneity across included studies. This heterogeneity means that a single pooled summary effect size from any meta-analysis should be interpreted with caution: it may obscure substantially different effects in different populations or contexts.",
+      "domain_type": "methodological",
+      "scope": "Applies to the body of observational evidence on egg consumption and CVD; does not resolve the direction of any effect.",
+      "quantification": null,
+      "hedges": ["statistically significant heterogeneity", "should be interpreted with caution"],
+      "position": "neutral",
+      "confidence": {
+        "level": "high",
+        "notes": "The presence of heterogeneity is a direct statistical observation from published meta-analyses. Its implications for interpretation are the contested issue."
+      },
+      "failure_mode_flag_ids": ["FF_104"],
+      "tags": ["heterogeneity", "meta_analysis", "methodological_limitation"],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_108",
+      "extracted_claim_ids": ["EC_105", "EC_120"],
+      "normalized_text": "Reported associations between egg consumption and CVD risk vary by population. Differences between US and European cohort studies suggest that geographic location, baseline dietary pattern, or other lifestyle factors may modify any association. This variation is a partial explanation for the heterogeneity noted in NC_107.",
+      "domain_type": "empirical",
+      "scope": "Observed variation in effect estimates across geographic regions; specific populations and the direction of variation require primary source verification.",
+      "quantification": null,
+      "hedges": ["may modify", "suggest"],
+      "position": "neutral",
+      "confidence": {
+        "level": "medium",
+        "notes": "Geographic variation is documented in Rong 2013. Whether this reflects genuine biological effect modification or methodological differences between study populations is unresolved."
+      },
+      "failure_mode_flag_ids": [],
+      "tags": ["geographic_heterogeneity", "population_differences", "effect_modification"],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_109",
+      "extracted_claim_ids": ["EC_111", "EC_115"],
+      "normalized_text": "Observational studies of egg consumption face significant confounding challenges: egg consumption is correlated with multiple other dietary and lifestyle behaviors including smoking, saturated fat intake, and physical activity. Adjusting for many covariates partially addresses this but raises the possibility of over-adjustment, and residual confounding from unmeasured variables cannot be excluded.",
+      "domain_type": "methodological",
+      "scope": "Applies to the entire body of observational evidence on egg consumption and CVD risk.",
+      "quantification": null,
+      "hedges": ["cannot be excluded", "partially addresses"],
+      "position": "neutral",
+      "confidence": {
+        "level": "high",
+        "notes": "Confounding in observational dietary studies is an acknowledged limitation across the field, not specific to egg research. The magnitude of residual confounding is unknown."
+      },
+      "failure_mode_flag_ids": [],
+      "tags": ["confounding", "observational_limitation", "residual_confounding"],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_110",
+      "extracted_claim_ids": ["EC_102", "EC_107", "EC_124", "EC_125"],
+      "normalized_text": "Dietary guidance on egg consumption has shifted substantially over time. The 2015 DGAC report removed the 300 mg/day dietary cholesterol cap, citing insufficient evidence for a specific limit. Current major dietary guidance bodies, including the AHA, emphasize limiting saturated fat and overall dietary pattern quality rather than egg-specific cholesterol limits.",
+      "domain_type": "historical",
+      "scope": "Describes the trajectory of US dietary guidance on dietary cholesterol from approximately 1960s through 2020s.",
+      "quantification": null,
+      "hedges": [],
+      "position": "neutral",
+      "confidence": {
+        "level": "high",
+        "notes": "The 2015 DGAC guidance change is well-documented. The characterization of current AHA guidance requires verification against current AHA position statements."
+      },
+      "failure_mode_flag_ids": ["FF_106"],
+      "tags": ["dietary_guidelines", "cholesterol_cap", "guidance_evolution", "AHA", "DGAC"],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_111",
+      "extracted_claim_ids": ["EC_116"],
+      "normalized_text": "The serum cholesterol response to dietary cholesterol intake is not a simple dose-response relationship; it is modulated by background dietary saturated fat intake. High saturated fat amplifies the serum cholesterol response to dietary cholesterol, while low saturated fat attenuates it. This modulation makes dietary cholesterol a poor isolated predictor of cardiovascular risk.",
+      "domain_type": "empirical",
+      "scope": "Describes a nutrient-nutrient interaction that complicates simple dietary cholesterol attribution; applies to the interpretation of egg studies that attempt to isolate dietary cholesterol effects.",
+      "quantification": null,
+      "hedges": ["modulated by", "makes dietary cholesterol a poor isolated predictor"],
+      "position": "neutral",
+      "confidence": {
+        "level": "medium",
+        "notes": "The dietary fat modulation of cholesterol response is established in feeding studies but the specific magnitude and its application to observational epidemiology is contested."
+      },
+      "failure_mode_flag_ids": [],
+      "tags": ["saturated_fat_interaction", "cholesterol_response", "nutrient_interaction"],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_112",
+      "extracted_claim_ids": ["EC_123"],
+      "normalized_text": "LDL cholesterol as a surrogate endpoint for cardiovascular disease risk is an incomplete proxy in the context of egg consumption: eggs simultaneously raise LDL and HDL cholesterol and contain choline and other bioactive compounds. Attributing egg-associated CVD risk to LDL elevation alone likely oversimplifies the underlying biology.",
+      "domain_type": "methodological",
+      "scope": "Applies specifically to studies that use LDL cholesterol as a mediator or endpoint in assessing egg effects on CVD risk.",
+      "quantification": null,
+      "hedges": ["incomplete proxy", "likely oversimplifies"],
+      "position": "neutral",
+      "confidence": {
+        "level": "medium",
+        "notes": "The dual LDL/HDL effect of egg consumption is documented in feeding studies. The clinical interpretation of this effect on net CVD risk is contested."
+      },
+      "failure_mode_flag_ids": ["FF_108"],
+      "tags": ["LDL_proxy", "HDL", "cholesterol_fractions", "bioactive_compounds"],
+      "needs_source_verification": true
     }
   ]
 }

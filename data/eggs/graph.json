@@ -1,134 +1,449 @@
 {
-  "_note": "DATA STATUS: partial. Relations and assessment are based on the claims as stated. This case remains open.",
+  "_meta": {
+    "schema_version": "2",
+    "case_id": "eggs-cardiovascular-2020",
+    "data_status": "partial",
+    "note": "Relations, cruxes, failure mode flags, and assessment are derived from logical analysis of claims in claims.json and sources in sources.json. All items require review against primary source documents. This case is assessed as unsettled."
+  },
   "relations": [
     {
-      "id": "R101",
-      "from_claim_id": "C101",
-      "to_claim_id": "C103",
-      "type": "supports",
-      "strength": "moderate",
-      "notes": "If dietary cholesterol raises LDL, and LDL elevation increases CVD risk, then higher egg consumption (which raises dietary cholesterol) would be expected to increase CVD risk. The mechanistic chain supports C103."
+      "id": "R_101",
+      "from_id": "NC_101",
+      "to_id": "NC_102",
+      "type": "conflicts_with",
+      "strength": "strong",
+      "notes": "NC_101 (up to one egg/day not associated with CVD in most studies) and NC_102 (3-4 eggs/week associated with 6% higher CVD risk in Zhong 2019) appear contradictory. They are not strictly logically incompatible -- NC_102 uses a lower threshold (3-4/week) and a different population -- but they cannot both be straightforwardly true of the same population. The conflict reflects genuine epistemic disagreement in the literature, not a simple dose confusion.",
+      "needs_source_verification": false
     },
     {
-      "id": "R102",
-      "from_claim_id": "C102",
-      "to_claim_id": "C103",
+      "id": "R_102",
+      "from_id": "NC_104",
+      "to_id": "NC_101",
+      "type": "narrows",
+      "strength": "strong",
+      "notes": "NC_104 (higher risk in diabetic and high-baseline-risk populations) narrows NC_101: the null finding for most healthy adults does not apply to subgroups with diabetes or elevated CVD risk. NC_101 should be understood as conditional on baseline health.",
+      "needs_source_verification": false
+    },
+    {
+      "id": "R_103",
+      "from_id": "NC_104",
+      "to_id": "NC_102",
+      "type": "narrows",
+      "strength": "moderate",
+      "notes": "NC_104 also narrows NC_102: the 6% average CVD risk increase in Zhong 2019 may aggregate a stronger effect in diabetic subgroups and a null or smaller effect in non-diabetic participants. The average effect size may misrepresent both subgroups.",
+      "needs_source_verification": false
+    },
+    {
+      "id": "R_104",
+      "from_id": "NC_109",
+      "to_id": "NC_102",
       "type": "attacks",
       "strength": "moderate",
-      "notes": "The 2013 meta-analysis (C102) directly contradicts the 2019 JAMA study (C103) in direction. Both are prospective observational data; the contradiction is unresolved."
+      "notes": "Observational confounding (NC_109) attacks NC_102 by raising the possibility that the Zhong 2019 positive association is a residual confounding artifact rather than a causal egg effect. Strength is moderate because Zhong 2019 adjusted for many covariates; it is not eliminated by the confounding concern.",
+      "needs_source_verification": false
     },
     {
-      "id": "R103",
-      "from_claim_id": "C105",
-      "to_claim_id": "C106",
-      "type": "qualifies",
-      "strength": "strong",
-      "notes": "C105 (industry-funded studies are biased) qualifies how much weight to give C106, which comes from an industry-funded source. It does not directly attack C106's content but substantially reduces its credibility weight."
+      "id": "R_105",
+      "from_id": "NC_103",
+      "to_id": "NC_102",
+      "type": "supports",
+      "strength": "moderate",
+      "notes": "NC_103 (dietary cholesterol associated with CVD risk) provides a candidate mechanistic pathway supporting the positive association in NC_102. If dietary cholesterol is causally associated with CVD, eggs as a primary dietary cholesterol source would be expected to show a positive association.",
+      "needs_source_verification": false
     },
     {
-      "id": "R104",
-      "from_claim_id": "C104",
-      "to_claim_id": "C101",
+      "id": "R_106",
+      "from_id": "NC_111",
+      "to_id": "NC_103",
       "type": "attacks",
       "strength": "moderate",
-      "notes": "The 2015 dietary guidelines removal of the cholesterol limit (C104) implies that the evidence for C101's clinical significance is weaker than previously believed. Not a direct contradiction but a significant institutional signal."
+      "notes": "NC_111 (saturated fat modulates dietary cholesterol-to-serum-cholesterol response) attacks NC_103 by undermining the simplicity of the dietary cholesterol to CVD pathway. If the serum response to dietary cholesterol is strongly modulated by saturated fat intake, an observational association between dietary cholesterol and CVD may be confounded by saturated fat.",
+      "needs_source_verification": false
     },
     {
-      "id": "R105",
-      "from_claim_id": "C107",
-      "to_claim_id": "C102",
-      "type": "qualifies",
-      "strength": "strong",
-      "notes": "C107 qualifies C102's 'general population' finding by showing it does not hold for diabetic patients. C102 remains valid for its stated scope; C107 restricts it."
+      "id": "R_107",
+      "from_id": "NC_112",
+      "to_id": "NC_103",
+      "type": "attacks",
+      "strength": "moderate",
+      "notes": "NC_112 (LDL as incomplete proxy) attacks NC_103 by questioning the adequacy of LDL-mediated pathways as a full explanation for any egg-to-CVD association. Eggs raise both LDL and HDL, and the net effect on CVD risk via cholesterol fractions may be different from the dietary cholesterol effect implied in NC_103.",
+      "needs_source_verification": false
     },
     {
-      "id": "R106",
-      "from_claim_id": "C108",
-      "to_claim_id": "C104",
+      "id": "R_108",
+      "from_id": "NC_107",
+      "to_id": "NC_101",
+      "type": "narrows",
+      "strength": "moderate",
+      "notes": "Heterogeneity across meta-analyses (NC_107) narrows the confidence with which NC_101 can be asserted: the null finding is not uniformly replicated and the pooled null estimates from meta-analyses obscure substantial between-study variation.",
+      "needs_source_verification": false
+    },
+    {
+      "id": "R_109",
+      "from_id": "NC_107",
+      "to_id": "NC_102",
+      "type": "narrows",
+      "strength": "moderate",
+      "notes": "Heterogeneity (NC_107) equally narrows NC_102: the Zhong 2019 positive association may not be replicated across other cohorts and populations, limiting the generalizability of that specific effect estimate.",
+      "needs_source_verification": false
+    },
+    {
+      "id": "R_110",
+      "from_id": "NC_108",
+      "to_id": "NC_107",
       "type": "supports",
       "strength": "moderate",
-      "notes": "If the original 300mg guideline lacked strong direct evidence, the 2015 removal of that limit (C104) is more epistemically justified. C108 provides historical context that supports C104's normative shift."
+      "notes": "Geographic and population heterogeneity (NC_108) provides a partial explanation for the statistical heterogeneity documented in NC_107. Different populations may have genuinely different dietary contexts and baseline risks, producing different effect estimates across studies.",
+      "needs_source_verification": false
     },
     {
-      "id": "R107",
-      "from_claim_id": "C106",
-      "to_claim_id": "C102",
+      "id": "R_111",
+      "from_id": "NC_106",
+      "to_id": "NC_101",
+      "type": "reframes",
+      "strength": "moderate",
+      "notes": "NC_106 (dietary pattern context) reframes NC_101: the null finding for up to one egg per day may be conditional on the overall dietary context being moderately healthy. NC_101 should be understood as 'one egg per day within a reasonable dietary pattern,' not unconditionally.",
+      "needs_source_verification": false
+    },
+    {
+      "id": "R_112",
+      "from_id": "NC_106",
+      "to_id": "NC_102",
+      "type": "reframes",
+      "strength": "moderate",
+      "notes": "NC_106 reframes NC_102 as well: the Zhong 2019 association may reflect a dietary pattern in which egg consumption co-occurs with other unhealthy dietary behaviors in the US cohort populations studied, rather than an egg-specific causal effect.",
+      "needs_source_verification": false
+    },
+    {
+      "id": "R_113",
+      "from_id": "NC_105",
+      "to_id": "NC_101",
       "type": "supports",
+      "strength": "moderate",
+      "notes": "The Hu 1999 null finding (NC_105) is one of the primary evidence sources for NC_101 and provides prospective cohort corroboration for the null result. Strength is moderate rather than strong because the health professional cohort may not generalize broadly.",
+      "needs_source_verification": false
+    },
+    {
+      "id": "R_114",
+      "from_id": "NC_108",
+      "to_id": "NC_105",
+      "type": "conflicts_with",
       "strength": "weak",
-      "notes": "C106 (no independent CVD risk in healthy adults) is consistent with C102 but comes from a source with documented funding bias. Weak support due to credibility discount."
+      "notes": "Geographic and population heterogeneity (NC_108) is in mild tension with NC_105: if US populations show stronger positive associations (as suggested in some meta-analyses), the null result in Hu 1999 (a US health professional cohort) may require explanation, possibly via the specific characteristics of the health professional population.",
+      "needs_source_verification": false
     },
     {
-      "id": "R108",
-      "from_claim_id": "C103",
-      "to_claim_id": "C104",
+      "id": "R_115",
+      "from_id": "NC_110",
+      "to_id": "NC_101",
+      "type": "reframes",
+      "strength": "weak",
+      "notes": "The evolution of dietary guidance (NC_110) reframes NC_101 in historical context: the shift away from dietary cholesterol caps reflects a shift in scientific consensus toward the null finding. However, this reframing does not strengthen the evidential basis of NC_101 itself.",
+      "needs_source_verification": false
+    },
+    {
+      "id": "R_116",
+      "from_id": "NC_109",
+      "to_id": "NC_101",
       "type": "attacks",
+      "strength": "weak",
+      "notes": "Confounding (NC_109) attacks NC_101 as well as NC_102: observational confounding could suppress a true positive association in studies reporting null results, if egg consumption is correlated with other healthy behaviors in certain cohorts. The attack is weak because the null finding is replicated across many studies with different adjustment strategies.",
+      "needs_source_verification": false
+    },
+    {
+      "id": "R_117",
+      "from_id": "NC_112",
+      "to_id": "NC_103",
+      "type": "narrows",
+      "strength": "strong",
+      "notes": "NC_112 (LDL as incomplete proxy) formally narrows NC_103: any causal pathway from dietary cholesterol to CVD that is claimed to operate primarily via LDL elevation is incomplete given that eggs raise both LDL and HDL. The dietary cholesterol-to-CVD pathway may still exist via other mechanisms, but the LDL-centric version is specifically narrowed.",
+      "needs_source_verification": false
+    },
+    {
+      "id": "R_118",
+      "from_id": "NC_104",
+      "to_id": "NC_108",
+      "type": "depends_on",
       "strength": "moderate",
-      "notes": "The 2019 Zhong et al. finding (C103), published after the 2015 guidelines, suggests the regulatory conclusion in C104 may be premature given emerging evidence."
+      "notes": "The subgroup difference in NC_104 (diabetics at higher risk) partly depends on population heterogeneity in NC_108: the magnitude of the diabetic subgroup effect may vary across geographic and dietary contexts. The finding is consistent but its generalizability inherits the uncertainty in NC_108.",
+      "needs_source_verification": false
+    },
+    {
+      "id": "R_119",
+      "from_id": "NC_103",
+      "to_id": "NC_112",
+      "type": "depends_on",
+      "strength": "moderate",
+      "notes": "NC_103 (dietary cholesterol as mediator of CVD risk) depends implicitly on NC_112's proxy concern being resolvable: if LDL is not an adequate proxy for the net cholesterol effect on CVD risk, then the dietary cholesterol association in NC_103 cannot be cleanly attributed to an LDL-driven pathway, complicating the mediation story.",
+      "needs_source_verification": false
+    },
+    {
+      "id": "R_120",
+      "from_id": "NC_101",
+      "to_id": "NC_105",
+      "type": "generalizes",
+      "strength": "moderate",
+      "notes": "NC_101 (general null finding across multiple large studies) generalizes beyond the specific health professional cohort in NC_105 by aggregating evidence from additional cohorts including the Drouin-Chartier 2020 meta-analysis. The generalization inherits NC_107's heterogeneity caveat.",
+      "needs_source_verification": false
     }
   ],
   "cruxes": [
     {
-      "id": "CX101",
-      "statement": "Does dietary cholesterol from egg consumption independently increase cardiovascular disease risk in healthy (non-diabetic) adults, controlling for saturated fat and other dietary confounders?",
-      "description": "This is the central crux. If independent risk exists, C103 and C101 are well-supported and the 2015 guideline change (C104) was premature. If not, C102 and C106 are well-supported and the guideline change was appropriate. The dispute turns on this question. Confounding by saturated fat intake is a major methodological challenge: eggs are rarely eaten alone.",
-      "dependent_claim_ids": ["C101", "C102", "C103", "C104", "C106"],
+      "id": "CX_101",
+      "statement": "Is the positive association between egg consumption and CVD risk reported in Zhong et al. (2019) a genuine causal effect, or is it primarily an artifact of residual confounding from correlated dietary and lifestyle behaviors?",
+      "description": "If the Zhong 2019 association is causal: NC_102 provides valid evidence of egg-specific CVD risk, and the conflict with NC_101 requires resolution. If the association is primarily confounding: NC_102 loses its evidential weight, NC_101 becomes the more reliable summary, and the case moves toward a partially settled null finding for moderate consumption. Resolving this crux requires randomized or quasi-experimental evidence that observational studies cannot provide.",
+      "dependent_normalized_claim_ids": ["NC_102", "NC_109"],
+      "status": "unresolved",
+      "resolution_notes": "No randomized controlled trial with hard CVD endpoints exists for egg consumption. Mendelian randomization studies on dietary cholesterol offer partial evidence but are not fully conclusive.",
+      "resolution_source_ids": ["src_103"]
+    },
+    {
+      "id": "CX_102",
+      "statement": "Does the overall dietary pattern in which eggs are consumed substantially determine any CVD risk from egg consumption, such that eggs cannot be evaluated in isolation?",
+      "description": "If the dietary pattern is the primary driver: NC_106 is the key insight, egg-specific risk estimates from observational studies are misleading, and dietary guidance should focus on overall pattern rather than egg limits. If eggs have a risk effect independent of dietary pattern: NC_106 is contextually useful but does not negate egg-specific effects. This crux determines whether the correct unit of analysis is the egg or the diet.",
+      "dependent_normalized_claim_ids": ["NC_106", "NC_101", "NC_102"],
+      "status": "unresolved",
+      "resolution_notes": "Controlled dietary substitution studies provide partial evidence. The substitution of eggs for other dietary components (red meat, legumes, etc.) has different associations with CVD, which supports NC_106. But the causal direction is not definitively established.",
+      "resolution_source_ids": []
+    },
+    {
+      "id": "CX_103",
+      "statement": "Does egg consumption pose meaningfully different CVD risk in individuals with type 2 diabetes compared to healthy adults, and if so, by how much?",
+      "description": "If the diabetic subgroup effect is real and clinically significant: NC_104 is a critical qualifier on NC_101, and dietary guidance for diabetic individuals should differ from guidance for the general population. If the interaction is a statistical artifact or is small in magnitude: NC_104 is less important as a qualifier. The consistent cross-study pattern in the diabetic subgroup increases the prior probability that this is a real effect.",
+      "dependent_normalized_claim_ids": ["NC_104", "NC_101"],
       "status": "empirically_underdetermined",
-      "resolution_notes": "Prospective cohort studies disagree. A randomized controlled trial with adequate power and duration would be needed for resolution, but such a trial is not feasible for ethical and practical reasons."
+      "resolution_notes": "The diabetic subgroup finding is consistent across Hu 1999, Rong 2013, and Zhong 2019, but the formal statistical interaction test did not reach significance in at least one of these. A dedicated RCT or larger meta-analysis stratified by diabetes status would be needed to resolve the magnitude.",
+      "resolution_source_ids": ["src_103", "src_104", "src_105"]
     },
     {
-      "id": "CX102",
-      "statement": "Is the effect of eggs on cardiovascular risk meaningfully different between diabetic and non-diabetic populations?",
-      "description": "If effect modification by diabetes status is real and large, then undifferentiated population-level claims about eggs are misleading in both directions. The appropriate policy response would be different recommendations for different groups.",
-      "dependent_claim_ids": ["C102", "C107"],
+      "id": "CX_104",
+      "statement": "Is LDL cholesterol a valid proxy for CVD risk in the specific context of egg consumption, given that eggs raise both LDL and HDL cholesterol and contain multiple bioactive compounds?",
+      "description": "If LDL is a valid proxy in this context: NC_103 (dietary cholesterol association with CVD) can be partially interpreted through an LDL-mediated mechanism, and the DGAC's guidance shift may have moved too far. If LDL is an inadequate proxy: NC_103 loses its strongest proposed mechanism and the dietary cholesterol-to-CVD pathway requires an alternative explanation or remains unmapped.",
+      "dependent_normalized_claim_ids": ["NC_112", "NC_103"],
       "status": "unresolved",
-      "resolution_notes": "The evidence for differential risk in diabetic patients is consistent across several analyses but is derived from subgroup analysis. A dedicated trial in diabetic populations would be needed for strong resolution."
+      "resolution_notes": "Feeding studies confirm that eggs raise both LDL and HDL. The question of whether the net effect on cardiovascular events is neutral, beneficial, or harmful is not resolved by cholesterol measurements alone and requires hard clinical endpoint data.",
+      "resolution_source_ids": ["src_106"]
     },
     {
-      "id": "CX103",
-      "statement": "Do food-frequency questionnaire-based dietary assessments reliably capture egg consumption and dietary cholesterol intake at the precision needed to detect effects of the claimed magnitude?",
-      "description": "Both the pro-risk and anti-risk observational studies rely heavily on self-reported dietary recall. If measurement error is large enough to create systematic bias, it could explain the conflicting findings across studies. This is a methodological crux that, if resolved, would change how much weight to give the entire observational literature.",
-      "dependent_claim_ids": ["C102", "C103", "C107"],
-      "status": "unresolved",
-      "resolution_notes": null
+      "id": "CX_105",
+      "statement": "Does geographic and population heterogeneity in egg consumption studies reflect genuine biological or dietary effect modification, or primarily methodological differences between study designs?",
+      "description": "If it reflects genuine effect modification: NC_108 is a key finding, geographic-specific guidance is warranted, and the case is intrinsically population-specific. If it primarily reflects methodological heterogeneity: the cross-study variation is a measurement problem, not a biological signal, and a well-designed global study might produce a more uniform finding. This crux affects how seriously to weight any single national cohort study.",
+      "dependent_normalized_claim_ids": ["NC_108", "NC_107"],
+      "status": "empirically_underdetermined",
+      "resolution_notes": "Distinguishing biological from methodological heterogeneity requires harmonized cross-national studies with standardized dietary assessment methods, which do not currently exist in this literature.",
+      "resolution_source_ids": ["src_105"]
     }
   ],
-  "missing_evidence": [
+  "failure_mode_flags": [
     {
-      "id": "ME101",
-      "description": "A large randomized controlled trial testing the effect of standardized egg consumption on cardiovascular endpoints in non-diabetic adults. Such a trial would require long follow-up, very large sample sizes, and controlled dietary conditions, making it practically infeasible.",
-      "type": "empirical",
-      "would_affect_ids": ["CX101", "C101", "C102", "C103"],
-      "priority": "critical"
+      "id": "FF_101",
+      "type": "population_heterogeneity",
+      "description": "NC_101 (no association for most healthy adults) and NC_104 (elevated risk in diabetics) demonstrate that a single summary claim for 'egg safety' averages over populations with substantially different risk profiles. The diabetic subgroup, individuals with pre-existing CVD risk, and healthy adults are likely not exchangeable with respect to egg-associated risk.",
+      "applies_to_id": "NC_101",
+      "applies_to_type": "normalized_claim",
+      "severity": "significant",
+      "affects_conclusion": true,
+      "notes": "This flag directly affects the practical conclusion: guidance appropriate for healthy adults is not necessarily appropriate for diabetic individuals. The population heterogeneity makes a single 'eggs are safe' or 'eggs are risky' claim misleading."
     },
     {
-      "id": "ME102",
-      "description": "Biomarker-validated dietary intake data (as opposed to self-reported food frequency questionnaires) in a large prospective cohort that includes egg consumption as a primary variable of interest.",
-      "type": "empirical",
-      "would_affect_ids": ["CX103", "C102", "C103"],
-      "priority": "important"
+      "id": "FF_102",
+      "type": "population_heterogeneity",
+      "description": "NC_102 (Zhong 2019 positive association) is based on six US prospective cohort populations. The US dietary context -- where egg consumption may co-occur with high saturated fat, processed food, and sedentary behavior -- may not represent global populations. The 6% and 8% associations may not generalize to populations with different baseline diets.",
+      "applies_to_id": "NC_102",
+      "applies_to_type": "normalized_claim",
+      "severity": "significant",
+      "affects_conclusion": false,
+      "notes": "The Zhong 2019 finding should be framed as specific to US cohort populations rather than universal. European meta-analyses have shown weaker or null associations."
     },
     {
-      "id": "ME103",
-      "description": "A systematic analysis of how the specific dietary context (eggs consumed with saturated vs. unsaturated fats, in low-carbohydrate vs. high-carbohydrate diets) modifies the association between egg consumption and cardiovascular outcomes.",
-      "type": "empirical",
-      "would_affect_ids": ["C106", "CX101"],
-      "priority": "important"
+      "id": "FF_103",
+      "type": "proxy_measure_problem",
+      "description": "NC_103 uses dietary cholesterol as a proxy for egg-specific risk and relies on food frequency questionnaire measurements as a proxy for actual dietary cholesterol intake. FFQs introduce measurement error, and dietary cholesterol from eggs is not the same exposure as dietary cholesterol from other animal sources. The proxy may be capturing something other than the egg-specific cholesterol effect.",
+      "applies_to_id": "NC_103",
+      "applies_to_type": "normalized_claim",
+      "severity": "significant",
+      "affects_conclusion": false,
+      "notes": "FFQ measurement error is non-differential but will generally attenuate observed associations toward null, meaning the true association (if any) may be somewhat larger than observed."
     },
     {
-      "id": "ME104",
-      "description": "Full disclosure of unpublished industry-funded studies on egg consumption and cardiovascular outcomes. Registration of studies in clinical trial databases suggests unpublished trials may exist.",
-      "type": "legal_institutional",
-      "would_affect_ids": ["C105", "C106"],
-      "priority": "important"
+      "id": "FF_104",
+      "type": "correlated_evidence_treated_as_independent",
+      "description": "Many of the cohort studies included in egg consumption meta-analyses (NC_107) share overlapping participant pools, similar food frequency questionnaire instruments, and overlapping investigator teams. Frank B. Hu is a co-author on both the foundational Hu 1999 (src_104) and the key 2020 Drouin-Chartier study (src_106). Treating these as fully independent confirmations inflates apparent evidential weight.",
+      "applies_to_id": "NC_107",
+      "applies_to_type": "normalized_claim",
+      "severity": "significant",
+      "affects_conclusion": false,
+      "notes": "The Nurses' Health Study and Health Professionals Follow-up Study cohorts appear in multiple papers. The degree of participant overlap between studies included in any given meta-analysis should be checked before treating the studies as independent replications."
+    },
+    {
+      "id": "FF_105",
+      "type": "vague_question",
+      "description": "NC_101's framing of 'up to one egg per day not associated with CVD risk' aggregates several distinct questions: for whom (healthy adults vs. diabetics vs. high-risk populations), at what dose (0.5/day vs. 1/day), with what diet (Mediterranean vs. Western), measuring which outcome (CHD, stroke, total CVD, mortality), and over what follow-up period. The apparent null finding may answer a specific narrow version of the question while leaving other versions unresolved.",
+      "applies_to_id": "NC_101",
+      "applies_to_type": "normalized_claim",
+      "severity": "significant",
+      "affects_conclusion": true,
+      "notes": "This flag is partly addressed by NC_106 (dietary pattern) and NC_104 (subgroup risk), but the vagueness of the overarching 'are eggs safe?' question is a persistent source of public confusion in this literature."
+    },
+    {
+      "id": "FF_106",
+      "type": "temporal_drift",
+      "description": "NC_110 notes that dietary guidance has evolved substantially over decades. Studies from different eras captured egg consumption in different dietary environments: eggs in the 1970s-1980s were consumed alongside a dietary landscape that differed from the present in processed food availability, saturated fat sources, and baseline activity levels. Older cohort studies may not be applicable to current dietary patterns.",
+      "applies_to_id": "NC_110",
+      "applies_to_type": "normalized_claim",
+      "severity": "minor",
+      "affects_conclusion": false,
+      "notes": "Temporal drift is an unavoidable limitation in long-running cohort studies. Its impact on the overall conclusion is uncertain but could explain some heterogeneity between older and newer studies."
+    },
+    {
+      "id": "FF_107",
+      "type": "correlated_evidence_treated_as_independent",
+      "description": "NC_105 (Hu 1999 null finding) draws on the Nurses' Health Study and Health Professionals Follow-up Study -- the same cohorts that underlie several subsequent egg consumption studies including the Drouin-Chartier 2020 analysis (src_106). The null finding in NC_105 and the null finding in NC_101 are not independent if they draw on overlapping participant data.",
+      "applies_to_id": "NC_105",
+      "applies_to_type": "normalized_claim",
+      "severity": "significant",
+      "affects_conclusion": false,
+      "notes": "The issue here is one of participant overlap between studies, not investigator independence per se. Overlap of the same individuals across multiple follow-up analyses inflates apparent independent replication."
+    },
+    {
+      "id": "FF_108",
+      "type": "proxy_measure_problem",
+      "description": "NC_112 directly documents that LDL cholesterol is an incomplete proxy for cardiovascular disease risk in the context of egg consumption. Studies that use LDL response as a primary endpoint for assessing egg health effects will systematically underestimate the complexity of the egg-to-CVD pathway, because the LDL measure does not capture HDL changes, choline effects, or other bioactive compound effects.",
+      "applies_to_id": "NC_112",
+      "applies_to_type": "normalized_claim",
+      "severity": "significant",
+      "affects_conclusion": false,
+      "notes": "This is not just a methodological note -- it directly undermines arguments that use LDL response as the primary reasoning chain for why eggs do or do not pose CVD risk."
+    },
+    {
+      "id": "FF_109",
+      "type": "source_incentive_pressure",
+      "description": "The American Heart Association (src_108) has historically received funding from food industry stakeholders, and its Heart-Check certification program involves fees from food manufacturers. Dietary guidance from organizations with industry funding relationships may be subject to institutional conservatism or slow revision of prior positions. The AHA's egg guidance should be triangulated against evidence-based sources without industry relationships.",
+      "applies_to_id": "src_108",
+      "applies_to_type": "source",
+      "severity": "minor",
+      "affects_conclusion": false,
+      "notes": "The AHA's egg guidance is broadly consistent with the current evidence base and not obviously industry-biased. The flag is present for completeness and because the incentive structure is documented."
+    },
+    {
+      "id": "FF_110",
+      "type": "hidden_assumption",
+      "description": "NC_103 (dietary cholesterol associated with CVD risk) carries the hidden assumption that the dietary cholesterol to CVD risk association is approximately linear in the relevant consumption range and that adequate adjustment for background diet has been achieved. The relationship may be non-linear, saturating at low consumption, or driven by the overall dietary context rather than dietary cholesterol per se.",
+      "applies_to_id": "NC_103",
+      "applies_to_type": "normalized_claim",
+      "severity": "significant",
+      "affects_conclusion": false,
+      "notes": "This hidden assumption is not unique to Zhong 2019; it is inherent to any observational analysis that treats dietary cholesterol as a linear predictor in a regression model."
     }
   ],
   "assessment": {
-    "epistemic_status": "Genuinely unresolved. The observational literature is contradictory at the study level, with large high-quality studies on both sides. The central crux (whether egg consumption independently raises CVD risk, controlling for saturated fat) cannot be resolved by available observational data. Regulatory guidance has shifted, but the scientific question that motivated the original guidance has not been clearly resolved -- it has been deprioritized, not answered. Industry funding is a documented confound in a meaningful portion of the favorable-to-eggs literature.",
-    "resolved": false,
-    "resolution_summary": null,
-    "well_supported_claim_ids": ["C105", "C107", "C108"],
-    "contested_claim_ids": ["C101", "C102", "C103", "C104", "C106"],
-    "failure_modes_observed": ["funding_bias", "cherry_picking", "overgeneralization"],
-    "notes": "The regulatory history of this dispute is as important as the scientific one. The 300mg/day limit was set before strong epidemiological evidence existed; its removal in 2015 was a reasonable updating of uncertain guidance, but was widely reported as a vindication of eggs that the evidence does not fully support. This is a case where regulatory communication and scientific evidence tracking diverged."
-  }
+    "status": "unsettled",
+    "settled_direction": null,
+    "epistemic_status_summary": "The epistemic state of egg consumption and cardiovascular disease risk is genuinely unsettled, reflecting methodological limitations of observational nutrition science rather than simple disagreement between studies. Three distinct sub-questions have different epistemic statuses: (1) Eggs in moderation for healthy adults: the weight of evidence from large prospective cohorts and meta-analyses supports no significant association with CVD risk, but heterogeneity, confounding concerns, and correlated evidence bases prevent strong confidence. (2) Eggs in diabetic or high-baseline-risk populations: consistent evidence across multiple studies suggests elevated risk; this sub-claim is better supported than the general null finding. (3) Eggs as part of an overall dietary pattern: the framing with the strongest mechanistic support is that overall diet quality matters more than eggs specifically, but this is difficult to test rigorously. No randomized controlled trial with hard CVD endpoints exists for egg consumption. The case cannot be settled without experimental evidence that observational methods cannot provide.",
+    "key_crux_ids": ["CX_101", "CX_102", "CX_104"],
+    "weak_link_ids": ["NC_103", "NC_107"],
+    "what_would_update": [
+      {
+        "scenario": "Publication of a large, well-powered randomized controlled trial on egg consumption with hard cardiovascular endpoints (myocardial infarction, stroke, cardiovascular mortality) and at least 5 years of follow-up",
+        "would_affect_ids": ["NC_101", "NC_102", "CX_101"],
+        "direction": "resolve",
+        "magnitude": "decisive"
+      },
+      {
+        "scenario": "Publication of a Mendelian randomization analysis isolating the causal effect of dietary cholesterol on CVD risk, using genetic variants strongly associated with dietary cholesterol intake as instrumental variables",
+        "would_affect_ids": ["NC_103", "CX_101", "CX_104"],
+        "direction": "resolve",
+        "magnitude": "significant"
+      },
+      {
+        "scenario": "A dedicated large-scale RCT or rigorous prospective study in diabetic populations comparing egg consumption to a controlled dietary arm, with CVD events as endpoints",
+        "would_affect_ids": ["NC_104", "CX_103"],
+        "direction": "resolve",
+        "magnitude": "significant"
+      },
+      {
+        "scenario": "A comprehensive re-analysis of the Zhong 2019 pooled cohort data using causal inference methods (e.g., propensity score weighting, negative control outcomes) that substantially reduces or eliminates the positive association",
+        "would_affect_ids": ["NC_102", "CX_101"],
+        "direction": "weaken",
+        "magnitude": "significant"
+      }
+    ],
+    "well_supported_claim_ids": ["NC_104", "NC_107", "NC_109", "NC_110"],
+    "contested_claim_ids": ["NC_101", "NC_102", "NC_103"],
+    "dominant_failure_modes": ["population_heterogeneity", "correlated_evidence_treated_as_independent", "vague_question", "proxy_measure_problem"],
+    "notes": "The practical guidance implication is not a function of settling this epistemic case -- uncertainty at the research level does not require uncertainty at the individual guidance level. The available evidence supports: (1) moderate egg consumption (up to one per day) is unlikely to substantially increase CVD risk in healthy adults without diabetes; (2) individuals with diabetes or elevated CVD risk should exercise more caution; (3) overall dietary pattern matters more than egg-specific restriction. These conclusions follow from the current evidence even while the specific causal questions remain unresolved. This document is not medical advice."
+  },
+  "missing_evidence": [
+    {
+      "id": "ME_101",
+      "description": "A large randomized controlled trial with hard cardiovascular endpoints (myocardial infarction, stroke, CV mortality) testing egg consumption against a controlled comparator diet, with at least 5-10 years of follow-up and adequate statistical power.",
+      "type": "empirical",
+      "would_affect_ids": ["NC_101", "NC_102", "CX_101"],
+      "priority": "critical",
+      "reason_absent": "Dietary RCTs with hard clinical endpoints are extremely expensive and logistically difficult over the required timescales. Egg producers and independent funders have not prioritized this design. Short-term feeding studies measure biomarkers, not clinical events.",
+      "feasibility": "feasible"
+    },
+    {
+      "id": "ME_102",
+      "description": "A harmonized cross-national cohort study or meta-analysis of individual participant data, with standardized dietary assessment methods across populations, designed to resolve the geographic heterogeneity observed in NC_108.",
+      "type": "empirical",
+      "would_affect_ids": ["NC_107", "NC_108", "CX_105"],
+      "priority": "important",
+      "reason_absent": "Harmonizing dietary assessment across national cohorts is methodologically challenging; existing cohorts used different FFQ instruments, food composition databases, and dietary patterns.",
+      "feasibility": "feasible"
+    },
+    {
+      "id": "ME_103",
+      "description": "A dedicated prospective study or RCT in individuals with type 2 diabetes specifically examining egg consumption and incident cardiovascular events, providing direct evidence for or against the diabetic subgroup risk in NC_104.",
+      "type": "empirical",
+      "would_affect_ids": ["NC_104", "CX_103"],
+      "priority": "important",
+      "reason_absent": "Most existing studies include diabetics only as a subgroup in larger general-population analyses. Dedicated diabetic cohort studies on egg consumption are sparse.",
+      "feasibility": "feasible"
+    },
+    {
+      "id": "ME_104",
+      "description": "Mendelian randomization studies using genetic variants strongly associated with dietary cholesterol intake as instrumental variables, to estimate the causal effect of dietary cholesterol on CVD risk independent of confounding by dietary pattern.",
+      "type": "empirical",
+      "would_affect_ids": ["NC_103", "CX_101", "CX_104"],
+      "priority": "important",
+      "reason_absent": "Strong genetic instruments for dietary cholesterol intake specifically (as opposed to serum cholesterol or LDL, for which good instruments exist) are limited. Diet-related genetic studies face instrument validity challenges.",
+      "feasibility": "feasible"
+    }
+  ],
+  "audit_notes": [
+    {
+      "id": "AN_101",
+      "type": "llm_artifact",
+      "description": "All extracted claims in claims.json are paraphrases constructed with LLM assistance from published source metadata. No verbatim text was extracted from primary source documents. Every EC is marked needs_source_verification: true. The normalized claims, relations, cruxes, flags, and assessment were constructed with LLM assistance and should be treated as working drafts pending human review with access to primary sources.",
+      "applies_to_ids": ["EC_101", "EC_102", "EC_103", "EC_104", "EC_105", "EC_106", "EC_107", "EC_108", "EC_109", "EC_110", "EC_111", "EC_112", "EC_113", "EC_114", "EC_115", "EC_116", "EC_117", "EC_118", "EC_119", "EC_120", "EC_121", "EC_122", "EC_123", "EC_124", "EC_125"],
+      "severity": "significant",
+      "author": null,
+      "date": "2026-06-04",
+      "status": "open",
+      "resolution": null
+    },
+    {
+      "id": "AN_102",
+      "type": "normalization_concern",
+      "description": "NC_101 and NC_102 are in genuine tension rather than cleanly independent claims. The apparent dose difference (one egg per day in NC_101 vs. three to four per week in NC_102) means they are not strictly contradictory, but the populations, methods, and results are different enough that they represent a real conflict in the literature rather than a dose-clarification. The conflict should not be papered over by a dose framing alone.",
+      "applies_to_ids": ["NC_101", "NC_102", "R_101"],
+      "severity": "significant",
+      "author": null,
+      "date": "2026-06-04",
+      "status": "open",
+      "resolution": null
+    },
+    {
+      "id": "AN_103",
+      "type": "source_gap",
+      "description": "No source covers the dietary substitution literature directly (what happens to CVD risk when eggs replace red meat, processed food, or plant protein). This literature is relevant to CX_102 and NC_106 but is not represented in the current source set. Adding a substitution-analysis source would strengthen the dietary pattern sub-claim.",
+      "applies_to_ids": ["NC_106", "CX_102"],
+      "severity": "minor",
+      "author": null,
+      "date": "2026-06-04",
+      "status": "open",
+      "resolution": null
+    }
+  ]
 }
