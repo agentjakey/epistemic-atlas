@@ -8,9 +8,10 @@ into structured, queryable knowledge bases.
 ## What This Is
 
 Epistemic Atlas is a submission to the FLF Epistemic Case Study Competition. It proposes
-a six-stage human-AI workflow for taking messy, contested, multi-source disputes and
-encoding them as structured knowledge graphs that preserve provenance, track epistemic
-failure modes, surface cruxes, and flag missing evidence.
+a human-AI workflow for taking messy, contested, multi-source disputes and encoding them
+as structured knowledge graphs that preserve provenance, track epistemic failure modes,
+surface cruxes, and flag missing evidence. The workflow has a default order but is meant
+to be revisited rather than run once start to finish.
 
 The goal is not to summarize debates. It is to make their epistemic content explicit
 and reusable: who said what, what depends on what, where the pivotal questions are,
@@ -28,10 +29,10 @@ treated as authoritative analyses.
 ```
 docs/               Contest writeup, methodology, limitations, judging alignment
 schema/             JSON Schema specification and worked examples
-prompts/            Six-stage prompt pipeline for building an atlas entry
+prompts/            Prompt templates for the workflow stages
 data/               Two partially verified worked examples (LHC black holes, dietary eggs)
 app/                Next.js static prototype for exploring case studies
-lib/                TypeScript types for schema v2
+lib/                TypeScript types for schema v3
 ```
 
 ## Case Studies
@@ -65,24 +66,40 @@ required after build.
 
 ## Schema
 
-The `schema/epistemic-atlas.schema.json` file defines the canonical structure (JSON Schema
-Draft 2020-12). Each atlas entry encodes:
+The `schema/epistemic-atlas.schema.json` file defines the canonical structure (schema v3,
+JSON Schema Draft 2020-12). An atlas entry is organized into two layers.
+
+The core knowledge layer is the reusable, source-grounded structure:
 
 - **Sources:** full provenance, credibility, and conflict of interest
 - **Extracted claims:** verbatim or near-verbatim text from each source
 - **Normalized claims:** unambiguous, scope-explicit propositions with position and confidence
-- **Relations:** typed directed edges (supports, attacks, depends_on, reframes, narrows,
-  generalizes, duplicates, conflicts_with, evidence_for, evidence_against)
+- **Relations:** directed edges grouped into five families (supports, opposes, depends_on,
+  contextualizes, equivalent), with optional `subtype` and `tags` for nuance and a `basis`
+  field recording how each link is grounded (asserted in a source, asserted by a later
+  source, inferred across sources, analyst inferred, or unclear)
+
+The assessment layer (`assessment_layer`) holds the more interpretive material, which a
+later analyst can revise or contest without changing the core structure:
+
 - **Cruxes:** pivotal questions with resolution status and dependency links
 - **Failure mode flags:** claim-level and source-level epistemic failure modes
-- **Assessment:** overall status, weak links, and explicit update conditions
 - **Missing evidence:** what evidence would change the assessment and why it does not exist
+- **Assessments:** one or more overall assessments, each with status, weak links, sensitivity,
+  and explicit update conditions
+- **Reviews:** a place for future collaborator, adversarial, or domain-expert review (currently empty)
 - **Audit notes:** open issues from the adversarial review step
 
-## Six-Stage Pipeline
+The earlier v2 schema used ten fixed relation types and split logical "supports" from
+empirical "evidence_for." v3 drops that split: real evidential support usually blends
+empirical observation, theoretical assumption, source interpretation, and later analyst
+judgment, so the schema records the broad family and pushes nuance into `subtype`, `tags`,
+`basis`, and free-text notes instead of forcing a hard choice.
 
-The `prompts/` directory contains the full prompt pipeline for building an atlas entry
-from raw sources:
+## Workflow
+
+The `prompts/` directory contains prompt templates for building an atlas entry from raw
+sources. The default order is:
 
 1. Scope the question
 2. Source ingestion and provenance capture
@@ -91,7 +108,12 @@ from raw sources:
 5. Relation mapping, crux identification, failure mode flagging, and assessment
 6. Adversarial review and audit
 
-See `docs/methodology.md` for the full pipeline description.
+This order is a starting path, not a one-way pipeline. A new crux, a missing-evidence item,
+an audit note, or a newly found source can send you back to rescope, reingest, re-extract,
+renormalize, remap relations, or reassess. The schema records these triggers on cruxes,
+missing-evidence items, and audit notes, though the orchestration around them is still early.
+
+See `docs/methodology.md` for the full description.
 
 ## Prototype Status
 

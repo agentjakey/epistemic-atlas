@@ -2,9 +2,13 @@
 
 ## Overview
 
-Building an Epistemic Atlas entry from raw sources follows a six-step pipeline. Steps 1-5 are constructive: they produce the structured artifact. Step 6 is adversarial: it tries to break what the earlier steps built.
+Building an Epistemic Atlas entry from raw sources follows a default order of six steps. Steps 1-5 are constructive: they produce the structured artifact. Step 6 is adversarial: it tries to break what the earlier steps built.
 
-Each step has a corresponding prompt in the `prompts/` directory. The pipeline is designed to be executed with human oversight at each stage, though it can be partially automated with LLM assistance.
+This default order is a starting path, not a strict one-way pipeline. The work is meant to be revisited: a new crux, a missing-evidence item, an audit note, or a newly found source can send you back to rescope, reingest, re-extract, renormalize, remap relations, or reassess. The schema records these as trigger fields on cruxes, missing-evidence items, and audit notes, so a later analyst can see what an entry is asking to have revisited. The orchestration around these triggers is still early; treat them as hand-set pointers rather than an automated engine.
+
+The output is organized into two layers. A core knowledge layer (sources, extracted claims, normalized claims, relations) is meant to be relatively reusable and source-grounded. A separate assessment layer (cruxes, failure mode flags, missing evidence, assessments, reviews, audit notes) is more interpretive and contestable, so a later analyst can reuse the core structure while disagreeing about the assessment.
+
+Each step has a corresponding prompt in the `prompts/` directory. The workflow is designed to be executed with human oversight at each stage, though parts can be supported with LLM assistance.
 
 ---
 
@@ -79,22 +83,31 @@ Normalized: "Consumption of eggs raises serum LDL-cholesterol in normocholestero
 
 ## Step 4: Relation Mapping
 
-**Goal:** Identify and record logical and evidential relationships between claims.
+**Goal:** Identify and record logical and evidential relationships between normalized claims.
 
-Relation types:
-- **supports:** Claim A provides evidence or logical justification for Claim B.
-- **attacks:** Claim A provides evidence against or logical contradiction with Claim B.
+Relations use five broad families rather than a long list of fixed types:
+- **supports:** Claim A raises the credibility of Claim B, whether by logical justification or by empirical evidence.
+- **opposes:** Claim A lowers the credibility of Claim B or stands in tension with it.
 - **depends_on:** Claim A is only meaningful or true if Claim B is true.
-- **qualifies:** Claim A narrows or restricts the scope of Claim B without directly contradicting it.
-- **implies:** Claim A logically entails Claim B.
-- **is_crux_of:** Claim A's truth-value is a crux for Claim B (see Step 5).
+- **contextualizes:** Claim A reframes, narrows, or generalizes Claim B without simply supporting or opposing it.
+- **equivalent:** Claim A and Claim B make the same proposition, usually from different sources.
 
-Each relation has a strength: strong / moderate / weak.
+The schema intentionally does not split logical "support" from empirical "evidence for." Real evidential support often combines empirical observation, theoretical assumption, source interpretation, and later analyst judgment, so finer distinctions are carried in an optional `subtype` (for example "empirical", "narrow", "reframe") and free-text `tags` rather than in the family itself.
+
+Each relation also records a `basis`, which states how the link is grounded:
+- **asserted_in_source:** a single source states the relation directly.
+- **asserted_by_later_source:** a later source explicitly draws the connection between earlier claims.
+- **inferred_across_sources:** the relation is synthesized by comparing several sources, none of which states it outright.
+- **analyst_inferred:** the relation is the annotator's own logical inference, not stated by any source.
+- **unclear:** the grounding has not been determined.
+
+Each relation also has a strength: strong / moderate / weak.
 
 **Mapping rules:**
 1. Only record relations between claims in the atlas, not between claims and external facts.
 2. A relation is "strong" if the logical or evidential connection is direct and well-established. "Moderate" if plausible but not certain. "Weak" if speculative or indirect.
-3. Do not infer relations that are not present in the source material or analytically obvious.
+3. Set the `basis` honestly. If you are inferring a link the sources did not draw, say so with analyst_inferred or inferred_across_sources rather than implying a source made the connection.
+4. Do not invent relations that are not present in the source material or analytically defensible.
 
 ---
 
@@ -105,10 +118,13 @@ Each relation has a strength: strong / moderate / weak.
 **Crux identification:**
 A crux is a claim (or question) such that: if it were resolved one way, one major position in the dispute would be significantly weakened; if resolved another way, the opposing position would be significantly weakened. Not every contested claim is a crux. A crux is specifically a load-bearing claim.
 
+Cruxes, missing evidence, failure mode flags, and the assessment all live in the assessment layer, separate from the core relation graph.
+
 For each crux, record:
 - A clear statement of the crux
 - Which claims depend on it
-- Its current resolution status (unresolved / resolved_true / resolved_false / empirically_underdetermined)
+- Its current resolution status (unresolved / resolved_true / resolved_false / empirically_underdetermined / theoretically_underdetermined)
+- Optionally, any workflow triggers it implies (for example, an unresolved crux can trigger reassessment once relevant evidence appears)
 
 **Missing evidence identification:**
 Missing evidence is not "evidence that the other side has not provided." It is evidence that does not currently exist in any accessible form and whose existence would change the epistemic status of at least one crux.

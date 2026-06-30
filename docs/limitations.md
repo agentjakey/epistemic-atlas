@@ -38,13 +38,23 @@ This document is an honest account of what Epistemic Atlas does not do well, whe
 
 ## Structural Limitations
 
-**The schema is a graph, not a formal logic.** The relation types (supports, attacks, etc.) are not formally defined in terms of a logic. This makes the atlas more accessible but means that consistency checks are informal. There is no automated way to detect, for example, that Claim A supports Claim B while Claim C attacks Claim A in a way that transitively weakens B.
+**The schema is a graph, not a formal logic.** The relation families (supports, opposes, etc.) are not formally defined in terms of a logic. This makes the atlas more accessible but means that consistency checks are informal. There is no automated way to detect, for example, that Claim A supports Claim B while Claim C opposes Claim A in a way that transitively weakens B.
 
 **Missing evidence is underconstrained.** The "missing evidence" category is useful but hard to scope. Everything is technically missing evidence for something. The schema leaves it to the annotator to decide what missing evidence is significant enough to record, which introduces variability.
 
 **No uncertainty quantification.** The confidence levels (high/medium/low/speculative) are ordinal categories, not probability estimates. They capture the rough epistemic status of a claim but do not support formal uncertainty propagation across the graph.
 
 ---
+
+## v3 Status and Scope
+
+These are honest caveats about how far the current v3 implementation actually goes, as opposed to what the schema makes possible.
+
+**All active relations are analyst-inferred and unverified.** Every one of the 40 relations in the active worked examples (20 in LHC, 20 in eggs) currently carries basis inferred_across_sources and needs_source_verification: true. They reflect analyst-level logical analysis of the claims, not connections that a source explicitly drew. This is a deliberately conservative default. A later domain-review pass could promote specific relations to asserted_in_source where a source makes the link directly, but that work has not been done, and the relation graph should be read as a working structure rather than a verified one.
+
+**Multi-user and adversarial support is schema-level only.** The assessment layer can hold multiple assessments and a list of reviews, which is what would let independent or adversarial analysts critique the same graph without overwriting each other. In the current data both cases carry a single assessment and an empty reviews array. The capability is documented and represented in the schema; it has not been exercised, and there is no automated reconciliation when assessments disagree.
+
+**Trigger-based orchestration is a design affordance, not an automated workflow.** Cruxes, missing-evidence items, and audit notes can carry workflow triggers (rescope, reingest, reextract, renormalize, remap_relations, reassess, re_review). These are hand-set pointers that record what an entry is asking to have revisited. No tooling currently reads these triggers and acts on them; the living, nonlinear workflow is supported by the data model but is still driven by a person.
 
 ## What This System Should Not Be Used For
 

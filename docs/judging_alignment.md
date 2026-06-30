@@ -10,9 +10,13 @@ studies, and an honest statement of where the answer falls short.
 
 **How addressed.** The interactive prototype lets a reader navigate the epistemic structure
 of a dispute rather than read it sequentially. Clicking a normalized claim shows its
-provenance (which source said what, verbatim), its support and attack relations to other
-claims, which cruxes it is implicated in, and what scenarios would update its status. This
-is not available from any prose reading of the primary literature.
+provenance (which source said what, verbatim), its supporting and opposing relations to other
+claims, which cruxes it is implicated in, and what scenarios would update its status. The
+schema also keeps four things visibly separate: what a source said (extracted claims), how it
+was standardized (normalized claims), how claims connect (relations), and the analyst's
+judgment about all of it (the assessment layer). A reader can follow the source-grounded
+structure without being forced to accept the assessment built on top of it. This is not
+available from any prose reading of the primary literature.
 
 **Concrete example.** In the LHC case, a reader following the safety argument will find
 that the LSAG 2008 conclusion (NC_012) carries two failure mode flags (correlated evidence
@@ -31,10 +35,13 @@ in the current entries.
 
 ## 2. Does it generalize?
 
-**How addressed.** The schema is domain-agnostic. The same ten relation types, twelve
-failure mode types, and six-stage pipeline were applied to theoretical physics (LHC) and
-observational epidemiology (eggs) without any case-specific extensions. The schema version
-is tracked in each file's _meta field; a third case would use schema v2 without modification.
+**How addressed.** The schema is domain-agnostic. The same five relation families, twelve
+failure mode types, and default workflow were applied to theoretical physics (LHC) and
+observational epidemiology (eggs) without any case-specific extensions. The v3 move from ten
+fixed relation types to five broad families plus optional subtype and tags makes the schema
+less constrictive across domains: nuance that does not fit a family goes into free text rather
+than forcing a new built-in type. The schema version is tracked in each file's _meta field; a
+third case would use schema v3 without modification.
 
 **Concrete example.** The failure mode correlated_evidence_treated_as_independent appears
 in both cases. In the LHC case it flags that the 2003 CERN report and the 2008 LSAG report
@@ -56,8 +63,12 @@ the interpretation of statutory language is the crux. These categories were not 
 claim extraction, relation mapping) are the most automatable; they involve structured
 transformation of source text into schema-conformant objects with relatively clear
 correctness criteria. These are the steps that benefit most directly from better language
-models. Steps 1, 4, 6, 7, and 8 (scoping, normalization, crux identification, failure mode
-flagging, assessment) require judgment that scales with human expertise rather than compute.
+models. Scoping, normalization, crux identification, failure mode flagging, and assessment
+require judgment that scales with human expertise rather than compute. The schema also
+records workflow triggers on cruxes, missing-evidence items, and audit notes, which gives a
+more capable agent explicit signals about what to revisit rather than assuming the work is a
+single linear pass. This is a design affordance for iterative loops, not a claim that the
+loops are automated yet.
 
 **Concrete example.** The extracted claims in both case studies were generated with LLM
 assistance in step 3. A more capable model with better instruction following and less
@@ -79,10 +90,13 @@ requires a reviewer.
 
 **How addressed.** The JSON output is static, versioned, and format-stable. Multiple
 people can extend the same entry by adding sources, claims, and relations without
-rebuilding from scratch. The update_conditions field in the assessment object explicitly
-states what new evidence would change which claims. The schema supports a team working
-from the same data with a shared vocabulary. The AuditNote type records open issues so
-reviewers who come later know what the prior reviewer flagged.
+rebuilding from scratch. The what_would_update field in each assessment explicitly states
+what new evidence would change which claims. Because the core knowledge layer is kept
+separate from the assessment layer, a later investigator can add critique without
+overwriting the original graph: the assessment layer holds an assessments array (more than
+one assessment can sit over the same structure) and a reviews array reserved for
+collaborator, adversarial, or domain-expert review. The AuditNote type records open issues
+so reviewers who come later know what the prior reviewer flagged.
 
 **Concrete example.** If a new prospective study on eggs and CVD is published, a second
 researcher can add it to data/eggs/sources.json and data/eggs/claims.json, record new
@@ -90,10 +104,12 @@ relations in graph.json, and update the assessment if the crux status changes. T
 encoding is not discarded; it is extended. This is not how any current epistemic artifact
 (summary, meta-analysis, Wikipedia article) is maintained.
 
-**Limitation.** The schema has no formal conflict resolution mechanism. If two annotators
-produce different normalizations of the same claim, there is no automated way to detect
-or reconcile the conflict. The current prototype supports one encoding per case; a
-multi-annotator workflow requires tooling that is not yet built.
+**Limitation.** The multi-annotator support is schema-level only for now. The assessments
+and reviews arrays exist and are documented, but both worked examples currently carry a
+single assessment and an empty reviews array, so the multi-perspective workflow has not
+actually been exercised. The schema also has no formal conflict resolution mechanism: if two
+annotators produce different normalizations of the same claim, there is no automated way to
+detect or reconcile the difference. The arrays make disagreement representable, not resolved.
 
 ---
 
@@ -103,7 +119,11 @@ multi-annotator workflow requires tooling that is not yet built.
 source object carries author (string or array), institution, date, publication venue, DOI,
 URL, retrieval date, and page range. Each extracted claim records its source ID and
 location within the source. The conflict_of_interest field is populated where relevant.
-Missing provenance fields are set to null, not omitted.
+Missing provenance fields are set to null, not omitted. Relations carry the same kind of
+honesty: each one records a basis field stating whether the link was asserted in a source,
+asserted by a later source, inferred across sources, or inferred by the analyst. This keeps
+the difference between what a source said and what an analyst concluded visible in the data
+rather than hidden inside a confident-looking edge.
 
 **Concrete example.** The Wagner-Sancho legal complaint (src_008, LHC case) is a
 low-credibility source with a non-scientific basis. It is retained in full with credibility
@@ -116,8 +136,11 @@ omits the complaint or treats it as equivalent to the CERN safety report would l
 **Limitation.** All 50 extracted claims across both case studies are marked
 needs_source_verification: true. The specific effect sizes, statistical values, and
 attribution claims in the extracted claims were generated with LLM assistance and have
-not been checked against primary source documents. The provenance chain is structurally
-sound; its content is not yet fully verified.
+not been checked against primary source documents. All 40 relations (20 per case) are
+likewise marked needs_source_verification: true and carry basis inferred_across_sources,
+which is a deliberately conservative default: they reflect analyst-level analysis of the
+claims, not links a source explicitly drew. The provenance chain is structurally sound; its
+content is not yet fully verified.
 
 ---
 
@@ -155,8 +178,11 @@ meant to be informative quickly, with depth available on demand.
 a paper trail: a reviewer can compare any normalized claim against its extracted claims
 and source text to detect drift. The AuditNote type includes an asymmetric_flagging
 subtype specifically to record cases where failure mode flags were applied unevenly across
-positions. The adversarial review step (step 9 of the pipeline) is a dedicated pass to
-catch normalization errors, missing cruxes, and flag asymmetry.
+positions. The adversarial audit step is a dedicated pass to catch normalization errors,
+missing cruxes, and flag asymmetry. v3 adds schema-level support for more than one
+assessment over the same graph and a reviews array for collaborator, adversarial, or
+domain-expert review, so a second analyst can record a competing assessment without
+overwriting the first.
 
 **Concrete example.** AuditNote AN_001 in the LHC case records that the entire entry is
 LLM-assisted and that every source reference requires verification. This is an open audit
@@ -169,7 +195,10 @@ identify cruxes that happen to favor a desired assessment, or write what_would_u
 scenarios that are technically possible but practically implausible. The schema makes these
 moves detectable by a careful reviewer but does not prevent them. A multi-annotator
 inter-rater study would provide the only strong evidence that the encoding is not
-systematically biased, and no such study has been conducted.
+systematically biased, and no such study has been conducted. The multiple-assessment and
+review support is present in the schema but not yet exercised: both worked examples carry a
+single assessment and an empty reviews array, left empty deliberately rather than filled
+with placeholder critique.
 
 ---
 
@@ -177,9 +206,9 @@ systematically biased, and no such study has been conducted.
 
 **How addressed.** The data is static JSON in data/lhc/ and data/eggs/, readable without
 running any code. The schema is published in schema/epistemic-atlas.schema.json with a
-plain-English companion guide in schema/GUIDE.md. The TypeScript types in lib/types_v2.ts
+plain-English companion guide in schema/GUIDE.md. The TypeScript types in lib/types_v3.ts
 serve as an executable specification. A judge who wants to build a third case study has
-a schema, a type system, a six-stage pipeline with prompt templates, and two worked
+a schema, a type system, a default workflow with prompt templates, and two worked
 examples to reference.
 
 **Concrete example.** The schema/examples/ directory contains two small valid JSON files

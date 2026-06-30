@@ -4,9 +4,21 @@
 **Submission date:** June 21, 2026
 **Project title:** Epistemic Atlas: A Human-AI Workflow for Building Trustworthy Claim Graphs from Messy Disputes
 **Prototype:** Next.js interactive prototype with two partially verified worked examples
-**Schema version:** 2 (JSON Schema Draft 2020-12)
+**Schema version:** 2 (JSON Schema Draft 2020-12), at the time of this early feedback
 
 ---
+
+> **Note (later revision):** This document is a snapshot of the early-feedback submission as
+> sent on June 21, 2026, and is kept as a record of that state. The schema has since been
+> revised to v3 in response to reviewer feedback: ten fixed relation types were replaced by
+> five broad relation families with optional subtype, tags, and a basis field; the hard split
+> between "supports" and "evidence_for" was removed; cruxes, failure mode flags, missing
+> evidence, assessments, reviews, and audit notes were grouped into a separate assessment
+> layer; assessment became an assessments array with a reviews array for future
+> multi-user or adversarial review; and the workflow is framed as a living, nonlinear loop
+> with trigger fields. References below to "10 relation types," "Schema v2," or a strict
+> "six-stage pipeline" describe the earlier state. See docs/writeup.md and schema/GUIDE.md for
+> the current v3 description.
 
 ## Overview
 

@@ -147,7 +147,7 @@ rather than epistemic weight.
 conditional, or methodological relative to the main dispute. The assessment's
 well_supported_claim_ids and contested_claim_ids fields provide explicit top-level
 guidance about which claims have the strongest support, independently of how many claims
-encode each position. The adversarial review step (step 9) specifically checks for
+encode each position. The adversarial audit step specifically checks for
 asymmetric flagging and asymmetric claim granularity.
 
 **Where it is insufficient.** There is no automated check for claim count by position.
@@ -249,6 +249,16 @@ look clean, make clean-looking data signal its verified status. An entry earns v
 clarity by completing verification, not by existing.
 
 ---
+
+## v3 Status Note
+
+This audit was first written against the v2 schema. The move to v3 (fewer relation families, a basis field on relations, and a separation between the core knowledge layer and the assessment layer) changes some of the surface above but not the underlying honesty problems. Three points are worth stating directly.
+
+All 40 relations in the active worked examples are currently recorded with basis inferred_across_sources and needs_source_verification: true. They are analyst-level inferences across the claims, not links any source explicitly drew. The basis field makes that visible in the data, which is an improvement over v2, but it does not make the relations correct. They still require source verification.
+
+The multi-user and adversarial support added in v3 is schema-level only so far. The assessment layer can hold several assessments and a list of reviews, which is the mechanism that would let an independent reviewer record a competing read without overwriting the original. Both cases currently carry one assessment and an empty reviews array. The capability exists; it has not been used, and an empty array is the honest state rather than a fabricated second opinion.
+
+The workflow triggers on cruxes, missing-evidence items, and audit notes are pointers a person sets by hand. Nothing reads them and acts automatically. The living workflow is a design affordance in the data model, not an automated system.
 
 ## Summary
 
