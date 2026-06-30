@@ -303,7 +303,7 @@
         "family": {
           "type": "string",
           "enum": ["supports", "opposes", "depends_on", "contextualizes", "equivalent"],
-          "description": "supports: A raises the credibility of B, whether by logical justification or empirical evidence (absorbs the v2 supports and evidence_for types). opposes: A lowers the credibility of B or stands in tension with it (absorbs v2 attacks, evidence_against, and conflicts_with). depends_on: A is only meaningful or true if B is true. contextualizes: A changes the scope or interpretation of B without simply supporting or opposing it (absorbs v2 reframes, narrows, and generalizes). equivalent: A and B assert the same proposition, typically from different sources (absorbs v2 duplicates)."
+          "description": "supports: A raises the credibility of B, whether by logical justification or empirical evidence. opposes: A lowers the credibility of B or stands in tension with it, covering contradiction, counter-evidence, and mutual tension. depends_on: A is only meaningful or true if B is true. contextualizes: A changes the scope or interpretation of B without simply supporting or opposing it, covering narrowing, generalizing, and reframing. equivalent: A and B assert the same proposition, typically from different sources."
         },
         "subtype": {
           "type": ["string", "null"],

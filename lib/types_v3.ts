@@ -4,8 +4,8 @@
 // v3 separates the reusable knowledge structure (sources, extracted_claims,
 // normalized_claims, relations) from a more subjective assessment_layer
 // (cruxes, failure_mode_flags, missing_evidence, assessments, reviews,
-// audit_notes). types_v2.ts is retained because the app still loads the
-// existing v2 case data in data/lhc and data/eggs.
+// audit_notes). This is the only types module the app uses; the active case
+// data in data/lhc and data/eggs is v3.
 
 export type CaseStatus = 'open' | 'resolved' | 'partially_resolved' | 'contested' | 'archived'
 
@@ -23,10 +23,10 @@ export type Position = 'pro' | 'con' | 'neutral' | 'conditional' | 'methodologic
 
 export type ConfidenceLevel = 'high' | 'medium' | 'low' | 'speculative'
 
-// v3: five relation families replace the v2 ten-type enum. supports absorbs
-// the old supports and evidence_for; opposes absorbs attacks, evidence_against,
-// and conflicts_with; contextualizes absorbs reframes, narrows, and generalizes;
-// equivalent absorbs duplicates. Nuance moves into subtype, tags, basis, notes.
+// Five relation families. supports covers logical and empirical support; opposes
+// covers contradiction, counter-evidence, and tension; depends_on marks prerequisites;
+// contextualizes covers narrowing, generalizing, and reframing; equivalent covers
+// restatements of the same proposition. Nuance moves into subtype, tags, basis, notes.
 export type RelationFamily =
   | 'supports'
   | 'opposes'

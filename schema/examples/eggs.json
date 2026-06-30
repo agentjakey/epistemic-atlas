@@ -195,7 +195,7 @@
       "basis": "inferred_across_sources",
       "basis_source_ids": [],
       "strength": "strong",
-      "notes": "NC_101 (Rong 2013: no significant association in general population) and NC_102 (Zhong 2019: significant positive association) are in direct empirical conflict. Both are high-credibility large observational studies in adult populations. They cannot both be fully correct under the same causal model. This is not a case of one attacking the other's logic -- the conflict is in the observed associations themselves (the mutual_tension subtype captures the v2 'conflicts_with' sense within the opposes family). The most plausible explanations are: differences in covariate adjustment, different population characteristics, different time periods (temporal drift), or measurement differences in dietary assessment.",
+      "notes": "NC_101 (Rong 2013: no significant association in general population) and NC_102 (Zhong 2019: significant positive association) are in direct empirical conflict. Both are high-credibility large observational studies in adult populations. They cannot both be fully correct under the same causal model. This is not a case of one attacking the other's logic -- the conflict is in the observed associations themselves, captured by the opposes family with a mutual_tension subtype. The most plausible explanations are: differences in covariate adjustment, different population characteristics, different time periods (temporal drift), or measurement differences in dietary assessment.",
       "needs_source_verification": true
     },
     {
@@ -208,7 +208,7 @@
       "basis": "analyst_inferred",
       "basis_source_ids": [],
       "strength": "strong",
-      "notes": "NC_103 (diabetic subgroup finding) narrows NC_101 (no association in general population) by establishing that the null finding does not hold for diabetic adults. NC_101 remains valid for its stated scope (non-diabetic general population), but NC_103 restricts any broad interpretation that 'eggs are safe for everyone'. Family 'contextualizes', narrows subtype (formerly the v2 'narrows' type).",
+      "notes": "NC_103 (diabetic subgroup finding) narrows NC_101 (no association in general population) by establishing that the null finding does not hold for diabetic adults. NC_101 remains valid for its stated scope (non-diabetic general population), but NC_103 restricts any broad interpretation that 'eggs are safe for everyone'. Family 'contextualizes', narrows subtype.",
       "needs_source_verification": true
     },
     {
@@ -221,7 +221,7 @@
       "basis": "analyst_inferred",
       "basis_source_ids": [],
       "strength": "weak",
-      "notes": "NC_104 (PLACEHOLDER industry review) makes a similar claim to NC_101 (no risk in healthy adults). The relation is 'equivalent' in direction (formerly the v2 'duplicates' type), but the strength is weak because NC_104 comes from a low-credibility source with source_incentive_pressure. The overlap is noted to make the incentive structure visible, not to add corroborating weight.",
+      "notes": "NC_104 (PLACEHOLDER industry review) makes a similar claim to NC_101 (no risk in healthy adults). The relation is 'equivalent' in direction, but the strength is weak because NC_104 comes from a low-credibility source with source_incentive_pressure. The overlap is noted to make the incentive structure visible, not to add corroborating weight.",
       "needs_source_verification": true
     }
   ],

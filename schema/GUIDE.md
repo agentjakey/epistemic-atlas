@@ -2,7 +2,7 @@
 
 This guide explains what the schema does and why, in the order you would encounter the objects when building an atlas entry.
 
-v3 makes four changes to v2. First, relations now use five broad families instead of ten fixed types, with nuance carried by `subtype`, `tags`, `basis`, and `notes`. Second, the hard distinction between `supports` and `evidence_for` is gone. Third, the case is split into two layers: a reusable knowledge structure and a more subjective `assessment_layer`. Fourth, the schema now supports multiple assessments and reviews over the same structure, plus nonlinear workflow triggers.
+The schema is built around four design choices. First, relations use five broad families, with nuance carried by `subtype`, `tags`, `basis`, and `notes`. Second, there is no hard distinction between logical `supports` and empirical `evidence`. Third, the case is split into two layers: a reusable knowledge structure and a more subjective `assessment_layer`. Fourth, the schema supports multiple assessments and reviews over the same structure, plus nonlinear workflow triggers.
 
 ---
 
@@ -78,15 +78,15 @@ The `hedges` field preserves the original epistemic hedging as metadata, even wh
 
 A directed edge in the claim graph. Direction always matters.
 
-v3 uses **five families** instead of the v2 ten-type enum. The families are deliberately broad; finer distinctions go into `subtype` (free text), `tags`, and `notes` rather than into a large fixed vocabulary.
+The schema uses **five broad families**. They are deliberately broad; finer distinctions go into `subtype` (free text), `tags`, and `notes` rather than into a large fixed vocabulary.
 
-- **supports** -- A raises the credibility of B, whether by logical justification or by empirical evidence. This absorbs the v2 `supports` and `evidence_for` types.
-- **opposes** -- A lowers the credibility of B or stands in tension with it. This absorbs the v2 `attacks`, `evidence_against`, and `conflicts_with` types.
+- **supports** -- A raises the credibility of B, whether by logical justification or by empirical evidence.
+- **opposes** -- A lowers the credibility of B or stands in tension with it. This covers direct contradiction, empirical evidence against, and mutual tension.
 - **depends_on** -- A is only meaningful or true if B is true.
-- **contextualizes** -- A changes the scope or interpretation of B without simply supporting or opposing it. This absorbs the v2 `reframes`, `narrows`, and `generalizes` types.
-- **equivalent** -- A and B assert the same proposition, usually from different sources. This absorbs the v2 `duplicates` type.
+- **contextualizes** -- A changes the scope or interpretation of B without simply supporting or opposing it. This covers narrowing, generalizing, and reframing.
+- **equivalent** -- A and B assert the same proposition, usually from different sources.
 
-**No hard supports-vs-evidence distinction.** v2 separated logical `supports` from empirical `evidence_for` as two enum values. v3 does not, because that line is often not crisp: a single relation can be both, or its character can be contested. Both now live in the `supports` family. If the distinction matters in a given case, record it in `subtype` (for example `"logical"` or `"empirical"`) or in `tags`, where it is an annotation rather than a forced choice. The same applies to the old `conflicts_with`: it becomes the `opposes` family with a `subtype` such as `"mutual_tension"`.
+**No hard supports-vs-evidence distinction.** Logical justification and empirical evidence both live in the `supports` family, because that line is often not crisp: a single relation can be both, or its character can be contested. If the distinction matters in a given case, record it in `subtype` (for example `"logical"` or `"empirical"`) or in `tags`, where it is an annotation rather than a forced choice. Tension that is not a clean contradiction goes in the `opposes` family with a `subtype` such as `"mutual_tension"`.
 
 **How the relation is grounded: the `basis` field.** Every relation records where it comes from:
 - `asserted_in_source` -- a single source states the relation directly.

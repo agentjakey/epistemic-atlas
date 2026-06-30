@@ -74,19 +74,19 @@ const objectTypes = [
 ]
 
 const relationFamilies = [
-  { type: 'supports', desc: 'A raises the credibility of B, by logical justification or empirical evidence. Absorbs the older supports and evidence_for.' },
-  { type: 'opposes', desc: 'A lowers the credibility of B or stands in tension with it. Absorbs the older attacks, evidence_against, and conflicts_with.' },
-  { type: 'depends_on', desc: 'A is only meaningful or true if B is true.' },
-  { type: 'contextualizes', desc: 'A reframes, narrows, or generalizes B without simply supporting or opposing it.' },
-  { type: 'equivalent', desc: 'A and B make the same claim, usually from different sources. Absorbs the older duplicates.' },
+  { name: 'supports', desc: 'A raises the credibility of B, by logical justification or empirical evidence.' },
+  { name: 'opposes', desc: 'A lowers the credibility of B or stands in tension with it, covering contradiction, counter-evidence, and mutual tension.' },
+  { name: 'depends_on', desc: 'A is only meaningful or true if B is true.' },
+  { name: 'contextualizes', desc: 'A reframes, narrows, or generalizes B without simply supporting or opposing it.' },
+  { name: 'equivalent', desc: 'A and B make the same claim, usually from different sources.' },
 ]
 
 const relationBasis = [
-  { type: 'asserted_in_source', desc: 'A single source states the relation directly.' },
-  { type: 'asserted_by_later_source', desc: 'A later source explicitly draws the connection between earlier claims.' },
-  { type: 'inferred_across_sources', desc: 'Synthesized by comparing several sources, none of which states it outright.' },
-  { type: 'analyst_inferred', desc: 'The annotator\'s own logical inference, not stated by any source.' },
-  { type: 'unclear', desc: 'The grounding has not been determined.' },
+  { name: 'asserted_in_source', desc: 'A single source states the relation directly.' },
+  { name: 'asserted_by_later_source', desc: 'A later source explicitly draws the connection between earlier claims.' },
+  { name: 'inferred_across_sources', desc: 'Synthesized by comparing several sources, none of which states it outright.' },
+  { name: 'analyst_inferred', desc: 'The annotator\'s own logical inference, not stated by any source.' },
+  { name: 'unclear', desc: 'The grounding has not been determined.' },
 ]
 
 const failureModes = [
@@ -288,11 +288,11 @@ export default function SchemaPage() {
             <div className="border border-page-border">
               {relationFamilies.map((r, i) => (
                 <div
-                  key={r.type}
+                  key={r.name}
                   className={`p-4 flex gap-6 ${i < relationFamilies.length - 1 ? 'border-b border-page-border' : ''}`}
                 >
                   <code className="text-xs font-semibold text-accent w-40 shrink-0 pt-0.5">
-                    {r.type}
+                    {r.name}
                   </code>
                   <p className="text-xs text-ink-light leading-relaxed">{r.desc}</p>
                 </div>
@@ -307,11 +307,11 @@ export default function SchemaPage() {
             <div className="border border-page-border">
               {relationBasis.map((r, i) => (
                 <div
-                  key={r.type}
+                  key={r.name}
                   className={`p-4 flex gap-6 ${i < relationBasis.length - 1 ? 'border-b border-page-border' : ''}`}
                 >
                   <code className="text-xs font-semibold text-accent w-48 shrink-0 pt-0.5">
-                    {r.type}
+                    {r.name}
                   </code>
                   <p className="text-xs text-ink-light leading-relaxed">{r.desc}</p>
                 </div>

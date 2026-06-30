@@ -7,60 +7,44 @@ graphs with provenance, relation mapping, cruxes, missing evidence, and assessme
 
 ## What it is
 
-A submission to the FLF Epistemic Case Study Competition, in four parts:
+This is the final Epistemic Atlas submission to the FLF Epistemic Case Study Competition. It
+has four parts: a lightweight, ordered workflow for building one structured entry from raw
+sources; a JSON schema (v3, JSON Schema Draft 2020-12) for the resulting artifact; a static
+Next.js prototype for exploring the artifact; and two partially verified worked examples.
 
-- A lightweight, ordered workflow for building one structured entry from raw sources.
-- A JSON schema (v3, JSON Schema Draft 2020-12) for the resulting artifact.
-- A static Next.js prototype for exploring the artifact.
-- Two partially verified worked examples.
-
-It is not a truth machine, a fact-checker, or a final authority on any scientific or medical
-question. The design goal is to preserve the reasoning structure of a dispute rather than
-compress it into a prose summary.
-
-## Why it matters
-
-A summary hides the things a careful reader most needs: who said what, where it came from,
-what depends on what, and what would change the conclusion. Epistemic Atlas makes those pieces
-explicit and inspectable, and keeps them in a form that a later investigator can challenge,
-correct, or extend rather than rewrite from scratch.
-
-## What changed after early feedback
-
-v3 reworked the schema in response to reviewer feedback:
-
-- Reduced ten relation types to five broad relation families.
-- Retired the hard split between logical "supports" and empirical "evidence_for."
-- Added a relation `basis` field showing whether an edge is asserted in a source, asserted by
-  a later source, inferred across sources, analyst-inferred, or unclear.
-- Separated the core knowledge structure from a nested `assessment_layer`.
-- Added `assessments[]` and `reviews[]` for future alternative assessments and adversarial scrutiny.
-- Added trigger fields and a living-workflow document for iterative, non-linear work.
-- Added prior-art mapping notes for PROV, AIF, and nanopublication-style formats.
+The goal is to preserve the reasoning structure of a dispute rather than compress it into a
+prose summary. A summary hides the things a careful reader most needs: who said what, where it
+came from, what depends on what, and what would change the conclusion. Epistemic Atlas makes
+those pieces explicit and inspectable, and keeps them in a form that a later investigator can
+challenge, correct, or extend rather than rewrite from scratch. It is not a truth machine, a
+fact-checker, or a final authority on any scientific or medical question.
 
 ## Recommended path for judges
 
 1. `docs/writeup.md` for the full argument and worked examples.
 2. `docs/methodology.md` for the stage-by-stage workflow.
 3. `docs/living_workflow.md` for how an entry is revisited and compounds over time.
-4. `schema/epistemic-atlas.schema.json` and `schema/GUIDE.md` for the schema.
-5. `data/lhc/graph.json` and `data/eggs/graph.json` for the worked-example structure.
-6. Optionally, run the app (below) to explore the cases interactively.
+4. `docs/prior_art_mapping.md` for how the schema relates to existing formats.
+5. `schema/epistemic-atlas.schema.json` and `schema/GUIDE.md` for the schema.
+6. `data/lhc/graph.json` and `data/eggs/graph.json` for the worked-example structure.
+7. Run the app (below) to explore the cases interactively.
 
 ## Worked examples
 
 **LHC black-hole risk (2008):** a relatively closed technical case. Whether the Large Hadron
-Collider could produce micro black holes capable of catastrophic harm. 20 v3 relations.
+Collider could produce micro black holes capable of catastrophic harm. 20 relations.
 
 **Dietary eggs and cardiovascular risk:** an open-ended everyday evidence case. Whether egg
 consumption raises cardiovascular disease risk, across decades of conflicting observational
-studies. 20 v3 relations.
+studies. 20 relations.
 
-In both cases all relations are currently marked `basis: inferred_across_sources` and
+Both are partially verified worked demonstrations, not final authoritative analyses. In both
+cases all relations are currently marked `basis: inferred_across_sources` and
 `needs_source_verification: true`, and all extracted claims carry `needs_source_verification:
 true`. This is deliberate caution. The relations reflect analyst-level analysis of the claims
 rather than links a source drew directly, and the graph should be read as a working structure,
-not a set of final edges.
+not a set of final edges. The LHC case is not physics safety advice. The eggs case is not
+medical or dietary advice.
 
 ## Schema v3 in brief
 
@@ -91,7 +75,7 @@ judgment. Nuance goes into `subtype`, `tags`, `basis`, and free-text notes inste
 
 ## Workflow
 
-Seven canonical prompt templates in `prompts/`, one per stage:
+Seven prompt templates in `prompts/`, one per stage:
 
 1. `01_scope.md`
 2. `02_source_ingestion.md`
@@ -104,7 +88,8 @@ Seven canonical prompt templates in `prompts/`, one per stage:
 The order is the default starting path. It is not a one-way pipeline: a new crux, a
 missing-evidence item, an audit note, or a newly found source can send the work back to an
 earlier stage through the schema's trigger fields. The orchestration around those triggers is
-still early; treat them as hand-set pointers, not an automated engine.
+still early; treat them as hand-set pointers, not an automated engine. See
+`docs/living_workflow.md`.
 
 ## How to run
 
@@ -112,8 +97,9 @@ No external API or database is required. All data is static JSON.
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
-npm run build    # static build
+npm run dev         # http://localhost:3000
+npm run check:data  # zero-dependency structural check of the data files
+npm run build       # static build
 ```
 
 ## Limitations
@@ -134,7 +120,9 @@ npm run build    # static build
 - [docs/methodology.md](docs/methodology.md) - the stage-by-stage workflow
 - [docs/living_workflow.md](docs/living_workflow.md) - iterative, non-linear use
 - [docs/prior_art_mapping.md](docs/prior_art_mapping.md) - PROV, AIF, nanopublication notes
+- [docs/judging_alignment.md](docs/judging_alignment.md) - how the submission maps to evaluation criteria
 - [docs/limitations.md](docs/limitations.md) - honest limitations
+- [docs/adversarial_audit.md](docs/adversarial_audit.md) - adversarial self-audit
 - [schema/GUIDE.md](schema/GUIDE.md) - plain-English schema guide
 
 ## License

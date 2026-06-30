@@ -158,7 +158,7 @@
       "basis": "analyst_inferred",
       "basis_source_ids": [],
       "strength": "strong",
-      "notes": "NC_001 (astrophysical constraint) provides empirical evidence against the dangerous interpretation of NC_002. Even if micro-BHs could form under ADD, the neutron star argument shows they cannot grow to dangerous size. NC_001 does not falsify NC_002 (BHs might still form) -- it specifically opposes the dangerous-outcome reading. Family 'opposes', empirical subtype (formerly the v2 'evidence_against' type).",
+      "notes": "NC_001 (astrophysical constraint) provides empirical evidence against the dangerous interpretation of NC_002. Even if micro-BHs could form under ADD, the neutron star argument shows they cannot grow to dangerous size. NC_001 does not falsify NC_002 (BHs might still form) -- it specifically opposes the dangerous-outcome reading. Family 'opposes', empirical subtype.",
       "needs_source_verification": true
     },
     {
@@ -171,7 +171,7 @@
       "basis": "analyst_inferred",
       "basis_source_ids": [],
       "strength": "moderate",
-      "notes": "NC_003 (Hawking radiation undetected) narrows the scope of NC_001's safety case by establishing that the HR-based evaporation argument within NC_001's conceptual background is built on an unverified theoretical assumption. The astrophysical part of NC_001 remains unaffected, but this note restricts overconfident claims that 'the safety case is fully verified'. Family 'contextualizes', narrows subtype (formerly the v2 'narrows' type).",
+      "notes": "NC_003 (Hawking radiation undetected) narrows the scope of NC_001's safety case by establishing that the HR-based evaporation argument within NC_001's conceptual background is built on an unverified theoretical assumption. The astrophysical part of NC_001 remains unaffected, but this note restricts overconfident claims that 'the safety case is fully verified'. Family 'contextualizes', narrows subtype.",
       "needs_source_verification": true
     }
   ],
