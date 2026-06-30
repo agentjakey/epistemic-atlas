@@ -193,7 +193,7 @@ A MissingEvidence item can carry an optional `triggers` array: if the evidence b
 
 ## AuditNote
 
-The adversarial review record. AuditNotes are created during Step 6 (adversarial review) and may also be added by readers.
+The adversarial review record. AuditNotes are created during the adversarial audit (Step 7) and may also be added by readers.
 
 The `status` field (`open`, `resolved`, `dismissed`) keeps the audit log live. A `dismissed` note with a `resolution` explanation is better than a deleted note; it shows the issue was considered.
 

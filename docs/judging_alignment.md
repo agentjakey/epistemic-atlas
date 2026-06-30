@@ -59,11 +59,10 @@ the interpretation of statutory language is the crux. These categories were not 
 
 ## 3. Does it scale with better AI or more compute?
 
-**How addressed.** The pipeline is designed so that steps 2, 3, and 5 (source ingestion,
-claim extraction, relation mapping) are the most automatable; they involve structured
-transformation of source text into schema-conformant objects with relatively clear
-correctness criteria. These are the steps that benefit most directly from better language
-models. Scoping, normalization, crux identification, failure mode flagging, and assessment
+**How addressed.** The workflow is designed so that source ingestion, claim extraction, and
+relation mapping are the most automatable; they involve structured transformation of source
+text into schema-conformant objects with relatively clear correctness criteria. These are the
+stages that benefit most directly from better language models. Scoping, normalization, crux identification, failure mode flagging, and assessment
 require judgment that scales with human expertise rather than compute. The schema also
 records workflow triggers on cruxes, missing-evidence items, and audit notes, which gives a
 more capable agent explicit signals about what to revisit rather than assuming the work is a
@@ -71,9 +70,9 @@ single linear pass. This is a design affordance for iterative loops, not a claim
 loops are automated yet.
 
 **Concrete example.** The extracted claims in both case studies were generated with LLM
-assistance in step 3. A more capable model with better instruction following and less
-hallucination risk would produce higher-quality extracted claims with less human correction
-required. The normalization step (step 4) requires a human to decide whether two extracted
+assistance during claim extraction. A more capable model with better instruction following
+and less hallucination risk would produce higher-quality extracted claims with less human
+correction required. The normalization stage requires a human to decide whether two extracted
 claims from different sources are asserting the same proposition or subtly different ones;
 that judgment does not obviously improve with scale.
 

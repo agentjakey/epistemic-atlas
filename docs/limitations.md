@@ -12,7 +12,7 @@ This document is an honest account of what Epistemic Atlas does not do well, whe
 
 **Relation strength is subjective.** The strong/moderate/weak scale for relation strength is not formally defined. Two annotators working from the same source material will often assign different strengths to the same relation. The schema records their judgment but does not calibrate it.
 
-**The failure mode vocabulary is incomplete.** The current list of failure flags (motivated reasoning, cherry-picking, funding bias, etc.) does not exhaust the space of epistemic failure modes. Adding new ones without disciplined definition risks making the taxonomy useless. The current vocabulary reflects pragmatic coverage, not theoretical completeness.
+**The failure mode vocabulary is incomplete.** The twelve controlled failure mode types (for example source_incentive_pressure, proxy_measure_problem, and analogy_dependency) do not exhaust the space of epistemic failure modes. Adding new ones without disciplined definition risks making the taxonomy useless. The current vocabulary reflects pragmatic coverage, not theoretical completeness.
 
 ---
 
@@ -30,7 +30,7 @@ This document is an honest account of what Epistemic Atlas does not do well, whe
 
 **LLM hallucination.** When the pipeline is executed with LLM assistance, the LLM may generate claims, sources, or relations that are not supported by the actual source material. The adversarial review step is designed to catch this, but it is not a guarantee. Any atlas entry built with LLM assistance should be treated as requiring human verification of every source reference and claim attribution.
 
-**Adversarial review quality.** The adversarial review in Step 6 is only as good as the reviewer. An adversarial reviewer who shares the same biases as the original annotator will not catch those biases. Ideally, adversarial review is done by someone with no prior involvement in building the entry.
+**Adversarial review quality.** The adversarial audit in Step 7 is only as good as the reviewer. An adversarial reviewer who shares the same biases as the original annotator will not catch those biases. Ideally, adversarial review is done by someone with no prior involvement in building the entry.
 
 **Crux identification requires judgment.** Identifying cruxes is the step most dependent on epistemic sophistication. The pipeline prompt guides the process, but a reviewer unfamiliar with the structure of arguments in the domain may miss load-bearing claims or misidentify pivotal questions.
 
