@@ -1,6 +1,8 @@
-# Epistemic Atlas Schema v2: Plain English Guide
+# Epistemic Atlas Schema v3: Plain English Guide
 
 This guide explains what the schema does and why, in the order you would encounter the objects when building an atlas entry.
+
+v3 makes four changes to v2. First, relations now use five broad families instead of ten fixed types, with nuance carried by `subtype`, `tags`, `basis`, and `notes`. Second, the hard distinction between `supports` and `evidence_for` is gone. Third, the case is split into two layers: a reusable knowledge structure and a more subjective `assessment_layer`. Fourth, the schema now supports multiple assessments and reviews over the same structure, plus nonlinear workflow triggers.
 
 ---
 
@@ -8,16 +10,23 @@ This guide explains what the schema does and why, in the order you would encount
 
 ```
 Case
-  sources[]               -- where the evidence comes from
-  extracted_claims[]      -- what the sources actually say
-  normalized_claims[]     -- standardized versions of those claims
-  relations[]             -- how the normalized claims relate to each other
-  cruxes[]                -- the pivotal questions
-  failure_mode_flags[]    -- where the reasoning breaks down
-  assessment              -- the overall verdict
-  missing_evidence[]      -- what we need but don't have
-  audit_notes[]           -- adversarial review record
+  -- core knowledge layer (reusable, comparatively objective) --
+  sources[]                 -- where the evidence comes from
+  extracted_claims[]        -- what the sources actually say
+  normalized_claims[]       -- standardized versions of those claims
+  relations[]               -- how the normalized claims relate to each other
+
+  -- assessment_layer (more subjective, can be revised or contested) --
+  assessment_layer
+    cruxes[]                -- the pivotal questions
+    failure_mode_flags[]    -- where the reasoning breaks down
+    missing_evidence[]      -- what we need but don't have
+    assessments[]           -- one or more overall verdicts
+    reviews[]               -- adversarial / multi-user scrutiny
+    audit_notes[]           -- adversarial review record
 ```
+
+The split is deliberate. The core layer is the part most worth reusing across tools and people: who said what, how the claims connect, what is grounded in a source versus inferred. The `assessment_layer` is where judgment enters, and judgment can legitimately differ, so the schema lets more than one assessment or review sit over the same core structure without overwriting each other.
 
 ---
 
@@ -69,15 +78,24 @@ The `hedges` field preserves the original epistemic hedging as metadata, even wh
 
 A directed edge in the claim graph. Direction always matters.
 
-The vocabulary distinguishes:
-- **Argumentative** (`supports`, `attacks`): logical justification or contradiction
-- **Empirical** (`evidence_for`, `evidence_against`): observational data that raises or lowers probability
-- **Structural** (`depends_on`, `narrows`, `generalizes`, `reframes`): how claims constrain or contextualize each other
-- **Epistemic status** (`duplicates`, `conflicts_with`): how claims relate without necessarily being in logical opposition
+v3 uses **five families** instead of the v2 ten-type enum. The families are deliberately broad; finer distinctions go into `subtype` (free text), `tags`, and `notes` rather than into a large fixed vocabulary.
 
-The difference between `attacks` and `conflicts_with`: attacks implies direct logical contradiction. `conflicts_with` says the claims cannot both be fully right but neither strictly entails the other's falsity; they are in tension without clean logical resolution. This distinction matters for accurately representing the state of a dispute.
+- **supports** -- A raises the credibility of B, whether by logical justification or by empirical evidence. This absorbs the v2 `supports` and `evidence_for` types.
+- **opposes** -- A lowers the credibility of B or stands in tension with it. This absorbs the v2 `attacks`, `evidence_against`, and `conflicts_with` types.
+- **depends_on** -- A is only meaningful or true if B is true.
+- **contextualizes** -- A changes the scope or interpretation of B without simply supporting or opposing it. This absorbs the v2 `reframes`, `narrows`, and `generalizes` types.
+- **equivalent** -- A and B assert the same proposition, usually from different sources. This absorbs the v2 `duplicates` type.
 
-The difference between `supports` and `evidence_for`: `supports` covers both logical justification and empirical support. `evidence_for` specifically means observational data that increases the probability of B; it is more precise and carries stronger epistemic weight.
+**No hard supports-vs-evidence distinction.** v2 separated logical `supports` from empirical `evidence_for` as two enum values. v3 does not, because that line is often not crisp: a single relation can be both, or its character can be contested. Both now live in the `supports` family. If the distinction matters in a given case, record it in `subtype` (for example `"logical"` or `"empirical"`) or in `tags`, where it is an annotation rather than a forced choice. The same applies to the old `conflicts_with`: it becomes the `opposes` family with a `subtype` such as `"mutual_tension"`.
+
+**How the relation is grounded: the `basis` field.** Every relation records where it comes from:
+- `asserted_in_source` -- a single source states the relation directly.
+- `asserted_by_later_source` -- a later source explicitly draws the connection between earlier claims.
+- `inferred_across_sources` -- the relation is synthesized by comparing several sources, none of which states it outright.
+- `analyst_inferred` -- the relation is the annotator's own logical inference, not stated by any source.
+- `unclear` -- the grounding has not been determined.
+
+This matters because a reader needs to know whether an edge reflects what a source actually said or what an annotator concluded. The two carry very different epistemic weight. When the basis is `asserted_in_source` or `asserted_by_later_source`, `basis_source_ids` names the source(s). Relations whose basis is `analyst_inferred`, `inferred_across_sources`, or `unclear` are good candidates for `needs_source_verification: true`.
 
 ---
 
@@ -88,6 +106,8 @@ A pivotal question. Not just any contested claim; specifically a load-bearing on
 Test: if you resolve the crux one way, does one major position in the dispute become significantly harder to hold? If yes for both directions, it is a crux.
 
 The `status` field distinguishes between `unresolved` (work to be done), `empirically_underdetermined` (the evidence needed to resolve it does not yet exist), and `theoretically_underdetermined` (the theoretical framework needed to evaluate it is not established). These are importantly different.
+
+A crux can carry an optional `triggers` array (see Workflow Triggers below). For example, a crux marked `empirically_underdetermined` might trigger `reassess` once the relevant evidence appears.
 
 ---
 
@@ -125,13 +145,36 @@ The vocabulary was chosen to cover failures that are hard to notice but common:
 
 ## Assessment
 
-The overall verdict. Three things distinguish the v2 assessment from a generic summary:
+The overall verdict. In v3 the case holds `assessment_layer.assessments`, an array, so more than one verdict can sit over the same core structure (see Multiple Assessments and Reviews below). A single-assessor entry simply has one assessment. Each assessment has an `id` and may record its `author`, `perspective` (for example `"primary builder"` or `"adversarial reviewer"`), and `assessment_scope` if it covers only part of the case.
+
+Four things distinguish an Atlas assessment from a generic summary:
 
 **Settled vs. unsettled**: The assessment must take a position on whether the dispute has a clear resolution. Not "there is ongoing debate"; that is always true of any documented dispute. The question is whether the evidence supports a clear conclusion.
 
 **Weak links**: The assessment identifies which NormalizedClaims are the weakest links in the dominant argument. If the argument depends on a claim with `closed_case_overconfidence` and `low` confidence, that is a weak link that should be named.
 
+**Sensitivity**: The optional `sensitivity` array records how robust the conclusion is to specific claims or cruxes being overturned. Each entry names a `target_id`, a `robustness` rating (`robust`, `fragile`, or `unknown`), and the `effect_if_overturned`. This is a light qualitative analysis, not a formal one: it answers "if this one piece turned out to be wrong, would the conclusion change?"
+
 **What would update**: The forward-looking question. This forces the assessment to be falsifiable. If no evidence could ever change the conclusion, the assessment is not epistemically serious. Each scenario specifies what the evidence is, what it would affect, which direction, and how decisively.
+
+When assessments disagree, an assessment can name the ones it diverges from in `disagrees_with` and explain why in `disagreement_notes`.
+
+---
+
+## Multiple Assessments and Reviews
+
+v3 separates the reusable knowledge structure from judgment, which means the same sources, claims, and relations can carry more than one interpretation. Two mechanisms support this:
+
+- **assessments[]** -- multiple full verdicts, each from a stated `perspective`, possibly disagreeing via `disagrees_with`.
+- **reviews[]** -- lighter-weight scrutiny. A `Review` records an `assessor`, a `role` (`builder`, `collaborator`, `adversary`, `domain_expert`, or `other`), a `summary` of what they found, and optionally the IDs they `dissents_from_ids`. An `adversary` review is one explicitly trying to break the entry.
+
+Both arrays may be empty. The point is that adversarial and multi-user scrutiny have a defined home in the schema rather than overwriting the original work.
+
+---
+
+## Workflow Triggers
+
+Building an atlas entry is not strictly linear. A new crux, a piece of missing evidence, or an audit note can send you back to an earlier stage. v3 records this directly: `Crux`, `MissingEvidence`, and `AuditNote` each accept an optional `triggers` array drawn from `rescope`, `reingest`, `reextract`, `renormalize`, `remap_relations`, `reassess`, and `re_review`. A `source_gap` audit note might trigger `reingest`; an `empirically_underdetermined` crux might trigger `reassess` once evidence arrives. The triggers are advisory pointers for a living workflow, not an execution engine.
 
 ---
 
@@ -144,6 +187,8 @@ Evidence that does not exist in any accessible form. Distinguishable from:
 
 The `reason_absent` and `feasibility` fields make explicit why the evidence does not exist. Some evidence is absent because no one has collected it yet (feasible). Some because it is technically impossible. Some because the required trial would be unethical. These have different implications for when resolution might come.
 
+A MissingEvidence item can carry an optional `triggers` array: if the evidence becomes available, what workflow pass should follow (commonly `reassess`).
+
 ---
 
 ## AuditNote
@@ -153,3 +198,5 @@ The adversarial review record. AuditNotes are created during Step 6 (adversarial
 The `status` field (`open`, `resolved`, `dismissed`) keeps the audit log live. A `dismissed` note with a `resolution` explanation is better than a deleted note; it shows the issue was considered.
 
 The `llm_artifact` type is specifically for atlas entries built with LLM assistance, where a claim, source reference, or relation may have been generated without grounding in actual source text.
+
+Like cruxes and missing evidence, an AuditNote can carry an optional `triggers` array pointing at the workflow pass its resolution would require (for example a `source_gap` note triggering `reingest`).

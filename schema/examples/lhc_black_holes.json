@@ -1,6 +1,6 @@
 {
   "id": "lhc-black-holes-2008",
-  "schema_version": "2",
+  "schema_version": "3",
   "title": "LHC Black Holes and Catastrophic Risk",
   "domain": "particle physics",
   "subdomain": "accelerator safety and quantum gravity",
@@ -152,104 +152,139 @@
       "id": "R_001",
       "from_id": "NC_001",
       "to_id": "NC_002",
-      "type": "evidence_against",
+      "family": "opposes",
+      "subtype": "empirical",
+      "tags": ["astrophysical_constraint"],
+      "basis": "analyst_inferred",
+      "basis_source_ids": [],
       "strength": "strong",
-      "notes": "NC_001 (astrophysical constraint) provides empirical evidence against the dangerous interpretation of NC_002. Even if micro-BHs could form under ADD, the neutron star argument shows they cannot grow to dangerous size. NC_001 does not falsify NC_002 (BHs might still form) -- it specifically attacks the dangerous-outcome reading."
+      "notes": "NC_001 (astrophysical constraint) provides empirical evidence against the dangerous interpretation of NC_002. Even if micro-BHs could form under ADD, the neutron star argument shows they cannot grow to dangerous size. NC_001 does not falsify NC_002 (BHs might still form) -- it specifically opposes the dangerous-outcome reading. Family 'opposes', empirical subtype (formerly the v2 'evidence_against' type).",
+      "needs_source_verification": true
     },
     {
       "id": "R_002",
       "from_id": "NC_003",
       "to_id": "NC_001",
-      "type": "narrows",
+      "family": "contextualizes",
+      "subtype": "narrows",
+      "tags": [],
+      "basis": "analyst_inferred",
+      "basis_source_ids": [],
       "strength": "moderate",
-      "notes": "NC_003 (Hawking radiation undetected) narrows the scope of NC_001's safety case by establishing that the HR-based evaporation argument within NC_001's conceptual background is built on an unverified theoretical assumption. The astrophysical part of NC_001 remains unaffected, but this note restricts overconfident claims that 'the safety case is fully verified'."
+      "notes": "NC_003 (Hawking radiation undetected) narrows the scope of NC_001's safety case by establishing that the HR-based evaporation argument within NC_001's conceptual background is built on an unverified theoretical assumption. The astrophysical part of NC_001 remains unaffected, but this note restricts overconfident claims that 'the safety case is fully verified'. Family 'contextualizes', narrows subtype (formerly the v2 'narrows' type).",
+      "needs_source_verification": true
     }
   ],
 
-  "cruxes": [
-    {
-      "id": "CX_001",
-      "statement": "Does the analogy between LHC high-energy collisions and cosmic ray bombardment of neutron stars and white dwarfs validly preclude dangerous stable black hole formation, accounting for kinematic differences between fixed-target and center-of-mass regimes?",
-      "description": "If the analogy holds: NC_001 is a strong empirical safety argument and the case is settled in the 'safe' direction. If the analogy fails at some relevant parameter (different momentum transfer, different collision geometry, different density of matter involved): the astrophysical argument loses its force and the safety case would need to rely more heavily on Hawking radiation, which carries its own unverified assumption. The LSAG report argues the analogy does hold, but the specific kinematic analysis is technical.",
-      "dependent_normalized_claim_ids": ["NC_001"],
-      "status": "resolved_true",
-      "resolution_notes": "The Giddings-Mangano paper (src_002) specifically addresses this and concludes the astrophysical argument holds across the kinematic regimes relevant to the LHC. The LSAG report concurs. An independent review commission confirmed the analysis.",
-      "resolution_source_ids": ["src_001", "src_002"]
-    }
-  ],
-
-  "failure_mode_flags": [
-    {
-      "id": "FF_001",
-      "type": "analogy_dependency",
-      "description": "The astrophysical safety argument (NC_001) depends on the analogy between LHC collision products and the products of cosmic ray collisions with neutron star and white dwarf matter. The analogy is strong but not perfect: cosmic rays hitting a neutron star involve fixed-target kinematics, while LHC collisions are center-of-mass. Giddings and Mangano specifically address this distinction in src_002 and conclude the analogy is valid for the relevant mass and momentum regime, but the argument formally depends on this analogy holding.",
-      "applies_to_id": "NC_001",
-      "applies_to_type": "normalized_claim",
-      "severity": "minor",
-      "affects_conclusion": false,
-      "notes": "The severity is minor because Giddings-Mangano specifically analyzed and defended the kinematic analogy. Noting the dependency is correct epistemic hygiene."
-    },
-    {
-      "id": "FF_002",
-      "type": "direct_evidence_absent",
-      "description": "NC_002 (micro-BH formation possible under ADD model) is a theoretical prediction. There is no direct evidence that large extra dimensions exist at the relevant scale, and no micro-BH has ever been observed at any accelerator. The entire claim is model-dependent. The ADD model has not been empirically confirmed.",
-      "applies_to_id": "NC_002",
-      "applies_to_type": "normalized_claim",
-      "severity": "significant",
-      "affects_conclusion": false,
-      "notes": "This flag does not undermine the safety conclusion -- it actually reduces the probability that the dangerous scenario is physically realized. The flag is significant because NC_002 is sometimes stated as if ADD micro-BH production is an established possibility rather than a model-dependent one."
-    }
-  ],
-
-  "assessment": {
-    "status": "settled",
-    "settled_direction": "LHC operations do not pose a risk of catastrophic harm from micro-black-holes. The safety case is established through two independent arguments: the astrophysical analogy (NC_001, high confidence, does not depend on Hawking radiation) and the Hawking radiation evaporation argument (not shown in this small example). The LSAG conclusion was confirmed by independent review.",
-    "epistemic_status_summary": "Scientific consensus, well-supported, with two independent lines of argument. The strongest argument (NC_001) does not rely on any unverified theoretical assumption.",
-    "key_crux_ids": ["CX_001"],
-    "weak_link_ids": ["NC_002"],
-    "what_would_update": [
+  "assessment_layer": {
+    "cruxes": [
       {
-        "scenario": "Discovery of direct evidence for large extra spatial dimensions at sub-millimeter scales (e.g., from LHC data showing Kaluza-Klein graviton signatures or micro-BH production events)",
-        "would_affect_ids": ["NC_002", "CX_001"],
-        "direction": "strengthen",
-        "magnitude": "significant"
-      },
-      {
-        "scenario": "A rigorous theoretical demonstration that the kinematic analogy between LHC collisions and cosmic ray/neutron-star interactions fails to preclude dangerous stable black hole formation under any plausible ADD parameter set",
-        "would_affect_ids": ["NC_001", "CX_001"],
-        "direction": "weaken",
-        "magnitude": "decisive"
+        "id": "CX_001",
+        "statement": "Does the analogy between LHC high-energy collisions and cosmic ray bombardment of neutron stars and white dwarfs validly preclude dangerous stable black hole formation, accounting for kinematic differences between fixed-target and center-of-mass regimes?",
+        "description": "If the analogy holds: NC_001 is a strong empirical safety argument and the case is settled in the 'safe' direction. If the analogy fails at some relevant parameter (different momentum transfer, different collision geometry, different density of matter involved): the astrophysical argument loses its force and the safety case would need to rely more heavily on Hawking radiation, which carries its own unverified assumption. The LSAG report argues the analogy does hold, but the specific kinematic analysis is technical.",
+        "dependent_normalized_claim_ids": ["NC_001"],
+        "status": "resolved_true",
+        "resolution_notes": "The Giddings-Mangano paper (src_002) specifically addresses this and concludes the astrophysical argument holds across the kinematic regimes relevant to the LHC. The LSAG report concurs. An independent review commission confirmed the analysis.",
+        "resolution_source_ids": ["src_001", "src_002"]
       }
     ],
-    "well_supported_claim_ids": ["NC_001", "NC_003"],
-    "contested_claim_ids": ["NC_002"],
-    "dominant_failure_modes": ["analogy_dependency", "direct_evidence_absent"],
-    "notes": "The failure modes identified are present but do not undermine the settled conclusion. FF_001 (analogy_dependency) is addressed directly in src_002. FF_002 (direct_evidence_absent) actually reduces the prior probability of the dangerous scenario."
-  },
 
-  "missing_evidence": [
-    {
-      "id": "ME_001",
-      "description": "Direct experimental confirmation or falsification of large extra dimensions at LHC-accessible energy scales. LHC Run 2 data has constrained but not eliminated the ADD parameter space. Future collider experiments could narrow or close the remaining window.",
-      "type": "empirical",
-      "would_affect_ids": ["NC_002", "CX_001"],
-      "priority": "important",
-      "reason_absent": "The relevant extra dimension scale may simply be smaller than what any current or near-future collider can probe, or extra dimensions may not exist.",
-      "feasibility": "feasible"
-    }
-  ],
+    "failure_mode_flags": [
+      {
+        "id": "FF_001",
+        "type": "analogy_dependency",
+        "description": "The astrophysical safety argument (NC_001) depends on the analogy between LHC collision products and the products of cosmic ray collisions with neutron star and white dwarf matter. The analogy is strong but not perfect: cosmic rays hitting a neutron star involve fixed-target kinematics, while LHC collisions are center-of-mass. Giddings and Mangano specifically address this distinction in src_002 and conclude the analogy is valid for the relevant mass and momentum regime, but the argument formally depends on this analogy holding.",
+        "applies_to_id": "NC_001",
+        "applies_to_type": "normalized_claim",
+        "severity": "minor",
+        "affects_conclusion": false,
+        "notes": "The severity is minor because Giddings-Mangano specifically analyzed and defended the kinematic analogy. Noting the dependency is correct epistemic hygiene."
+      },
+      {
+        "id": "FF_002",
+        "type": "direct_evidence_absent",
+        "description": "NC_002 (micro-BH formation possible under ADD model) is a theoretical prediction. There is no direct evidence that large extra dimensions exist at the relevant scale, and no micro-BH has ever been observed at any accelerator. The entire claim is model-dependent. The ADD model has not been empirically confirmed.",
+        "applies_to_id": "NC_002",
+        "applies_to_type": "normalized_claim",
+        "severity": "significant",
+        "affects_conclusion": false,
+        "notes": "This flag does not undermine the safety conclusion -- it actually reduces the probability that the dangerous scenario is physically realized. The flag is significant because NC_002 is sometimes stated as if ADD micro-BH production is an established possibility rather than a model-dependent one."
+      }
+    ],
 
-  "audit_notes": [
-    {
-      "id": "AN_001",
-      "type": "verification_needed",
-      "description": "All four extracted claims are paraphrases marked needs_source_verification: true. The verbatim text of the astrophysical analogy argument in src_001 and the specific kinematic analysis in src_002 should be verified against the primary source documents before treating this entry as more than a sample.",
-      "applies_to_ids": ["EC_001", "EC_002", "EC_003", "EC_004"],
-      "severity": "significant",
-      "author": null,
-      "date": "2026-06-04",
-      "status": "open",
-      "resolution": null
-    }
-  ]
+    "missing_evidence": [
+      {
+        "id": "ME_001",
+        "description": "Direct experimental confirmation or falsification of large extra dimensions at LHC-accessible energy scales. LHC Run 2 data has constrained but not eliminated the ADD parameter space. Future collider experiments could narrow or close the remaining window.",
+        "type": "empirical",
+        "would_affect_ids": ["NC_002", "CX_001"],
+        "priority": "important",
+        "reason_absent": "The relevant extra dimension scale may simply be smaller than what any current or near-future collider can probe, or extra dimensions may not exist.",
+        "feasibility": "feasible",
+        "triggers": ["reassess"]
+      }
+    ],
+
+    "assessments": [
+      {
+        "id": "AS_001",
+        "author": null,
+        "perspective": "primary builder",
+        "summary": "Settled in the safe direction, on two independent arguments, the stronger of which carries no unverified theoretical assumption.",
+        "status": "settled",
+        "settled_direction": "LHC operations do not pose a risk of catastrophic harm from micro-black-holes. The safety case is established through two independent arguments: the astrophysical analogy (NC_001, high confidence, does not depend on Hawking radiation) and the Hawking radiation evaporation argument (not shown in this small example). The LSAG conclusion was confirmed by independent review.",
+        "epistemic_status_summary": "Scientific consensus, well-supported, with two independent lines of argument. The strongest argument (NC_001) does not rely on any unverified theoretical assumption.",
+        "key_crux_ids": ["CX_001"],
+        "weak_link_ids": ["NC_002"],
+        "sensitivity": [
+          {
+            "target_id": "NC_001",
+            "robustness": "fragile",
+            "effect_if_overturned": "If the kinematic analogy in NC_001 fails, the strongest model-independent safety argument is lost and the conclusion would rest on the Hawking radiation line, which carries an unverified theoretical assumption."
+          },
+          {
+            "target_id": "NC_002",
+            "robustness": "robust",
+            "effect_if_overturned": "If the ADD model were confirmed, NC_002 becomes physically realized, but this does not by itself reverse the safe conclusion, which constrains the dangerous outcome rather than the formation of micro-black holes."
+          }
+        ],
+        "what_would_update": [
+          {
+            "scenario": "Discovery of direct evidence for large extra spatial dimensions at sub-millimeter scales (e.g., from LHC data showing Kaluza-Klein graviton signatures or micro-BH production events)",
+            "would_affect_ids": ["NC_002", "CX_001"],
+            "direction": "strengthen",
+            "magnitude": "significant"
+          },
+          {
+            "scenario": "A rigorous theoretical demonstration that the kinematic analogy between LHC collisions and cosmic ray/neutron-star interactions fails to preclude dangerous stable black hole formation under any plausible ADD parameter set",
+            "would_affect_ids": ["NC_001", "CX_001"],
+            "direction": "weaken",
+            "magnitude": "decisive"
+          }
+        ],
+        "well_supported_claim_ids": ["NC_001", "NC_003"],
+        "contested_claim_ids": ["NC_002"],
+        "dominant_failure_modes": ["analogy_dependency", "direct_evidence_absent"],
+        "date": "2026-06-04",
+        "notes": "The failure modes identified are present but do not undermine the settled conclusion. FF_001 (analogy_dependency) is addressed directly in src_002. FF_002 (direct_evidence_absent) actually reduces the prior probability of the dangerous scenario."
+      }
+    ],
+
+    "reviews": [],
+
+    "audit_notes": [
+      {
+        "id": "AN_001",
+        "type": "verification_needed",
+        "description": "All four extracted claims are paraphrases marked needs_source_verification: true. The verbatim text of the astrophysical analogy argument in src_001 and the specific kinematic analysis in src_002 should be verified against the primary source documents before treating this entry as more than a sample.",
+        "applies_to_ids": ["EC_001", "EC_002", "EC_003", "EC_004"],
+        "severity": "significant",
+        "author": null,
+        "date": "2026-06-04",
+        "status": "open",
+        "resolution": null,
+        "triggers": ["reextract", "re_review"]
+      }
+    ]
+  }
 }

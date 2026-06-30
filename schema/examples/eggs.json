@@ -1,6 +1,6 @@
 {
   "id": "dietary-eggs-cvd-risk",
-  "schema_version": "2",
+  "schema_version": "3",
   "title": "Dietary Egg Consumption and Cardiovascular Disease Risk",
   "domain": "nutrition science",
   "subdomain": "dietary cholesterol and cardiovascular risk",
@@ -189,172 +189,214 @@
       "id": "R_101",
       "from_id": "NC_101",
       "to_id": "NC_102",
-      "type": "conflicts_with",
+      "family": "opposes",
+      "subtype": "mutual_tension",
+      "tags": ["empirical_conflict"],
+      "basis": "inferred_across_sources",
+      "basis_source_ids": [],
       "strength": "strong",
-      "notes": "NC_101 (Rong 2013: no significant association in general population) and NC_102 (Zhong 2019: significant positive association) are in direct empirical conflict. Both are high-credibility large observational studies in adult populations. They cannot both be fully correct under the same causal model. This is not a case of one attacking the other's logic -- the conflict is in the observed associations themselves. The most plausible explanations are: differences in covariate adjustment, different population characteristics, different time periods (temporal drift), or measurement differences in dietary assessment."
+      "notes": "NC_101 (Rong 2013: no significant association in general population) and NC_102 (Zhong 2019: significant positive association) are in direct empirical conflict. Both are high-credibility large observational studies in adult populations. They cannot both be fully correct under the same causal model. This is not a case of one attacking the other's logic -- the conflict is in the observed associations themselves (the mutual_tension subtype captures the v2 'conflicts_with' sense within the opposes family). The most plausible explanations are: differences in covariate adjustment, different population characteristics, different time periods (temporal drift), or measurement differences in dietary assessment.",
+      "needs_source_verification": true
     },
     {
       "id": "R_102",
       "from_id": "NC_103",
       "to_id": "NC_101",
-      "type": "narrows",
+      "family": "contextualizes",
+      "subtype": "narrows",
+      "tags": [],
+      "basis": "analyst_inferred",
+      "basis_source_ids": [],
       "strength": "strong",
-      "notes": "NC_103 (diabetic subgroup finding) narrows NC_101 (no association in general population) by establishing that the null finding does not hold for diabetic adults. NC_101 remains valid for its stated scope (non-diabetic general population), but NC_103 restricts any broad interpretation that 'eggs are safe for everyone'."
+      "notes": "NC_103 (diabetic subgroup finding) narrows NC_101 (no association in general population) by establishing that the null finding does not hold for diabetic adults. NC_101 remains valid for its stated scope (non-diabetic general population), but NC_103 restricts any broad interpretation that 'eggs are safe for everyone'. Family 'contextualizes', narrows subtype (formerly the v2 'narrows' type).",
+      "needs_source_verification": true
     },
     {
       "id": "R_103",
       "from_id": "NC_104",
       "to_id": "NC_101",
-      "type": "duplicates",
+      "family": "equivalent",
+      "subtype": "independent_restatement",
+      "tags": ["low_credibility_overlap"],
+      "basis": "analyst_inferred",
+      "basis_source_ids": [],
       "strength": "weak",
-      "notes": "NC_104 (PLACEHOLDER industry review) makes a similar claim to NC_101 (no risk in healthy adults). The relation is 'duplicates' in direction, but the strength is weak because NC_104 comes from a low-credibility source with source_incentive_pressure. The overlap is noted to make the incentive structure visible."
+      "notes": "NC_104 (PLACEHOLDER industry review) makes a similar claim to NC_101 (no risk in healthy adults). The relation is 'equivalent' in direction (formerly the v2 'duplicates' type), but the strength is weak because NC_104 comes from a low-credibility source with source_incentive_pressure. The overlap is noted to make the incentive structure visible, not to add corroborating weight.",
+      "needs_source_verification": true
     }
   ],
 
-  "cruxes": [
-    {
-      "id": "CX_101",
-      "statement": "Does dietary cholesterol from egg consumption independently increase cardiovascular disease risk in non-diabetic healthy adults, after fully controlling for saturated fat intake and overall dietary pattern?",
-      "description": "This is the central unresolved question. Eggs are almost never consumed in isolation -- they are part of dietary patterns that include varying amounts of saturated fat, refined carbohydrates, and other risk factors. If the apparent CVD association in NC_102 disappears after fully controlling for total dietary cholesterol and saturated fat context, then egg consumption is not an independent risk factor. If it persists, NC_102 is more concerning. The proxy measurement problem (FF_103) means that full dietary context control is very difficult with food frequency questionnaire data.",
-      "dependent_normalized_claim_ids": ["NC_101", "NC_102", "NC_104"],
-      "status": "empirically_underdetermined",
-      "resolution_notes": null,
-      "resolution_source_ids": []
-    },
-    {
-      "id": "CX_102",
-      "statement": "Is the association between egg consumption and CVD risk meaningfully different between diabetic and non-diabetic adults in a way that requires separate dietary guidance?",
-      "description": "If the diabetic subgroup finding in NC_103 is robust, then undifferentiated population-level guidance about eggs is misleading in both directions -- understating risk for diabetic patients and potentially overstating it for non-diabetic populations. This crux affects what the policy implications of the evidence should be, regardless of how CX_101 resolves.",
-      "dependent_normalized_claim_ids": ["NC_103", "NC_101"],
-      "status": "unresolved",
-      "resolution_notes": null,
-      "resolution_source_ids": []
-    }
-  ],
-
-  "failure_mode_flags": [
-    {
-      "id": "FF_101",
-      "type": "correlated_evidence_treated_as_independent",
-      "description": "The prospective cohort studies pooled in the Rong 2013 meta-analysis may share correlated methodological features: most use self-reported food frequency questionnaires, similar covariate adjustment strategies, and were conducted in similar time periods and populations. If these methodological features introduce systematic bias in the same direction, pooling them does not provide independent corroboration -- it aggregates correlated error. The pooled confidence interval reflects statistical but not methodological independence.",
-      "applies_to_id": "NC_101",
-      "applies_to_type": "normalized_claim",
-      "severity": "significant",
-      "affects_conclusion": true,
-      "notes": "This flag does not mean NC_101 is wrong -- it means the precision of the pooled estimate may be overstated relative to what truly independent replication would justify."
-    },
-    {
-      "id": "FF_102",
-      "type": "population_heterogeneity",
-      "description": "The 'general population' result in NC_101 aggregates populations with very different dietary contexts, baseline cardiovascular risk profiles, and egg consumption patterns. If the effect of eggs on CVD risk is modified by dietary context (e.g., eggs consumed with saturated fat vs. with vegetables), averaging over heterogeneous populations could mask in both directions: underestimating risk in high-saturated-fat populations and overestimating it in low-saturated-fat populations.",
-      "applies_to_id": "NC_101",
-      "applies_to_type": "normalized_claim",
-      "severity": "significant",
-      "affects_conclusion": true,
-      "notes": "This is a structural limitation of observational studies that average across populations with diverse dietary patterns."
-    },
-    {
-      "id": "FF_103",
-      "type": "proxy_measure_problem",
-      "description": "Both NC_101 and NC_102 rely on food frequency questionnaire (FFQ) data to measure egg consumption. FFQs are a proxy for actual dietary intake: participants recall how often they consumed foods over a reference period (often 1 year) without detailed portion information. The proxy-target relationship between FFQ egg frequency and actual egg cholesterol intake is imperfect and subject to differential measurement error across populations and demographic groups. If the measurement error is non-random, it can both create spurious associations and mask real ones.",
-      "applies_to_id": "NC_102",
-      "applies_to_type": "normalized_claim",
-      "severity": "significant",
-      "affects_conclusion": true,
-      "notes": "This is a structural limitation of most nutrition epidemiology using observational cohort data. It is noted specifically for NC_102 because NC_102 relies on precise dose-response estimates that are particularly sensitive to measurement error."
-    },
-    {
-      "id": "FF_104",
-      "type": "source_incentive_pressure",
-      "description": "SAMPLE PLACEHOLDER: src_103 represents the category of dietary cholesterol reviews funded by egg industry organizations. Bes-Rastrollo et al. (2013, PLOS Medicine) documented systematically more favorable-to-industry conclusions in nutrition studies with industry funding compared to independently funded studies. The mechanism is not necessarily explicit fraud -- it may operate through framing, study design choices, and covariate selection that collectively favor a particular direction.",
-      "applies_to_id": "src_103",
-      "applies_to_type": "source",
-      "severity": "critical",
-      "affects_conclusion": true,
-      "notes": "PLACEHOLDER. The specific source here is illustrative. This flag is 'critical' for any industry-funded source where the funding organization has direct financial interest in the conclusion."
-    }
-  ],
-
-  "assessment": {
-    "status": "unsettled",
-    "settled_direction": null,
-    "epistemic_status_summary": "Genuinely unresolved. High-quality observational studies contradict each other in direction. The central crux (whether egg consumption independently raises CVD risk controlling for dietary context) cannot be resolved with available observational data due to structural proxy measurement and confounding limitations. Regulatory guidance shifted in 2015, but this reflects updating under uncertainty, not scientific resolution. Industry funding is a documented confound in a meaningful fraction of the favorable-to-eggs literature.",
-    "key_crux_ids": ["CX_101"],
-    "weak_link_ids": ["NC_101", "NC_102"],
-    "what_would_update": [
+  "assessment_layer": {
+    "cruxes": [
       {
-        "scenario": "A large randomized controlled trial assigning participants to defined egg consumption levels, with biomarker-validated dietary compliance and cardiovascular endpoints followed over 10+ years, in non-diabetic adults.",
-        "would_affect_ids": ["CX_101", "NC_101", "NC_102"],
-        "direction": "resolve",
-        "magnitude": "decisive"
+        "id": "CX_101",
+        "statement": "Does dietary cholesterol from egg consumption independently increase cardiovascular disease risk in non-diabetic healthy adults, after fully controlling for saturated fat intake and overall dietary pattern?",
+        "description": "This is the central unresolved question. Eggs are almost never consumed in isolation -- they are part of dietary patterns that include varying amounts of saturated fat, refined carbohydrates, and other risk factors. If the apparent CVD association in NC_102 disappears after fully controlling for total dietary cholesterol and saturated fat context, then egg consumption is not an independent risk factor. If it persists, NC_102 is more concerning. The proxy measurement problem (FF_103) means that full dietary context control is very difficult with food frequency questionnaire data.",
+        "dependent_normalized_claim_ids": ["NC_101", "NC_102", "NC_104"],
+        "status": "empirically_underdetermined",
+        "resolution_notes": null,
+        "resolution_source_ids": [],
+        "triggers": ["reassess"]
       },
       {
-        "scenario": "Replication of the Zhong 2019 JAMA finding in a prospective cohort using objective biomarker-validated dietary intake (rather than FFQ data), in a population with different baseline dietary patterns.",
-        "would_affect_ids": ["NC_102", "CX_101", "FF_103"],
-        "direction": "strengthen",
-        "magnitude": "significant"
-      },
-      {
-        "scenario": "A systematic review of unpublished or registered-but-unreported trials on dietary cholesterol and CVD outcomes, with full disclosure of industry-funded negative results.",
-        "would_affect_ids": ["NC_104", "FF_104", "CX_101"],
-        "direction": "resolve",
-        "magnitude": "significant"
+        "id": "CX_102",
+        "statement": "Is the association between egg consumption and CVD risk meaningfully different between diabetic and non-diabetic adults in a way that requires separate dietary guidance?",
+        "description": "If the diabetic subgroup finding in NC_103 is robust, then undifferentiated population-level guidance about eggs is misleading in both directions -- understating risk for diabetic patients and potentially overstating it for non-diabetic populations. This crux affects what the policy implications of the evidence should be, regardless of how CX_101 resolves.",
+        "dependent_normalized_claim_ids": ["NC_103", "NC_101"],
+        "status": "unresolved",
+        "resolution_notes": null,
+        "resolution_source_ids": []
       }
     ],
-    "well_supported_claim_ids": ["NC_103"],
-    "contested_claim_ids": ["NC_101", "NC_102"],
-    "dominant_failure_modes": [
-      "proxy_measure_problem",
-      "correlated_evidence_treated_as_independent",
-      "population_heterogeneity",
-      "source_incentive_pressure"
+
+    "failure_mode_flags": [
+      {
+        "id": "FF_101",
+        "type": "correlated_evidence_treated_as_independent",
+        "description": "The prospective cohort studies pooled in the Rong 2013 meta-analysis may share correlated methodological features: most use self-reported food frequency questionnaires, similar covariate adjustment strategies, and were conducted in similar time periods and populations. If these methodological features introduce systematic bias in the same direction, pooling them does not provide independent corroboration -- it aggregates correlated error. The pooled confidence interval reflects statistical but not methodological independence.",
+        "applies_to_id": "NC_101",
+        "applies_to_type": "normalized_claim",
+        "severity": "significant",
+        "affects_conclusion": true,
+        "notes": "This flag does not mean NC_101 is wrong -- it means the precision of the pooled estimate may be overstated relative to what truly independent replication would justify."
+      },
+      {
+        "id": "FF_102",
+        "type": "population_heterogeneity",
+        "description": "The 'general population' result in NC_101 aggregates populations with very different dietary contexts, baseline cardiovascular risk profiles, and egg consumption patterns. If the effect of eggs on CVD risk is modified by dietary context (e.g., eggs consumed with saturated fat vs. with vegetables), averaging over heterogeneous populations could mask in both directions: underestimating risk in high-saturated-fat populations and overestimating it in low-saturated-fat populations.",
+        "applies_to_id": "NC_101",
+        "applies_to_type": "normalized_claim",
+        "severity": "significant",
+        "affects_conclusion": true,
+        "notes": "This is a structural limitation of observational studies that average across populations with diverse dietary patterns."
+      },
+      {
+        "id": "FF_103",
+        "type": "proxy_measure_problem",
+        "description": "Both NC_101 and NC_102 rely on food frequency questionnaire (FFQ) data to measure egg consumption. FFQs are a proxy for actual dietary intake: participants recall how often they consumed foods over a reference period (often 1 year) without detailed portion information. The proxy-target relationship between FFQ egg frequency and actual egg cholesterol intake is imperfect and subject to differential measurement error across populations and demographic groups. If the measurement error is non-random, it can both create spurious associations and mask real ones.",
+        "applies_to_id": "NC_102",
+        "applies_to_type": "normalized_claim",
+        "severity": "significant",
+        "affects_conclusion": true,
+        "notes": "This is a structural limitation of most nutrition epidemiology using observational cohort data. It is noted specifically for NC_102 because NC_102 relies on precise dose-response estimates that are particularly sensitive to measurement error."
+      },
+      {
+        "id": "FF_104",
+        "type": "source_incentive_pressure",
+        "description": "SAMPLE PLACEHOLDER: src_103 represents the category of dietary cholesterol reviews funded by egg industry organizations. Bes-Rastrollo et al. (2013, PLOS Medicine) documented systematically more favorable-to-industry conclusions in nutrition studies with industry funding compared to independently funded studies. The mechanism is not necessarily explicit fraud -- it may operate through framing, study design choices, and covariate selection that collectively favor a particular direction.",
+        "applies_to_id": "src_103",
+        "applies_to_type": "source",
+        "severity": "critical",
+        "affects_conclusion": true,
+        "notes": "PLACEHOLDER. The specific source here is illustrative. This flag is 'critical' for any industry-funded source where the funding organization has direct financial interest in the conclusion."
+      }
     ],
-    "notes": "The regulatory history is as important as the scientific one. The 300mg/day dietary cholesterol limit, established in the 1970s, was removed in 2015 under genuine epistemic uncertainty -- a reasonable updating decision. However, widespread reporting of this as 'eggs are safe' or 'cholesterol is not a concern' overstated what the evidence supported. This is a case of closed_case_overconfidence in public and media communication, even if the regulatory decision itself was defensible."
-  },
 
-  "missing_evidence": [
-    {
-      "id": "ME_101",
-      "description": "A large, long-duration randomized controlled trial testing defined egg consumption levels against cardiovascular endpoints in non-diabetic adults. This is the only study design that could establish an independent causal effect of eggs on CVD risk, controlling for all confounding dietary context.",
-      "type": "empirical",
-      "would_affect_ids": ["CX_101", "NC_101", "NC_102"],
-      "priority": "critical",
-      "reason_absent": "Practically infeasible: long-term dietary interventions at this scale are logistically extremely difficult to maintain, and full dietary control cannot be enforced ethically over a decade-scale trial. Participants cannot be blinded to egg consumption.",
-      "feasibility": "infeasible"
-    },
-    {
-      "id": "ME_102",
-      "description": "Biomarker-validated dietary intake data (as opposed to food frequency questionnaire self-report) in a large prospective cohort that specifically tracks egg consumption as a primary exposure variable. Biomarkers for egg intake (e.g., plasma choline metabolites) exist but have not been used at scale to validate the FFQ egg consumption findings.",
-      "type": "empirical",
-      "would_affect_ids": ["NC_102", "FF_103", "CX_101"],
-      "priority": "important",
-      "reason_absent": "Has not been prioritized as a primary research question; biomarker studies are expensive and the specific validation work has not been done at the scale needed.",
-      "feasibility": "feasible"
-    }
-  ],
+    "missing_evidence": [
+      {
+        "id": "ME_101",
+        "description": "A large, long-duration randomized controlled trial testing defined egg consumption levels against cardiovascular endpoints in non-diabetic adults. This is the only study design that could establish an independent causal effect of eggs on CVD risk, controlling for all confounding dietary context.",
+        "type": "empirical",
+        "would_affect_ids": ["CX_101", "NC_101", "NC_102"],
+        "priority": "critical",
+        "reason_absent": "Practically infeasible: long-term dietary interventions at this scale are logistically extremely difficult to maintain, and full dietary control cannot be enforced ethically over a decade-scale trial. Participants cannot be blinded to egg consumption.",
+        "feasibility": "infeasible",
+        "triggers": ["reassess"]
+      },
+      {
+        "id": "ME_102",
+        "description": "Biomarker-validated dietary intake data (as opposed to food frequency questionnaire self-report) in a large prospective cohort that specifically tracks egg consumption as a primary exposure variable. Biomarkers for egg intake (e.g., plasma choline metabolites) exist but have not been used at scale to validate the FFQ egg consumption findings.",
+        "type": "empirical",
+        "would_affect_ids": ["NC_102", "FF_103", "CX_101"],
+        "priority": "important",
+        "reason_absent": "Has not been prioritized as a primary research question; biomarker studies are expensive and the specific validation work has not been done at the scale needed.",
+        "feasibility": "feasible"
+      }
+    ],
 
-  "audit_notes": [
-    {
-      "id": "AN_101",
-      "type": "source_gap",
-      "description": "src_103 is an explicitly marked placeholder source. Before treating this entry as more than a sample, it should be replaced with a specific verified industry-funded study or review, with full provenance. The Bes-Rastrollo et al. 2013 PLOS Medicine systematic review (which documents the funding-bias pattern) should also be added as a separate source to provide the methodological basis for FF_104.",
-      "applies_to_ids": ["src_103", "NC_104", "FF_104"],
-      "severity": "critical",
-      "author": null,
-      "date": "2026-06-04",
-      "status": "open",
-      "resolution": null
-    },
-    {
-      "id": "AN_102",
-      "type": "assessment_inconsistency",
-      "description": "The assessment marks NC_103 (diabetic subgroup finding) as 'well_supported', but NC_103 is a subgroup analysis from a larger meta-analysis and has not been independently replicated. Its medium confidence level reflects this. Review whether 'well_supported' is the right category or whether it should be 'contested'.",
-      "applies_to_ids": ["NC_103"],
-      "severity": "minor",
-      "author": null,
-      "date": "2026-06-04",
-      "status": "open",
-      "resolution": null
-    }
-  ]
+    "assessments": [
+      {
+        "id": "AS_101",
+        "author": null,
+        "perspective": "primary builder",
+        "summary": "Genuinely unsettled: high-quality observational studies contradict each other and the central crux is empirically underdetermined.",
+        "status": "unsettled",
+        "settled_direction": null,
+        "epistemic_status_summary": "Genuinely unresolved. High-quality observational studies contradict each other in direction. The central crux (whether egg consumption independently raises CVD risk controlling for dietary context) cannot be resolved with available observational data due to structural proxy measurement and confounding limitations. Regulatory guidance shifted in 2015, but this reflects updating under uncertainty, not scientific resolution. Industry funding is a documented confound in a meaningful fraction of the favorable-to-eggs literature.",
+        "key_crux_ids": ["CX_101"],
+        "weak_link_ids": ["NC_101", "NC_102"],
+        "sensitivity": [
+          {
+            "target_id": "CX_101",
+            "robustness": "fragile",
+            "effect_if_overturned": "If CX_101 were resolved by a decisive causal study, the assessment would move from unsettled toward settled in whichever direction the study indicated."
+          },
+          {
+            "target_id": "NC_102",
+            "robustness": "unknown",
+            "effect_if_overturned": "If the Zhong 2019 association is an artifact of FFQ measurement error (FF_103), the apparent conflict with NC_101 may partly dissolve; whether the conclusion changes depends on replication with validated intake measures."
+          }
+        ],
+        "what_would_update": [
+          {
+            "scenario": "A large randomized controlled trial assigning participants to defined egg consumption levels, with biomarker-validated dietary compliance and cardiovascular endpoints followed over 10+ years, in non-diabetic adults.",
+            "would_affect_ids": ["CX_101", "NC_101", "NC_102"],
+            "direction": "resolve",
+            "magnitude": "decisive"
+          },
+          {
+            "scenario": "Replication of the Zhong 2019 JAMA finding in a prospective cohort using objective biomarker-validated dietary intake (rather than FFQ data), in a population with different baseline dietary patterns.",
+            "would_affect_ids": ["NC_102", "CX_101", "FF_103"],
+            "direction": "strengthen",
+            "magnitude": "significant"
+          },
+          {
+            "scenario": "A systematic review of unpublished or registered-but-unreported trials on dietary cholesterol and CVD outcomes, with full disclosure of industry-funded negative results.",
+            "would_affect_ids": ["NC_104", "FF_104", "CX_101"],
+            "direction": "resolve",
+            "magnitude": "significant"
+          }
+        ],
+        "well_supported_claim_ids": ["NC_103"],
+        "contested_claim_ids": ["NC_101", "NC_102"],
+        "dominant_failure_modes": [
+          "proxy_measure_problem",
+          "correlated_evidence_treated_as_independent",
+          "population_heterogeneity",
+          "source_incentive_pressure"
+        ],
+        "date": "2026-06-04",
+        "notes": "The regulatory history is as important as the scientific one. The 300mg/day dietary cholesterol limit, established in the 1970s, was removed in 2015 under genuine epistemic uncertainty -- a reasonable updating decision. However, widespread reporting of this as 'eggs are safe' or 'cholesterol is not a concern' overstated what the evidence supported. This is a case of closed_case_overconfidence in public and media communication, even if the regulatory decision itself was defensible."
+      }
+    ],
+
+    "reviews": [],
+
+    "audit_notes": [
+      {
+        "id": "AN_101",
+        "type": "source_gap",
+        "description": "src_103 is an explicitly marked placeholder source. Before treating this entry as more than a sample, it should be replaced with a specific verified industry-funded study or review, with full provenance. The Bes-Rastrollo et al. 2013 PLOS Medicine systematic review (which documents the funding-bias pattern) should also be added as a separate source to provide the methodological basis for FF_104.",
+        "applies_to_ids": ["src_103", "NC_104", "FF_104"],
+        "severity": "critical",
+        "author": null,
+        "date": "2026-06-04",
+        "status": "open",
+        "resolution": null,
+        "triggers": ["reingest", "re_review"]
+      },
+      {
+        "id": "AN_102",
+        "type": "assessment_inconsistency",
+        "description": "The assessment marks NC_103 (diabetic subgroup finding) as 'well_supported', but NC_103 is a subgroup analysis from a larger meta-analysis and has not been independently replicated. Its medium confidence level reflects this. Review whether 'well_supported' is the right category or whether it should be 'contested'.",
+        "applies_to_ids": ["NC_103"],
+        "severity": "minor",
+        "author": null,
+        "date": "2026-06-04",
+        "status": "open",
+        "resolution": null,
+        "triggers": ["reassess"]
+      }
+    ]
+  }
 }

@@ -1,21 +1,20 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:epistemic-atlas:schema:v2",
-  "title": "EpistemicAtlas v2",
-  "description": "A self-contained epistemic knowledge base for one real-world dispute. The root object is a Case. All other object types live in typed arrays inside the Case and reference each other by ID. The full pipeline goes: Sources -> ExtractedClaims -> NormalizedClaims -> Relations + Cruxes + FailureModeFlags -> Assessment. MissingEvidence and AuditNotes are parallel annotations.",
+  "$id": "urn:epistemic-atlas:schema:v3",
+  "title": "EpistemicAtlas v3",
+  "description": "A self-contained epistemic knowledge base for one real-world dispute (schema v3). The root object is a Case. v3 separates the reusable knowledge structure (sources, extracted_claims, normalized_claims, relations) from a more subjective assessment_layer (cruxes, failure_mode_flags, missing_evidence, assessments, reviews, audit_notes). Relations use a small set of families rather than a large fixed type vocabulary, and record how they are grounded via the basis field. The schema does not assert that any encoded case is authoritative: claims marked needs_source_verification have not been checked against primary sources, and the data_status field records the verification state of each case.",
   "$ref": "#/$defs/Case",
 
   "$defs": {
 
     "Case": {
-      "description": "The root container for one epistemic case study. A Case is a complete, self-contained JSON file. All other object types are embedded within it.",
+      "description": "The root container for one epistemic case study. A Case is a complete, self-contained JSON file. The core knowledge layer (sources, extracted_claims, normalized_claims, relations) is reusable and comparatively objective. The assessment_layer holds the more subjective interpretation built on top of it.",
       "type": "object",
       "required": [
         "id", "schema_version", "title", "domain", "status", "data_status",
         "summary", "created", "updated",
-        "sources", "extracted_claims", "normalized_claims",
-        "relations", "cruxes", "failure_mode_flags",
-        "assessment", "missing_evidence"
+        "sources", "extracted_claims", "normalized_claims", "relations",
+        "assessment_layer"
       ],
       "additionalProperties": false,
       "properties": {
@@ -25,8 +24,8 @@
         },
         "schema_version": {
           "type": "string",
-          "const": "2",
-          "description": "Must be '2' for this schema version."
+          "const": "3",
+          "description": "Must be '3' for this schema version."
         },
         "title": {
           "type": "string",
@@ -83,32 +82,12 @@
         },
         "relations": {
           "type": "array",
-          "description": "Directed, typed relationships between NormalizedClaims. The relation graph is the core epistemic structure of the case.",
+          "description": "Directed relationships between NormalizedClaims, grouped into a small set of families. The relation graph is the core epistemic structure of the case and is part of the reusable knowledge layer, distinct from the interpretation recorded in assessment_layer.",
           "items": { "$ref": "#/$defs/Relation" }
         },
-        "cruxes": {
-          "type": "array",
-          "description": "Pivotal questions whose resolution would significantly shift the dispute. A crux is not just any contested claim -- it is specifically a load-bearing one.",
-          "items": { "$ref": "#/$defs/Crux" }
-        },
-        "failure_mode_flags": {
-          "type": "array",
-          "description": "First-class epistemic failure mode annotations. Flags apply to a specific NormalizedClaim, Source, or Relation -- not to the case as a whole. This allows patterns to be queried at fine granularity.",
-          "items": { "$ref": "#/$defs/FailureModeFlag" }
-        },
-        "assessment": {
-          "$ref": "#/$defs/Assessment",
-          "description": "Singular overall epistemic assessment. Must be consistent with the claim and relation data."
-        },
-        "missing_evidence": {
-          "type": "array",
-          "description": "Evidence that does not currently exist in accessible form but whose existence would change the epistemic status of at least one crux or claim. Distinct from evidence that exists but was not cited.",
-          "items": { "$ref": "#/$defs/MissingEvidence" }
-        },
-        "audit_notes": {
-          "type": "array",
-          "description": "Adversarial review annotations. Each note is an issue found during review, with severity, affected IDs, and resolution status.",
-          "items": { "$ref": "#/$defs/AuditNote" }
+        "assessment_layer": {
+          "$ref": "#/$defs/AssessmentLayer",
+          "description": "The interpretive layer: cruxes, failure mode flags, missing evidence, one or more assessments, reviews, and audit notes. Separated from the core knowledge layer so the same sources/claims/relations can carry multiple, possibly disagreeing, assessments."
         }
       }
     },
@@ -289,7 +268,7 @@
         "failure_mode_flag_ids": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "IDs of FailureModeFlag objects that apply to this specific claim."
+          "description": "IDs of FailureModeFlag objects (in assessment_layer.failure_mode_flags) that apply to this specific claim."
         },
         "tags": {
           "type": "array",
@@ -304,9 +283,9 @@
     },
 
     "Relation": {
-      "description": "A directed, typed, strength-rated relationship between two NormalizedClaims. Direction matters: 'A supports B' is not the same as 'B supports A'. Relations are the core epistemic structure -- the claim graph is what makes an atlas entry more than a list.",
+      "description": "A directed relationship between two NormalizedClaims, grouped into a small set of families. Direction matters: 'A supports B' is not the same as 'B supports A'. v3 deliberately uses few families and pushes nuance into subtype, tags, basis, and notes rather than a large fixed vocabulary. The schema does not assume that logical 'support' and empirical 'evidence' are cleanly separable: both fall under the supports family and are distinguished, if needed, by subtype or tags. The basis field records how the relation is grounded (stated in a source vs. inferred by the annotator).",
       "type": "object",
-      "required": ["id", "from_id", "to_id", "type", "strength"],
+      "required": ["id", "from_id", "to_id", "family", "basis", "strength"],
       "additionalProperties": false,
       "properties": {
         "id": {
@@ -321,21 +300,35 @@
           "type": "string",
           "description": "ID of the target NormalizedClaim in the relation."
         },
-        "type": {
+        "family": {
+          "type": "string",
+          "enum": ["supports", "opposes", "depends_on", "contextualizes", "equivalent"],
+          "description": "supports: A raises the credibility of B, whether by logical justification or empirical evidence (absorbs the v2 supports and evidence_for types). opposes: A lowers the credibility of B or stands in tension with it (absorbs v2 attacks, evidence_against, and conflicts_with). depends_on: A is only meaningful or true if B is true. contextualizes: A changes the scope or interpretation of B without simply supporting or opposing it (absorbs v2 reframes, narrows, and generalizes). equivalent: A and B assert the same proposition, typically from different sources (absorbs v2 duplicates)."
+        },
+        "subtype": {
+          "type": ["string", "null"],
+          "description": "Optional finer-grained label within the family, free text rather than a controlled vocabulary. Examples: 'logical', 'empirical', 'narrows', 'generalizes', 'reframes', 'mutual_tension', 'independent_restatement'. Use it to record nuance without forcing it into the family enum."
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional free-text tags for cross-case querying (e.g., 'empirical', 'kinematic_analogy')."
+        },
+        "basis": {
           "type": "string",
           "enum": [
-            "supports",
-            "attacks",
-            "depends_on",
-            "reframes",
-            "narrows",
-            "generalizes",
-            "duplicates",
-            "conflicts_with",
-            "evidence_for",
-            "evidence_against"
+            "asserted_in_source",
+            "asserted_by_later_source",
+            "inferred_across_sources",
+            "analyst_inferred",
+            "unclear"
           ],
-          "description": "supports: A provides logical justification for B. attacks: A logically contradicts or refutes B. depends_on: A is only meaningful or true if B is true. reframes: A changes the interpretive context of B without directly contradicting it. narrows: A restricts the scope of B (B may still be true; A says only under conditions). generalizes: A expands the scope of B to a broader domain. duplicates: A and B make the same proposition from different sources. conflicts_with: A and B are in tension without a direct logical contradiction -- they cannot both be fully correct but neither strictly entails the other's falsity. evidence_for: A is an empirical observation that increases the probability of B (stronger and more specific than supports). evidence_against: A is an empirical observation that decreases the probability of B."
+          "description": "How this relation is grounded. asserted_in_source: a single source states the relation directly. asserted_by_later_source: a later source explicitly draws the connection between earlier claims. inferred_across_sources: the relation is synthesized by comparing multiple sources, none of which states it outright. analyst_inferred: the relation is the annotator's own logical inference, not stated by any source. unclear: the grounding has not been determined. This field lets a reader tell whether a relation reflects what a source said or what an annotator concluded."
+        },
+        "basis_source_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "If basis is asserted_in_source or asserted_by_later_source, the IDs of the Source(s) that assert the relation."
         },
         "strength": {
           "type": "string",
@@ -354,7 +347,7 @@
     },
 
     "Crux": {
-      "description": "A pivotal question or claim whose resolution would significantly shift the dispute. A crux is not just any contested claim -- it is specifically load-bearing for the overall dispute. If you resolved it one way, one major position is weakened; the other way, the opposing position is weakened. Aim for 2-5 per case.",
+      "description": "A pivotal question or claim whose resolution would significantly shift the dispute. A crux is not just any contested claim -- it is specifically load-bearing for the overall dispute. If you resolved it one way, one major position is weakened; the other way, the opposing position is weakened. Aim for 2-5 per case. Lives in the assessment_layer because identifying a crux is an interpretive act.",
       "type": "object",
       "required": ["id", "statement", "description", "dependent_normalized_claim_ids", "status"],
       "additionalProperties": false,
@@ -396,12 +389,17 @@
           "type": "array",
           "items": { "type": "string" },
           "description": "IDs of Sources that provide the resolution evidence."
+        },
+        "triggers": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/WorkflowTrigger" },
+          "description": "Optional workflow passes this crux suggests revisiting. Supports a living, nonlinear workflow rather than a one-time linear pipeline."
         }
       }
     },
 
     "FailureModeFlag": {
-      "description": "A first-class annotation recording an epistemic failure mode at the specific location where it occurs. Flags attach to NormalizedClaims, Sources, or Relations -- not to the case as a whole. This enables cross-case queries like: which claims in industry-funded sources show source_incentive_pressure?",
+      "description": "A first-class annotation recording an epistemic failure mode at the specific location where it occurs. Flags attach to NormalizedClaims, Sources, or Relations -- not to the case as a whole. This enables cross-case queries like: which claims in industry-funded sources show source_incentive_pressure? Lives in the assessment_layer.",
       "type": "object",
       "required": ["id", "type", "description", "applies_to_id", "applies_to_type", "severity"],
       "additionalProperties": false,
@@ -458,11 +456,35 @@
     },
 
     "Assessment": {
-      "description": "The overall epistemic assessment of the case. Must be consistent with the claim and relation data -- if assessment calls a claim well-supported, there should be no strong unaddressed attacks on it in the relations array.",
+      "description": "One epistemic assessment over the shared knowledge structure. v3 allows multiple assessments (e.g., from different assessors or perspectives) to coexist in assessment_layer.assessments, so the subjective interpretation is separated from the reusable sources/claims/relations layer. Each assessment must remain consistent with the claim and relation data it cites: if it calls a claim well-supported, there should be no strong unaddressed opposing relations on it.",
       "type": "object",
-      "required": ["status", "key_crux_ids", "weak_link_ids", "what_would_update"],
+      "required": ["id", "status"],
       "additionalProperties": false,
       "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier. Convention: AS_001, AS_002, ..."
+        },
+        "author": {
+          "type": ["string", "null"],
+          "description": "Who produced this assessment. Null if anonymous or not recorded."
+        },
+        "assessor": {
+          "type": ["string", "null"],
+          "description": "Optional distinct assessor identity, if tracked separately from author."
+        },
+        "perspective": {
+          "type": ["string", "null"],
+          "description": "The standpoint this assessment is written from (e.g., 'primary builder', 'adversarial reviewer', 'domain expert')."
+        },
+        "assessment_scope": {
+          "type": ["string", "null"],
+          "description": "What this assessment covers if it is not the whole case (e.g., 'only the diabetic-subgroup sub-question')."
+        },
+        "summary": {
+          "type": ["string", "null"],
+          "description": "Short plain-language summary of this assessment."
+        },
         "status": {
           "type": "string",
           "enum": ["settled", "unsettled", "partially_settled"],
@@ -476,20 +498,63 @@
           "type": ["string", "null"],
           "description": "Plain-language summary of the overall epistemic state for a non-specialist reader."
         },
+        "confidence": {
+          "type": ["string", "null"],
+          "description": "Optional overall confidence in this assessment, plain language."
+        },
+        "crux_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "IDs of cruxes this assessment treats as relevant."
+        },
         "key_crux_ids": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "IDs of the cruxes that are most load-bearing for the case. Should be a subset of the case's cruxes array."
+          "description": "IDs of the cruxes that are most load-bearing for this assessment. Should be a subset of the case's cruxes."
+        },
+        "failure_mode_flag_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "IDs of FailureModeFlags this assessment weighs most heavily."
+        },
+        "missing_evidence_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "IDs of MissingEvidence items this assessment treats as most consequential."
         },
         "weak_link_ids": {
           "type": "array",
           "items": { "type": "string" },
           "description": "IDs of NormalizedClaims that are the weakest links in the dominant argument -- claims with meaningful failure flags or low confidence that the argument significantly depends on."
         },
+        "sensitivity": {
+          "type": "array",
+          "description": "How robust this assessment's conclusion is to specific claims or cruxes being overturned. A light sensitivity analysis rather than a formal one.",
+          "items": {
+            "type": "object",
+            "required": ["target_id", "robustness"],
+            "additionalProperties": false,
+            "properties": {
+              "target_id": {
+                "type": "string",
+                "description": "ID of a NormalizedClaim, Crux, or weak link this sensitivity entry is about."
+              },
+              "robustness": {
+                "type": "string",
+                "enum": ["robust", "fragile", "unknown"],
+                "description": "robust = the conclusion survives if this element is overturned. fragile = the conclusion changes if this element is overturned. unknown = not yet determined."
+              },
+              "effect_if_overturned": {
+                "type": ["string", "null"],
+                "description": "What happens to the assessment if target_id is overturned or reversed."
+              }
+            }
+          }
+        },
         "what_would_update": {
           "type": "array",
           "minItems": 1,
-          "description": "Explicit scenarios that would change the assessment. This is the forward-looking question: what evidence or events, if they occurred, would require revising the conclusion? Each entry must specify what would be affected and how.",
+          "description": "Explicit scenarios that would change this assessment. The forward-looking question: what evidence or events, if they occurred, would require revising the conclusion? Each entry must specify what would be affected and how.",
           "items": {
             "type": "object",
             "required": ["scenario", "would_affect_ids", "direction", "magnitude"],
@@ -520,7 +585,7 @@
         "well_supported_claim_ids": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "NormalizedClaim IDs with high or medium confidence and no significant unaddressed attacks in the relations array."
+          "description": "NormalizedClaim IDs with high or medium confidence and no significant unaddressed opposing relations."
         },
         "contested_claim_ids": {
           "type": "array",
@@ -532,6 +597,19 @@
           "items": { "type": "string" },
           "description": "Failure mode types (from the FailureModeFlag vocabulary) that appear most significantly across this case."
         },
+        "disagrees_with": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "IDs of other Assessments or Reviews this assessment disagrees with."
+        },
+        "disagreement_notes": {
+          "type": ["string", "null"],
+          "description": "Explanation of where and why this assessment diverges from the ones in disagrees_with."
+        },
+        "date": {
+          "type": ["string", "null"],
+          "description": "ISO date this assessment was produced."
+        },
         "notes": {
           "type": ["string", "null"],
           "description": "Additional assessment notes not captured elsewhere."
@@ -539,8 +617,51 @@
       }
     },
 
+    "Review": {
+      "description": "An adversarial or multi-user review of the case or of a specific assessment. Reviews let more than one person scrutinize the same shared knowledge structure without overwriting each other's work, supporting multi-user and adversarial evaluation.",
+      "type": "object",
+      "required": ["id", "assessor", "role", "summary"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier. Convention: RV_001, RV_002, ..."
+        },
+        "assessor": {
+          "type": "string",
+          "description": "Who performed the review."
+        },
+        "role": {
+          "type": "string",
+          "enum": ["builder", "collaborator", "adversary", "domain_expert", "other"],
+          "description": "The reviewer's relationship to the entry. adversary = explicitly trying to break the entry. domain_expert = subject-matter check. builder = someone who built the entry reviewing their own work. collaborator = a co-author. other = anything else."
+        },
+        "stance": {
+          "type": ["string", "null"],
+          "description": "Optional one-line stance (e.g., 'concurs with primary assessment', 'dissents on the settled status')."
+        },
+        "summary": {
+          "type": "string",
+          "description": "What the review found."
+        },
+        "dissents_from_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "IDs of Assessments, NormalizedClaims, Relations, or Cruxes this review dissents from."
+        },
+        "date": {
+          "type": ["string", "null"],
+          "description": "ISO date of the review."
+        },
+        "notes": {
+          "type": ["string", "null"],
+          "description": "Additional reviewer commentary."
+        }
+      }
+    },
+
     "MissingEvidence": {
-      "description": "Evidence that does not currently exist in any accessible form but whose existence would change the epistemic status of at least one crux or normalized claim. This is different from evidence that exists but was not cited, or evidence that one party has withheld.",
+      "description": "Evidence that does not currently exist in any accessible form but whose existence would change the epistemic status of at least one crux or normalized claim. This is different from evidence that exists but was not cited, or evidence that one party has withheld. Lives in the assessment_layer.",
       "type": "object",
       "required": ["id", "description", "type", "would_affect_ids", "priority"],
       "additionalProperties": false,
@@ -577,12 +698,17 @@
           "type": ["string", "null"],
           "enum": ["feasible", "infeasible", "unknown", null],
           "description": "Whether this evidence could in principle be obtained."
+        },
+        "triggers": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/WorkflowTrigger" },
+          "description": "Optional workflow passes this missing-evidence item suggests revisiting if the evidence becomes available."
         }
       }
     },
 
     "AuditNote": {
-      "description": "An adversarial review annotation. AuditNotes record issues found during the review step (Prompt 06) -- problems with normalization, source gaps, asymmetric flagging, etc. Each note has a resolution status so the audit log remains live.",
+      "description": "An adversarial review annotation. AuditNotes record issues found during the review step -- problems with normalization, source gaps, asymmetric flagging, etc. Each note has a resolution status so the audit log remains live. Lives in the assessment_layer.",
       "type": "object",
       "required": ["id", "type", "description", "applies_to_ids", "severity", "status"],
       "additionalProperties": false,
@@ -605,7 +731,7 @@
             "llm_artifact",
             "other"
           ],
-          "description": "normalization_concern = normalized form may have changed the meaning of the raw claim. source_gap = significant source, perspective, or evidence was not consulted. asymmetric_flagging = failure flags applied inconsistently across positions. relation_error = a relation is mis-directed, wrong type, or missing. crux_quality = identified crux is not actually load-bearing, or a real crux was missed. missing_evidence_framing = missing evidence is framed in a way that favors one side. assessment_inconsistency = the assessment contradicts claim or relation data. verification_needed = a specific claim requires primary source verification. llm_artifact = a claim, source reference, or relation may have been generated by an LLM without grounding in actual source text. other = does not fit above categories."
+          "description": "normalization_concern = normalized form may have changed the meaning of the raw claim. source_gap = significant source, perspective, or evidence was not consulted. asymmetric_flagging = failure flags applied inconsistently across positions. relation_error = a relation is mis-directed, wrong family, or missing. crux_quality = identified crux is not actually load-bearing, or a real crux was missed. missing_evidence_framing = missing evidence is framed in a way that favors one side. assessment_inconsistency = the assessment contradicts claim or relation data. verification_needed = a specific claim requires primary source verification. llm_artifact = a claim, source reference, or relation may have been generated by an LLM without grounding in actual source text. other = does not fit above categories."
         },
         "description": {
           "type": "string",
@@ -637,8 +763,67 @@
         "resolution": {
           "type": ["string", "null"],
           "description": "How the issue was resolved, or why it was dismissed."
+        },
+        "triggers": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/WorkflowTrigger" },
+          "description": "Optional workflow passes this audit note suggests revisiting."
         }
       }
+    },
+
+    "AssessmentLayer": {
+      "description": "The interpretive layer, separated from the reusable knowledge structure (sources, extracted_claims, normalized_claims, relations). Everything here is more subjective and may be revised, contested, or duplicated across assessors. Cruxes, failure mode flags, missing evidence, assessments, reviews, and audit notes all reference the core layer by ID.",
+      "type": "object",
+      "required": ["cruxes", "failure_mode_flags", "missing_evidence", "assessments"],
+      "additionalProperties": false,
+      "properties": {
+        "cruxes": {
+          "type": "array",
+          "description": "Pivotal questions whose resolution would significantly shift the dispute.",
+          "items": { "$ref": "#/$defs/Crux" }
+        },
+        "failure_mode_flags": {
+          "type": "array",
+          "description": "Epistemic failure mode annotations attached to specific claims, sources, or relations.",
+          "items": { "$ref": "#/$defs/FailureModeFlag" }
+        },
+        "missing_evidence": {
+          "type": "array",
+          "description": "Evidence that does not currently exist but whose existence would change the status of a crux or claim.",
+          "items": { "$ref": "#/$defs/MissingEvidence" }
+        },
+        "assessments": {
+          "type": "array",
+          "minItems": 1,
+          "description": "One or more assessments over the same knowledge structure. Multiple assessments support adversarial or multi-perspective evaluation; a single-assessor entry has exactly one.",
+          "items": { "$ref": "#/$defs/Assessment" }
+        },
+        "reviews": {
+          "type": "array",
+          "description": "Adversarial or multi-user reviews. May be empty when no separate review has been performed.",
+          "items": { "$ref": "#/$defs/Review" }
+        },
+        "audit_notes": {
+          "type": "array",
+          "description": "Adversarial review annotations with resolution status.",
+          "items": { "$ref": "#/$defs/AuditNote" }
+        }
+      }
+    },
+
+    "WorkflowTrigger": {
+      "type": "string",
+      "enum": [
+        "rescope",
+        "reingest",
+        "reextract",
+        "renormalize",
+        "remap_relations",
+        "reassess",
+        "re_review"
+      ],
+      "description": "A workflow pass that an item suggests revisiting. Supports a living, nonlinear workflow: a new crux, a piece of missing evidence, an audit note, or a new source can trigger another pass rather than a one-time linear pipeline. rescope = revisit the case question. reingest = consult or add sources. reextract = re-extract claims. renormalize = re-normalize claims. remap_relations = revisit the relation graph. reassess = redo the assessment. re_review = run another adversarial review."
     },
 
     "CaseStatus": {
