@@ -98,22 +98,26 @@ judgment, so the schema records the broad family and pushes nuance into `subtype
 
 ## Workflow
 
-The `prompts/` directory contains prompt templates for building an atlas entry from raw
-sources. The default order is:
+The `prompts/` directory contains one prompt template per stage for building an atlas entry
+from raw sources. The default order is:
 
-1. Scope the question
-2. Source ingestion and provenance capture
-3. Atomic claim extraction
-4. Claim normalization
-5. Relation mapping, crux identification, failure mode flagging, and assessment
-6. Adversarial review and audit
+1. Scope the question (`01_scope.md`)
+2. Source ingestion and provenance capture (`02_source_ingestion.md`)
+3. Claim extraction, kept close to the source (`03_claim_extraction.md`)
+4. Claim normalization (`04_claim_normalization.md`)
+5. Relation mapping, five families with a recorded basis (`05_relation_mapping.md`)
+6. Assessment layer: cruxes, failure mode flags, missing evidence, assessments (`06_assessment_layer.md`)
+7. Adversarial audit (`07_adversarial_audit.md`)
+
+Stages 2 through 5 build the core knowledge layer; stage 6 builds the assessment layer.
 
 This order is a starting path, not a one-way pipeline. A new crux, a missing-evidence item,
 an audit note, or a newly found source can send you back to rescope, reingest, re-extract,
 renormalize, remap relations, or reassess. The schema records these triggers on cruxes,
 missing-evidence items, and audit notes, though the orchestration around them is still early.
 
-See `docs/methodology.md` for the full description.
+See `docs/methodology.md` for the full description, and `docs/living_workflow.md` for how the
+workflow loops and compounds over time.
 
 ## Prototype Status
 

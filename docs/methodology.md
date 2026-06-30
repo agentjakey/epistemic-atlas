@@ -4,11 +4,11 @@
 
 Building an Epistemic Atlas entry from raw sources follows a default order of six steps. Steps 1-5 are constructive: they produce the structured artifact. Step 6 is adversarial: it tries to break what the earlier steps built.
 
-This default order is a starting path, not a strict one-way pipeline. The work is meant to be revisited: a new crux, a missing-evidence item, an audit note, or a newly found source can send you back to rescope, reingest, re-extract, renormalize, remap relations, or reassess. The schema records these as trigger fields on cruxes, missing-evidence items, and audit notes, so a later analyst can see what an entry is asking to have revisited. The orchestration around these triggers is still early; treat them as hand-set pointers rather than an automated engine.
+This default order is a starting path, not a strict one-way pipeline. The work is meant to be revisited: a new crux, a missing-evidence item, an audit note, or a newly found source can send you back to rescope, reingest, re-extract, renormalize, remap relations, or reassess. The schema records these as trigger fields on cruxes, missing-evidence items, and audit notes, so a later analyst can see what an entry is asking to have revisited. The orchestration around these triggers is still early; treat them as hand-set pointers rather than an automated engine. See docs/living_workflow.md for a fuller account of the trigger vocabulary, the event-driven loops, and how an entry compounds over time.
 
 The output is organized into two layers. A core knowledge layer (sources, extracted claims, normalized claims, relations) is meant to be relatively reusable and source-grounded. A separate assessment layer (cruxes, failure mode flags, missing evidence, assessments, reviews, audit notes) is more interpretive and contestable, so a later analyst can reuse the core structure while disagreeing about the assessment.
 
-Each step has a corresponding prompt in the `prompts/` directory. The workflow is designed to be executed with human oversight at each stage, though parts can be supported with LLM assistance.
+Each stage has a prompt template in the `prompts/` directory, numbered 01 scope through 07 adversarial audit (`01_scope.md`, `02_source_ingestion.md`, `03_claim_extraction.md`, `04_claim_normalization.md`, `05_relation_mapping.md`, `06_assessment_layer.md`, `07_adversarial_audit.md`). The workflow page summarizes the same sequence. The step descriptions below group some of these stages together but follow the same order. The workflow is designed to be executed with human oversight at each stage, though parts can be supported with LLM assistance.
 
 ---
 

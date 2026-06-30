@@ -83,3 +83,7 @@ Before proceeding to Step 2, verify:
 - If scoping reveals the dispute has no real epistemic content (e.g., it is purely
   a values dispute), stop here. The schema is not appropriate for purely normative
   questions without empirical components.
+- Scoping only frames the question. Do not produce cruxes, failure mode flags, or an
+  assessment here; those belong to the assessment layer and come much later. The scope is
+  not final either: if a later crux or audit note shows the question was too broad or
+  conflated, the entry can be rescoped (the rescope trigger in the living workflow).
