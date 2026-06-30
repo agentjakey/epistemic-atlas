@@ -96,6 +96,10 @@ empirical observation, theoretical assumption, source interpretation, and later 
 judgment, so the schema records the broad family and pushes nuance into `subtype`, `tags`,
 `basis`, and free-text notes instead of forcing a hard choice.
 
+For how the schema relates to existing provenance and argument formats (W3C PROV, the Argument
+Interchange Format, and nanopublications), see `docs/prior_art_mapping.md`. Those mappings are
+conceptual; the atlas keeps JSON as its canonical format and does not implement those standards.
+
 ## Workflow
 
 The `prompts/` directory contains one prompt template per stage for building an atlas entry

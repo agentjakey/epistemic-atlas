@@ -65,7 +65,7 @@ const sections = [
     items: [
       {
         title: 'The schema is a graph, not a formal logic.',
-        body: 'Relation types (supports, attacks, etc.) are not formally defined in a logical system. This makes the atlas more accessible but means that consistency checks are informal. There is no automated detection of transitively inconsistent claims.',
+        body: 'Relation families (supports, opposes, etc.) are not formally defined in a logical system. This makes the atlas more accessible but means that consistency checks are informal. There is no automated detection of transitively inconsistent claims.',
       },
       {
         title: 'Missing evidence is underconstrained.',
@@ -143,7 +143,7 @@ export default function LimitationsPage() {
               <div>
                 <p className="font-semibold text-ink mb-1">Accessibility vs. formalism</p>
                 <p className="leading-relaxed">
-                  Using prose-level relation types (supports, attacks) instead of
+                  Using prose-level relation families (supports, opposes) instead of
                   first-order logic predicates makes the schema more accessible but
                   sacrifices formal consistency checking.
                 </p>

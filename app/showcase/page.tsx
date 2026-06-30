@@ -34,13 +34,13 @@ const cards = [
     note: 'All five cruxes unresolved or empirically underdetermined. Funding pressure and population heterogeneity flags prominent.',
   },
   {
-    id: 'SCHEMA-V2',
+    id: 'SCHEMA-V3',
     title: 'Reusable Schema',
     type: 'JSON Schema Draft 2020-12',
-    status: 'v2',
+    status: 'v3',
     statusClass: 'badge badge-status-underdetermined',
-    metrics: '9 object types / 10 relation types / 12 failure modes',
-    note: 'JSON export, typed audit notes, update conditions. Case-agnostic: same specification covers both cases without extensions.',
+    metrics: 'core + assessment layers / 5 relation families / 12 failure modes',
+    note: 'Five relation families with a recorded basis, a core knowledge layer kept separate from the assessment layer, and assessments[] plus reviews[] for alternative or adversarial views. Same specification covers both cases without extensions.',
   },
 ]
 
@@ -62,13 +62,14 @@ export default function ShowcasePage() {
               Turning messy disputes into inspectable claim graphs.
             </p>
             <p className="text-sm text-ink-light leading-relaxed max-w-xl">
-              A human-AI workflow for preserving source provenance, normalized claims,
-              support and objection relations, cruxes, missing evidence, uncertainty,
-              and epistemic failure-mode flags in a structured, queryable form.
+              A human-AI workflow that keeps source provenance, extracted and normalized
+              claims, and relations in a reusable core knowledge layer, with cruxes, missing
+              evidence, failure-mode flags, and assessments held in a separate, more contestable
+              assessment layer. Each relation records how the link is grounded.
             </p>
           </div>
           <div>
-            <p className="text-xs section-heading mb-4">Six-Stage Pipeline</p>
+            <p className="text-xs section-heading mb-4">Atlas Workflow</p>
             <div className="flex flex-wrap items-center gap-0">
               {flow.map((stage, i) => (
                 <div key={stage} className="flex items-center">
@@ -82,9 +83,11 @@ export default function ShowcasePage() {
               ))}
             </div>
             <p className="text-xs text-ink-faint mt-4 leading-relaxed max-w-lg">
-              Each stage has a corresponding prompt template. LLM assistance reduces
-              time cost; human oversight is required at every stage before upgrading
-              data_status from partial to verified.
+              Seven canonical prompt templates, one per stage, build the core knowledge layer
+              (sources through relations) and then the assessment layer (cruxes through
+              assessment). The order is a default path, not a one-way pipeline: triggers let a
+              new crux, source, or audit note send the work back to an earlier stage. Human
+              oversight is required before upgrading data_status from partial to verified.
             </p>
           </div>
         </div>
@@ -210,15 +213,15 @@ export default function ShowcasePage() {
         {[
           {
             label: 'Claim-Level Granularity',
-            text: 'Failure-mode flags attach to individual claims and sources, not to the case as a whole. This makes them queryable across cases.',
+            text: 'Failure-mode flags attach to individual claims, sources, and relations, not to the case as a whole. This makes them queryable across cases.',
           },
           {
             label: 'Explicit Update Conditions',
             text: 'Each assessment names concrete scenarios that would change the conclusion: named study designs, specific crux resolutions, identified weak links.',
           },
           {
-            label: 'Full Provenance Chain',
-            text: 'Every normalized claim traces to its extracted form, which traces to its source. The audit trail is complete and inspectable at every layer.',
+            label: 'Grounded Provenance Chain',
+            text: 'Every normalized claim traces to its extracted form, which traces to its source, and each relation records whether it was asserted in a source or inferred by the analyst. The trail is inspectable at every layer.',
           },
         ].map((item) => (
           <div key={item.label}>

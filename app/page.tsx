@@ -28,11 +28,11 @@ const pillars = [
   {
     n: '02',
     label: 'Structure',
-    summary: 'Claims normalized into unambiguous propositions and mapped into a typed directed graph.',
+    summary: 'Claims normalized into unambiguous propositions and mapped into a directed graph of relation families.',
     items: [
       'Normalized claims: scope-explicit propositions with position and confidence',
-      'Relation graph: typed directed edges across 10 relation categories',
-      'Failure-mode flags: attached to individual claims and sources, queryable across cases',
+      'Relation graph: directed edges across five relation families, each with a recorded basis',
+      'Failure-mode flags: attached to individual claims, sources, and relations, queryable across cases',
     ],
     bg: 'bg-amber-50',
     border: 'border-amber-200',
@@ -102,7 +102,7 @@ const artifacts = [
   {
     href: '/workflow',
     title: 'Workflow',
-    desc: 'Six-stage human-AI pipeline with prompt templates for each stage.',
+    desc: 'A human-AI workflow with a prompt template for each stage, meant to be revisited rather than run once.',
   },
   {
     href: '/schema',
