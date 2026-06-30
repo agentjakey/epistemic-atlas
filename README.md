@@ -3,7 +3,7 @@
 Epistemic Atlas is a human-AI workflow for turning messy disputes into inspectable claim
 graphs with provenance, relation mapping, cruxes, missing evidence, and assessment notes.
 
-<img width="1870" height="984" alt="Screenshot 2026-06-05 001331" src="https://github.com/user-attachments/assets/e873bece-3480-41bd-af4d-87abaaca173f" />
+<img width="940" height="499" alt="image" src="https://github.com/user-attachments/assets/b4180d14-8525-4d97-bf1e-e20652b25190" />
 
 ## What it is
 
