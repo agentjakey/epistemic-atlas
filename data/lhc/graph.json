@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "schema_version": "2",
+    "schema_version": "3",
     "case_id": "lhc-black-holes-2008",
     "data_status": "partial",
     "note": "Relations, cruxes, failure mode flags, and assessment are derived from logical analysis of claims in claims.json and sources in sources.json. All items require review against primary source documents."
@@ -10,411 +10,591 @@
       "id": "R_001",
       "from_id": "NC_001",
       "to_id": "NC_002",
-      "type": "evidence_against",
+      "family": "opposes",
+      "subtype": "empirical",
+      "basis": "inferred_across_sources",
       "strength": "strong",
       "notes": "The astrophysical survival constraint (NC_001) provides observational evidence against the dangerous interpretation of NC_002: even if ADD-model micro-BHs could form, they cannot grow to dangerous size within the relevant astrophysical constraints.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_002",
       "from_id": "NC_003",
       "to_id": "NC_002",
-      "type": "evidence_against",
+      "family": "opposes",
+      "subtype": "empirical",
+      "basis": "inferred_across_sources",
       "strength": "moderate",
       "notes": "Hawking radiation evaporation (NC_003) provides a theoretical mechanism by which any ADD-model micro-BH would evaporate before becoming dangerous, modulated by the caveat that HR remains unconfirmed experimentally (see NC_011).",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_003",
       "from_id": "NC_004",
       "to_id": "NC_002",
-      "type": "evidence_against",
+      "family": "opposes",
+      "subtype": "empirical",
+      "basis": "inferred_across_sources",
       "strength": "strong",
       "notes": "The Giddings-Mangano accretion-rate argument (NC_004) independently constrains the dangerous interpretation of NC_002, without requiring Hawking radiation.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_004",
       "from_id": "NC_009",
       "to_id": "NC_002",
-      "type": "evidence_against",
+      "family": "opposes",
+      "subtype": "empirical",
+      "basis": "inferred_across_sources",
       "strength": "moderate",
       "notes": "The CMS null result (NC_009) constrains the physical realization of NC_002 within specific ADD parameter configurations tested at 7 TeV. Strength is moderate because the exclusion covers only a subset of ADD parameter space.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_005",
       "from_id": "NC_011",
       "to_id": "NC_003",
-      "type": "narrows",
+      "family": "contextualizes",
+      "subtype": "narrow",
+      "basis": "inferred_across_sources",
       "strength": "strong",
       "notes": "The experimentally unconfirmed status of Hawking radiation (NC_011) narrows the scope within which the HR-based safety argument (NC_003) can be asserted with high confidence.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_006",
       "from_id": "NC_007",
       "to_id": "NC_012",
-      "type": "narrows",
+      "family": "contextualizes",
+      "subtype": "narrow",
+      "basis": "inferred_across_sources",
       "strength": "moderate",
       "notes": "The shared authorship of the 2003 and 2008 CERN reports (NC_007) means that the LSAG safety conclusion (NC_012) cannot rely on those two reports as mutually independent corroboration.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_007",
       "from_id": "NC_010",
       "to_id": "NC_009",
-      "type": "narrows",
+      "family": "contextualizes",
+      "subtype": "narrow",
+      "basis": "inferred_across_sources",
       "strength": "strong",
       "notes": "The CMS exclusion (NC_009) covers only specific ADD benchmark configurations (NC_010); untested parameter space remains outside the exclusion. NC_010 formally scopes down the reach of NC_009.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_008",
       "from_id": "NC_006",
       "to_id": "NC_001",
-      "type": "supports",
+      "family": "supports",
+      "basis": "inferred_across_sources",
       "strength": "moderate",
       "notes": "White dwarf density and lifetime constraints (NC_006) provide additional targeted support for the astrophysical safety argument (NC_001), specifically addressing the constraint on accretion rate within dense matter.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_009",
       "from_id": "NC_008",
       "to_id": "NC_001",
-      "type": "supports",
+      "family": "supports",
+      "basis": "inferred_across_sources",
       "strength": "strong",
       "notes": "The fact that LHC energies are exceeded by cosmic rays incident on astrophysical objects (NC_008) establishes the physical precondition on which the astrophysical analogy in NC_001 depends.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_010",
       "from_id": "NC_001",
       "to_id": "NC_008",
-      "type": "depends_on",
+      "family": "depends_on",
+      "basis": "inferred_across_sources",
       "strength": "strong",
       "notes": "The astrophysical analogy argument (NC_001) logically depends on LHC collision energies being within the range of cosmic rays that have been incident on neutron stars and white dwarfs. NC_008 provides this foundational comparison.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_011",
       "from_id": "NC_004",
       "to_id": "NC_001",
-      "type": "supports",
+      "family": "supports",
+      "basis": "inferred_across_sources",
       "strength": "moderate",
       "notes": "The Giddings-Mangano quantitative accretion analysis (NC_004) strengthens the astrophysical argument (NC_001) by providing a physical mechanism explaining why the astrophysical objects have not been destroyed, and by addressing the kinematic analogy concern.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_012",
       "from_id": "NC_005",
       "to_id": "NC_012",
-      "type": "supports",
+      "family": "supports",
+      "basis": "inferred_across_sources",
       "strength": "moderate",
       "notes": "The 2003 CERN safety assessment (NC_005) provides corroborating institutional support for the LSAG conclusion (NC_012), subject to the shared-authorship caveat documented in NC_007.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_013",
       "from_id": "NC_003",
       "to_id": "NC_012",
-      "type": "supports",
+      "family": "supports",
+      "basis": "inferred_across_sources",
       "strength": "moderate",
       "notes": "Hawking radiation evaporation (NC_003) supports the LSAG safety conclusion (NC_012) as one of two independent lines of argument. Strength is moderate because NC_003 depends on unconfirmed HR.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_014",
       "from_id": "NC_001",
       "to_id": "NC_012",
-      "type": "supports",
+      "family": "supports",
+      "basis": "inferred_across_sources",
       "strength": "strong",
       "notes": "The astrophysical analogy constraint (NC_001) supports the LSAG safety conclusion (NC_012) as the stronger and more model-independent of the two safety arguments.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_015",
       "from_id": "NC_004",
       "to_id": "NC_012",
-      "type": "supports",
+      "family": "supports",
+      "basis": "inferred_across_sources",
       "strength": "strong",
       "notes": "The Giddings-Mangano growth-rate argument (NC_004) supports the LSAG safety conclusion (NC_012) by providing a safety case independent of Hawking radiation.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_016",
       "from_id": "NC_009",
       "to_id": "NC_012",
-      "type": "supports",
+      "family": "supports",
+      "basis": "inferred_across_sources",
       "strength": "moderate",
       "notes": "The CMS null result (NC_009) provides experimental confirmation consistent with the LSAG safety conclusion (NC_012), limited to the tested parameter range.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_017",
       "from_id": "NC_002",
       "to_id": "NC_010",
-      "type": "generalizes",
+      "family": "contextualizes",
+      "subtype": "generalize",
+      "basis": "inferred_across_sources",
       "strength": "strong",
       "notes": "NC_002 represents the general ADD-model black hole production claim; NC_010 describes a specific and more constrained subset of that claim as tested and excluded by CMS. The general claim encompasses and exceeds the specific excluded subspace.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_018",
       "from_id": "NC_004",
       "to_id": "NC_003",
-      "type": "reframes",
+      "family": "contextualizes",
+      "subtype": "reframe",
+      "basis": "inferred_across_sources",
       "strength": "moderate",
       "notes": "The Giddings-Mangano analysis (NC_004) reframes the safety argument from requiring Hawking radiation to requiring only that the accretion rate is insufficient, a claim with a different and more direct astrophysical basis that does not inherit NC_003's unverified theoretical dependency.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_019",
       "from_id": "NC_007",
       "to_id": "NC_005",
-      "type": "conflicts_with",
+      "family": "opposes",
+      "subtype": "mutual_tension",
+      "basis": "inferred_across_sources",
       "strength": "moderate",
       "notes": "NC_007 (shared authorship of 2003 and 2008 reports) conflicts with treating NC_005 (2003 CERN assessment) as an independent corroboration of the 2008 LSAG conclusions. The conflict does not impugn the content of either report; it limits their combined epistemic weight.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     },
     {
       "id": "R_020",
       "from_id": "NC_003",
       "to_id": "NC_011",
-      "type": "conflicts_with",
+      "family": "opposes",
+      "subtype": "mutual_tension",
+      "basis": "inferred_across_sources",
       "strength": "strong",
       "notes": "NC_003 (Hawking radiation as safety mechanism) and NC_011 (HR experimentally unconfirmed) are in tension: the HR-based evaporation argument relies on HR occurring as predicted, but that prediction had not been directly tested at the relevant scale as of 2008.",
-      "needs_source_verification": false
+      "needs_source_verification": true
     }
   ],
-  "cruxes": [
-    {
-      "id": "CX_001",
-      "statement": "Does the kinematic analogy between LHC center-of-mass collisions and cosmic ray fixed-target interactions with neutron stars and white dwarfs validly preclude dangerous stable black hole formation at LHC-relevant mass and momentum scales?",
-      "description": "If the analogy holds: NC_001 is a strong empirical safety argument and the astrophysical safety case is well-established. If the analogy fails at some relevant parameter: the astrophysical argument loses its force and the safety case would rest more heavily on Hawking radiation (NC_003) and the Giddings-Mangano accretion argument (NC_004). The LSAG report argues the analogy holds; Giddings-Mangano (src_002) provide a specific kinematic analysis.",
-      "dependent_normalized_claim_ids": ["NC_001", "NC_004"],
-      "status": "resolved_true",
-      "resolution_notes": "The Giddings-Mangano paper (src_002) specifically addresses the kinematic distinction and concludes the astrophysical argument holds across the relevant regime. The LSAG report concurs. An independent review committee confirmed the analysis.",
-      "resolution_source_ids": ["src_001", "src_002"]
-    },
-    {
-      "id": "CX_002",
-      "statement": "Does Hawking radiation occur for black holes at or near the Planck mass scale, as theoretically derived by Hawking (1974)?",
-      "description": "If Hawking radiation occurs as predicted: NC_003 provides a strong theoretical safety mechanism and the HR-based line of argument in NC_012 is well-supported. If Hawking radiation does not occur, or does not occur at the predicted rate at the Planck scale: the safety case must rely entirely on the astrophysical analogy (NC_001) and the Giddings-Mangano accretion argument (NC_004). The safety case would not collapse, because NC_004 is explicitly HR-independent.",
-      "dependent_normalized_claim_ids": ["NC_003", "NC_011"],
-      "status": "theoretically_underdetermined",
-      "resolution_notes": "The semiclassical Hawking derivation is valid in the asymptotic limit. Whether it applies at the Planck scale requires a complete theory of quantum gravity that does not yet exist. The safety conclusion does not depend on resolving this crux because NC_004 provides an HR-independent safety case.",
-      "resolution_source_ids": ["src_006"]
-    },
-    {
-      "id": "CX_003",
-      "statement": "Do large extra spatial dimensions exist at sub-millimeter scales as proposed by the ADD model, such that the effective Planck scale is near the TeV range?",
-      "description": "If ADD is correct: NC_002 (micro-BH production possible at LHC) becomes physically plausible, raising the stakes for the safety arguments. If ADD is incorrect: NC_002 has no physical basis and the LHC micro-BH concern dissolves at the source. LHC Run 1 and Run 2 data have constrained but not excluded the ADD parameter space.",
-      "dependent_normalized_claim_ids": ["NC_002", "NC_009", "NC_010"],
-      "status": "empirically_underdetermined",
-      "resolution_notes": "The relevant extra dimension scale may be smaller than what any current or near-future collider can probe. Alternatively, extra dimensions may not exist. The ADD model remains unconfirmed as of 2026.",
-      "resolution_source_ids": ["src_004", "src_005"]
-    },
-    {
-      "id": "CX_004",
-      "statement": "Is the Giddings-Mangano accretion rate argument valid: specifically, is the accretion cross-section of a Planck-scale stable black hole too small to grow to macroscopic size within any available timescale?",
-      "description": "If the Giddings-Mangano accretion calculation is correct: NC_004 provides a complete HR-independent safety case and the astrophysical argument (NC_001) has quantitative theoretical grounding. If the calculation contains an error or relies on assumptions that fail at the relevant scale: the most robust independent safety argument weakens significantly and the case would rest on the unchecked astrophysical constraint and disputed HR argument.",
-      "dependent_normalized_claim_ids": ["NC_004"],
-      "status": "resolved_true",
-      "resolution_notes": "The Giddings-Mangano analysis was reviewed and confirmed by the LSAG committee and by an independent review panel. No published rebuttal of the specific accretion calculation has been identified.",
-      "resolution_source_ids": ["src_001", "src_002"]
-    },
-    {
-      "id": "CX_005",
-      "statement": "Are the CERN 2003 and CERN 2008 safety assessments epistemically independent, despite sharing the same five authors?",
-      "description": "If the two reports are treated as independent: the LSAG conclusion (NC_012) has two institutional corroborations. If the shared authorship renders them correlated: only one line of independent institutional assessment supports NC_012, though the Giddings-Mangano paper (src_002, independent authorship) provides additional scientific corroboration.",
-      "dependent_normalized_claim_ids": ["NC_005", "NC_007", "NC_012"],
-      "status": "unresolved",
-      "resolution_notes": "The two reports are formally separate documents covering different time periods and collision programs. However, the shared author team means the underlying judgments and assumptions are not independently derived. The practical impact on the safety conclusion is limited because Giddings-Mangano provides independent scientific corroboration.",
-      "resolution_source_ids": ["src_001", "src_003"]
-    }
-  ],
-  "failure_mode_flags": [
-    {
-      "id": "FF_001",
-      "type": "analogy_dependency",
-      "description": "The astrophysical safety argument (NC_001) depends on the analogy between LHC collision products and the products of cosmic ray interactions with neutron star and white dwarf matter. Cosmic rays hitting a neutron star involve fixed-target kinematics, while LHC collisions are center-of-mass. Giddings and Mangano (src_002) specifically address this distinction and conclude the analogy is valid for the relevant regime, but the argument formally depends on this analogy holding.",
-      "applies_to_id": "NC_001",
-      "applies_to_type": "normalized_claim",
-      "severity": "minor",
-      "affects_conclusion": false,
-      "notes": "Severity is minor because the kinematic analogy was specifically analyzed and defended in src_002. The flag reflects correct epistemic hygiene, not an unaddressed weakness."
-    },
-    {
-      "id": "FF_002",
-      "type": "direct_evidence_absent",
-      "description": "NC_002 (micro-BH formation possible under ADD model) is a purely theoretical prediction. There is no direct observational evidence that large extra dimensions exist at the relevant scale, and no micro-BH has ever been observed at any accelerator. The claim is entirely model-dependent on an unconfirmed framework.",
-      "applies_to_id": "NC_002",
-      "applies_to_type": "normalized_claim",
-      "severity": "significant",
-      "affects_conclusion": false,
-      "notes": "This flag does not undermine the safety conclusion; it actually reduces the prior probability that the dangerous scenario is physically realized. The flag is significant because NC_002 is sometimes stated as if ADD micro-BH production is an established possibility rather than a model-dependent one."
-    },
-    {
-      "id": "FF_003",
-      "type": "source_incentive_pressure",
-      "description": "All five authors of src_001 (the LSAG 2008 safety report) were employed by CERN at the time of writing. CERN has a direct institutional interest in LHC operations proceeding. The report was submitted to and published by an independent peer-reviewed journal, which partially mitigates this concern.",
-      "applies_to_id": "src_001",
-      "applies_to_type": "source",
-      "severity": "significant",
-      "affects_conclusion": false,
-      "notes": "The CERN employment conflict does not mean the conclusions are wrong. It does mean the report requires independent corroboration, which is partially provided by Giddings-Mangano (src_002) where Giddings has no CERN affiliation."
-    },
-    {
-      "id": "FF_004",
-      "type": "source_incentive_pressure",
-      "description": "The 2003 CERN safety report (src_003) was authored by the same five CERN-affiliated physicists as src_001. The same institutional conflict of interest applies: CERN benefits from assessments that allow operations to proceed.",
-      "applies_to_id": "src_003",
-      "applies_to_type": "source",
-      "severity": "significant",
-      "affects_conclusion": false,
-      "notes": "The 2003 and 2008 reports sharing both authorship and institutional affiliation means the incentive pressure is compounded when both are cited together."
-    },
-    {
-      "id": "FF_005",
-      "type": "correlated_evidence_treated_as_independent",
-      "description": "NC_012 (LSAG safety conclusion) draws on both the 2008 LSAG report (src_001) and the 2003 CERN report (src_003) as institutional corroboration. Because the two reports share the same five authors and institutional affiliation, they are not independent assessments. Treating them as two separate confirmations inflates the apparent institutional consensus.",
-      "applies_to_id": "NC_012",
-      "applies_to_type": "normalized_claim",
-      "severity": "significant",
-      "affects_conclusion": false,
-      "notes": "The practical impact on the safety conclusion is limited because Giddings-Mangano (src_002) provides a scientifically independent safety argument and Giddings has no CERN affiliation."
-    },
-    {
-      "id": "FF_006",
-      "type": "hidden_assumption",
-      "description": "NC_003 (Hawking radiation-based safety argument) depends on the hidden assumption that Hawking's semiclassical derivation holds at the Planck scale, where the semiclassical approximation breaks down and a complete theory of quantum gravity is required. The derivation is valid in the asymptotic limit but its applicability to Planck-scale micro-black holes is an unstated theoretical assumption.",
-      "applies_to_id": "NC_003",
-      "applies_to_type": "normalized_claim",
-      "severity": "significant",
-      "affects_conclusion": false,
-      "notes": "This assumption is not hidden in the sense of being concealed; it is a known limitation of the semiclassical derivation. The flag notes that NC_003 carries an unverified theoretical dependency that NC_004 does not."
-    },
-    {
-      "id": "FF_007",
-      "type": "direct_evidence_absent",
-      "description": "NC_003 (Hawking radiation as a safety mechanism) relies on a theoretical prediction that had not been directly confirmed experimentally as of the LSAG report. There is no laboratory observation of Hawking radiation from any gravitational black hole. The safety argument that depends on HR is thus built on an empirically unconfirmed theoretical prediction.",
-      "applies_to_id": "NC_003",
-      "applies_to_type": "normalized_claim",
-      "severity": "significant",
-      "affects_conclusion": false,
-      "notes": "FF_007 and FF_006 are distinct: FF_006 flags a theoretical assumption about the domain of validity of the Hawking derivation; FF_007 flags the empirical absence of any direct confirmation. Both apply independently."
-    },
-    {
-      "id": "FF_008",
-      "type": "expert_consensus_without_dependency_map",
-      "description": "NC_012 (LSAG safety conclusion) is sometimes cited as representing expert consensus without a full map of what that consensus depends on. The conclusion is supported by specific arguments (NC_001, NC_004) but also by references to consensus among particle physicists. The consensus itself is not independently analyzed; it is not clear which physicists independently evaluated the Giddings-Mangano analysis versus which deferred to the LSAG committee.",
-      "applies_to_id": "NC_012",
-      "applies_to_type": "normalized_claim",
-      "severity": "minor",
-      "affects_conclusion": false,
-      "notes": "The consensus citation is corroborating rather than load-bearing in the safety case; the primary weight rests on NC_001 and NC_004. The flag is minor but worth noting for cases where the consensus claim is used as the primary argument."
-    }
-  ],
-  "assessment": {
-    "status": "settled",
-    "settled_direction": "LHC operations do not pose a risk of catastrophic harm from microscopic black holes.",
-    "epistemic_status_summary": "The safety case is established through two partially independent lines of argument. The stronger line (NC_001 + NC_004) does not depend on any unverified theoretical assumption and has been confirmed by independent scientific analysis. The weaker line (NC_003) depends on Hawking radiation, which is theoretically well-grounded but experimentally unconfirmed. The threat scenario itself (NC_002) is conditional on the unconfirmed ADD model. The settled conclusion holds even in the worst case where Hawking radiation does not occur, provided the Giddings-Mangano accretion analysis (CX_004, resolved_true) is correct.",
-    "key_crux_ids": ["CX_001", "CX_002", "CX_003"],
-    "weak_link_ids": ["NC_003", "NC_005"],
-    "what_would_update": [
+  "assessment_layer": {
+    "cruxes": [
       {
-        "scenario": "A rigorous theoretical demonstration that the kinematic analogy between LHC collisions and cosmic ray interactions with dense astrophysical objects fails to preclude dangerous stable black hole formation at some plausible ADD parameter configuration",
-        "would_affect_ids": ["NC_001", "CX_001"],
-        "direction": "weaken",
-        "magnitude": "decisive"
+        "id": "CX_001",
+        "statement": "Does the kinematic analogy between LHC center-of-mass collisions and cosmic ray fixed-target interactions with neutron stars and white dwarfs validly preclude dangerous stable black hole formation at LHC-relevant mass and momentum scales?",
+        "description": "If the analogy holds: NC_001 is a strong empirical safety argument and the astrophysical safety case is well-established. If the analogy fails at some relevant parameter: the astrophysical argument loses its force and the safety case would rest more heavily on Hawking radiation (NC_003) and the Giddings-Mangano accretion argument (NC_004). The LSAG report argues the analogy holds; Giddings-Mangano (src_002) provide a specific kinematic analysis.",
+        "dependent_normalized_claim_ids": [
+          "NC_001",
+          "NC_004"
+        ],
+        "status": "resolved_true",
+        "resolution_notes": "The Giddings-Mangano paper (src_002) specifically addresses the kinematic distinction and concludes the astrophysical argument holds across the relevant regime. The LSAG report concurs. An independent review committee confirmed the analysis.",
+        "resolution_source_ids": [
+          "src_001",
+          "src_002"
+        ]
       },
       {
-        "scenario": "A published error found in the Giddings-Mangano accretion cross-section calculation that significantly increases the estimated accretion rate of Planck-scale black holes",
-        "would_affect_ids": ["NC_004", "CX_004"],
-        "direction": "weaken",
-        "magnitude": "decisive"
+        "id": "CX_002",
+        "statement": "Does Hawking radiation occur for black holes at or near the Planck mass scale, as theoretically derived by Hawking (1974)?",
+        "description": "If Hawking radiation occurs as predicted: NC_003 provides a strong theoretical safety mechanism and the HR-based line of argument in NC_012 is well-supported. If Hawking radiation does not occur, or does not occur at the predicted rate at the Planck scale: the safety case must rely entirely on the astrophysical analogy (NC_001) and the Giddings-Mangano accretion argument (NC_004). The safety case would not collapse, because NC_004 is explicitly HR-independent.",
+        "dependent_normalized_claim_ids": [
+          "NC_003",
+          "NC_011"
+        ],
+        "status": "theoretically_underdetermined",
+        "resolution_notes": "The semiclassical Hawking derivation is valid in the asymptotic limit. Whether it applies at the Planck scale requires a complete theory of quantum gravity that does not yet exist. The safety conclusion does not depend on resolving this crux because NC_004 provides an HR-independent safety case.",
+        "resolution_source_ids": [
+          "src_006"
+        ],
+        "triggers": [
+          "reassess"
+        ]
       },
       {
-        "scenario": "Direct experimental confirmation of Hawking radiation from a gravitational black hole or a conclusive analog-system demonstration",
-        "would_affect_ids": ["NC_003", "NC_011", "CX_002"],
-        "direction": "strengthen",
-        "magnitude": "significant"
+        "id": "CX_003",
+        "statement": "Do large extra spatial dimensions exist at sub-millimeter scales as proposed by the ADD model, such that the effective Planck scale is near the TeV range?",
+        "description": "If ADD is correct: NC_002 (micro-BH production possible at LHC) becomes physically plausible, raising the stakes for the safety arguments. If ADD is incorrect: NC_002 has no physical basis and the LHC micro-BH concern dissolves at the source. LHC Run 1 and Run 2 data have constrained but not excluded the ADD parameter space.",
+        "dependent_normalized_claim_ids": [
+          "NC_002",
+          "NC_009",
+          "NC_010"
+        ],
+        "status": "empirically_underdetermined",
+        "resolution_notes": "The relevant extra dimension scale may be smaller than what any current or near-future collider can probe. Alternatively, extra dimensions may not exist. The ADD model remains unconfirmed as of 2026.",
+        "resolution_source_ids": [
+          "src_004",
+          "src_005"
+        ],
+        "triggers": [
+          "reassess"
+        ]
       },
       {
-        "scenario": "Discovery of direct evidence for large extra spatial dimensions at LHC-accessible energies (e.g., Kaluza-Klein graviton signatures or micro-BH production events in Run 3 data)",
-        "would_affect_ids": ["NC_002", "CX_003"],
-        "direction": "strengthen",
-        "magnitude": "significant"
+        "id": "CX_004",
+        "statement": "Is the Giddings-Mangano accretion rate argument valid: specifically, is the accretion cross-section of a Planck-scale stable black hole too small to grow to macroscopic size within any available timescale?",
+        "description": "If the Giddings-Mangano accretion calculation is correct: NC_004 provides a complete HR-independent safety case and the astrophysical argument (NC_001) has quantitative theoretical grounding. If the calculation contains an error or relies on assumptions that fail at the relevant scale: the most robust independent safety argument weakens significantly and the case would rest on the unchecked astrophysical constraint and disputed HR argument.",
+        "dependent_normalized_claim_ids": [
+          "NC_004"
+        ],
+        "status": "resolved_true",
+        "resolution_notes": "The Giddings-Mangano analysis was reviewed and confirmed by the LSAG committee and by an independent review panel. No published rebuttal of the specific accretion calculation has been identified.",
+        "resolution_source_ids": [
+          "src_001",
+          "src_002"
+        ]
+      },
+      {
+        "id": "CX_005",
+        "statement": "Are the CERN 2003 and CERN 2008 safety assessments epistemically independent, despite sharing the same five authors?",
+        "description": "If the two reports are treated as independent: the LSAG conclusion (NC_012) has two institutional corroborations. If the shared authorship renders them correlated: only one line of independent institutional assessment supports NC_012, though the Giddings-Mangano paper (src_002, independent authorship) provides additional scientific corroboration.",
+        "dependent_normalized_claim_ids": [
+          "NC_005",
+          "NC_007",
+          "NC_012"
+        ],
+        "status": "unresolved",
+        "resolution_notes": "The two reports are formally separate documents covering different time periods and collision programs. However, the shared author team means the underlying judgments and assumptions are not independently derived. The practical impact on the safety conclusion is limited because Giddings-Mangano provides independent scientific corroboration.",
+        "resolution_source_ids": [
+          "src_001",
+          "src_003"
+        ],
+        "triggers": [
+          "reassess"
+        ]
       }
     ],
-    "well_supported_claim_ids": ["NC_001", "NC_004", "NC_008", "NC_009"],
-    "contested_claim_ids": ["NC_002", "NC_003"],
-    "dominant_failure_modes": ["source_incentive_pressure", "correlated_evidence_treated_as_independent", "direct_evidence_absent"],
-    "notes": "The dominant failure modes are present but do not undermine the settled conclusion. The source incentive pressure (FF_003, FF_004) is partially mitigated by Giddings-Mangano's independent authorship. The direct evidence absence (FF_007) for Hawking radiation is addressed by the HR-independent Giddings-Mangano line of argument. The case is settled in the safety direction; the remaining open cruxes (CX_002, CX_003) do not reverse the conclusion under any currently plausible scenario."
-  },
-  "missing_evidence": [
-    {
-      "id": "ME_001",
-      "description": "Direct experimental detection of Hawking radiation from a gravitational black hole. This would confirm NC_003 and remove the unverified theoretical dependency from one of the two safety argument lines.",
-      "type": "empirical",
-      "would_affect_ids": ["NC_003", "NC_011", "CX_002"],
-      "priority": "important",
-      "reason_absent": "Astrophysical black holes emit Hawking radiation at temperatures far below what any current detector could observe. Laboratory-produced objects at the relevant scale are not known to exist.",
-      "feasibility": "infeasible"
-    },
-    {
-      "id": "ME_002",
-      "description": "Complete exclusion of the ADD model parameter space from collider data. Run 1, Run 2, and planned Run 3 LHC data progressively constrain but may not fully exclude all ADD configurations, particularly those with more than six extra dimensions or higher effective Planck scale values.",
-      "type": "empirical",
-      "would_affect_ids": ["NC_002", "NC_009", "NC_010", "CX_003"],
-      "priority": "important",
-      "reason_absent": "The ADD parameter space may extend to energy scales not accessible at the LHC. A higher-energy future collider might probe a larger region of the parameter space.",
-      "feasibility": "feasible"
-    },
-    {
-      "id": "ME_003",
-      "description": "A comprehensive safety assessment authored entirely by physicists with no CERN employment or funding relationship. The existing assessments (src_001, src_003) share authorship among CERN staff; src_002 partially addresses this with Giddings as an independent co-author but one of two authors is CERN-affiliated.",
-      "type": "empirical",
-      "would_affect_ids": ["NC_012", "CX_005"],
-      "priority": "helpful",
-      "reason_absent": "The physicists most qualified to evaluate the detailed arguments work primarily at institutions involved in high-energy accelerator programs. Fully independent evaluation is structurally difficult.",
-      "feasibility": "feasible"
-    }
-  ],
-  "audit_notes": [
-    {
-      "id": "AN_001",
-      "type": "llm_artifact",
-      "description": "All extracted claims in claims.json are paraphrases constructed with LLM assistance from published source metadata and content descriptions. No verbatim text was extracted from primary source documents. Every EC is marked needs_source_verification: true. The normalized claims, relations, cruxes, flags, and assessment were also constructed with LLM assistance and should be treated as working drafts pending human review.",
-      "applies_to_ids": ["EC_001", "EC_002", "EC_003", "EC_004", "EC_005", "EC_006", "EC_007", "EC_008", "EC_009", "EC_010", "EC_011", "EC_012", "EC_013", "EC_014", "EC_015", "EC_016", "EC_017", "EC_018", "EC_019", "EC_020", "EC_021", "EC_022", "EC_023", "EC_024", "EC_025"],
-      "severity": "significant",
-      "author": null,
-      "date": "2026-06-04",
-      "status": "open",
-      "resolution": null
-    },
-    {
-      "id": "AN_002",
-      "type": "verification_needed",
-      "description": "NC_007 (shared authorship caveat) and the related flags FF_003, FF_004, FF_005 all depend on the factual claim that both the 2003 and 2008 CERN safety reports share the same five authors. This should be confirmed against both primary documents before the independence-of-corroboration argument is cited.",
-      "applies_to_ids": ["NC_007", "FF_003", "FF_004", "FF_005", "CX_005"],
-      "severity": "significant",
-      "author": null,
-      "date": "2026-06-04",
-      "status": "open",
-      "resolution": null
-    },
-    {
-      "id": "AN_003",
-      "type": "source_gap",
-      "description": "The CMS Run 2 searches at 8 TeV and 13 TeV (not included as sources) provide stronger micro-BH exclusions than the 7 TeV search in src_004. Adding these would strengthen NC_009 and NC_010. The 7 TeV result was chosen as the canonical experimental source because it is the earliest direct CMS search; subsequent searches extend the constraints.",
-      "applies_to_ids": ["NC_009", "NC_010", "src_004"],
-      "severity": "minor",
-      "author": null,
-      "date": "2026-06-04",
-      "status": "open",
-      "resolution": null
-    }
-  ]
+    "failure_mode_flags": [
+      {
+        "id": "FF_001",
+        "type": "analogy_dependency",
+        "description": "The astrophysical safety argument (NC_001) depends on the analogy between LHC collision products and the products of cosmic ray interactions with neutron star and white dwarf matter. Cosmic rays hitting a neutron star involve fixed-target kinematics, while LHC collisions are center-of-mass. Giddings and Mangano (src_002) specifically address this distinction and conclude the analogy is valid for the relevant regime, but the argument formally depends on this analogy holding.",
+        "applies_to_id": "NC_001",
+        "applies_to_type": "normalized_claim",
+        "severity": "minor",
+        "affects_conclusion": false,
+        "notes": "Severity is minor because the kinematic analogy was specifically analyzed and defended in src_002. The flag reflects correct epistemic hygiene, not an unaddressed weakness."
+      },
+      {
+        "id": "FF_002",
+        "type": "direct_evidence_absent",
+        "description": "NC_002 (micro-BH formation possible under ADD model) is a purely theoretical prediction. There is no direct observational evidence that large extra dimensions exist at the relevant scale, and no micro-BH has ever been observed at any accelerator. The claim is entirely model-dependent on an unconfirmed framework.",
+        "applies_to_id": "NC_002",
+        "applies_to_type": "normalized_claim",
+        "severity": "significant",
+        "affects_conclusion": false,
+        "notes": "This flag does not undermine the safety conclusion; it actually reduces the prior probability that the dangerous scenario is physically realized. The flag is significant because NC_002 is sometimes stated as if ADD micro-BH production is an established possibility rather than a model-dependent one."
+      },
+      {
+        "id": "FF_003",
+        "type": "source_incentive_pressure",
+        "description": "All five authors of src_001 (the LSAG 2008 safety report) were employed by CERN at the time of writing. CERN has a direct institutional interest in LHC operations proceeding. The report was submitted to and published by an independent peer-reviewed journal, which partially mitigates this concern.",
+        "applies_to_id": "src_001",
+        "applies_to_type": "source",
+        "severity": "significant",
+        "affects_conclusion": false,
+        "notes": "The CERN employment conflict does not mean the conclusions are wrong. It does mean the report requires independent corroboration, which is partially provided by Giddings-Mangano (src_002) where Giddings has no CERN affiliation."
+      },
+      {
+        "id": "FF_004",
+        "type": "source_incentive_pressure",
+        "description": "The 2003 CERN safety report (src_003) was authored by the same five CERN-affiliated physicists as src_001. The same institutional conflict of interest applies: CERN benefits from assessments that allow operations to proceed.",
+        "applies_to_id": "src_003",
+        "applies_to_type": "source",
+        "severity": "significant",
+        "affects_conclusion": false,
+        "notes": "The 2003 and 2008 reports sharing both authorship and institutional affiliation means the incentive pressure is compounded when both are cited together."
+      },
+      {
+        "id": "FF_005",
+        "type": "correlated_evidence_treated_as_independent",
+        "description": "NC_012 (LSAG safety conclusion) draws on both the 2008 LSAG report (src_001) and the 2003 CERN report (src_003) as institutional corroboration. Because the two reports share the same five authors and institutional affiliation, they are not independent assessments. Treating them as two separate confirmations inflates the apparent institutional consensus.",
+        "applies_to_id": "NC_012",
+        "applies_to_type": "normalized_claim",
+        "severity": "significant",
+        "affects_conclusion": false,
+        "notes": "The practical impact on the safety conclusion is limited because Giddings-Mangano (src_002) provides a scientifically independent safety argument and Giddings has no CERN affiliation."
+      },
+      {
+        "id": "FF_006",
+        "type": "hidden_assumption",
+        "description": "NC_003 (Hawking radiation-based safety argument) depends on the hidden assumption that Hawking's semiclassical derivation holds at the Planck scale, where the semiclassical approximation breaks down and a complete theory of quantum gravity is required. The derivation is valid in the asymptotic limit but its applicability to Planck-scale micro-black holes is an unstated theoretical assumption.",
+        "applies_to_id": "NC_003",
+        "applies_to_type": "normalized_claim",
+        "severity": "significant",
+        "affects_conclusion": false,
+        "notes": "This assumption is not hidden in the sense of being concealed; it is a known limitation of the semiclassical derivation. The flag notes that NC_003 carries an unverified theoretical dependency that NC_004 does not."
+      },
+      {
+        "id": "FF_007",
+        "type": "direct_evidence_absent",
+        "description": "NC_003 (Hawking radiation as a safety mechanism) relies on a theoretical prediction that had not been directly confirmed experimentally as of the LSAG report. There is no laboratory observation of Hawking radiation from any gravitational black hole. The safety argument that depends on HR is thus built on an empirically unconfirmed theoretical prediction.",
+        "applies_to_id": "NC_003",
+        "applies_to_type": "normalized_claim",
+        "severity": "significant",
+        "affects_conclusion": false,
+        "notes": "FF_007 and FF_006 are distinct: FF_006 flags a theoretical assumption about the domain of validity of the Hawking derivation; FF_007 flags the empirical absence of any direct confirmation. Both apply independently."
+      },
+      {
+        "id": "FF_008",
+        "type": "expert_consensus_without_dependency_map",
+        "description": "NC_012 (LSAG safety conclusion) is sometimes cited as representing expert consensus without a full map of what that consensus depends on. The conclusion is supported by specific arguments (NC_001, NC_004) but also by references to consensus among particle physicists. The consensus itself is not independently analyzed; it is not clear which physicists independently evaluated the Giddings-Mangano analysis versus which deferred to the LSAG committee.",
+        "applies_to_id": "NC_012",
+        "applies_to_type": "normalized_claim",
+        "severity": "minor",
+        "affects_conclusion": false,
+        "notes": "The consensus citation is corroborating rather than load-bearing in the safety case; the primary weight rests on NC_001 and NC_004. The flag is minor but worth noting for cases where the consensus claim is used as the primary argument."
+      }
+    ],
+    "missing_evidence": [
+      {
+        "id": "ME_001",
+        "description": "Direct experimental detection of Hawking radiation from a gravitational black hole. This would confirm NC_003 and remove the unverified theoretical dependency from one of the two safety argument lines.",
+        "type": "empirical",
+        "would_affect_ids": [
+          "NC_003",
+          "NC_011",
+          "CX_002"
+        ],
+        "priority": "important",
+        "reason_absent": "Astrophysical black holes emit Hawking radiation at temperatures far below what any current detector could observe. Laboratory-produced objects at the relevant scale are not known to exist.",
+        "feasibility": "infeasible",
+        "triggers": [
+          "reassess"
+        ]
+      },
+      {
+        "id": "ME_002",
+        "description": "Complete exclusion of the ADD model parameter space from collider data. Run 1, Run 2, and planned Run 3 LHC data progressively constrain but may not fully exclude all ADD configurations, particularly those with more than six extra dimensions or higher effective Planck scale values.",
+        "type": "empirical",
+        "would_affect_ids": [
+          "NC_002",
+          "NC_009",
+          "NC_010",
+          "CX_003"
+        ],
+        "priority": "important",
+        "reason_absent": "The ADD parameter space may extend to energy scales not accessible at the LHC. A higher-energy future collider might probe a larger region of the parameter space.",
+        "feasibility": "feasible",
+        "triggers": [
+          "reassess"
+        ]
+      },
+      {
+        "id": "ME_003",
+        "description": "A comprehensive safety assessment authored entirely by physicists with no CERN employment or funding relationship. The existing assessments (src_001, src_003) share authorship among CERN staff; src_002 partially addresses this with Giddings as an independent co-author but one of two authors is CERN-affiliated.",
+        "type": "empirical",
+        "would_affect_ids": [
+          "NC_012",
+          "CX_005"
+        ],
+        "priority": "helpful",
+        "reason_absent": "The physicists most qualified to evaluate the detailed arguments work primarily at institutions involved in high-energy accelerator programs. Fully independent evaluation is structurally difficult.",
+        "feasibility": "feasible",
+        "triggers": [
+          "reingest"
+        ]
+      }
+    ],
+    "assessments": [
+      {
+        "id": "AS_001",
+        "author": "Jacob Ortiz",
+        "perspective": "default cautious assessment",
+        "assessment_scope": "worked example with partial source verification",
+        "status": "settled",
+        "settled_direction": "LHC operations do not pose a risk of catastrophic harm from microscopic black holes.",
+        "epistemic_status_summary": "The safety case is established through two partially independent lines of argument. The stronger line (NC_001 + NC_004) does not depend on any unverified theoretical assumption and has been confirmed by independent scientific analysis. The weaker line (NC_003) depends on Hawking radiation, which is theoretically well-grounded but experimentally unconfirmed. The threat scenario itself (NC_002) is conditional on the unconfirmed ADD model. The settled conclusion holds even in the worst case where Hawking radiation does not occur, provided the Giddings-Mangano accretion analysis (CX_004, resolved_true) is correct.",
+        "key_crux_ids": [
+          "CX_001",
+          "CX_002",
+          "CX_003"
+        ],
+        "weak_link_ids": [
+          "NC_003",
+          "NC_005"
+        ],
+        "what_would_update": [
+          {
+            "scenario": "A rigorous theoretical demonstration that the kinematic analogy between LHC collisions and cosmic ray interactions with dense astrophysical objects fails to preclude dangerous stable black hole formation at some plausible ADD parameter configuration",
+            "would_affect_ids": [
+              "NC_001",
+              "CX_001"
+            ],
+            "direction": "weaken",
+            "magnitude": "decisive"
+          },
+          {
+            "scenario": "A published error found in the Giddings-Mangano accretion cross-section calculation that significantly increases the estimated accretion rate of Planck-scale black holes",
+            "would_affect_ids": [
+              "NC_004",
+              "CX_004"
+            ],
+            "direction": "weaken",
+            "magnitude": "decisive"
+          },
+          {
+            "scenario": "Direct experimental confirmation of Hawking radiation from a gravitational black hole or a conclusive analog-system demonstration",
+            "would_affect_ids": [
+              "NC_003",
+              "NC_011",
+              "CX_002"
+            ],
+            "direction": "strengthen",
+            "magnitude": "significant"
+          },
+          {
+            "scenario": "Discovery of direct evidence for large extra spatial dimensions at LHC-accessible energies (e.g., Kaluza-Klein graviton signatures or micro-BH production events in Run 3 data)",
+            "would_affect_ids": [
+              "NC_002",
+              "CX_003"
+            ],
+            "direction": "strengthen",
+            "magnitude": "significant"
+          }
+        ],
+        "well_supported_claim_ids": [
+          "NC_001",
+          "NC_004",
+          "NC_008",
+          "NC_009"
+        ],
+        "contested_claim_ids": [
+          "NC_002",
+          "NC_003"
+        ],
+        "dominant_failure_modes": [
+          "source_incentive_pressure",
+          "correlated_evidence_treated_as_independent",
+          "direct_evidence_absent"
+        ],
+        "notes": "The dominant failure modes are present but do not undermine the settled conclusion. The source incentive pressure (FF_003, FF_004) is partially mitigated by Giddings-Mangano's independent authorship. The direct evidence absence (FF_007) for Hawking radiation is addressed by the HR-independent Giddings-Mangano line of argument. The case is settled in the safety direction; the remaining open cruxes (CX_002, CX_003) do not reverse the conclusion under any currently plausible scenario.",
+        "disagrees_with": [],
+        "disagreement_notes": null
+      }
+    ],
+    "reviews": [],
+    "audit_notes": [
+      {
+        "id": "AN_001",
+        "type": "llm_artifact",
+        "description": "All extracted claims in claims.json are paraphrases constructed with LLM assistance from published source metadata and content descriptions. No verbatim text was extracted from primary source documents. Every EC is marked needs_source_verification: true. The normalized claims, relations, cruxes, flags, and assessment were also constructed with LLM assistance and should be treated as working drafts pending human review.",
+        "applies_to_ids": [
+          "EC_001",
+          "EC_002",
+          "EC_003",
+          "EC_004",
+          "EC_005",
+          "EC_006",
+          "EC_007",
+          "EC_008",
+          "EC_009",
+          "EC_010",
+          "EC_011",
+          "EC_012",
+          "EC_013",
+          "EC_014",
+          "EC_015",
+          "EC_016",
+          "EC_017",
+          "EC_018",
+          "EC_019",
+          "EC_020",
+          "EC_021",
+          "EC_022",
+          "EC_023",
+          "EC_024",
+          "EC_025"
+        ],
+        "severity": "significant",
+        "author": null,
+        "date": "2026-06-04",
+        "status": "open",
+        "resolution": null,
+        "triggers": [
+          "reingest",
+          "reextract"
+        ]
+      },
+      {
+        "id": "AN_002",
+        "type": "verification_needed",
+        "description": "NC_007 (shared authorship caveat) and the related flags FF_003, FF_004, FF_005 all depend on the factual claim that both the 2003 and 2008 CERN safety reports share the same five authors. This should be confirmed against both primary documents before the independence-of-corroboration argument is cited.",
+        "applies_to_ids": [
+          "NC_007",
+          "FF_003",
+          "FF_004",
+          "FF_005",
+          "CX_005"
+        ],
+        "severity": "significant",
+        "author": null,
+        "date": "2026-06-04",
+        "status": "open",
+        "resolution": null,
+        "triggers": [
+          "reingest"
+        ]
+      },
+      {
+        "id": "AN_003",
+        "type": "source_gap",
+        "description": "The CMS Run 2 searches at 8 TeV and 13 TeV (not included as sources) provide stronger micro-BH exclusions than the 7 TeV search in src_004. Adding these would strengthen NC_009 and NC_010. The 7 TeV result was chosen as the canonical experimental source because it is the earliest direct CMS search; subsequent searches extend the constraints.",
+        "applies_to_ids": [
+          "NC_009",
+          "NC_010",
+          "src_004"
+        ],
+        "severity": "minor",
+        "author": null,
+        "date": "2026-06-04",
+        "status": "open",
+        "resolution": null,
+        "triggers": [
+          "reingest"
+        ]
+      }
+    ]
+  }
 }

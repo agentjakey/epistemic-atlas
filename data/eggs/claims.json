@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "schema_version": "2",
+    "schema_version": "3",
     "case_id": "eggs-cardiovascular-2020",
     "data_status": "partial",
     "note": "All extracted claims are paraphrases constructed from published source metadata and content descriptions. Specific effect sizes, confidence intervals, and p-values require verification against primary source documents. This file is a working draft."

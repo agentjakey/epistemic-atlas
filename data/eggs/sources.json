@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "schema_version": "2",
+    "schema_version": "3",
     "case_id": "eggs-cardiovascular-2020",
     "data_status": "partial",
     "note": "Source metadata is drawn from publicly documented records. Specific findings, effect sizes, and statistical values in extracted claims require verification against primary source documents before treating this file as anything beyond a working draft."

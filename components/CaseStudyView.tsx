@@ -12,9 +12,10 @@ import type {
   MissingEvidence,
   CaseStatus,
   DataStatus,
-  RelationType,
+  RelationFamily,
   CruxStatus,
-} from '@/lib/types_v2'
+  UpdateScenario,
+} from '@/lib/types_v3'
 
 // ---- badge helpers ----
 
@@ -57,13 +58,13 @@ function CruxBadge({ status }: { status: CruxStatus }) {
   return <span className={cls[status] ?? 'badge badge-status-underdetermined'}>{label[status] ?? status}</span>
 }
 
-function RelTypeBadge({ type }: { type: RelationType }) {
-  const positive: RelationType[] = ['supports', 'evidence_for', 'generalizes']
-  const negative: RelationType[] = ['attacks', 'evidence_against', 'conflicts_with']
+function RelTypeBadge({ family }: { family: RelationFamily }) {
+  const positive: RelationFamily[] = ['supports']
+  const negative: RelationFamily[] = ['opposes']
   let cls = 'badge badge-pos-methodological'
-  if (positive.includes(type)) cls = 'badge badge-pos-con'
-  if (negative.includes(type)) cls = 'badge badge-pos-pro'
-  return <span className={cls}>{type.replace(/_/g, ' ')}</span>
+  if (positive.includes(family)) cls = 'badge badge-pos-con'
+  if (negative.includes(family)) cls = 'badge badge-pos-pro'
+  return <span className={cls}>{family.replace(/_/g, ' ')}</span>
 }
 
 function SevBadge({ severity }: { severity: string }) {
@@ -106,7 +107,7 @@ function ClaimDetail({
   relationsTo: Relation[]
   flags: FailureModeFlag[]
   cruxes: Crux[]
-  updateScenarios: Assessment['what_would_update']
+  updateScenarios: UpdateScenario[]
   onSelectClaim: (id: string) => void
 }) {
   const inbound = relationsTo.filter((r) => r.to_id === claim.id)
@@ -209,7 +210,7 @@ function ClaimDetail({
                     >
                       {r.from_id}
                     </button>
-                    <RelTypeBadge type={r.type} />
+                    <RelTypeBadge family={r.family} />
                     <span className="badge badge-status-underdetermined">{r.strength}</span>
                     <span className="text-xs text-ink-faint">this claim</span>
                   </div>
@@ -241,7 +242,7 @@ function ClaimDetail({
                 <div key={r.id} className="border border-page-border bg-white p-3">
                   <div className="flex items-center gap-2 flex-wrap mb-1">
                     <span className="text-xs text-ink-faint">this claim</span>
-                    <RelTypeBadge type={r.type} />
+                    <RelTypeBadge family={r.family} />
                     <button
                       onClick={() => onSelectClaim(r.to_id)}
                       className="text-xs font-mono text-accent hover:underline"
@@ -437,8 +438,8 @@ export default function CaseStudyView({
   }, [cruxes])
 
   const updatesByNcId = useMemo(() => {
-    const map: Record<string, Assessment['what_would_update']> = {}
-    assessment.what_would_update.forEach((u) => {
+    const map: Record<string, UpdateScenario[]> = {}
+    ;(assessment.what_would_update ?? []).forEach((u) => {
       u.would_affect_ids.forEach((id) => {
         if (!map[id]) map[id] = []
         map[id].push(u)
@@ -521,7 +522,7 @@ export default function CaseStudyView({
             <div>
               <p className="text-xs font-semibold text-ink-faint uppercase tracking-wide mb-1.5">Key cruxes</p>
               <div className="flex flex-wrap gap-1">
-                {assessment.key_crux_ids.map((id) => (
+                {(assessment.key_crux_ids ?? []).map((id) => (
                   <span key={id} className="text-xs font-mono text-accent">{id}</span>
                 ))}
               </div>
@@ -529,7 +530,7 @@ export default function CaseStudyView({
             <div>
               <p className="text-xs font-semibold text-ink-faint uppercase tracking-wide mb-1.5">Weak links</p>
               <div className="flex flex-wrap gap-1">
-                {assessment.weak_link_ids.map((id) => (
+                {(assessment.weak_link_ids ?? []).map((id) => (
                   <button
                     key={id}
                     onClick={() => handleSelectClaim(id)}
@@ -583,11 +584,11 @@ export default function CaseStudyView({
               </div>
             </div>
           )}
-          {assessment.what_would_update.length > 0 && (
+          {(assessment.what_would_update?.length ?? 0) > 0 && (
             <div className="mt-4 pt-4 border-t border-black/5">
               <p className="text-xs font-semibold text-ink-faint uppercase tracking-wide mb-2">What would update this assessment</p>
               <div className="space-y-2">
-                {assessment.what_would_update.map((u, i) => (
+                {(assessment.what_would_update ?? []).map((u, i) => (
                   <div key={i} className="text-xs text-ink-light leading-relaxed flex gap-2">
                     <span className={`shrink-0 mt-0.5 badge ${
                       u.direction === 'weaken' ? 'badge-pos-pro' :
@@ -713,7 +714,7 @@ export default function CaseStudyView({
                     >
                       {r.from_id}
                     </button>
-                    <RelTypeBadge type={r.type} />
+                    <RelTypeBadge family={r.family} />
                     <button
                       onClick={() => handleSelectClaim(r.to_id)}
                       className="text-xs font-mono text-accent hover:underline"

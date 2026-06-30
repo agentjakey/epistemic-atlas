@@ -11,7 +11,7 @@ import type {
   FailureModeFlag,
   Assessment,
   MissingEvidence,
-} from '@/lib/types_v2'
+} from '@/lib/types_v3'
 
 export const metadata = {
   title: 'LHC Black Holes | Epistemic Atlas',
@@ -37,10 +37,10 @@ export default function LHCPage() {
       extractedClaims={(claimsData as any).extracted_claims as ExtractedClaim[]}
       normalizedClaims={(claimsData as any).normalized_claims as NormalizedClaim[]}
       relations={(graphData as any).relations as Relation[]}
-      cruxes={(graphData as any).cruxes as Crux[]}
-      failureModeFlags={(graphData as any).failure_mode_flags as FailureModeFlag[]}
-      assessment={(graphData as any).assessment as Assessment}
-      missingEvidence={(graphData as any).missing_evidence as MissingEvidence[]}
+      cruxes={(graphData as any).assessment_layer.cruxes as Crux[]}
+      failureModeFlags={(graphData as any).assessment_layer.failure_mode_flags as FailureModeFlag[]}
+      assessment={(graphData as any).assessment_layer.assessments[0] as Assessment}
+      missingEvidence={(graphData as any).assessment_layer.missing_evidence as MissingEvidence[]}
     />
     </>
   )
