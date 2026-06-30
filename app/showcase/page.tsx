@@ -147,22 +147,25 @@ export default function ShowcasePage() {
               <p className="text-xs section-heading" style={{ marginBottom: '0.5rem' }}>Incoming relations</p>
               <div className="space-y-2">
                 {[
-                  { from: 'NC_004', type: 'supports', strength: 'strong', flags: 0, color: 'text-blue-600' },
-                  { from: 'NC_003', type: 'supports', strength: 'moderate', flags: 2, color: 'text-slate-500' },
-                  { from: 'NC_005', type: 'supports', strength: 'moderate', flags: 0, color: 'text-slate-500' },
+                  { from: 'NC_004', family: 'supports', basis: 'inferred_across_sources', strength: 'strong', flags: 0, color: 'text-blue-600' },
+                  { from: 'NC_003', family: 'supports', basis: 'inferred_across_sources', strength: 'moderate', flags: 2, color: 'text-slate-500' },
+                  { from: 'NC_005', family: 'supports', basis: 'inferred_across_sources', strength: 'moderate', flags: 0, color: 'text-slate-500' },
                 ].map((r) => (
-                  <div key={r.from} className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-xs font-mono text-ink-faint">{r.from}</span>
-                      <span className="text-xs text-ink-faint">›</span>
-                      <span className={`text-xs font-mono ${r.color}`}>{r.type}</span>
+                  <div key={r.from} className="space-y-0.5">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-xs font-mono text-ink-faint">{r.from}</span>
+                        <span className="text-xs text-ink-faint">›</span>
+                        <span className={`text-xs font-mono ${r.color}`}>{r.family}</span>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <span className="text-xs text-ink-faint">{r.strength}</span>
+                        {r.flags > 0 && (
+                          <span className="badge badge-flag">{r.flags} flag{r.flags > 1 ? 's' : ''}</span>
+                        )}
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      <span className="text-xs text-ink-faint">{r.strength}</span>
-                      {r.flags > 0 && (
-                        <span className="badge badge-flag">{r.flags} flag{r.flags > 1 ? 's' : ''}</span>
-                      )}
-                    </div>
+                    <p className="text-xs font-mono text-ink-faint pl-1">basis: {r.basis}</p>
                   </div>
                 ))}
               </div>

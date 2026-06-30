@@ -1,18 +1,26 @@
-# Methodology: The Six-Step Pipeline
+# Methodology: The Seven-Stage Workflow
 
 ## Overview
 
-Building an Epistemic Atlas entry from raw sources follows a default order of six steps. Steps 1-5 are constructive: they produce the structured artifact. Step 6 is adversarial: it tries to break what the earlier steps built.
+Building an Epistemic Atlas entry from raw sources follows a default order of seven stages. The first six stages build the entry. The seventh stage is adversarial: it tries to break what the earlier stages built.
 
 This default order is a starting path, not a strict one-way pipeline. The work is meant to be revisited: a new crux, a missing-evidence item, an audit note, or a newly found source can send you back to rescope, reingest, re-extract, renormalize, remap relations, or reassess. The schema records these as trigger fields on cruxes, missing-evidence items, and audit notes, so a later analyst can see what an entry is asking to have revisited. The orchestration around these triggers is still early; treat them as hand-set pointers rather than an automated engine. See docs/living_workflow.md for a fuller account of the trigger vocabulary, the event-driven loops, and how an entry compounds over time.
 
 The output is organized into two layers. A core knowledge layer (sources, extracted claims, normalized claims, relations) is meant to be relatively reusable and source-grounded. A separate assessment layer (cruxes, failure mode flags, missing evidence, assessments, reviews, audit notes) is more interpretive and contestable, so a later analyst can reuse the core structure while disagreeing about the assessment.
 
-Each stage has a prompt template in the `prompts/` directory, numbered 01 scope through 07 adversarial audit (`01_scope.md`, `02_source_ingestion.md`, `03_claim_extraction.md`, `04_claim_normalization.md`, `05_relation_mapping.md`, `06_assessment_layer.md`, `07_adversarial_audit.md`). The workflow page summarizes the same sequence. The step descriptions below group some of these stages together but follow the same order. The workflow is designed to be executed with human oversight at each stage, though parts can be supported with LLM assistance.
+Each stage has a prompt template in the `prompts/` directory, numbered 01 scope through 07 adversarial audit (`01_scope.md`, `02_source_ingestion.md`, `03_claim_extraction.md`, `04_claim_normalization.md`, `05_relation_mapping.md`, `06_assessment_layer.md`, `07_adversarial_audit.md`). The workflow page summarizes the same sequence. The stage headings below match those seven prompts. The workflow is designed to be executed with human oversight at each stage, though parts can be supported with LLM assistance.
 
 ---
 
-## Step 1: Source Ingestion
+## Step 1: Scope the Question
+
+**Goal:** Define the central dispute as a single, well-formed question before collecting any sources.
+
+A poorly scoped question produces a poorly scoped entry. The question must be disputable, not settled by definition and not purely a matter of values. Name the populations, time periods, and conditions that are in scope, because vagueness here propagates through every later stage. Do not pre-answer the question; the scope statement is epistemic framing, not a preliminary verdict. The scope is not final either: a later crux or audit note can show the question was too broad or conflated, which triggers a rescope.
+
+---
+
+## Step 2: Source Ingestion
 
 **Goal:** Identify and record all relevant sources with full provenance metadata.
 
@@ -36,7 +44,7 @@ For each source, capture:
 
 ---
 
-## Step 2: Atomic Claim Extraction
+## Step 3: Claim Extraction
 
 **Goal:** Extract individual, testable claims from each source.
 
@@ -58,7 +66,7 @@ A claim is atomic if it cannot be split into two independent claims without losi
 
 ---
 
-## Step 3: Claim Normalization
+## Step 4: Claim Normalization
 
 **Goal:** Convert raw claims into standardized, unambiguous propositions.
 
@@ -69,7 +77,7 @@ Normalization resolves:
 - Hedges that need to be made explicit
 - Conflated claims that should be separated
 
-The normalized form is what appears in the `normalized` field of each claim object. The raw form is preserved in the `raw` field. Neither is discarded.
+The normalized form is recorded as a NormalizedClaim with `normalized_text`, linked back through `extracted_claim_ids` to the ExtractedClaims it came from, which preserve the source `raw_text`. Neither form is discarded.
 
 **Normalization examples:**
 
@@ -81,7 +89,7 @@ Normalized: "Consumption of eggs raises serum LDL-cholesterol in normocholestero
 
 ---
 
-## Step 4: Relation Mapping
+## Step 5: Relation Mapping
 
 **Goal:** Identify and record logical and evidential relationships between normalized claims.
 
@@ -111,9 +119,11 @@ Each relation also has a strength: strong / moderate / weak.
 
 ---
 
-## Step 5: Crux and Missing Evidence Assessment
+## Step 6: Assessment Layer
 
-**Goal:** Identify the pivotal questions and the absent evidence that would resolve them.
+**Goal:** Build the interpretive layer: cruxes, missing evidence, failure mode flags, and the overall assessment.
+
+This stage covers the assessment layer as a whole. The crux and missing-evidence guidance below is the core of it; failure mode flagging and the assessment object follow the same principle, that this layer is more subjective than the core graph and is kept separate from it. See `06_assessment_layer.md` for the full per-object detail.
 
 **Crux identification:**
 A crux is a claim (or question) such that: if it were resolved one way, one major position in the dispute would be significantly weakened; if resolved another way, the opposing position would be significantly weakened. Not every contested claim is a crux. A crux is specifically a load-bearing claim.
@@ -139,7 +149,7 @@ For each missing evidence item, note what it would affect.
 
 ---
 
-## Step 6: Adversarial Review
+## Step 7: Adversarial Audit
 
 **Goal:** Identify weaknesses in the atlas entry itself.
 
@@ -158,6 +168,6 @@ The adversarial review produces a list of issues, each of which either results i
 
 ## Implementation Notes
 
-The pipeline is designed to be LLM-assisted with human oversight. Steps 1, 2, and 4 can be largely automated with a well-designed prompt and a human review pass. Steps 3, 5, and 6 require more judgment and benefit from a human expert in the domain.
+The workflow is designed to be LLM-assisted with human oversight. Source ingestion, claim extraction, and relation mapping can be largely drafted with a well-designed prompt and a human review pass. Scoping, claim normalization, the assessment layer, and the adversarial audit require more judgment and benefit from a human expert in the domain.
 
 For cases where LLM assistance is used, the prompt files in `prompts/` are parameterized to take the case context and prior step output as input. They are written to minimize hallucination by anchoring each step to the output of the previous step rather than to the LLM's background knowledge.
