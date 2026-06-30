@@ -1,4 +1,4 @@
-# Epistemic Atlas: [LIVE DEMO](https://epistemic-atlas.vercel.app/)
+# Epistemic Atlas: Demo [Here](https://epistemic-atlas.vercel.app/)
 
 Epistemic Atlas is a human-AI workflow for turning messy disputes into inspectable claim
 graphs with provenance, relation mapping, cruxes, missing evidence, and assessment notes.
