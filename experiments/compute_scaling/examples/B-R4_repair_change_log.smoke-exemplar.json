@@ -1,0 +1,62 @@
+[
+  {
+    "change_id": "CH_001",
+    "finding_id": "AF_001",
+    "path": "summary",
+    "description": "Rewrote the closing sentence of the top-level summary, which claimed the entry 'captures the extracted claims... without yet normalizing, relating, or assessing them,' contradicting the fully populated normalized_claims, relations, and assessment_layer already present. Replaced with accurate language describing the entry's actual current content and continued unverified status."
+  },
+  {
+    "change_id": "CH_002",
+    "finding_id": "AF_002",
+    "path": "relations[R_016].basis, relations[R_016].basis_source_ids, relations[R_016].notes",
+    "description": "Changed basis from 'asserted_in_source' to 'inferred_across_sources' and basis_source_ids from ['src_010'] to ['src_009','src_010']; rewrote notes to clarify the opposition between NC_015 and NC_014 is drawn from comparing the two source texts rather than stated by src_010 itself, since no src_010 excerpt explicitly engages Plaga's 'differing assumptions' framing."
+  },
+  {
+    "change_id": "CH_003",
+    "finding_id": "AF_003",
+    "path": "relations[R_024].basis, relations[R_024].basis_source_ids, relations[R_024].notes",
+    "description": "Changed basis from 'asserted_in_source' to 'inferred_across_sources' and basis_source_ids from ['src_012'] to ['src_009','src_012']; rewrote notes to note that the src_012 excerpt's 'Ref. [4]' most plausibly refers to Casadio & Harms's own earlier work rather than Plaga's src_009 paper, so the cross-claim link to NC_009 is an analyst inference rather than an in-source assertion."
+  },
+  {
+    "change_id": "CH_004",
+    "finding_id": "AF_004",
+    "path": "assessment_layer.failure_mode_flags (new entries FF_015, FF_016); assessment_layer.audit_notes[AN_004].applies_to_ids and .description",
+    "description": "Added FF_015 (source_incentive_pressure for src_011) and FF_016 (source_incentive_pressure for src_012) to correct the asymmetric application of this failure-mode category noted in AF_004, since incentive-pressure concerns had been raised for src_001, src_002, src_009, and src_010 but not for src_011 or src_012 despite plausible motives documented in their own evidentiary_role/limitations. Extended AN_004 to reference the new flags and note the partial (not complete) resolution of the asymmetry."
+  },
+  {
+    "change_id": "CH_005",
+    "finding_id": "AF_005",
+    "path": "assessment_layer.failure_mode_flags[FF_008].severity, .notes",
+    "description": "Lowered FF_008 severity from 'critical' to 'significant' to match FF_007, since both flags describe the identical direct_evidence_absent failure mode applied to opposing positions (NC_001 vs. NC_011) and no rationale was documented for weighting the risk-side claim more heavily. Updated notes to record the correction."
+  },
+  {
+    "change_id": "CH_006",
+    "finding_id": "AF_006",
+    "path": "assessment_layer.audit_notes (new entry AN_006)",
+    "description": "Investigated the claimed dangling/mismatched cross-reference in the source packet's lhc_c001.relevant_claims field. Confirmed the mismatch exists only in the external packet's excerpt-level metadata (not part of the Case schema) and that this Case's own extraction_notes correctly attribute EC_004 to lhc_c002 and NC_012 to EC_027/src_009. No content in the Case was altered; added a dismissed AuditNote documenting the review and reasoning, per the rule to record why an alleged defect was not 'fixed' when it does not apply to the object being repaired."
+  },
+  {
+    "change_id": "CH_007",
+    "finding_id": "AF_007",
+    "path": "normalized_claims[NC_019].normalized_text; assessment_layer.failure_mode_flags[FF_012].notes",
+    "description": "Restored the dropped qualifying phrase 'from such black holes' to the quoted Giddings-Mangano conclusion in NC_019's normalized_text and in FF_012's notes, matching the verbatim excerpt text (lhc_c014/EC_039) instead of the truncated quotation, to avoid subtly broadening the quoted claim's scope."
+  },
+  {
+    "change_id": "CH_008",
+    "finding_id": "AF_008",
+    "path": "extracted_claims[EC_032].location.page, [EC_033].location.page, [EC_034].location.page, [EC_035].location.page, [EC_036].location.page",
+    "description": "Corrected location.page values to use pdf_page (per the convention used elsewhere in the draft, e.g. EC_020/EC_021/EC_024): EC_032-EC_035 (from lhc_c012, pdf_page=2) changed from '1' to '2'; EC_036 (from lhc_c013, pdf_page=3) changed from '2' to '3'."
+  },
+  {
+    "change_id": "CH_009",
+    "finding_id": "AF_009",
+    "path": "normalized_claims[NC_001].normalized_text",
+    "description": "Removed the unlicensed elaborative clause 'i.e., on a timescale far shorter than needed to travel any macroscopic detector distance,' which was not present in or supported by the underlying extracted claim (EC_001) or its source excerpt (lhc_c001), restoring a normalization closer to minimal paraphrase of the source text."
+  },
+  {
+    "change_id": "CH_010",
+    "finding_id": "AF_010",
+    "path": "assessment_layer.assessments[AS_001].well_supported_claim_ids",
+    "description": "Removed 'NC_017' from AS_001.well_supported_claim_ids. NC_017 carries only medium confidence, is explicitly hedged as a subjective literature-awareness claim ('to our knowledge'), and is separately flagged by FF_013 for lacking a specified consensus dependency basis; categorizing it as well-supported was internally inconsistent with these documented caveats."
+  }
+]

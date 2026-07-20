@@ -1,0 +1,6 @@
+run_id,mode,case,condition,replicate,status,json_parse_ok,schema_valid,schema_error_count,duplicate_id_count,dangling_ref_count,sources,extracted_claims,normalized_claims,relations,cruxes,failure_mode_flags,missing_evidence,assessments,reviews,audit_notes,calls,retries,errors,input_tokens_total,output_tokens_total,cost_usd_total
+SMK-LHC-A-0,live,lhc,single-pass,0,failed,false,false,,,,,,,,,,,,,,2,1,2,0,0,0
+SMK-LHC-A-R1,live,lhc,single-pass,0,failed,false,false,,,,,,,,,,,,,,2,1,2,55494,64000,0.751
+SMK-LHC-A-R2,live,lhc,single-pass,0,failed,false,false,,,,,,,,,,,,,,2,1,2,55494,93399,1.045
+SMK-LHC-B-R3,live,lhc,multi-pass,0,failed,false,false,,,,,,,,,,,,,,2,1,2,54922,32000,0.4298
+SMK-LHC-B-R4,live,lhc,multi-pass,0,complete,true,true,0,0,2,6,46,21,25,5,16,5,1,0,6,6,0,0,265137,152696,2.0572

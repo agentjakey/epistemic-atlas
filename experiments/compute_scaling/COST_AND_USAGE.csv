@@ -1,0 +1,16 @@
+run_id,condition,stage,attempt,reached_provider,stop_reason,input_tokens,output_tokens,cost_usd,status,notes
+SMK-LHC-A-0,A,single-pass,1,no,,0,0,0.0000,failed_pre_network,pre-network credential failure; no request reached Anthropic; no inference
+SMK-LHC-A-0,A,single-pass,2,no,,0,0,0.0000,failed_pre_network,pre-network credential failure; no request reached Anthropic; no inference
+SMK-LHC-A-R1,A,single-pass,1,yes,max_tokens,27747,32000,0.3755,failed_truncated,truncated at 32000 ceiling (v1.0)
+SMK-LHC-A-R1,A,single-pass,2,yes,max_tokens,27747,32000,0.3755,failed_truncated,truncated at 32000 ceiling (v1.0)
+SMK-LHC-A-R2,A,single-pass,1,yes,end_turn,27747,45951,0.5150,complete_output_accepted_via_replay,complete output (end_turn); Markdown-fenced; accepted via harness-v1.3 offline replay (13/13)
+SMK-LHC-A-R2,A,single-pass,2,yes,end_turn,27747,47448,0.5300,complete_output_accepted_via_replay,complete output (end_turn); Markdown-fenced; accepted via harness-v1.3 offline replay (13/13)
+SMK-LHC-B-R3,B,extract,1,yes,max_tokens,27461,16000,0.2149,failed_truncated,extract stage truncated at 16000 ceiling (v1.2)
+SMK-LHC-B-R3,B,extract,2,yes,max_tokens,27461,16000,0.2149,failed_truncated,extract stage truncated at 16000 ceiling (v1.2)
+SMK-LHC-B-R4,B,extract,1,yes,end_turn,27461,18778,0.2427,complete,complete six-stage run under v1.4; schema-valid final graph; GO
+SMK-LHC-B-R4,B,normalize,2,yes,end_turn,35833,22929,0.3010,complete,complete six-stage run under v1.4; schema-valid final graph; GO
+SMK-LHC-B-R4,B,relations,3,yes,end_turn,36833,13484,0.2085,complete,complete six-stage run under v1.4; schema-valid final graph; GO
+SMK-LHC-B-R4,B,epistemic-analysis,4,yes,end_turn,42910,21120,0.2970,complete,complete six-stage run under v1.4; schema-valid final graph; GO
+SMK-LHC-B-R4,B,adversarial-audit,5,yes,end_turn,53853,25931,0.3670,complete,complete six-stage run under v1.4; schema-valid final graph; GO
+SMK-LHC-B-R4,B,repair,6,yes,end_turn,68247,50454,0.6410,complete,complete six-stage run under v1.4; schema-valid final graph; GO
+TOTAL,,,,,,,,4.2830,,cumulative eligible compute usage across all live smoke attempts

@@ -1,0 +1,1395 @@
+{
+  "id": "lhc-black-holes-2008",
+  "schema_version": "3",
+  "title": "Could LHC Operations Produce Catastrophic Microscopic Black Holes? (2008 Safety Dispute)",
+  "domain": "particle physics",
+  "subdomain": "collider safety / theoretical risk assessment",
+  "status": "partially_resolved",
+  "data_status": "partial",
+  "summary": "In 2008, ahead of the Large Hadron Collider's startup, physicists publicly disputed whether LHC collisions could create microscopic black holes capable of catastrophic accretion. The CERN-commissioned LSAG review and the underlying Giddings-Mangano analysis argued that Hawking radiation would cause rapid decay, and that even if black holes were stable, the observed longevity of Earth, white dwarfs, and neutron stars under cosmic-ray bombardment bounds any accretion risk to negligible levels. Independent papers (Koch, Bleicher & Stoecker; Casadio, Fabi & Harms) offered additional or model-specific safety arguments, while Rainer Plaga's non-peer-reviewed preprint argued that a suppressed (but not switched-off) Hawking radiation scenario could permit metastable, Eddington-accreting black holes that evade the published exclusions; Giddings and Mangano rebutted this in an unrefereed note. This entry encodes the technical exchange as it appears in six primary/secondary sources without adjudicating the underlying physics beyond what the sources themselves assert.",
+  "created": "2026-07-16",
+  "updated": "2026-07-16",
+  "tags": [
+    "particle physics",
+    "LHC",
+    "microscopic black holes",
+    "Hawking radiation",
+    "collider safety",
+    "existential risk",
+    "CERN",
+    "2008 controversy"
+  ],
+  "sources": [
+    {
+      "id": "src_001",
+      "title": "Review of the Safety of LHC Collisions",
+      "type": "report",
+      "provenance": {
+        "author": [
+          "John Ellis",
+          "Gian Giudice",
+          "Michelangelo L. Mangano",
+          "Igor Tkachev",
+          "Urs Wiedemann"
+        ],
+        "institution": "LHC Safety Assessment Group (LSAG)",
+        "date": "2008",
+        "venue": "Journal of Physics G: Nuclear and Particle Physics, 35(11), 115004",
+        "url": null,
+        "doi": "10.1088/0954-3899/35/11/115004",
+        "retrieved": "2026-07-14",
+        "page_range": null
+      },
+      "credibility": "high",
+      "conflict_of_interest": "Commissioned by CERN, the institution operating the LHC; produced by a CERN-convened group. Co-author M. Mangano is also a co-author of src_002, the primary technical analysis this review summarizes and endorses.",
+      "retracted": false,
+      "needs_source_verification": false,
+      "notes": "Review-level source; the load-bearing quantitative calculations live in src_002. Acknowledges the low-velocity difference between LHC products and cosmic-ray products as the reason astrophysical arguments are needed."
+    },
+    {
+      "id": "src_002",
+      "title": "Astrophysical implications of hypothetical stable TeV-scale black holes",
+      "type": "paper",
+      "provenance": {
+        "author": [
+          "Steven B. Giddings",
+          "Michelangelo L. Mangano"
+        ],
+        "institution": null,
+        "date": "2008",
+        "venue": "Physical Review D, 78(3), 035009",
+        "url": null,
+        "doi": "10.1103/PhysRevD.78.035009",
+        "retrieved": "2026-07-14",
+        "page_range": null
+      },
+      "credibility": "high",
+      "conflict_of_interest": "Both authors are collider-physics insiders; Mangano is also a co-author of src_001, the CERN-commissioned review that summarizes and relies on this paper, so the analysis is not institutionally independent of CERN.",
+      "retracted": false,
+      "needs_source_verification": false,
+      "notes": "Peer-reviewed central technical safety analysis; deliberately assumes a worst-case stable-black-hole scenario. Printed page numbers in the conclusions region may be offset by one from PDF pages."
+    },
+    {
+      "id": "src_009",
+      "title": "On the potential catastrophic risk from metastable quantum-black holes produced at particle colliders",
+      "type": "preprint",
+      "provenance": {
+        "author": [
+          "R. Plaga"
+        ],
+        "institution": null,
+        "date": "2008-08-10 (v1); 2009-08-09 (v3)",
+        "venue": null,
+        "url": null,
+        "doi": null,
+        "retrieved": "2026-07-14",
+        "page_range": null
+      },
+      "credibility": "medium",
+      "conflict_of_interest": null,
+      "retracted": false,
+      "needs_source_verification": false,
+      "notes": "arXiv preprint only; never accepted to a peer-reviewed journal. Principal published objection to the LHC safety case. Abstract contains the author's own typos, preserved in extraction without inserting [sic] per packet convention."
+    },
+    {
+      "id": "src_010",
+      "title": "Comments on claimed risk from metastable black holes",
+      "type": "preprint",
+      "provenance": {
+        "author": [
+          "Steven B. Giddings",
+          "Michelangelo L. Mangano"
+        ],
+        "institution": null,
+        "date": "2008-08-29",
+        "venue": null,
+        "url": null,
+        "doi": null,
+        "retrieved": "2026-07-14",
+        "page_range": null
+      },
+      "credibility": "medium",
+      "conflict_of_interest": "Written by the same authors (Giddings & Mangano) whose earlier work (src_002) it defends against Plaga's (src_009) criticism; not an independent adjudication.",
+      "retracted": false,
+      "needs_source_verification": false,
+      "notes": "Unrefereed arXiv note (~3 pages), not peer reviewed. Contains dense inline math; equation-level content requires visual PDF verification."
+    },
+    {
+      "id": "src_011",
+      "title": "Exclusion of black hole disaster scenarios at the LHC",
+      "type": "paper",
+      "provenance": {
+        "author": [
+          "Benjamin Koch",
+          "Marcus Bleicher",
+          "Horst Stoecker"
+        ],
+        "institution": null,
+        "date": "2009",
+        "venue": "Physics Letters B, 672(1), 71-76",
+        "url": null,
+        "doi": "10.1016/j.physletb.2009.01.003",
+        "retrieved": "2026-07-14",
+        "page_range": null
+      },
+      "credibility": "high",
+      "conflict_of_interest": "Authors are collider phenomenologists within the same broad research community as the other safety analyses; independence is methodological rather than institutional or sociological.",
+      "retracted": false,
+      "needs_source_verification": false,
+      "notes": "Independent, non-CERN-commissioned safety analysis using an exhaustive-evolution-path argument. A DOI discrepancy between the arXiv record and an earlier task brief is logged and unresolved."
+    },
+    {
+      "id": "src_012",
+      "title": "Possibility of Catastrophic Black Hole Growth in the Warped Brane-World Scenario at the LHC",
+      "type": "paper",
+      "provenance": {
+        "author": [
+          "Roberto Casadio",
+          "Sergio Fabi",
+          "Benjamin Harms"
+        ],
+        "institution": null,
+        "date": "2009",
+        "venue": "Physical Review D, 80(8), 084036",
+        "url": null,
+        "doi": "10.1103/PhysRevD.80.084036",
+        "retrieved": "2026-07-14",
+        "page_range": null
+      },
+      "credibility": "high",
+      "conflict_of_interest": "Casadio and Harms originated the microcanonical black-hole framework that Plaga (src_009) relies on; they have an intellectual stake in how that framework is applied and interpreted.",
+      "retracted": false,
+      "needs_source_verification": false,
+      "notes": "Model-specific (RS warped brane-world) result. Concedes expected decay times are longer than other models predict, which qualifies rather than retracts the no-catastrophe conclusion. Two-column PDF layout requires PDF-only verification."
+    }
+  ],
+  "extracted_claims": [
+    {
+      "id": "EC_001",
+      "source_id": "src_001",
+      "raw_text": "Any microscopic black holes produced at the LHC are expected to decay by Hawking radiation before they reach the detector walls. If some microscopic black holes were stable, those produced by cosmic rays would be stopped inside the Earth or other astronomical bodies. The stability of astronomical bodies constrains strongly the possible rate of accretion by any such microscopic black holes, so that they present no conceivable danger.",
+      "location": {
+        "page": "1",
+        "section": "Abstract",
+        "paragraph": null
+      },
+      "speaker": null,
+      "extraction_notes": "excerpt lhc_c001",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_002",
+      "source_id": "src_001",
+      "raw_text": "There is, however, one significant difference between cosmic-ray collisions with a body at rest and collisions at the LHC, namely that any massive new particles produced by the LHC collisions will tend to have low velocities, whereas cosmic-ray collisions would produce them with high velocities. This point has been considered in detail [2] since the 2003 report by the LHC Safety Study Group [1]. As we now discuss, the original conclusion that LHC collisions present no dangers is validated and strengthened by this more recent work.",
+      "location": {
+        "page": "6",
+        "section": "4 - Microscopic Black Holes",
+        "paragraph": null
+      },
+      "speaker": null,
+      "extraction_notes": "excerpt lhc_c002",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_003",
+      "source_id": "src_001",
+      "raw_text": "There is broad consensus among physicists on the reality of Hawking radiation, but so far no experiment has had the sensitivity required to find direct evidence for it.",
+      "location": {
+        "page": "7",
+        "section": "4 - Microscopic Black Holes",
+        "paragraph": null
+      },
+      "speaker": null,
+      "extraction_notes": "excerpt lhc_c003",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_004",
+      "source_id": "src_001",
+      "raw_text": "Independently of the reasoning based on Hawking radiation, if microscopic black holes were to be singly produced by colliding the quarks and gluons inside protons, they would also be able to decay into the same types of particles that produced them [10]. The reason being that in this case they could not carry any conserved quantum number that is not already carried by the original quarks and gluons, and their decay back to the initial state partons would be allowed. For this reason, a microscopic black hole cannot be completely black.",
+      "location": {
+        "page": "7",
+        "section": "4 - Microscopic Black Holes",
+        "paragraph": null
+      },
+      "speaker": null,
+      "extraction_notes": "excerpt lhc_c004",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_005",
+      "source_id": "src_001",
+      "raw_text": "In fact, ultra-high-energy cosmic rays hitting dense stars such as white dwarfs and neutron stars would have produced black holes copiously during their lifetimes. Such black holes, even if neutral, would have been stopped by the material inside such dense stars. The rapid accretion due to the large density of these bodies, and to the strong gravitational interactions of these black holes, would have led to the destruction of white dwarfs and neutron stars on time scales that are much shorter than their observed lifetimes [2]. The final stages of their destruction would have released explosively large amounts of energy, that would have been highly visible. The observation of white dwarfs and neutron stars that would have been destroyed in this way tells us that cosmic rays do not produce such black holes, and hence neither will the LHC.",
+      "location": {
+        "page": "8",
+        "section": "4 - Microscopic Black Holes",
+        "paragraph": null
+      },
+      "speaker": null,
+      "extraction_notes": "excerpt lhc_c005",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_006",
+      "source_id": "src_002",
+      "raw_text": "We analyze macroscopic effects of TeV-scale black holes, such as could possibly be produced at the LHC, in what is regarded as an extremely hypothetical scenario in which they are stable and, if trapped inside Earth, begin to accrete matter. We examine a wide variety of TeV-scale gravity scenarios, basing the resulting accretion models on first-principles, basic, and well-tested physical laws. These scenarios fall into two classes, depending on whether accretion could have any macroscopic effect on the Earth at times shorter than the Sun's natural lifetime. We argue that cases with such effect at shorter times than the solar lifetime are ruled out, since in these scenarios black holes produced by cosmic rays impinging on much denser white dwarfs and neutron stars would then catalyze their decay on timescales incompatible with their known lifetimes.",
+      "location": {
+        "page": "1",
+        "section": "Abstract",
+        "paragraph": null
+      },
+      "speaker": null,
+      "extraction_notes": "excerpt lhc_c006",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_007",
+      "source_id": "src_002",
+      "raw_text": "In order for our bounds to have relevance, a sequence of unlikely things would have to be true. First, TeV scale gravity, with a Planck scale no higher than a few TeV, would have to be correct, so that black holes can be produced at LHC. Most workers consider this to be a fascinating possibility, but also a somewhat unlikely possibility. Second, black hole radiance, which has been deeply studied from a number of theoretical perspectives, would have to be wrong, and more general quantum mechanical arguments for black hole instability would have to be wrong. Most workers consider this to be an exceedingly improbable, if not impossible, scenario. Finally, one would need a mechanism to shut off the quantum effects responsible for Hawking radiation, but still leave intact either the quantum effects responsible for Schwinger discharge, or some other neutralization mechanism that acts to discharge the resulting stable black holes. It is very difficult to conceive of a consistent physical framework that provides such a mechanism.",
+      "location": {
+        "page": "52",
+        "section": "Section 9 (Conclusions)",
+        "paragraph": null
+      },
+      "speaker": null,
+      "extraction_notes": "excerpt lhc_c007",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_008",
+      "source_id": "src_002",
+      "raw_text": "Moreover, decay of observed neutron stars would also have been catalyzed, unless both of two unlikely possibilities are realized, namely that the composition of ultrahigh-energy cosmic ray primaries is dominantly heavy elements, and ultrahigh energy cosmic ray neutrinos either are not produced, or have suppressed gravitational interactions with partons.",
+      "location": {
+        "page": "53",
+        "section": "Section 9 (Conclusions)",
+        "paragraph": null
+      },
+      "speaker": null,
+      "extraction_notes": "excerpt lhc_c008",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_009",
+      "source_id": "src_009",
+      "raw_text": "The question of whether collider produced of subnuclear black holes might constitute a catastrophic risk is explored in a model of Casadio & Harms (2002) that treats them as quantum-mechanical objects. A plausible scenario in which these black holes accrete ambient matter at the Eddington limit shortly after their production, thereby emitting Hawking radiation that would be harmful to Earth and/or CERN and its surroundings, is described. Such black holes are shown to remain undetectable in existing astrophysical observations and thus evade a recent exclusion of risks from subnuclear black holes by Giddings & Mangano (2008) and and a similar one by Koch et al. (2009). I further question that these risk analyses are complete for the reason that they exclude plausible black-hole parameter ranges from safety consideration without giving any reason.",
+      "location": {
+        "page": "1",
+        "section": "Abstract",
+        "paragraph": null
+      },
+      "speaker": null,
+      "extraction_notes": "excerpt lhc_c009. Source contains uncorrected typos ('collider produced of', 'and and'), preserved verbatim per packet convention.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_010",
+      "source_id": "src_009",
+      "raw_text": "Giddings & Mangano drew different general conclusions only because they made different initial assumptions about the properties of microscopic black holes, not because any of their technical conclusions are incorrect.",
+      "location": {
+        "page": "1",
+        "section": "Abstract (second paragraph)",
+        "paragraph": null
+      },
+      "speaker": null,
+      "extraction_notes": "excerpt lhc_c010",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_011",
+      "source_id": "src_009",
+      "raw_text": "Its basic difference to scenario 1 is a completely different \"microcanonical\" treatment of mBH thermodynamics (i.e. one in which the total energy remains fixed)[25,11,39,24], leading to a strongly reduced, but not completely switched-off intensity of Hawking radiation for black holes with small masses. This treatment is thought to be more fundamental than the one from G & M's scenario 1 using the canonical ensemble.",
+      "location": {
+        "page": "3",
+        "section": "1.2.2 A new scenario not discussed previously by G & M or Koch et al.: Scenario 3",
+        "paragraph": null
+      },
+      "speaker": null,
+      "extraction_notes": "excerpt lhc_c011",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_012",
+      "source_id": "src_010",
+      "raw_text": "Where did [1] go wrong? The answer is in the inconsistent application of formula (2) of that paper. In the type of warped scenario that [1] considers, the black hole would evolve up to a radius R ~ R_D via higher-dimensional evolution, and then would experience a large mass gain in transitioning to a slightly higher radius R ~ R_C, as [1] acknowledges. Throughout this region, in the usual Hawking scenario, the temperature formula (2) should hold. Thus if the black hole radiance is suppressed compared to this, as the author of [1] proposes, it can't exceed a value of size (3). However, [1] then applies the formula (1) written in terms of the mass using the four-dimensional relationship between radius and mass, but does this in a region where the four-dimensional relation between radius and mass is clearly wrong.",
+      "location": {
+        "page": "1",
+        "section": "Main text (untitled note body)",
+        "paragraph": null
+      },
+      "speaker": null,
+      "extraction_notes": "excerpt lhc_c012",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_013",
+      "source_id": "src_010",
+      "raw_text": "First, in such a \"suppressed Hawking radiation\" scenario, the arguments of [2] tell us that one can in fact not establish Eddington-limited accretion in a white dwarf (see in particular eq.(B.13) in [2]); so, even ignoring the inconsistency we reported above, the bounds of that paper would apply even to the suggested scenario of [1].",
+      "location": {
+        "page": "2",
+        "section": "Main text (untitled note body)",
+        "paragraph": null
+      },
+      "speaker": null,
+      "extraction_notes": "excerpt lhc_c013",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_014",
+      "source_id": "src_011",
+      "raw_text": "There is to our knowledge no scientific work that predicts that the remnants (if they exist) of such mini black holes (if they exist) could be stable at masses far above the Planck scale M_f. However, given the public alarm over the subject, we want to go further and also exclude danger from scenarios which are to the present understanding of the physics of mini black holes not well motivated. A number of counter arguments disfavor such disaster scenarios. Recently those arguments have been summarized and discussed by a group [15] who comes to the conclusion that \"there is no risk of any significance whatsoever from such black holes\". In this paper we independently present a short coherent argument why there is no risk due to mini black holes from TeV particle collisions. First we look at the logically possible black hole evolution paths. After this we show for every endpoint of the paths, why mini black holes can not be dangerously growing. For this we use arguments which are already present in [15], but we also bring forward new arguments such as the influence of a strongly growing black hole mass on the escape velocity of the mini black hole.",
+      "location": {
+        "page": "2",
+        "section": "1 Motivation",
+        "paragraph": null
+      },
+      "speaker": null,
+      "extraction_notes": "excerpt lhc_c014",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_015",
+      "source_id": "src_012",
+      "raw_text": "In order for the black holes created at the LHC to grow at all, the critical mass should be M_c ≳ 10² kg. This value is already larger than the maximum compatible with experimental tests of Newton's law (and we further relaxed it to M_c = 10⁴ kg in our analysis). For smaller values of M_c, the black holes cannot accrete fast enough to overcome the decay rate.",
+      "location": {
+        "page": "8",
+        "section": "V. Conclusions",
+        "paragraph": "left column"
+      },
+      "speaker": null,
+      "extraction_notes": "excerpt lhc_c015",
+      "needs_source_verification": true
+    },
+    {
+      "id": "EC_016",
+      "source_id": "src_012",
+      "raw_text": "We conclude that, for the RS scenario and black holes described by the metric (6), the growth of black holes to catastrophic size is not possible. Nonetheless, it remains true that the expected decay times are significantly longer than is typically predicted by other models, as was first shown in Ref. [4].",
+      "location": {
+        "page": "8",
+        "section": "V. Conclusions",
+        "paragraph": "right column"
+      },
+      "speaker": null,
+      "extraction_notes": "excerpt lhc_c016",
+      "needs_source_verification": true
+    }
+  ],
+  "normalized_claims": [
+    {
+      "id": "NC_001",
+      "extracted_claim_ids": [
+        "EC_001"
+      ],
+      "normalized_text": "Under mainstream (unsuppressed) theory, any microscopic black holes produced at the LHC are expected to decay via Hawking radiation essentially instantaneously, before reaching the detector walls.",
+      "domain_type": "theoretical",
+      "scope": "LHC-produced microscopic black holes under standard Hawking-radiation theory.",
+      "quantification": null,
+      "hedges": [
+        "are expected to"
+      ],
+      "position": "con",
+      "confidence": {
+        "level": "medium",
+        "notes": "Theoretical prediction endorsed by broad physics consensus (per NC_006) but lacking direct experimental confirmation of the mechanism itself."
+      },
+      "failure_mode_flag_ids": [
+        "FF_003"
+      ],
+      "tags": [
+        "hawking_evaporation"
+      ],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_002",
+      "extracted_claim_ids": [
+        "EC_001",
+        "EC_005",
+        "EC_006"
+      ],
+      "normalized_text": "Even if microscopic black holes produced at the LHC were stable, structurally similar black holes would have been produced copiously by cosmic rays striking Earth, white dwarfs, and neutron stars over cosmic timescales; the continued observed survival of these dense astronomical bodies for their known lifetimes constrains the possible accretion rate of any such stable black holes strongly enough that LHC-produced black holes present no conceivable danger.",
+      "domain_type": "theoretical",
+      "scope": "Hypothetical stable, neutral microscopic black holes; inference from astrophysical observation of Earth, white dwarfs, and neutron stars.",
+      "quantification": null,
+      "hedges": [
+        "if stable",
+        "would have",
+        "no conceivable danger"
+      ],
+      "position": "con",
+      "confidence": {
+        "level": "medium",
+        "notes": "Corroborated independently by src_001, src_002, and (per NC_012) src_011, but rests on an analogy between cosmic-ray and LHC production conditions and on cosmic-ray-composition assumptions flagged elsewhere (NC_003, NC_004)."
+      },
+      "failure_mode_flag_ids": [
+        "FF_005",
+        "FF_008"
+      ],
+      "tags": [
+        "astronomical_constraints"
+      ],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_003",
+      "extracted_claim_ids": [
+        "EC_002"
+      ],
+      "normalized_text": "LHC collisions would tend to produce candidate massive particles (potential black holes) at low velocity relative to cosmic-ray collisions, which would produce them at high velocity when striking a body at rest; LSAG states that the more recent, detailed analysis (Giddings & Mangano) accounts for this difference and validates and strengthens, rather than undermines, the conclusion that LHC collisions present no danger.",
+      "domain_type": "theoretical",
+      "scope": "Kinematic comparison between LHC lab-frame production and cosmic-ray astrophysical production.",
+      "quantification": null,
+      "hedges": [
+        "will tend to",
+        "validated and strengthened"
+      ],
+      "position": "neutral",
+      "confidence": {
+        "level": "medium",
+        "notes": "Caveat raised and resolved by the same source (src_001); not independently re-derived in this excerpt."
+      },
+      "failure_mode_flag_ids": [],
+      "tags": [
+        "kinematic_qualification"
+      ],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_004",
+      "extracted_claim_ids": [
+        "EC_008"
+      ],
+      "normalized_text": "The neutron-star leg of the astronomical-survival safety argument would fail to exclude danger unless both (a) ultra-high-energy cosmic-ray primaries are dominantly heavy elements and (b) ultra-high-energy cosmic-ray neutrinos are either not produced or have suppressed gravitational interactions with partons; Giddings & Mangano treat the joint failure of both conditions as unlikely.",
+      "domain_type": "theoretical",
+      "scope": "Neutron-star branch only of the astronomical-survival argument; does not automatically extend to the white-dwarf branch.",
+      "quantification": null,
+      "hedges": [
+        "unless",
+        "unlikely"
+      ],
+      "position": "conditional",
+      "confidence": {
+        "level": "medium",
+        "notes": "Explicitly framed by the source as a conditional caveat on its own bound."
+      },
+      "failure_mode_flag_ids": [],
+      "tags": [
+        "astronomical_constraints",
+        "cosmic_ray_composition"
+      ],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_005",
+      "extracted_claim_ids": [
+        "EC_007"
+      ],
+      "normalized_text": "For danger from LHC-produced black holes to be a live possibility, a chain of independently unlikely conditions would all have to hold simultaneously: TeV-scale gravity with a Planck scale of a few TeV; black hole radiance (Hawking radiation) and general quantum-instability arguments both being wrong; and the existence of a mechanism that selectively disables Hawking radiation while preserving some other neutralization/discharge mechanism. Giddings & Mangano characterize most of these individually as considered by 'most workers' to be unlikely to exceedingly improbable.",
+      "domain_type": "theoretical",
+      "scope": "Conditions required for the paper's accretion bounds to be practically relevant.",
+      "quantification": null,
+      "hedges": [
+        "most workers consider",
+        "exceedingly improbable",
+        "very difficult to conceive"
+      ],
+      "position": "con",
+      "confidence": {
+        "level": "medium",
+        "notes": "The 'most workers consider' language is the authors' own sociological characterization rather than a measured survey of expert opinion."
+      },
+      "failure_mode_flag_ids": [
+        "FF_004"
+      ],
+      "tags": [
+        "preconditions"
+      ],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_006",
+      "extracted_claim_ids": [
+        "EC_003"
+      ],
+      "normalized_text": "As of 2008, there was broad consensus among physicists that Hawking radiation is a real physical phenomenon, but no experiment had yet achieved the sensitivity required to obtain direct experimental evidence for it.",
+      "domain_type": "empirical",
+      "scope": "Experimental status of Hawking radiation as of the 2008 LSAG review.",
+      "quantification": null,
+      "hedges": [
+        "broad consensus",
+        "so far no experiment"
+      ],
+      "position": "neutral",
+      "confidence": {
+        "level": "high",
+        "notes": "Straightforward factual statement about experimental status, stated candidly by a source otherwise arguing for safety."
+      },
+      "failure_mode_flag_ids": [],
+      "tags": [
+        "hawking_evaporation",
+        "experimental_status"
+      ],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_007",
+      "extracted_claim_ids": [
+        "EC_004"
+      ],
+      "normalized_text": "Independently of Hawking-radiation-based reasoning, if microscopic black holes were singly produced from colliding quarks and gluons, they could carry no conserved quantum number beyond those of the initial partons, so decay back into the original partons would be allowed; LSAG argues that for this reason such a black hole cannot be completely black (i.e., completely non-radiating).",
+      "domain_type": "theoretical",
+      "scope": "Singly-produced microscopic black holes from parton-level collisions only.",
+      "quantification": null,
+      "hedges": [
+        "would also be able to",
+        "cannot be completely black"
+      ],
+      "position": "con",
+      "confidence": {
+        "level": "medium",
+        "notes": "Presented by the source as an independent theoretical argument, not independently experimentally tested."
+      },
+      "failure_mode_flag_ids": [],
+      "tags": [
+        "back_decay",
+        "non_hawking_mechanism"
+      ],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_008",
+      "extracted_claim_ids": [
+        "EC_009",
+        "EC_011"
+      ],
+      "normalized_text": "Using the Casadio-Harms microcanonical treatment (in which Hawking radiation for small-mass black holes is strongly reduced but not completely switched off), Plaga (2008/2009) describes a plausible scenario in which collider-produced subnuclear black holes accrete ambient matter at the Eddington limit shortly after production, emitting Hawking radiation that would be harmful to Earth and/or CERN and its surroundings; he argues such black holes would remain undetectable in existing astrophysical observations, thereby evading the exclusions of Giddings & Mangano (2008) and Koch et al. (2009), and further argues these risk analyses are incomplete because they exclude plausible black-hole parameter ranges without giving a reason.",
+      "domain_type": "theoretical",
+      "scope": "Hypothetical microscopic black holes under the microcanonical (suppressed-but-nonzero Hawking radiation) treatment.",
+      "quantification": null,
+      "hedges": [
+        "a plausible scenario",
+        "strongly reduced, but not completely switched-off",
+        "I further question"
+      ],
+      "position": "pro",
+      "confidence": {
+        "level": "speculative",
+        "notes": "Single non-peer-reviewed preprint; theoretical extrapolation from an alternative thermodynamic treatment, without independent confirmation or replication."
+      },
+      "failure_mode_flag_ids": [
+        "FF_006"
+      ],
+      "tags": [
+        "eddington_accretion",
+        "objection"
+      ],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_009",
+      "extracted_claim_ids": [
+        "EC_010"
+      ],
+      "normalized_text": "Plaga characterizes the disagreement between his analysis and Giddings & Mangano's as arising solely from different initial assumptions about the properties of microscopic black holes, and explicitly denies that any of Giddings & Mangano's technical conclusions are incorrect.",
+      "domain_type": "methodological",
+      "scope": "Plaga's own characterization of the nature of the Giddings-Mangano/Plaga disagreement.",
+      "quantification": null,
+      "hedges": [
+        "only because",
+        "not because"
+      ],
+      "position": "methodological",
+      "confidence": {
+        "level": "low",
+        "notes": "This characterization is directly and explicitly disputed by Giddings & Mangano (NC_010)."
+      },
+      "failure_mode_flag_ids": [],
+      "tags": [
+        "dispute_characterization"
+      ],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_010",
+      "extracted_claim_ids": [
+        "EC_012"
+      ],
+      "normalized_text": "Giddings & Mangano (2008) respond that Plaga's analysis contains a specific technical error: Plaga applies the four-dimensional mass-radius relation (in formula (1), for the suppressed-radiance bound) in a physical regime near R~R_C in the warped scenario where that four-dimensional relation does not hold, an inconsistent application of their own temperature formula (2).",
+      "domain_type": "theoretical",
+      "scope": "Plaga's (src_009) application of the suppressed-Hawking-radiation formula within the warped extra-dimension scenario.",
+      "quantification": null,
+      "hedges": [
+        "clearly wrong"
+      ],
+      "position": "con",
+      "confidence": {
+        "level": "medium",
+        "notes": "Asserted by the criticized paper's original authors in an unrefereed note; not independently adjudicated by a third party."
+      },
+      "failure_mode_flag_ids": [],
+      "tags": [
+        "rebuttal",
+        "formula_error"
+      ],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_011",
+      "extracted_claim_ids": [
+        "EC_013"
+      ],
+      "normalized_text": "Giddings & Mangano further argue that even granting Plaga's suppressed-Hawking-radiation scenario, Eddington-limited accretion cannot be established to occur inside a white dwarf (per their equation B.13), so the astronomical-survival bounds of Giddings & Mangano (2008) would still apply to Plaga's proposed scenario.",
+      "domain_type": "theoretical",
+      "scope": "Fallback argument conditional on granting Plaga's suppressed-radiation premise; specific to the white-dwarf accretion mechanism.",
+      "quantification": null,
+      "hedges": [
+        "even ignoring",
+        "would apply even to"
+      ],
+      "position": "con",
+      "confidence": {
+        "level": "medium",
+        "notes": "Encoded as the authors' assertion that the scenario cannot be established, not as a claim that Eddington-limited accretion is universally impossible."
+      },
+      "failure_mode_flag_ids": [],
+      "tags": [
+        "rebuttal",
+        "fallback_argument"
+      ],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_012",
+      "extracted_claim_ids": [
+        "EC_014"
+      ],
+      "normalized_text": "Koch, Bleicher & Stoecker (2009) present an independent, non-CERN-commissioned safety analysis that enumerates the logically possible evolution paths of a microscopic black hole and argues each endpoint is safe, adding a new argument (not present in Giddings & Mangano) concerning the effect of a strongly growing black-hole mass on its escape velocity; the authors state their motivation includes addressing public alarm over the subject and note they reach the same conclusion as, and partly reuse arguments from, Giddings & Mangano.",
+      "domain_type": "theoretical",
+      "scope": "All logically possible black-hole evolution endpoints as enumerated by the authors.",
+      "quantification": null,
+      "hedges": [
+        "to our knowledge",
+        "if they exist"
+      ],
+      "position": "con",
+      "confidence": {
+        "level": "medium",
+        "notes": "Peer-reviewed and methodologically independent, but the argument-by-exhaustion structure depends on the enumeration of evolution paths actually being exhaustive."
+      },
+      "failure_mode_flag_ids": [],
+      "tags": [
+        "independent_analysis",
+        "escape_velocity"
+      ],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_013",
+      "extracted_claim_ids": [
+        "EC_015"
+      ],
+      "normalized_text": "Within the Randall-Sundrum warped brane-world scenario, Casadio, Fabi & Harms (2009) calculate that for LHC-produced black holes to grow at all, the critical mass parameter must satisfy M_c ≳ 10^2 kg (relaxed to M_c = 10^4 kg in their analysis), a value already larger than the maximum compatible with existing experimental tests of Newton's law; for smaller M_c, black holes cannot accrete fast enough to overcome their decay rate.",
+      "domain_type": "theoretical",
+      "scope": "RS warped brane-world scenario, black holes described by the paper's metric (6) only.",
+      "quantification": "M_c ≳ 10^2 kg (relaxed to 10^4 kg); compared against experimental Newton's-law-test bounds.",
+      "hedges": [
+        "should be",
+        "we further relaxed it"
+      ],
+      "position": "con",
+      "confidence": {
+        "level": "medium",
+        "notes": "Peer-reviewed, quantitative, but scoped to a specific model and metric; not model-independent."
+      },
+      "failure_mode_flag_ids": [],
+      "tags": [
+        "critical_mass",
+        "newtons_law_bound"
+      ],
+      "needs_source_verification": true
+    },
+    {
+      "id": "NC_014",
+      "extracted_claim_ids": [
+        "EC_016"
+      ],
+      "normalized_text": "For the RS (warped brane-world) scenario and black holes described by their specific metric, Casadio, Fabi & Harms (2009) conclude that catastrophic black hole growth is not possible; however, they concede that the expected decay times in this scenario are significantly longer than typically predicted by other models.",
+      "domain_type": "theoretical",
+      "scope": "RS scenario and the paper's specific metric (6) only; not a universal or model-independent safety claim.",
+      "quantification": null,
+      "hedges": [
+        "nonetheless",
+        "significantly longer"
+      ],
+      "position": "conditional",
+      "confidence": {
+        "level": "medium",
+        "notes": "Model-scoped conclusion with an explicit concession that decay times are longer than other models predict, which is qualitatively closer to the scenario the dissenting position (NC_008) worries about."
+      },
+      "failure_mode_flag_ids": [
+        "FF_007"
+      ],
+      "tags": [
+        "model_scoped_conclusion",
+        "concession"
+      ],
+      "needs_source_verification": true
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_001",
+      "from_id": "NC_006",
+      "to_id": "NC_001",
+      "family": "contextualizes",
+      "subtype": "narrows",
+      "tags": [
+        "experimental_status"
+      ],
+      "basis": "asserted_in_source",
+      "basis_source_ids": [
+        "src_001"
+      ],
+      "strength": "moderate",
+      "notes": "src_001 asserts both claims in adjacent sentences: the mainstream Hawking-decay expectation, immediately qualified by the lack of direct experimental confirmation.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "R_002",
+      "from_id": "NC_003",
+      "to_id": "NC_002",
+      "family": "contextualizes",
+      "subtype": "narrows",
+      "tags": [
+        "kinematic_analogy"
+      ],
+      "basis": "asserted_in_source",
+      "basis_source_ids": [
+        "src_001"
+      ],
+      "strength": "moderate",
+      "notes": "src_001 raises the velocity-difference caveat and then asserts it is addressed by detailed analysis, qualifying but not overturning the astronomical-survival argument.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "R_003",
+      "from_id": "NC_004",
+      "to_id": "NC_002",
+      "family": "contextualizes",
+      "subtype": "narrows",
+      "tags": [
+        "cosmic_ray_composition"
+      ],
+      "basis": "asserted_in_source",
+      "basis_source_ids": [
+        "src_002"
+      ],
+      "strength": "moderate",
+      "notes": "The neutron-star leg's validity is explicitly conditioned by src_002 on cosmic-ray composition and neutrino-interaction assumptions.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "R_004",
+      "from_id": "NC_005",
+      "to_id": "NC_002",
+      "family": "supports",
+      "subtype": "logical",
+      "tags": [
+        "preconditions"
+      ],
+      "basis": "asserted_in_source",
+      "basis_source_ids": [
+        "src_002"
+      ],
+      "strength": "strong",
+      "notes": "The conclusions section frames the chain of unlikely preconditions as the reason the astronomical bounds are only a fallback and reinforces the overall safety conclusion.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "R_005",
+      "from_id": "NC_010",
+      "to_id": "NC_009",
+      "family": "opposes",
+      "subtype": "disputed_characterization",
+      "tags": [
+        "dispute"
+      ],
+      "basis": "asserted_in_source",
+      "basis_source_ids": [
+        "src_010"
+      ],
+      "strength": "strong",
+      "notes": "src_010 identifies a specific technical error in Plaga's formula application, directly contradicting Plaga's own characterization (src_009) that the disagreement is purely assumption-level.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "R_006",
+      "from_id": "NC_008",
+      "to_id": "NC_002",
+      "family": "opposes",
+      "subtype": "mutual_tension",
+      "tags": [
+        "eddington_accretion"
+      ],
+      "basis": "asserted_in_source",
+      "basis_source_ids": [
+        "src_009"
+      ],
+      "strength": "moderate",
+      "notes": "Plaga explicitly claims his scenario evades the Giddings-Mangano exclusion that NC_002 is based on.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "R_007",
+      "from_id": "NC_010",
+      "to_id": "NC_008",
+      "family": "opposes",
+      "subtype": "formula_error",
+      "tags": [
+        "rebuttal"
+      ],
+      "basis": "asserted_in_source",
+      "basis_source_ids": [
+        "src_010"
+      ],
+      "strength": "strong",
+      "notes": "src_010 argues the technical basis of Plaga's scenario rests on a misapplied formula.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "R_008",
+      "from_id": "NC_011",
+      "to_id": "NC_008",
+      "family": "opposes",
+      "subtype": "fallback_argument",
+      "tags": [
+        "rebuttal"
+      ],
+      "basis": "asserted_in_source",
+      "basis_source_ids": [
+        "src_010"
+      ],
+      "strength": "moderate",
+      "notes": "Even granting Plaga's central premise, src_010 argues the accretion mechanism required for his scenario cannot be established in a white dwarf.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "R_009",
+      "from_id": "NC_013",
+      "to_id": "NC_014",
+      "family": "supports",
+      "subtype": "empirical",
+      "tags": [
+        "critical_mass"
+      ],
+      "basis": "asserted_in_source",
+      "basis_source_ids": [
+        "src_012"
+      ],
+      "strength": "strong",
+      "notes": "The quantitative critical-mass bound is the stated basis for the paper's no-catastrophic-growth conclusion.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "R_010",
+      "from_id": "NC_014",
+      "to_id": "NC_008",
+      "family": "opposes",
+      "subtype": "mutual_tension",
+      "tags": [
+        "microcanonical_framework"
+      ],
+      "basis": "inferred_across_sources",
+      "basis_source_ids": [],
+      "strength": "moderate",
+      "notes": "No source directly states this connection; inferred by the case builder comparing src_012 (working within the microcanonical framework Plaga relies on) and src_009's reliance on that same framework to argue danger is possible.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "R_011",
+      "from_id": "NC_012",
+      "to_id": "NC_002",
+      "family": "supports",
+      "subtype": "independent_restatement",
+      "tags": [
+        "independent_corroboration"
+      ],
+      "basis": "asserted_in_source",
+      "basis_source_ids": [
+        "src_011"
+      ],
+      "strength": "strong",
+      "notes": "src_011 explicitly cites and concurs with the Giddings-Mangano/LSAG conclusion while presenting an independent argument.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "R_012",
+      "from_id": "NC_006",
+      "to_id": "NC_005",
+      "family": "opposes",
+      "subtype": "hidden_assumption",
+      "tags": [
+        "experimental_status",
+        "preconditions"
+      ],
+      "basis": "analyst_inferred",
+      "basis_source_ids": [],
+      "strength": "weak",
+      "notes": "No source draws this connection explicitly. The case builder notes a tension: NC_005 labels 'Hawking radiation being wrong' as exceedingly improbable, but NC_006 shows Hawking radiation itself lacks direct experimental confirmation, which weakens confidence in characterizing its falsity as near-impossible.",
+      "needs_source_verification": true
+    },
+    {
+      "id": "R_013",
+      "from_id": "NC_007",
+      "to_id": "NC_001",
+      "family": "supports",
+      "subtype": "independent_argument",
+      "tags": [
+        "non_hawking_mechanism"
+      ],
+      "basis": "analyst_inferred",
+      "basis_source_ids": [],
+      "strength": "weak",
+      "notes": "No source explicitly links these; the case builder observes that the back-decay argument (NC_007) offers a second, Hawking-independent mechanism reinforcing the same overall conclusion that LHC-produced black holes are not stable/non-radiating.",
+      "needs_source_verification": true
+    }
+  ],
+  "assessment_layer": {
+    "cruxes": [
+      {
+        "id": "CX_001",
+        "statement": "Does the astronomical-body (cosmic-ray) survival argument validly transfer to LHC-produced black holes, given the low-velocity/high-velocity production difference and unresolved ultra-high-energy cosmic-ray composition and neutrino-interaction uncertainties?",
+        "description": "If yes, the astronomical-survival safety argument (NC_002) stands on solid ground regardless of Hawking radiation's status. If no (e.g., the velocity difference matters more than claimed, or cosmic-ray composition is unfavorable), the neutron-star leg (NC_004) and possibly the whole analogy (NC_002, NC_003) weaken, leaving the safety case more dependent on Hawking radiation alone (NC_001, NC_006).",
+        "dependent_normalized_claim_ids": [
+          "NC_002",
+          "NC_003",
+          "NC_004",
+          "NC_012"
+        ],
+        "status": "empirically_underdetermined",
+        "resolution_notes": null,
+        "resolution_source_ids": [],
+        "triggers": []
+      },
+      {
+        "id": "CX_002",
+        "statement": "Is Hawking radiation for microscopic black holes an established, unsuppressed physical effect, or can it be strongly suppressed (as in the Casadio-Harms microcanonical treatment Plaga relies on), leaving black holes effectively metastable?",
+        "description": "If unsuppressed Hawking radiation is correct, NC_001 holds and the entire dispute is largely moot (black holes decay near-instantly). If radiation can be strongly suppressed as Plaga argues, the door opens to NC_008's Eddington-accretion risk scenario, making the astronomical-survival fallback (NC_002) and the Casadio-Fabi-Harms model result (NC_013/NC_014) load-bearing instead.",
+        "dependent_normalized_claim_ids": [
+          "NC_001",
+          "NC_006",
+          "NC_007",
+          "NC_008",
+          "NC_009",
+          "NC_010",
+          "NC_011"
+        ],
+        "status": "theoretically_underdetermined",
+        "resolution_notes": null,
+        "resolution_source_ids": [],
+        "triggers": []
+      },
+      {
+        "id": "CX_003",
+        "statement": "Does the Giddings-Mangano vs. Plaga disagreement arise from a technical error in Plaga's application of the radiation formula, or merely from differing (both technically defensible) initial theoretical assumptions?",
+        "description": "If Giddings & Mangano's identified formula error (NC_010) is correct, Plaga's central technical basis (NC_008) is undermined. If Plaga's characterization (NC_009) is correct instead, the dispute is a legitimate scientific disagreement over assumptions rather than a refuted claim, and Plaga's scenario remains a live (if minority) technical position.",
+        "dependent_normalized_claim_ids": [
+          "NC_009",
+          "NC_010"
+        ],
+        "status": "unresolved",
+        "resolution_notes": null,
+        "resolution_source_ids": [],
+        "triggers": [
+          "reingest"
+        ]
+      },
+      {
+        "id": "CX_004",
+        "statement": "Within suppressed-Hawking-radiation model scenarios closest to Plaga's own assumptions (e.g., the RS warped brane-world scenario studied by Casadio, Fabi & Harms), is catastrophic microscopic-black-hole growth at the LHC excluded by independent physical bounds (such as tests of Newton's law) across the full range of physically plausible parameters?",
+        "description": "Casadio-Fabi-Harms (NC_013, NC_014) find exclusion within their specific RS metric and parameter choices, which would undercut Plaga's scenario (NC_008) from within his own preferred framework. But their result is explicitly model-scoped and concedes longer decay times than other models, leaving open whether some unaddressed parameter region could still permit growth.",
+        "dependent_normalized_claim_ids": [
+          "NC_008",
+          "NC_013",
+          "NC_014"
+        ],
+        "status": "theoretically_underdetermined",
+        "resolution_notes": null,
+        "resolution_source_ids": [],
+        "triggers": []
+      },
+      {
+        "id": "CX_005",
+        "statement": "Does the overlapping authorship and CERN-commissioning of the principal pro-safety analyses (src_001, src_002) versus the single non-peer-reviewed dissenting preprint (src_009) materially affect how much epistemic weight the 2008 safety consensus should receive?",
+        "description": "If institutional overlap and commissioning are judged not to bias the technical content (e.g., because independent papers like src_011 and src_012 corroborate the conclusion), the consensus stands largely unaffected. If judged to matter significantly, the safety case rests more heavily on the degree of true independence among src_001/src_002/src_011/src_012, and the asymmetry that the dissenting position (src_009) never obtained peer review becomes more salient in either direction.",
+        "dependent_normalized_claim_ids": [
+          "NC_002",
+          "NC_008"
+        ],
+        "status": "unresolved",
+        "resolution_notes": null,
+        "resolution_source_ids": [],
+        "triggers": []
+      }
+    ],
+    "failure_mode_flags": [
+      {
+        "id": "FF_001",
+        "type": "source_incentive_pressure",
+        "description": "src_001 (LSAG review) was commissioned by CERN, the institution operating the LHC, creating a potential institutional incentive to reach a reassuring conclusion.",
+        "applies_to_id": "src_001",
+        "applies_to_type": "source",
+        "severity": "significant",
+        "affects_conclusion": true,
+        "notes": "Mitigated somewhat by the existence of independently authored corroborating analyses (src_011) and by the review's candid acknowledgment of unconfirmed Hawking radiation (NC_006)."
+      },
+      {
+        "id": "FF_002",
+        "type": "source_incentive_pressure",
+        "description": "src_002's co-author (Mangano) is also a co-author of the CERN-commissioned src_001 that summarizes and relies on this very paper, reducing institutional independence between the 'review' and the 'primary analysis' it endorses.",
+        "applies_to_id": "src_002",
+        "applies_to_type": "source",
+        "severity": "significant",
+        "affects_conclusion": false,
+        "notes": "Peer review at Physical Review D and independent corroboration by src_011 partially mitigate this concern for the overall conclusion, though not for the specific claim of institutional independence."
+      },
+      {
+        "id": "FF_003",
+        "type": "direct_evidence_absent",
+        "description": "The claim that LHC-produced microscopic black holes decay via Hawking radiation before reaching detector walls (NC_001) rests entirely on theoretical extrapolation, since Hawking radiation itself has never been directly experimentally observed (per NC_006).",
+        "applies_to_id": "NC_001",
+        "applies_to_type": "normalized_claim",
+        "severity": "significant",
+        "affects_conclusion": true,
+        "notes": null
+      },
+      {
+        "id": "FF_004",
+        "type": "rhetorical_weight_exceeds_evidence",
+        "description": "NC_005 characterizes multiple preconditions as considered 'exceedingly improbable' or things 'most workers consider' unlikely, but this is the authors' own sociological characterization rather than a measured survey or quantitative probability estimate.",
+        "applies_to_id": "NC_005",
+        "applies_to_type": "normalized_claim",
+        "severity": "significant",
+        "affects_conclusion": false,
+        "notes": null
+      },
+      {
+        "id": "FF_005",
+        "type": "closed_case_overconfidence",
+        "description": "NC_002 (and its source phrasing 'no conceivable danger') treats the astronomical-survival argument as fully closing the risk question, despite the explicit conditional caveats on the neutron-star leg (NC_004) and the acknowledged kinematic difference (NC_003) that the argument itself must address.",
+        "applies_to_id": "NC_002",
+        "applies_to_type": "normalized_claim",
+        "severity": "significant",
+        "affects_conclusion": true,
+        "notes": null
+      },
+      {
+        "id": "FF_006",
+        "type": "direct_evidence_absent",
+        "description": "Plaga's Eddington-accretion risk scenario (NC_008) is a purely theoretical construction based on an alternative thermodynamic treatment, with no direct experimental or observational evidence for the scenario itself; applied symmetrically to the mainstream Hawking-decay claim (NC_001, FF_003).",
+        "applies_to_id": "NC_008",
+        "applies_to_type": "normalized_claim",
+        "severity": "significant",
+        "affects_conclusion": true,
+        "notes": "Flag intentionally mirrors FF_003 to avoid asymmetric treatment of pro- and con-risk theoretical claims."
+      },
+      {
+        "id": "FF_007",
+        "type": "hidden_assumption",
+        "description": "NC_014's no-catastrophe conclusion is explicitly scoped to the RS scenario and a specific metric, but this scope qualifier is easy to drop in casual restatement, hiding the assumption that the result generalizes beyond that specific model.",
+        "applies_to_id": "NC_014",
+        "applies_to_type": "normalized_claim",
+        "severity": "minor",
+        "affects_conclusion": false,
+        "notes": null
+      },
+      {
+        "id": "FF_008",
+        "type": "analogy_dependency",
+        "description": "The astronomical-survival safety argument (NC_002) depends on an analogy between cosmic-ray-produced and LHC-produced black holes; the packet's own sources acknowledge a kinematic disanalogy (low velocity at LHC vs. high velocity for cosmic rays, NC_003) that must be separately argued away rather than assumed.",
+        "applies_to_id": "NC_002",
+        "applies_to_type": "normalized_claim",
+        "severity": "significant",
+        "affects_conclusion": true,
+        "notes": null
+      }
+    ],
+    "missing_evidence": [
+      {
+        "id": "ME_001",
+        "description": "Direct experimental detection of Hawking radiation, from any black hole (laboratory analogue, astrophysical, or otherwise), has not been achieved. LSAG itself notes broad theoretical consensus but no direct experimental confirmation.",
+        "type": "empirical",
+        "would_affect_ids": [
+          "NC_001",
+          "NC_006",
+          "CX_002"
+        ],
+        "priority": "critical",
+        "reason_absent": "Current instruments lack sufficient sensitivity; Hawking radiation from astrophysical black holes is expected to be far too faint to detect, and no confirmed microscopic black hole production at colliders exists in the packet.",
+        "feasibility": "unknown",
+        "triggers": []
+      },
+      {
+        "id": "ME_002",
+        "description": "No source in the packet reports a confirmed observation of microscopic black hole production at LHC collision energies.",
+        "type": "empirical",
+        "would_affect_ids": [
+          "NC_001",
+          "NC_002",
+          "CX_001"
+        ],
+        "priority": "critical",
+        "reason_absent": "The packet's sources predate or coincide with LHC startup and contain no post-hoc operational safety data; no detection has been reported in the covered material.",
+        "feasibility": "feasible",
+        "triggers": []
+      },
+      {
+        "id": "ME_003",
+        "description": "A definitive measurement of ultra-high-energy cosmic-ray primary composition and of ultra-high-energy cosmic-ray neutrino interaction cross-sections with partons, sufficient to close the neutron-star-leg conditional caveat identified in src_002.",
+        "type": "empirical",
+        "would_affect_ids": [
+          "NC_004",
+          "CX_001"
+        ],
+        "priority": "important",
+        "reason_absent": "UHE cosmic-ray composition remains only partially constrained by current observatories per the packet's sources; the relevant neutrino-parton interaction regime is beyond current experimental reach.",
+        "feasibility": "unknown",
+        "triggers": []
+      },
+      {
+        "id": "ME_004",
+        "description": "An independent, peer-reviewed, third-party adjudication of whether Plaga's application of the suppressed-radiation formula was a technical error (as Giddings & Mangano claim) or reflected a legitimate alternative assumption set (as Plaga claims).",
+        "type": "theoretical",
+        "would_affect_ids": [
+          "NC_009",
+          "NC_010",
+          "CX_003"
+        ],
+        "priority": "critical",
+        "reason_absent": "Plaga's paper was never accepted to a peer-reviewed journal, and the Giddings-Mangano reply is itself an unrefereed arXiv note; no third-party technical referee report appears in the packet.",
+        "feasibility": "feasible",
+        "triggers": [
+          "reingest"
+        ]
+      }
+    ],
+    "assessments": [
+      {
+        "id": "AS_001",
+        "author": "Jacob Ortiz (case builder, AI-assisted single-pass encoding)",
+        "assessor": null,
+        "perspective": "primary builder",
+        "assessment_scope": null,
+        "summary": "Multiple independent, mostly peer-reviewed theoretical analyses converge on the conclusion that LHC-produced microscopic black holes pose no conceivable catastrophic danger, primarily via Hawking-radiation decay and, as a fallback, an astronomical-survival argument. The principal published dissent (Plaga) is a non-peer-reviewed preprint that was directly rebutted on an identified technical point by the original authors, and a model closest to Plaga's own preferred (microcanonical) framework independently found catastrophic growth excluded within that model. However, several premises underlying the mainstream case (unsuppressed Hawking radiation, specific cosmic-ray composition and neutrino-interaction assumptions) remain empirically unconfirmed, so the dispute is better described as resting on convergent theoretical argument rather than direct measurement.",
+        "status": "partially_settled",
+        "settled_direction": "The 2008-2009 physics literature in this packet converges strongly, via multiple independent groups, on the conclusion that LHC-produced microscopic black holes present no conceivable catastrophic danger under mainstream assumptions; this convergence is well-supported. What remains unsettled is the theoretical status of Hawking radiation itself (never directly observed) and the completeness of the suppressed-radiation risk scenario Plaga raised, which was rebutted but not independently adjudicated by a third party.",
+        "epistemic_status_summary": "Non-specialist summary: essentially all published, peer-reviewed physics analyses from this period say the risk is negligible to nonexistent, via several independent lines of argument. The one dissenting technical paper was not peer reviewed and was directly challenged on a specific calculation; that challenge itself was also not independently refereed. No experiment has directly confirmed the Hawking-radiation mechanism that much of the safety case leans on, though a separate astronomical fallback argument does not require it.",
+        "confidence": "moderate - convergent peer-reviewed theoretical analyses on one side vs. an unrefereed but not fully adjudicated dissent on the other, with some shared premises (Hawking radiation, cosmic-ray composition) still empirically unconfirmed",
+        "crux_ids": [
+          "CX_001",
+          "CX_002",
+          "CX_003",
+          "CX_004",
+          "CX_005"
+        ],
+        "key_crux_ids": [
+          "CX_002",
+          "CX_003",
+          "CX_004"
+        ],
+        "failure_mode_flag_ids": [
+          "FF_003",
+          "FF_005",
+          "FF_006",
+          "FF_008"
+        ],
+        "missing_evidence_ids": [
+          "ME_001",
+          "ME_004"
+        ],
+        "weak_link_ids": [
+          "NC_001",
+          "NC_008",
+          "NC_009"
+        ],
+        "sensitivity": [
+          {
+            "target_id": "NC_010",
+            "robustness": "fragile",
+            "effect_if_overturned": "If Plaga's characterization (NC_009) were vindicated by an independent referee and the alleged formula error in NC_010 were shown to be mistaken, the Eddington-accretion scenario (NC_008) would regain technical standing, weakening the settled_direction substantially."
+          },
+          {
+            "target_id": "NC_006",
+            "robustness": "robust",
+            "effect_if_overturned": "Even if Hawking radiation were directly confirmed experimentally (resolving NC_006 in favor of the mainstream view), this would only strengthen the existing conclusion; it would not overturn it if it went the other way, because the astronomical fallback (NC_002) does not require Hawking radiation to be confirmed."
+          },
+          {
+            "target_id": "CX_003",
+            "robustness": "fragile",
+            "effect_if_overturned": "Resolution of CX_003 in Plaga's favor would be the single most consequential change identified in this case, directly reviving the dissenting risk scenario."
+          },
+          {
+            "target_id": "NC_013",
+            "robustness": "robust",
+            "effect_if_overturned": "Because NC_013/NC_014 are explicitly scoped to one specific model, overturning them would narrow but not eliminate the overall convergence of independent safety arguments (NC_002, NC_005, NC_012)."
+          }
+        ],
+        "what_would_update": [
+          {
+            "scenario": "Direct experimental confirmation (or disconfirmation) of Hawking radiation for microscopic black holes.",
+            "would_affect_ids": [
+              "NC_001",
+              "NC_006",
+              "CX_002"
+            ],
+            "direction": "resolve",
+            "magnitude": "significant"
+          },
+          {
+            "scenario": "New astrophysical measurements showing ultra-high-energy cosmic-ray primaries are predominantly light elements and that UHE neutrinos interact with partons at unsuppressed strength (removing the neutron-star-leg loophole).",
+            "would_affect_ids": [
+              "NC_004",
+              "NC_002"
+            ],
+            "direction": "weaken",
+            "magnitude": "significant"
+          },
+          {
+            "scenario": "An independent, peer-reviewed third-party analysis confirming Plaga's formula application was not erroneous, vindicating his characterization of the disagreement as assumption-level.",
+            "would_affect_ids": [
+              "NC_009",
+              "NC_010",
+              "CX_003",
+              "NC_008"
+            ],
+            "direction": "weaken",
+            "magnitude": "decisive"
+          },
+          {
+            "scenario": "A follow-up analysis showing the Casadio-Fabi-Harms critical-mass bound (NC_013) was miscalculated, or that black holes with M_c well below current Newton's-law-test bounds could still grow catastrophically within the RS scenario.",
+            "would_affect_ids": [
+              "NC_013",
+              "NC_014",
+              "NC_008"
+            ],
+            "direction": "weaken",
+            "magnitude": "significant"
+          }
+        ],
+        "well_supported_claim_ids": [
+          "NC_002",
+          "NC_005",
+          "NC_012",
+          "NC_013"
+        ],
+        "contested_claim_ids": [
+          "NC_008",
+          "NC_009",
+          "NC_010",
+          "NC_014"
+        ],
+        "dominant_failure_modes": [
+          "direct_evidence_absent",
+          "source_incentive_pressure",
+          "closed_case_overconfidence",
+          "analogy_dependency"
+        ],
+        "disagrees_with": [],
+        "disagreement_notes": null,
+        "date": "2026-07-16",
+        "notes": "This assessment is model-generated from a single-pass reading of a curated excerpt packet, not from independent primary-source verification; see audit_notes for known limitations."
+      }
+    ],
+    "reviews": [],
+    "audit_notes": [
+      {
+        "id": "AN_001",
+        "type": "llm_artifact",
+        "description": "Normalized claims, scope statements, and especially the relation graph's 'basis' judgments were generated by an LLM in a single pass from packet excerpts. Wording choices, particularly in normalized_text and relation notes, have not been independently re-checked against the full primary texts and may contain paraphrase drift beyond what the excerpts strictly support.",
+        "applies_to_ids": [
+          "NC_001",
+          "NC_002",
+          "NC_008",
+          "NC_009",
+          "NC_010",
+          "R_010",
+          "R_012",
+          "R_013"
+        ],
+        "severity": "significant",
+        "author": "case builder",
+        "date": "2026-07-16",
+        "status": "open",
+        "resolution": null,
+        "triggers": [
+          "renormalize",
+          "remap_relations"
+        ]
+      },
+      {
+        "id": "AN_002",
+        "type": "verification_needed",
+        "description": "All extracted and normalized claims in this case are marked needs_source_verification=true. Only the packet's excerpt-level metadata (not this JSON encoding itself) has undergone AI-assisted verification against primary PDFs; the normalization and relation-mapping steps performed here have not been separately checked.",
+        "applies_to_ids": [
+          "NC_001",
+          "NC_002",
+          "NC_003",
+          "NC_004",
+          "NC_005",
+          "NC_006",
+          "NC_007",
+          "NC_008",
+          "NC_009",
+          "NC_010",
+          "NC_011",
+          "NC_012",
+          "NC_013",
+          "NC_014"
+        ],
+        "severity": "significant",
+        "author": "case builder",
+        "date": "2026-07-16",
+        "status": "open",
+        "resolution": null,
+        "triggers": [
+          "reextract",
+          "renormalize"
+        ]
+      },
+      {
+        "id": "AN_003",
+        "type": "source_gap",
+        "description": "The packet is frozen at the 2008-2009 exchange and includes no later empirical operating history of the LHC, no later CERN restatements, and no subsequent astrophysical or theoretical literature that might bear on the cruxes (e.g., later refinements of UHE cosmic-ray composition measurements or further theoretical work on microcanonical black hole thermodynamics).",
+        "applies_to_ids": [
+          "NC_002",
+          "NC_004",
+          "CX_001",
+          "CX_002"
+        ],
+        "severity": "significant",
+        "author": "case builder",
+        "date": "2026-07-16",
+        "status": "open",
+        "resolution": null,
+        "triggers": [
+          "reingest"
+        ]
+      },
+      {
+        "id": "AN_004",
+        "type": "crux_quality",
+        "description": "CX_005 (institutional independence of the safety consensus) overlaps substantially with FF_001/FF_002 (source_incentive_pressure flags). This redundancy between the crux layer and the failure-mode-flag layer was accepted rather than fully de-duplicated, since the crux frames a forward-looking epistemic question while the flags describe a present structural feature of the sources.",
+        "applies_to_ids": [
+          "CX_005",
+          "FF_001",
+          "FF_002"
+        ],
+        "severity": "minor",
+        "author": "case builder",
+        "date": "2026-07-16",
+        "status": "open",
+        "resolution": null,
+        "triggers": []
+      }
+    ]
+  }
+}

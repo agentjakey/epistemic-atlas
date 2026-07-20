@@ -1,0 +1,72 @@
+[
+  {
+    "finding_id": "AF_001",
+    "target_id": "summary",
+    "type": "stale/contradictory metadata",
+    "description": "The top-level summary states the entry 'captures the extracted claims from that primary exchange without yet normalizing, relating, or assessing them,' but the draft actually contains a fully populated normalized_claims array (NC_001-NC_021), a relations array (R_001-R_025), and a complete assessment_layer (cruxes, failure_mode_flags, missing_evidence, assessments). This is a direct factual contradiction between the summary text and the entry's actual content/status.",
+    "severity": "significant"
+  },
+  {
+    "finding_id": "AF_002",
+    "target_id": "R_016",
+    "type": "relation basis error",
+    "description": "R_016 (NC_015 opposes NC_014) is labeled basis='asserted_in_source' with basis_source_ids=[src_010], but no excerpt of src_010 (lhc_c012) explicitly engages or contradicts Plaga's specific 'differing assumptions, not technical error' framing (NC_014, drawn from lhc_c010 of src_009). The connection is drawn only via the packet's own editorial context_note ('directly contests lhc_c010'), which is an assembler annotation, not source text. This matches the flagged defect category 'basis labeled asserted_in_source with no excerpt drawing the link'; basis should be 'inferred_across_sources' or similar.",
+    "severity": "significant"
+  },
+  {
+    "finding_id": "AF_003",
+    "target_id": "R_024",
+    "type": "relation basis error",
+    "description": "R_024 (NC_021 contextualizes NC_009) is labeled basis='asserted_in_source' with basis_source_ids=[src_012] only, despite NC_009 being a claim from a different source (src_009, Plaga). The cited excerpt (lhc_c016) references 'Ref. [4]' (most plausibly Casadio & Harms's own earlier work), not Plaga's src_009 paper specifically. The cross-source link to NC_009 is an analyst inference, not something asserted in the src_012 excerpt text, so this basis label is unsupported.",
+    "severity": "significant"
+  },
+  {
+    "finding_id": "AF_004",
+    "target_id": "assessment_layer.failure_mode_flags",
+    "type": "missing/asymmetric failure mode flag",
+    "description": "FF_001-FF_004 flag incentive-pressure/independence concerns for src_001, src_002, src_009, and src_010, but no equivalent flag is raised for src_011 (Koch et al., explicitly noted in its own limitations as sharing the same research community as Giddings-Mangano) or for src_012 (Casadio, Fabi & Harms), whose evidentiary_role explicitly identifies them as 'originators of the microcanonical framework Plaga relies on' -- a plausible motive to show their own framework does not entail catastrophic risk. This is an asymmetric application of the same failure-mode category across sources.",
+    "severity": "significant"
+  },
+  {
+    "finding_id": "AF_005",
+    "target_id": "FF_007 / FF_008",
+    "type": "asymmetric severity assignment",
+    "description": "FF_007 (absence of direct experimental confirmation of Hawking radiation underlying NC_001, the mainstream safety claim) is rated 'significant', while FF_008 (absence of direct observational evidence for Plaga's Eddington-accretion mechanism underlying NC_011, the dissenting risk claim) is rated 'critical' for the same underlying failure-mode type ('direct_evidence_absent'). No stated rationale justifies why the identical evidentiary gap is weighted more heavily against the dissenting position than the mainstream position.",
+    "severity": "significant"
+  },
+  {
+    "finding_id": "AF_006",
+    "target_id": "packet.lhc_c001.relevant_claims",
+    "type": "dangling/mismatched cross-reference",
+    "description": "The packet excerpt lhc_c001's relevant_claims field lists NC_012 and EC_004 as relevant. However, in the draft, EC_004 is actually extracted from excerpt lhc_c002 (not lhc_c001), and NC_012 traces solely to EC_027, which is extracted from src_009 (Plaga, lhc_c009) -- an entirely different source discussing Plaga's evasion-of-exclusion claim, unrelated to the LSAG abstract content of lhc_c001. This creates unreliable/dangling linkage between the packet's excerpt-level annotations and the actual claim graph.",
+    "severity": "significant"
+  },
+  {
+    "finding_id": "AF_007",
+    "target_id": "NC_019",
+    "type": "normalization drift (quote truncation)",
+    "description": "NC_019 (and the parallel note in FF_012) quotes Koch et al. as citing Giddings-Mangano's conclusion 'there is no risk of any significance whatsoever', but the actual excerpt text (lhc_c014, echoed in EC_039) reads 'there is no risk of any significance whatsoever from such black holes.' Dropping the qualifying phrase 'from such black holes' subtly broadens the quoted claim beyond its original scope.",
+    "severity": "minor"
+  },
+  {
+    "finding_id": "AF_008",
+    "target_id": "extracted_claims (EC_032-EC_036) location.page",
+    "type": "location metadata inconsistency",
+    "description": "For EC_032-EC_035 (from excerpt lhc_c012, which has pdf_page=2/printed_page=1) and EC_036 (from lhc_c013, pdf_page=3/printed_page=2), the draft's location.page values ('1' and '2' respectively) use printed_page rather than pdf_page. This is inconsistent with the convention used elsewhere in the draft, e.g. EC_020/EC_021 (from lhc_c007, pdf_page=53/printed_page=52) and EC_024 (from lhc_c008, pdf_page=54/printed_page=53), which record the pdf_page value ('53', '54'). The inconsistent choice risks page-lookup errors when verifying against the source PDF.",
+    "severity": "minor"
+  },
+  {
+    "finding_id": "AF_009",
+    "target_id": "NC_001",
+    "type": "normalization drift (unlicensed elaboration)",
+    "description": "NC_001's normalized_text adds the interpretive clause 'i.e., on a timescale far shorter than needed to travel any macroscopic detector distance,' which is not present in the underlying extracted claim (EC_001) or its source excerpt (lhc_c001). EC_001 only states black holes are 'expected to decay by Hawking radiation before they reach the detector walls' with no explicit timescale reasoning attached.",
+    "severity": "minor"
+  },
+  {
+    "finding_id": "AF_010",
+    "target_id": "AS_001.well_supported_claim_ids",
+    "type": "internal inconsistency",
+    "description": "AS_001 lists NC_017 among 'well_supported_claim_ids', but NC_017 itself carries only 'medium' confidence and is explicitly hedged as a subjective literature-awareness claim ('to our knowledge'), further flagged elsewhere (FF_013) as lacking a specified dependency basis for its consensus-adjacent assertion. Categorizing it as 'well_supported' sits in tension with its own documented epistemic caveats.",
+    "severity": "minor"
+  }
+]

@@ -1,0 +1,131 @@
+{
+  "case": "lhc",
+  "status": "SOURCE_VERIFIED_FROZEN",
+  "status_note": "Metadata populated 2026-07-14 from arXiv API records and the downloaded PDFs (checksums in source_documents/lhc/SOURCE_INVENTORY.json). Frozen 2026-07-15 as SOURCE-VERIFIED (owner-directed AI-assisted verification: OpenAI GPT-5.6 Thinking, corroborated by local deterministic and visual PDF recheck; see ASSISTANT_VERIFICATION_HANDOFF.md and LOCAL_PDF_VERIFICATION.json). This is source-verification of excerpt fidelity, NOT independent human verification of every passage and NOT scientific adjudication of the dispute. A four-item owner spot-check (lhc_c002, lhc_c009, lhc_c012, lhc_c015) remains outstanding.",
+  "verification_provenance": {
+    "reviewer": "OpenAI GPT-5.6 Thinking (AI-assisted source verification; owner-directed under Jacob Ortiz)",
+    "date": "2026-07-15",
+    "local_recheck_by": "assistant (Claude) - normalized-text containment plus PDF render inspection of c012/c014/c015/c016",
+    "not_a_claim_of": ["human verified by Jacob", "independently verified by multiple researchers", "ground truth", "scientific adjudication of the black-hole-risk dispute"],
+    "koch_doi_corrected_to": "10.1016/j.physletb.2009.01.003"
+  },
+  "scope_note": "Packet scope is the micro-black-hole risk question only (production, decay/Hawking radiation, stability, accretion, astrophysical constraints). Strangelets, vacuum bubbles, and magnetic monopoles are OUT of packet scope even though the repository case mentions them. Repository sources src_003 through src_008 are retained in data/lhc/sources.json but are NOT packet sources; the packet uses src_001, src_002, and the four new sources src_009 through src_012.",
+  "sources": [
+    {
+      "source_id": "src_001",
+      "citation": "Ellis, J., Giudice, G., Mangano, M. L., Tkachev, I., & Wiedemann, U. (LHC Safety Assessment Group) (2008). Review of the Safety of LHC Collisions. Journal of Physics G: Nuclear and Particle Physics, 35(11), 115004. arXiv:0806.3414v2.",
+      "title": "Review of the Safety of LHC Collisions",
+      "authors_or_org": [
+        "John Ellis",
+        "Gian Giudice",
+        "Michelangelo L. Mangano",
+        "Igor Tkachev",
+        "Urs Wiedemann"
+      ],
+      "publication_date": "2008 (arXiv v1 2008-06-20; v2 2008-09-18)",
+      "source_type": "report",
+      "classification": "review",
+      "stable_identifier": "doi:10.1088/0954-3899/35/11/115004 | arXiv:0806.3414",
+      "access_date": "2026-07-14",
+      "evidentiary_role": "Official LHC Safety Assessment Group (LSAG) review. States the mainstream position: Hawking decay expected; if stable black holes existed, cosmic-ray production plus the survival of Earth, white dwarfs, and neutron stars bounds accretion rates. Summarizes and endorses the Giddings-Mangano analysis (src_002). Also candidly notes Hawking radiation has no direct experimental confirmation.",
+      "limitations": "Commissioned by CERN, the institution operating the LHC; critics (including Plaga, src_009) raised independence concerns. It is a review, not the underlying technical analysis - the load-bearing calculations live in src_002. Acknowledges the low-velocity difference between LHC products and cosmic-ray products, which is the reason the astrophysical arguments are needed at all.",
+      "copyright_or_access_notes": "Publisher version copyright IOP Publishing; arXiv preprint openly accessible. Local PDF (arXiv v2) held only under .local-experiments/; full text never enters the public repository. Excerpts limited to short quotations for analysis.",
+      "verification_status": "source_verified_ai_assisted_owner_directed_2026-07-15"
+    },
+    {
+      "source_id": "src_002",
+      "citation": "Giddings, S. B., & Mangano, M. L. (2008). Astrophysical implications of hypothetical stable TeV-scale black holes. Physical Review D, 78(3), 035009. arXiv:0806.3381v2.",
+      "title": "Astrophysical implications of hypothetical stable TeV-scale black holes",
+      "authors_or_org": [
+        "Steven B. Giddings",
+        "Michelangelo L. Mangano"
+      ],
+      "publication_date": "2008 (arXiv v1 2008-06-20; v2 2008-09-23)",
+      "source_type": "paper",
+      "classification": "primary",
+      "stable_identifier": "doi:10.1103/PhysRevD.78.035009 | arXiv:0806.3381",
+      "access_date": "2026-07-14",
+      "evidentiary_role": "The central technical safety analysis. Deliberately assumes the worst case (stable, neutral black holes trapped in Earth), computes accretion timescales across extra-dimension scenarios, and derives the white-dwarf/neutron-star constraint: cosmic-ray-produced stable black holes would have destroyed observed dense stars on timescales incompatible with their measured lifetimes. Also states explicitly the chain of independently unlikely assumptions required for its bounds to even be needed.",
+      "limitations": "Peer reviewed (PRD), but both authors are collider-physics insiders and Mangano is a CERN author on src_001, so it is not institutionally independent of CERN. The neutron-star leg of the argument depends on assumptions about ultra-high-energy cosmic-ray composition and neutrino production/interaction, which the paper itself flags. Long (~98 PDF pages) and technical; printed page numbers appear offset by one from PDF pages in the conclusions region - confirm during verification.",
+      "copyright_or_access_notes": "Publisher version copyright American Physical Society; arXiv preprint openly accessible. Local PDF (arXiv v2) held only under .local-experiments/; short quotations only.",
+      "verification_status": "source_verified_ai_assisted_owner_directed_2026-07-15"
+    },
+    {
+      "source_id": "src_009",
+      "citation": "Plaga, R. (2008, rev. 2009). On the potential catastrophic risk from metastable quantum-black holes produced at particle colliders. arXiv:0808.1415v3 [hep-ph]. Preprint; no journal publication on record.",
+      "title": "On the potential catastrophic risk from metastable quantum-black holes produced at particle colliders",
+      "authors_or_org": [
+        "R. Plaga"
+      ],
+      "publication_date": "2008-08-10 (arXiv v1); v3 2009-08-09",
+      "source_type": "preprint",
+      "classification": "criticism",
+      "stable_identifier": "arXiv:0808.1415 (no DOI; no journal_ref on arXiv record)",
+      "access_date": "2026-07-14",
+      "evidentiary_role": "The principal published objection to the safety case. Using the microcanonical treatment of Casadio & Harms, argues Hawking radiation could be strongly suppressed but not fully off, producing metastable black holes that accrete at the Eddington limit and emit harmful radiation. Claims the disagreement with Giddings-Mangano stems from different initial assumptions, not technical error on either side. Needed for the packet to represent the dissenting position in its own words.",
+      "limitations": "NOT peer reviewed or journal published (arXiv preprint only) - a material status difference from src_001/src_002/src_011/src_012 that must be visible in any claim graph. Giddings & Mangano (src_010) identify an alleged dimensional inconsistency in its central formula application. v3 adds appendices replying to src_010 and to Casadio et al. Abstract contains the author's own typos ('collider produced of', 'and and') which must be preserved with [sic] when quoted.",
+      "copyright_or_access_notes": "arXiv preprint, openly accessible under arXiv license. Local PDF (v3) held only under .local-experiments/; short quotations only.",
+      "verification_status": "source_verified_ai_assisted_owner_directed_2026-07-15"
+    },
+    {
+      "source_id": "src_010",
+      "citation": "Giddings, S. B., & Mangano, M. L. (2008). Comments on claimed risk from metastable black holes. arXiv:0808.4087v1 [hep-ph]. Note; no journal publication on record.",
+      "title": "Comments on claimed risk from metastable black holes",
+      "authors_or_org": [
+        "Steven B. Giddings",
+        "Michelangelo L. Mangano"
+      ],
+      "publication_date": "2008-08-29 (arXiv v1)",
+      "source_type": "preprint",
+      "classification": "commentary",
+      "stable_identifier": "arXiv:0808.4087 (no DOI; no journal_ref on arXiv record)",
+      "access_date": "2026-07-14",
+      "evidentiary_role": "Direct rebuttal to Plaga (src_009). Identifies the alleged error: applying a radiation formula using the four-dimensional mass-radius relation in a regime where that relation does not hold. Also argues that even granting Plaga's suppressed-radiation scenario, Eddington-limited accretion cannot be established inside a white dwarf, so the src_002 bounds still apply. Completes the exchange structure of the dispute (analysis -> objection -> rebuttal).",
+      "limitations": "Also NOT peer reviewed (arXiv note, ~3 content pages). Written by the same authors whose work it defends, so not an independent adjudication. The central passage is dense with inline math (its equations (1)-(3)); extracted text corrupts the notation, so equation-level inspection of the PDF is required before any excerpt referencing them is verified.",
+      "copyright_or_access_notes": "arXiv preprint, openly accessible under arXiv license. Local PDF held only under .local-experiments/; short quotations only.",
+      "verification_status": "source_verified_ai_assisted_owner_directed_2026-07-15"
+    },
+    {
+      "source_id": "src_011",
+      "citation": "Koch, B., Bleicher, M., & Stoecker, H. (2009). Exclusion of black hole disaster scenarios at the LHC. Physics Letters B, 672(1), 71-76. arXiv:0807.3349v2.",
+      "title": "Exclusion of black hole disaster scenarios at the LHC",
+      "authors_or_org": [
+        "Benjamin Koch",
+        "Marcus Bleicher",
+        "Horst Stoecker"
+      ],
+      "publication_date": "2009 (arXiv v1 2008-07-22; v2 2008-09-27)",
+      "source_type": "paper",
+      "classification": "primary",
+      "stable_identifier": "doi:10.1016/j.physletb.2009.01.003 (per arXiv record; task brief listed 10.1016/j.physletb.2009.01.048 - discrepancy logged in SOURCE_INVENTORY.json, Jacob to confirm against publisher) | arXiv:0807.3349",
+      "access_date": "2026-07-14",
+      "evidentiary_role": "Independent (non-CERN-commissioned, non-Giddings-Mangano) safety analysis. Enumerates the logically possible black-hole evolution endpoints and argues each is safe, adding arguments not in src_001/src_002 such as the effect of a growing black hole mass on escape velocity. Strengthens the packet against the objection that the safety case rests on one group.",
+      "limitations": "Authors are collider phenomenologists within the same research community, so independence is methodological rather than sociological. Argument-by-exhaustion depends on the case enumeration actually being exhaustive. Published version may differ in detail from the arXiv v2 held locally - confirm during verification, along with the DOI discrepancy.",
+      "copyright_or_access_notes": "Publisher version copyright Elsevier (Physics Letters B is open access under SCOAP3/CC for later years, but 2009 status must be checked); arXiv preprint openly accessible. Local PDF held only under .local-experiments/; short quotations only.",
+      "verification_status": "source_verified_ai_assisted_owner_directed_2026-07-15"
+    },
+    {
+      "source_id": "src_012",
+      "citation": "Casadio, R., Fabi, S., & Harms, B. (2009). Possibility of catastrophic black hole growth in the warped brane-world scenario at the LHC. Physical Review D, 80(8), 084036. arXiv:0901.2948v3.",
+      "title": "Possibility of Catastrophic Black Hole Growth in the Warped Brane-World Scenario at the LHC",
+      "authors_or_org": [
+        "Roberto Casadio",
+        "Sergio Fabi",
+        "Benjamin Harms"
+      ],
+      "publication_date": "2009 (arXiv v1 2009-01-19; v3 2009-11-05)",
+      "source_type": "paper",
+      "classification": "primary",
+      "stable_identifier": "doi:10.1103/PhysRevD.80.084036 | arXiv:0901.2948",
+      "access_date": "2026-07-14",
+      "evidentiary_role": "Analysis by the originators of the microcanonical framework Plaga relies on (Casadio & Harms). Works within the warped (RS) brane-world scenario with suppressed evaporation - i.e., closest to Plaga's own assumptions - and still concludes catastrophic growth is not possible, partly because the critical mass required for growth already exceeds bounds from experimental tests of Newton's law. Closes the loop on whether Plaga's cited framework supports his conclusion.",
+      "limitations": "Model-specific: the no-catastrophe conclusion is derived within the RS metric and stated parameter assumptions, not model-independently. It simultaneously concedes that expected decay times are significantly longer than other models predict, which a careful graph must represent as a qualification, not a retraction. Two-column PRD layout: extracted text column order is unreliable, so PDF-only verification for excerpts.",
+      "copyright_or_access_notes": "Publisher version copyright American Physical Society; arXiv preprint openly accessible. Local PDF (arXiv v3) held only under .local-experiments/; short quotations only.",
+      "verification_status": "source_verified_ai_assisted_owner_directed_2026-07-15"
+    }
+  ],
+  "non_packet_repository_sources": {
+    "note": "The repository case file data/lhc/sources.json also lists src_003 (2003 heavy-ion study), src_004 (CMS micro-black-hole search), src_005 (ADD/RS extra-dimension theory), src_006 (Hawking 1974), src_007 (Giddings-Thomas 2002), and src_008 (Wagner v. DOE legal filing). They remain valid citation targets for the repository claim graph but are not part of this experiment packet; the packet deliberately restricts to the six documents above so every excerpt can be human-verified against a held PDF.",
+    "excluded_source_ids": ["src_003", "src_004", "src_005", "src_006", "src_007", "src_008"]
+  }
+}

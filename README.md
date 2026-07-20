@@ -8,9 +8,12 @@ graphs with provenance, relation mapping, cruxes, missing evidence, and assessme
 ## What it is
 
 This is the final Epistemic Atlas submission to the FLF Epistemic Case Study Competition. It
-has four parts: a lightweight, ordered workflow for building one structured entry from raw
+has five parts: a lightweight, ordered workflow for building one structured entry from raw
 sources; a JSON schema (v3, JSON Schema Draft 2020-12) for the resulting artifact; a static
-Next.js prototype for exploring the artifact; and two partially verified worked examples.
+Next.js prototype for exploring the artifact; two partially verified worked examples; and a
+live-systems compute-scaling validation (`experiments/compute_scaling/`) that runs the
+workflow under two inference conditions on a frozen source packet and measures the outputs
+deterministically.
 
 The goal is to preserve the reasoning structure of a dispute rather than compress it into a
 prose summary. A summary hides the things a careful reader most needs: who said what, where it
@@ -21,13 +24,29 @@ fact-checker, or a final authority on any scientific or medical question.
 
 ## Recommended path for judges
 
-1. `docs/writeup.md` for the full argument and worked examples.
-2. `docs/methodology.md` for the stage-by-stage workflow.
-3. `docs/living_workflow.md` for how an entry is revisited and compounds over time.
-4. `docs/prior_art_mapping.md` for how the schema relates to existing formats.
-5. `schema/epistemic-atlas.schema.json` and `schema/GUIDE.md` for the schema.
-6. `data/lhc/graph.json` and `data/eggs/graph.json` for the worked-example structure.
-7. Run the app (below) to explore the cases interactively.
+A five-minute path to the strongest contribution, then the depth behind it:
+
+1. **Project overview** - this README and `docs/writeup.md` for the full argument.
+2. **Worked cases** - `data/lhc/graph.json` and `data/eggs/graph.json` for the worked-example
+   structure; run the app (below) to explore them interactively.
+3. **Compute-scaling report** - `experiments/compute_scaling/README.md` and
+   `experiments/compute_scaling/SCALING_REPORT.md`. A live-systems validation that runs the
+   workflow under a single-pass and a six-stage condition on a frozen, checksummed source
+   packet, and measures the outputs deterministically (parsing, schema validity, referential
+   integrity, source-linked grounding, audit/repair mechanics). This is the newest and most
+   rigorously instrumented part of the submission.
+4. **Exemplar outputs** - `experiments/compute_scaling/examples/` holds two schema-valid,
+   source-linked final graphs produced by real model runs, plus the Condition B audit findings
+   and repair change log. Reproduce every deterministic check with
+   `cd experiments/compute_scaling/harness && npm install && npm run check`.
+5. **Methodology and schema** - `docs/methodology.md` for the stage-by-stage workflow,
+   `docs/living_workflow.md` for iterative use, `docs/prior_art_mapping.md` for how the schema
+   relates to existing formats, and `schema/epistemic-atlas.schema.json` + `schema/GUIDE.md`
+   for the schema itself.
+6. **Limitations** - `docs/limitations.md`, `docs/adversarial_audit.md`, and the Limitations
+   section below. The compute-scaling work is smoke-stage evidence: it validates the
+   measurement pipeline; it is not a comparison of the two conditions and makes no claim that
+   one produces better graphs than the other.
 
 ## Worked examples
 
@@ -109,8 +128,16 @@ npm run build       # static build
 - Not medical advice. Not physics advice.
 - Relation `basis` still needs domain review. The conservative default in the active data is
   `inferred_across_sources`, and promoting an edge to `asserted_in_source` is a human judgment.
-- Multi-user and adversarial review are supported by the schema (`assessments[]`, `reviews[]`)
-  but only minimally exercised: both cases carry a single assessment and an empty reviews array.
+- Multi-user and adversarial review are supported by the schema (`assessments[]`, `reviews[]`).
+  In the two tracked worked examples they are only minimally exercised (a single assessment and
+  an empty reviews array each). The adversarial-audit and repair stages have now been exercised
+  live once, in the compute-scaling smoke (`experiments/compute_scaling/`): a Condition B run
+  produced 10 audit findings and a 10-entry repair change log with no unlogged changes. That is
+  smoke-stage evidence the stages run and produce logged artifacts; whether the findings are
+  genuine defects remains a human judgment and was not adjudicated.
+- The compute-scaling result is a smoke-stage validation, not a primary study: one run per
+  condition on one case, no replicates, no human evaluation, and no comparison claim between the
+  conditions.
 - Formal exporters to PROV, AIF, or nanopublication formats are future work. The prior-art
   mapping is conceptual, not an implementation.
 
@@ -123,6 +150,7 @@ npm run build       # static build
 - [docs/judging_alignment.md](docs/judging_alignment.md) - how the submission maps to evaluation criteria
 - [docs/limitations.md](docs/limitations.md) - honest limitations
 - [docs/adversarial_audit.md](docs/adversarial_audit.md) - adversarial self-audit
+- [experiments/compute_scaling/](experiments/compute_scaling/) - live-systems compute-scaling smoke validation (report, protocol, exemplars, deterministic harness)
 - [schema/GUIDE.md](schema/GUIDE.md) - plain-English schema guide
 
 ## License

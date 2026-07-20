@@ -1,0 +1,12 @@
+{
+  "note": "SHA-256 (CRLF-normalized to LF) of the seven frozen Condition B / single-pass prompts. These match MANIFEST.frozen.json prompt_sha256 and were fixed before any live call.",
+  "prompt_sha256": {
+    "01_extract.md": "e211cd18923692bb583fede433fad5be799c6ae489b1d6b98a344807dc12ee31",
+    "02_normalize.md": "c5a1648fe16a35ea9b2292acdf49baf729de075314b1180816248e04191b89a7",
+    "03_relations.md": "b2f26a97c08f20dd95a04b4a409f05e79e17544b7417160ce84f6ae1a6aea7a6",
+    "04_epistemic_analysis.md": "2a7077a5c043b5c63da4a5e030241cddcff8fc639fee5261c2027c68b6a762f5",
+    "05_adversarial_audit.md": "14ac56d4eff39597b9f139161b93bf377598f97df479392779ca8de3f286d770",
+    "06_repair.md": "e6a0c99f5709a6df7041fde4e64ae5c0953b4ebbeb3957c0ce7d60055f68eb7d",
+    "single-pass.md": "37b3185dde5e0496408aca64093665e4fcfd161e60b2a8b32b49bb2e4997ea43"
+  }
+}
